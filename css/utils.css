@@ -1,0 +1,19 @@
+/* =Utils
+-----------------------------------------------------------------------------*/
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+.group {
+    clear: both;
+    border: 1px solid red;
+    *zoom: 1;
+}
+
+.clear{
+    clear: both;
+}
