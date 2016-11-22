@@ -1,6 +1,17 @@
-<input type="file" id="wavefile"></input>
+<section class="panelContent" data-panelname="wave">
+    <h5 class="fileHeader">File: <span></span></h5>
 
-<script>
-    var selectedFile = document.getElementById('wavefile').files[0];
-    console.log(selectedFile);
-</script>
+    <div class="fileUpload">
+        <input type="file" id="wavefile"></input>
+    </div>
+
+    <div class="fileList" id="fileList">
+        <ul>
+            <li><a href="samples/sample.ogg">Acid</a></li>
+            <li><a href="samples/door.ogg">Door</a></li>
+            <li><a href="samples/gem3.ogg">Gem3</a></li>
+            <li><a href="samples/gem5.ogg">Gem5</a></li>
+        </ul>
+    </div>
+</section>
+
