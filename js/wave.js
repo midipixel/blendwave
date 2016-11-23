@@ -1,6 +1,6 @@
 var wave = {
-    file: '',
-    sound: new Pizzicato.Sound(),
+    file: 'sine.wav',
+    sound: new Pizzicato.Sound('samples/sine.wav'),
     init: function(){
         console.log('Wave Panel Loaded');
 

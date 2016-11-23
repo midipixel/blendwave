@@ -1,7 +1,7 @@
 $(function(){
     //Initialize jQuery UI Tab Widget
     $( "#mainNav" ).tabs({
-        active: 0,
+        active: 5,
         load: function( event, ui ) {
             main.init();
 
@@ -17,10 +17,13 @@ $(function(){
                     filter.init();
                 break;
                 case 'fx1':
-                    fx1.init();
+                    fx.init();
                 break;
                 case 'fx2':
-                    fx2.init();
+                    fx.init();
+                break;
+                case 'export':
+                    audioExport.init();
                 break;
             }
         }
