@@ -31,7 +31,7 @@ var main = {
     init: function(){
         //Add Global Listeners
         $('.fileHeader').on('click', function(){
-            wave.playFile();
+            wave.sound.play();
         })
 
         main.updateFile();

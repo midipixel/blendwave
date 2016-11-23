@@ -1,6 +1,6 @@
 var wave = {
     file: '',
-    sampler: {},
+    sound: new Pizzicato.Sound(),
     init: function(){
         console.log('Wave Panel Loaded');
 
@@ -13,7 +13,7 @@ var wave = {
             $('#fileList li').removeClass();
             $(this).parent().addClass('active');
 
-            //Play file
+            //On Change
             wave.changeFile(wave.file);
         });
 
@@ -24,14 +24,18 @@ var wave = {
         });
     },
     changeFile: function(waveFile){
-        wave.playFile(wave.file);
-        main.updateFile(wave.file);
-    },
-    playFile: function(waveFile){
         file = waveFile || wave.file;
-        wave.sampler = new Tone.Sampler(file, function(){
-            wave.sampler.triggerAttack();
-        }).toMaster();
+
+        wave.sound.stop();
+
+        wave.sound = new Pizzicato.Sound({
+            source: 'file',
+            options: { path: file, attack: 0.2 }
+        }, function() {
+            wave.sound.play();
+        });
+
+        main.updateFile(wave.file);
     }
 }
 
