@@ -25,13 +25,13 @@ var wave = {
     },
     changeFile: function(waveFile){
         wave.playFile(wave.file);
-        $('.fileHeader span').html(wave.file);
+        main.updateFile(wave.file);
     },
     playFile: function(waveFile){
-        wave.sampler = new Tone.Sampler(waveFile, function(){
+        file = waveFile || wave.file;
+        wave.sampler = new Tone.Sampler(file, function(){
             wave.sampler.triggerAttack();
         }).toMaster();
-
     }
 }
 

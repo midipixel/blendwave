@@ -2,14 +2,34 @@
 Blendwave - Main
 Author: Werther Azevedo
 -----------------------------------------------------------------------------*/
+/* =General
+-----------------------------------------------------------------------------*/
+ul {
+  list-style: none;
+  padding: 0;
+}
 /* =Main
 -----------------------------------------------------------------------------*/
 .container {
   max-width: 990px;
   margin: 0 auto;
 }
+h2.fileHeader {
+  font-size: 1em;
+  border-bottom: 1px solid gray;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  cursor: pointer;
+  background: #eee;
+  padding: 0.5em 0;
+}
 /* =Wave
 -----------------------------------------------------------------------------*/
-.fileList .active {
+.fileList li a {
+  display: block;
+  padding: 0.2em 0;
+}
+.fileList .active,
+.fileList a:hover {
   background: #eee;
 }
