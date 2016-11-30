@@ -1,11 +1,15 @@
 $(function(){
     //Initialize jQuery UI Tab Widget
-    $( "#mainNav" ).tabs({
-        active: 5,
-        load: function( event, ui ) {
+    $( "#blendwave" ).tabs({
+        active: 0,
+        create: function(){
             main.init();
+            //This is here while I don't find out if there is a callback for the default tab
+            wave.init();
+        },
+        activate: function( event, ui ) {
+            var loadedPanel = $(ui.newPanel).data();
 
-            var loadedPanel = $(ui.panel[0]).children().data();
             switch(loadedPanel.panelname){
                 case 'wave':
                     wave.init();
@@ -38,6 +42,8 @@ var main = {
         })
 
         main.updateFile();
+
+        console.log("Main init OK");
     },
     updateFile: function(){
         $('.fileHeader span').html(wave.file);

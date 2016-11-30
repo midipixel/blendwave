@@ -33,3 +33,15 @@ h2.fileHeader {
 .fileList a:hover {
   background: #eee;
 }
+/* =Envelope
+-----------------------------------------------------------------------------*/
+.envelope fieldset label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.envelope fieldset input[type=range] {
+  display: inline-block;
+}
+.envelope fieldset legend {
+  padding: 0 1em;
+}

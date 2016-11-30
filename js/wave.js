@@ -13,6 +13,8 @@ var wave = {
             $('#fileList li').removeClass();
             $(this).parent().addClass('active');
 
+            //console.log(wave.file);
+
             //On Change
             wave.changeFile(wave.file);
         });
