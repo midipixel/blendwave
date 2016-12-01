@@ -1,33 +1,31 @@
 $(function(){
     //Initialize jQuery UI Tab Widget
     $( "#blendwave" ).tabs({
-        active: 0,
+        active: 1,
         create: function(){
             main.init();
-            //This is here while I don't find out if there is a callback for the default tab
-            wave.init();
         },
         activate: function( event, ui ) {
             var loadedPanel = $(ui.newPanel).data();
 
             switch(loadedPanel.panelname){
                 case 'wave':
-                    wave.init();
+                    wave.panel();
                 break;
                 case 'envelope':
-                    envelope.init();
+                    envelope.panel();
                 break;
                 case 'filter':
-                    filter.init();
+                    filter.panel();
                 break;
                 case 'fx1':
-                    fx.init();
+                    fx.panel();
                 break;
                 case 'fx2':
-                    fx.init();
+                    fx.panel();
                 break;
                 case 'export':
-                    audioExport.init();
+                    audioExport.panel();
                 break;
             }
         }
@@ -36,16 +34,15 @@ $(function(){
 
 var main = {
     init: function(){
-        //Add Global Listeners
-        $('.fileHeader').on('click', function(){
-            wave.sound.play();
-        })
+        //Initialize UI
+        ui.init();
+        ui.fileHeader.update();
 
-        main.updateFile();
+        //Initialize all panels
+        wave.init();
+        envelope.init();
+        audioExport.init();
 
-        console.log("Main init OK");
-    },
-    updateFile: function(){
-        $('.fileHeader span').html(wave.file);
+        console.log("INIT OK");
     }
 }

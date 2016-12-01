@@ -4,6 +4,9 @@ var audioExport = {
             audioExport.exportFile();
         })
     },
+    panel: function(){
+        console.log('Export Panel Loaded');
+    },
     exportFile: function(){
         //Create Recorder object, connected to the sound's output node
         var recorder = new Recorder(wave.sound.masterVolume);
@@ -11,12 +14,13 @@ var audioExport = {
         //Turns recorder on, plays the sound
         recorder.record();
         wave.sound.play();
+        wave.sound.stop();
 
-        //When the sound is played, stops it and creates download link
+        //After the sound is played, creates download link
         // Adds 100ms to be sure
         wave.sound.sourceNode.onended = function(){
-            wave.sound.stop();
-            window.setTimeout(createDownloadLink, 100);
+            time = 100 + wave.sound.release;
+            window.setTimeout(createDownloadLink, time);
         }
 
         //Download link creation, copied from Recorder's example

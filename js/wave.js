@@ -1,9 +1,12 @@
+/* Wave Panel: Sound File Loader */
+
 var wave = {
+    config: {
+        rate: 1
+    },
     file: 'sine.wav',
     sound: new Pizzicato.Sound('samples/sine.wav'),
     init: function(){
-        console.log('Wave Panel Loaded');
-
         //File List
         $('#fileList a').on('click', function(e){
             e.preventDefault();
@@ -13,31 +16,37 @@ var wave = {
             $('#fileList li').removeClass();
             $(this).parent().addClass('active');
 
-            //console.log(wave.file);
-
-            //On Change
+            //Load new file
             wave.changeFile(wave.file);
         });
+    },
+    panel: function(){
+        console.log('Wave Panel Loaded');
 
         //File Loader
         $('#wavefile').on('change', function(){
             var file = this.files[0];
-            console.log(file);
         });
     },
     changeFile: function(waveFile){
+        console.log(waveFile);
         file = waveFile || wave.file;
 
         wave.sound.stop();
 
         wave.sound = new Pizzicato.Sound({
             source: 'file',
-            options: { path: file, attack: 0.2 }
+            options: { path: file, attack: 0.04 }
         }, function() {
             wave.sound.play();
         });
 
-        main.updateFile(wave.file);
+        ui.fileHeader.update();
+    },
+    play: function(){
+        wave.sound.sourceNode.playbackRate.value = wave.config.rate;
+        console.log(wave.sound.sourceNode.playbackRate.value);
+        wave.sound.play();
     }
 }
 

@@ -23,6 +23,10 @@ h2.fileHeader {
   background: #eee;
   padding: 0.5em 0;
 }
+h2.fileHeader_active {
+  background: #252525;
+  color: #fff;
+}
 /* =Wave
 -----------------------------------------------------------------------------*/
 .fileList li a {
@@ -44,4 +48,7 @@ h2.fileHeader {
 }
 .envelope fieldset legend {
   padding: 0 1em;
+}
+.envelope .row {
+  margin-bottom: 2em;
 }
