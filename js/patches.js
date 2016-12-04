@@ -6,7 +6,7 @@ var patch = {
         detune: 0,
     },
     sound: {},
-    create: function(patchIndex){
+    create: function(){
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
@@ -17,6 +17,18 @@ var patch = {
         }, function() {
             console.log(patch.sound);
         });
+    },
+    play: function(){
+        //For some reason, I must play the sound to have access to its current sourceNode properties
+        patch.sound.volume = 1;
+        patch.sound.play();
+        patch.sound.sourceNode.detune.value = patch.data.detune;
+    }
+}
+
+var patches = {
+    init: function(){
+        patch.create();
     }
 }
 

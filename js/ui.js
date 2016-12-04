@@ -5,31 +5,31 @@ var ui = {
         //Global File Play Input
         $('.fileHeader').on('mousedown', function(){
             ui.fileHeader.setState('active');
-            wave.play();
+            patch.play();
         })
 
         $('.fileHeader').on('mouseup', function(){
             ui.fileHeader.setState('default');
-            wave.sound.stop();
+            patch.sound.stop();
         })
 
         $('body').on('keydown', function(e){
             //Play audio on spacebar press
             if(e.keyCode == 32){
-                wave.sound.play();
+                patch.sound.play();
             }
         });
 
         $('body').on('keyup', function(e){
             //Play audio on spacebar press
             if(e.keyCode == 32){
-                wave.sound.stop();
+                patch.sound.stop();
             }
         });
     },
     fileHeader: {
         update: function(){
-            $('.fileHeader span').html(wave.file);
+            $('.fileHeader span').html(patch.data.file);
         },
         setState: function(state){
             if (state === 'active'){

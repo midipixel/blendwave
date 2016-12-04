@@ -43,6 +43,9 @@ var main = {
         envelope.init();
         audioExport.init();
 
+        //Create initial patches
+        patches.init();
+
         console.log("INIT OK");
     }
 }

@@ -9,17 +9,17 @@ var audioExport = {
     },
     exportFile: function(){
         //Create Recorder object, connected to the sound's output node
-        var recorder = new Recorder(wave.sound.masterVolume);
+        var recorder = new Recorder(patch.sound.masterVolume);
 
         //Turns recorder on, plays the sound
         recorder.record();
-        wave.sound.play();
-        wave.sound.stop();
+        patch.play();
+        patch.sound.stop();
 
         //After the sound is played, creates download link
         // Adds 100ms to be sure
-        wave.sound.sourceNode.onended = function(){
-            time = 100 + wave.sound.release;
+        patch.sound.sourceNode.onended = function(){
+            time = 100 + patch.sound.release;
             window.setTimeout(createDownloadLink, time);
         }
 

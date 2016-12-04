@@ -22,15 +22,15 @@ var envelope = {
         switch(parameter){
             case 'amp_attack':
                 //Attack needs a little offset to prevent buggy behaviour
-                wave.sound.attack = value + 0.04;
+                patch.sound.attack = value + 0.04;
             break;
 
             case 'amp_release':
-                wave.sound.release = value;
+                patch.sound.release = value;
             break;
 
             case 'pitch_ammount':
-                wave.data.rate = value;
+                patch.data.rate = value;
             break;
         }
     }
