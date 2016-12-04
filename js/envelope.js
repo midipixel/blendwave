@@ -30,7 +30,7 @@ var envelope = {
             break;
 
             case 'pitch_ammount':
-                wave.config.rate = value;
+                wave.data.rate = value;
             break;
         }
     }

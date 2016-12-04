@@ -1,13 +1,24 @@
 /* Wave Panel: Sound File Loader */
 
 var wave = {
-    config: {
-        rate: 1
+    data: {
+        file: 'samples/sine.wav',
+        attack: 0.04,
+        release: 0,
+        detune: 0,
     },
-    file: 'sine.wav',
-    sound: new Pizzicato.Sound('samples/sine.wav'),
+    file: 'samples/sine.wav',
+    sound: ' ',
+    createSound: function(){
+        wave.sound = new Pizzicato.Sound({
+            source: 'file',
+            options: { path: wave.data.file, attack: wave.data.attack, volume: wave.data.volume }
+        }, function() {
+            console.log(wave.sound);
+        });
+    },
     init: function(){
-        //File List
+        //Initialize File List
         $('#fileList a').on('click', function(e){
             e.preventDefault();
             wave.file = this.href;
@@ -19,6 +30,9 @@ var wave = {
             //Load new file
             wave.changeFile(wave.file);
         });
+
+        //Create Sound Object
+        wave.createSound();
     },
     panel: function(){
         console.log('Wave Panel Loaded');
@@ -30,7 +44,7 @@ var wave = {
     },
     changeFile: function(waveFile){
         console.log(waveFile);
-        file = waveFile || wave.file;
+        file = waveFile || wave.data.file;
 
         wave.sound.stop();
 
@@ -44,9 +58,10 @@ var wave = {
         ui.fileHeader.update();
     },
     play: function(){
-        wave.sound.sourceNode.playbackRate.value = wave.config.rate;
-        console.log(wave.sound.sourceNode.playbackRate.value);
+        //For some reason, I must play the sound to have access to its current sourceNode properties
+        wave.sound.volume = 1;
         wave.sound.play();
+        wave.sound.sourceNode.detune.value = wave.data.detune;
     }
 }
 
