@@ -2,19 +2,10 @@
 
 var envelope = {
     init: function(){
-        // Slider Input Behaviour
-        $('.envelope input[type=range]').on('input', function(e){
-            //Update UI
-            output = $(e.target).next('output');
-            $(output)[0].value = e.target.value;
 
-            //Update Parameter
-            param = parseFloat(e.target.value);
-            envelope.updateParameter(e.target,param);
-        });
     },
     panel: function(){
-        console.log("Envelope Panel Loaded")
+        console.log("Envelope Panel Loaded");
     },
     updateParameter: function(target, value){
         parameter = target.id;
@@ -22,15 +13,24 @@ var envelope = {
         switch(parameter){
             case 'amp_attack':
                 //Attack needs a little offset to prevent buggy behaviour
-                patch.sound.attack = value + 0.04;
+                patch.data.attack = value + 0.04;
             break;
 
             case 'amp_release':
-                patch.sound.release = value;
+                patch.data.release = value;
             break;
 
             case 'pitch_ammount':
-                patch.data.rate = value;
+                //Multiply by 100 because values are shown in semitones in the UI
+                patch.data.detune = value * 100;
+            break;
+
+            case 'amp_osc_speed':
+                patch.effects.tremolo.params.speed = value;
+            break;
+
+            case 'amp_osc_depth':
+                patch.effects.tremolo.params.depth = value;
             break;
         }
     }

@@ -24,7 +24,7 @@
 
     <script>
         // Sampler
-        var synth = new Tone.Synth({
+        /*var synth = new Tone.Synth({
             "url" : 'samples/sine.wav',
             "envelope" : {
                 "attack" : 1.8,
@@ -32,28 +32,28 @@
                 "sustain" : 0.5,
                 "release" : 1
             }
-        }).toMaster();
+        }).toMaster();*/
 
         // Sampler - Vem com envelope, mas tá cagado
-        var sampler = new Tone.Sampler({
-            "url" : 'samples/gem3.ogg',
+        /*var sampler = new Tone.Sampler({
+            "url" : 'samples/sine.wav',
             "envelope" : {
                 "attack" : 1.8,
                 "decay" : 0,
                 "sustain" : 0.5,
                 "release" : 1
             }
-        }).toMaster();
+        }).toMaster();*/
 
         //Player
         var player = new Tone.Player({
-            "url" : "samples/sample.ogg",
+            "url" : "samples/sine.wav",
             "loop" : false,
         });
 
         //Envelope Separado
         var ampEnv = new Tone.AmplitudeEnvelope({
-            "attack": 1.0,
+            "attack": 2.0,
             "decay": 0.2,
             "sustain": 1.0,
             "release": 3

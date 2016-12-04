@@ -9,38 +9,38 @@
                 <legend>Volume</legend>
 
                 <label for="amp_attack">Attack</label>
-                <input type="range" id="amp_attack" min="0" value="0" max="10" step="0.1">
+                <input type="range" id="amp_attack" min="0" value="0" max="10" step="0.1" data-type="audioParam">
                 <output for="amp_attack">0</output>
 
                 <label for="amp_release">Release</label>
-                <input type="range" id="amp_release" min="0" value="0" max="10" step="0.1">
+                <input type="range" id="amp_release" min="0" value="0" max="10" step="0.1" data-type="audioParam">
                 <output for="amp_release">0</output>
             </fieldset>
-        </div>
 
-        <div class="col-sm-6">
-            <fieldset id="volumeEnvelope">
-                <legend>Oscilate Volume</legend>
+            <fieldset id="ampOSC" class="disabled">
+                <legend><input type="checkbox" /> Oscilate Volume</legend>
 
                 <label for="amp_osc_speed">Speed</label>
-                <input type="range" id="amp_osc_speed" min="1" value="0" max="100" step="1">
+                <input type="range" id="amp_osc_speed" min="1" value="5" max="20" step="1" data-type="audioParam">
                 <output for="amp_osc_speed">0</output>
 
                 <label for="amp_osc_depth">Depth</label>
-                <input type="range" id="amp_osc_depth" min="1" value="0" max="100" step="1">
+                <input type="range" id="amp_osc_depth" min="0" value="1" max="1" step="0.1" data-type="audioParam">
                 <output for="amp_osc_depth">0</output>
             </fieldset>
         </div>
-    </div>
 
-    <div class="row pitch">
         <div class="col-sm-6">
             <fieldset id="pitchEnvelope">
                 <legend>Pitch</legend>
 
                 <label for="pitch_ammount">Ammount</label>
-                <input type="range" id="pitch_ammount" min="0.1" value="1" max="3" step="0.1">
+                <input type="range" id="pitch_ammount" min="-12" value="0" max="12" step="1" data-type="audioParam">
                 <output for="pitch_ammount">0</output>
+
+                <!--
+
+                Later
 
                 <label for="pitch_attack">Attack</label>
                 <input type="range" id="pitch_attack" min="0" value="0" max="10" step="0.1">
@@ -48,22 +48,31 @@
 
                 <label for="pitch_release">Release</label>
                 <input type="range" id="pitch_release" min="0" value="0" max="10" step="0.1">
-                <output for="pitch_release">0</output>
-            </fieldset>
-        </div>
+                -->
 
-        <div class="col-sm-6">
-            <fieldset id="volumeEnvelope">
+            </fieldset>
+
+            <!--fieldset id="pitchOSC">
                 <legend>Oscilate Pitch</legend>
 
                 <label for="pitch_osc_speed">Speed</label>
-                <input type="range" id="pitch_osc_speed" min="1" value="0" max="100" step="1">
+                <input type="range" id="pitch_osc_speed" min="1" value="0" max="100" step="1" data-type="audioParam">
                 <output for="pitch_osc_speed">0</output>
 
                 <label for="pitch_osc_depth">Depth</label>
-                <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1">
+                <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1" data-type="audioParam">
                 <output for="pitch_osc_depth">0</output>
-            </fieldset>
+            </fieldset-->
+        </div>
+    </div>
+
+    <div class="row pitch">
+        <div class="col-sm-6">
+
+        </div>
+
+        <div class="col-sm-6">
+
         </div>
     </div>
 </section>

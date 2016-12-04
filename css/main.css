@@ -8,6 +8,12 @@ ul {
   list-style: none;
   padding: 0;
 }
+.userSelect_off {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 /* =Main
 -----------------------------------------------------------------------------*/
 .container {
@@ -22,10 +28,17 @@ h2.fileHeader {
   cursor: pointer;
   background: #eee;
   padding: 0.5em 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 h2.fileHeader_active {
   background: #252525;
   color: #fff;
+}
+fieldset.disabled {
+  opacity: 0.5;
 }
 /* =Wave
 -----------------------------------------------------------------------------*/
@@ -49,6 +62,6 @@ h2.fileHeader_active {
 .envelope fieldset legend {
   padding: 0 1em;
 }
-.envelope .row {
+.envelope fieldset {
   margin-bottom: 2em;
 }
