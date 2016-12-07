@@ -39,14 +39,14 @@ var ui = {
         });
 
         // Amp Oscilator
-        $('#ampOSC input[type=checkbox]').on('focus', function(e){
+        $('#ampOSC input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
-                patch.effects.tremolo.params.mix = 1;
                 $('#ampOSC').removeClass('disabled');
+                patch.sound.addEffect(patch.effects.tremolo);
             }
             else{
-                patch.effects.tremolo.params.mix = 0;
                 $('#ampOSC').addClass('disabled');
+                patch.sound.removeEffect(patch.effects.tremolo);
             };
         });
     },

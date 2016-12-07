@@ -26,11 +26,11 @@ var envelope = {
             break;
 
             case 'amp_osc_speed':
-                patch.effects.tremolo.params.speed = value;
+                patch.data.vol_lfo_speed = value;
             break;
 
             case 'amp_osc_depth':
-                patch.effects.tremolo.params.depth = value;
+                patch.data.vol_lfo_depth = value;
             break;
         }
     }
