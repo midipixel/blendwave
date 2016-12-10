@@ -3,7 +3,7 @@ var patch = {
         file: 'samples/sine.wav',
         attack: 0.04,
         release: 0.04,
-        detune: 0,
+        detune: 1,
         vol_lfo_speed: 5,
         vol_lfo_depth: 1
     },
@@ -21,7 +21,8 @@ var patch = {
             options: {
                 path: patch.data.file,
                 attack: patch.data.attack,
-                volume: patch.data.volume
+                volume: patch.data.volume,
+                loop: true
             }
         }, function() {
             //console.log(patch.sound);
@@ -42,9 +43,13 @@ var patch = {
         patch.sound.play();
         //Detune must be called right after playing, or the node won't exist
         patch.sound.sourceNode.detune.value = patch.data.detune;
+        pitchOSC();
     },
     stop: function(){
         patch.sound.stop();
+        patch.sound.sourceNode.onended = function(){
+            window.clearInterval(interval);
+        }
     }
 }
 
@@ -53,6 +58,26 @@ var patches = {
         patch.create();
     }
 }
+
+var t = 0;
+var min = 1;
+var max = 4;
+var freqMultiplier = 1;
+var dt = 0.03 / Math.sqrt(freqMultiplier);
+var interval;
+
+function oscillate(){
+    t = t + dt;
+    osc = min + ((1 + Math.sin(t*freqMultiplier))/2)*(max-min);
+    patch.sound.sourceNode.playbackRate.value = osc;
+    console.log(dt);
+}
+
+function pitchOSC(){
+    interval = window.setInterval(oscillate, dt * 1000);
+}
+
+
 
 
 

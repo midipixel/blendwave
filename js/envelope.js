@@ -32,6 +32,11 @@ var envelope = {
             case 'amp_osc_depth':
                 patch.data.vol_lfo_depth = value;
             break;
+
+            case 'pitch_osc_speed':
+                freqMultiplier = value;
+                dt = 0.03 / Math.sqrt(freqMultiplier);
+            break;
         }
     }
 }

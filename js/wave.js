@@ -5,14 +5,14 @@ var wave = {
         //Initialize File List
         $('#fileList a').on('click', function(e){
             e.preventDefault();
-            wave.file = this.href;
+            patch.data.file = this.href;
 
             //Set visual styles
             $('#fileList li').removeClass();
             $(this).parent().addClass('active');
 
             //Load new file
-            wave.changeFile(wave.file);
+            wave.changeFile(patch.data.file);
         });
     },
     panel: function(){
