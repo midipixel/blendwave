@@ -12,7 +12,22 @@ var patch = {
             speed: 0,
             depth: 0,
             mix: 1
-        })
+        }),
+        vibrato: {
+            mix: 0,
+            speed: 0,
+            set: function(){
+                var osc = Pizzicato.context.createOscillator();
+                osc.frequency.value = this.speed;
+                osc.connect(patch.sound.sourceNode.playbackRate);
+
+                //Start the oscillator if the effect is enabled 
+                if (this.mix != 0){
+                    osc.start();
+                }
+
+            }
+        }
     },
     sound: {},
     create: function(){
@@ -41,15 +56,12 @@ var patch = {
     play: function(){
         patch.updateData();
         patch.sound.play();
+        patch.effects.vibrato.set();
         //Detune must be called right after playing, or the node won't exist
         patch.sound.sourceNode.detune.value = patch.data.detune;
-        pitchOSC();
     },
     stop: function(){
         patch.sound.stop();
-        patch.sound.sourceNode.onended = function(){
-            window.clearInterval(interval);
-        }
     }
 }
 
@@ -59,22 +71,12 @@ var patches = {
     }
 }
 
-var t = 0;
-var min = 1;
-var max = 4;
-var freqMultiplier = 1;
-var dt = 0.03 / Math.sqrt(freqMultiplier);
-var interval;
-
-function oscillate(){
-    t = t + dt;
-    osc = min + ((1 + Math.sin(t*freqMultiplier))/2)*(max-min);
-    patch.sound.sourceNode.playbackRate.value = osc;
-    console.log(dt);
-}
-
-function pitchOSC(){
-    interval = window.setInterval(oscillate, dt * 1000);
+function po(){
+    var osc = Pizzicato.context.createOscillator();
+    osc.frequency.value = 10;
+    //console.log(patch.sound.sourceNode.playbackRate.value);
+    osc.connect(patch.sound.sourceNode.playbackRate);
+    osc.start();
 }
 
 

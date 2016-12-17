@@ -42,11 +42,26 @@ var ui = {
         $('#ampOSC input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
                 $('#ampOSC').removeClass('disabled');
+                $('#ampOSC input').attr('disabled', false);
                 patch.sound.addEffect(patch.effects.tremolo);
             }
             else{
                 $('#ampOSC').addClass('disabled');
+                $('#ampOSC input').attr('disabled', true);
                 patch.sound.removeEffect(patch.effects.tremolo);
+            };
+        });
+        //Pitch Oscilator
+        $('#pitchOSC input[type=checkbox]').on('change', function(e){
+            if(e.target.checked){
+                $('#pitchOSC input').attr('disabled', false);
+                $('#pitchOSC').removeClass('disabled');
+                patch.effects.vibrato.mix = 1;
+            }
+            else{
+                $('#pitchOSC input').attr('disabled', true);
+                $('#pitchOSC').addClass('disabled');
+                patch.effects.vibrato.mix = 0;
             };
         });
     },

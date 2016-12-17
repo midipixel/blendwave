@@ -34,8 +34,7 @@ var envelope = {
             break;
 
             case 'pitch_osc_speed':
-                freqMultiplier = value;
-                dt = 0.03 / Math.sqrt(freqMultiplier);
+                patch.effects.vibrato.speed = value;
             break;
         }
     }
