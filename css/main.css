@@ -37,8 +37,11 @@ h2.fileHeader_active {
   background: #252525;
   color: #fff;
 }
-fieldset.disabled {
+fieldset.disabled * {
   opacity: 0.5;
+}
+fieldset.disabled legend {
+  opacity: 1;
 }
 /* =Wave
 -----------------------------------------------------------------------------*/

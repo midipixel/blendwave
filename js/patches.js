@@ -1,28 +1,36 @@
+var default_data = {
+    file: 'samples/sine.wav',
+    attack: 0.01,
+    release: 0.04,
+    detune: 1,
+    tremolo_speed: 5,
+    tremolo_depth: 1,
+    vibrato_speed: 2,
+}
+
 var patch = {
     data: {
-        file: 'samples/sine.wav',
-        attack: 0.04,
-        release: 0.04,
-        detune: 1,
-        vol_lfo_speed: 5,
-        vol_lfo_depth: 1
+        file: '',
+        attack: 0,
+        release: 0,
+        detune: 0,
+        tremolo_speed: 0,
+        tremolo_depth: 0,
+        vibrato_speed: 0,
     },
     effects: {
         tremolo: new Pizzicato.Effects.Tremolo({
-            speed: 0,
-            depth: 0,
-            mix: 1
+            mix: 1,
+            speed: default_data.tremolo_speed,
+            depth: default_data.tremolo_depth
         }),
         vibrato: {
             mix: 0,
-            speed: 0,
             set: function(){
-                var osc = Pizzicato.context.createOscillator();
-                osc.frequency.value = this.speed;
-                osc.connect(patch.sound.sourceNode.playbackRate);
-
-                //Start the oscillator if the effect is enabled 
                 if (this.mix != 0){
+                    var osc = Pizzicato.context.createOscillator();
+                    osc.frequency.value = patch.data.vibrato_speed;
+                    osc.connect(patch.sound.sourceNode.playbackRate);
                     osc.start();
                 }
 
@@ -31,11 +39,12 @@ var patch = {
     },
     sound: {},
     create: function(){
+        patch.resetData();
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
                 path: patch.data.file,
-                attack: patch.data.attack,
+                attack: patch.data.attack + 0.04,
                 volume: patch.data.volume,
                 loop: true
             }
@@ -43,15 +52,20 @@ var patch = {
             //console.log(patch.sound);
         });
     },
+    resetData: function(){
+        for (var property in patch.data) {
+            patch.data[property] = default_data[property];
+        }
+    },
     updateData: function(){
         //Volume Envelope
         patch.sound.volume = 1;
         patch.sound.attack = patch.data.attack;
         patch.sound.release = patch.data.release;
 
-        //Volume LFO
-        patch.effects.tremolo.speed = patch.data.vol_lfo_speed;
-        patch.effects.tremolo.depth = patch.data.vol_lfo_depth;
+        //Tremolo
+        patch.effects.tremolo.speed = patch.data.tremolo_speed;
+        patch.effects.tremolo.depth = patch.data.tremolo_depth;
     },
     play: function(){
         patch.updateData();
@@ -71,13 +85,6 @@ var patches = {
     }
 }
 
-function po(){
-    var osc = Pizzicato.context.createOscillator();
-    osc.frequency.value = 10;
-    //console.log(patch.sound.sourceNode.playbackRate.value);
-    osc.connect(patch.sound.sourceNode.playbackRate);
-    osc.start();
-}
 
 
 

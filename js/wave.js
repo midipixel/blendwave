@@ -5,14 +5,13 @@ var wave = {
         //Initialize File List
         $('#fileList a').on('click', function(e){
             e.preventDefault();
-            patch.data.file = this.href;
 
             //Set visual styles
             $('#fileList li').removeClass();
             $(this).parent().addClass('active');
 
             //Load new file
-            wave.changeFile(patch.data.file);
+            wave.changeFile(this.href);
         });
     },
     panel: function(){
@@ -24,19 +23,24 @@ var wave = {
         });
     },
     changeFile: function(waveFile){
-        console.log(waveFile);
-        file = waveFile || patch.data.file;
+        patch.resetData();
 
-        patch.sound.stop();
+        patch.data.file = waveFile;
+        file = waveFile;
+
+        patch.stop();
 
         patch.sound = new Pizzicato.Sound({
             source: 'file',
-            options: { path: file, attack: patch.attack }
+            options: { path: file }
         }, function() {
             patch.play();
         });
 
         ui.fileHeader.update();
+        ui.reset();
+
+        console.log(waveFile);
     }
 }
 

@@ -38,32 +38,45 @@ var ui = {
             envelope.updateParameter(e.target,param);
         });
 
-        // Amp Oscilator
-        $('#ampOSC input[type=checkbox]').on('change', function(e){
+        // Tremolo ON/OFF
+        $('#tremolo input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
-                $('#ampOSC').removeClass('disabled');
-                $('#ampOSC input').attr('disabled', false);
+                $('#tremolo').removeClass('disabled');
+                $('#tremolo input[type="range"]').attr('disabled', false);
                 patch.sound.addEffect(patch.effects.tremolo);
             }
             else{
-                $('#ampOSC').addClass('disabled');
-                $('#ampOSC input').attr('disabled', true);
+                disableUI(tremolo);
                 patch.sound.removeEffect(patch.effects.tremolo);
             };
         });
-        //Pitch Oscilator
-        $('#pitchOSC input[type=checkbox]').on('change', function(e){
+        //Vibrato ON/OFF
+        $('#vibrato input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
-                $('#pitchOSC input').attr('disabled', false);
-                $('#pitchOSC').removeClass('disabled');
+                $('#vibrato').removeClass('disabled');
+                $('#vibrato input[type="range"]').attr('disabled', false);
                 patch.effects.vibrato.mix = 1;
             }
             else{
-                $('#pitchOSC input').attr('disabled', true);
-                $('#pitchOSC').addClass('disabled');
+                disableUI(vibrato);
                 patch.effects.vibrato.mix = 0;
             };
         });
+    },
+    reset: function(){
+        setParameter(amp_attack, default_data.attack);
+        setParameter(amp_release, default_data.release);
+        setParameter(pitch_ammount, default_data.detune);
+        setParameter(tremolo_speed, default_data.tremolo_speed);
+        setParameter(tremolo_depth, default_data.tremolo_speed);
+        setParameter(vibrato_speed, default_data.vibrato_speed);
+
+        //Disable Tremolo
+        disableUI(tremolo);
+
+        //Disable Vibrato
+        disableUI(vibrato);
+        patch.effects.vibrato.mix = 0;         
     },
     fileHeader: {
         update: function(){
@@ -78,4 +91,14 @@ var ui = {
             }
         }
     }
+}
+
+function setParameter(parameter, value){
+    $(parameter).val(value);
+    $(parameter).next('output').val(value);
+}
+
+function disableUI(parameter){
+    $(parameter).addClass('disabled');
+    $(parameter).find('input[type="range"]').attr('disabled', true);
 }

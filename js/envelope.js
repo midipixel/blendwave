@@ -25,16 +25,16 @@ var envelope = {
                 patch.data.detune = value * 100;
             break;
 
-            case 'amp_osc_speed':
-                patch.data.vol_lfo_speed = value;
+            case 'tremolo_speed':
+                patch.data.tremolo_speed = value;
             break;
 
-            case 'amp_osc_depth':
-                patch.data.vol_lfo_depth = value;
+            case 'tremolo_depth':
+                patch.data.tremolo_depth = value;
             break;
 
-            case 'pitch_osc_speed':
-                patch.effects.vibrato.speed = value;
+            case 'vibrato_speed':
+                patch.data.vibrato_speed = value;
             break;
         }
     }
