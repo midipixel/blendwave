@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <title>Blendwave</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <button id="sampler">Sampler</button>
+        <button id="player">Player</button>
+        <button id="synth">Synth</button>
+    </div>
+
+    <!-- Libs -->
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/Tone.min.js"></script>
+
+    <script>
+        // Sampler
+        /*var synth = new Tone.Synth({
+            "url" : 'samples/sine.wav',
+            "envelope" : {
+                "attack" : 1.8,
+                "decay" : 0,
+                "sustain" : 0.5,
+                "release" : 1
+            }
+        }).toMaster();*/
+
+        // Sampler - Vem com envelope, mas tá cagado
+        /*var sampler = new Tone.Sampler({
+            "url" : 'samples/sine.wav',
+            "envelope" : {
+                "attack" : 1.8,
+                "decay" : 0,
+                "sustain" : 0.5,
+                "release" : 1
+            }
+        }).toMaster();*/
+
+        //Player
+        var player = new Tone.Player({
+            "url" : "samples/sine.wav",
+            "loop" : false,
+        });
+
+        //Envelope Separado
+        var ampEnv = new Tone.AmplitudeEnvelope({
+            "attack": 2.0,
+            "decay": 0.2,
+            "sustain": 1.0,
+            "release": 3
+        }).toMaster();
+        //create an oscillator and connect it
+        player.connect(ampEnv);
+
+
+        $('#sampler').on('click', function(){
+            sampler.triggerAttack();
+        });
+
+        $('#player').on('click', function(){
+            player.start();
+            ampEnv.triggerAttackRelease();
+        });
+
+        $('#synth').on('click', function(){
+            synth.triggerAttackRelease("C4", "8n");
+        });
+    </script>
+</body>
+
+
+</html>

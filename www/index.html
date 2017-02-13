@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Blendwave</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="blendwave">
+        	<ul>
+        		<li><a href="#wave">Wave</a></li>
+        		<li><a href="#envelope">Envelope</a></li>
+        		<li><a href="#filter">Filter</a></li>
+        		<li><a href="#fx1">FX1</a></li>
+        		<li><a href="#fx2">FX2</a></li>
+        		<li><a href="#export">Export</a></li>
+        	</ul>
+
+            <section class="panelContent" data-panelname="wave" id="wave">
+    <h2 class="fileHeader">File: <span></span></h2>
+    <div class="row">
+        <div class="col-sm-6 fileList" id="fileList">
+            <h4>Choose sound:</h4>
+            <ul>
+                <li class="active"><a href="samples/sine.wav">Sine</a></li>
+                <li><a href="samples/pig.wav">Pig</a></li>
+                <li><a href="samples/sample.ogg">Acid</a></li>
+                <li><a href="samples/door.ogg">Door</a></li>
+                <li><a href="samples/machine.wav">Machine</a></li>
+                <li><a href="samples/gem5.ogg">Gem5</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-6 fileUpload" style="opacity: 0.5">
+            <h4>Upload custom sound:</h4>
+            <input type="file" id="wavefile" disabled="disabled">
+        </div>
+    </div>
+</section>
+
+
+<section class="panelContent envelope" data-panelname="envelope" id="envelope">
+    <h2 class="fileHeader">File: <span></span></h2>
+
+    <h4>Envelope</h4>
+
+    <div class="row amp">
+        <div class="col-sm-6">
+            <fieldset id="ampEnvelope">
+                <legend>Volume</legend>
+
+                <label for="amp_attack">Attack</label>
+                <input type="range" id="amp_attack" min="0" value="0" max="10" step="0.1" data-type="audioParam">
+                <output for="amp_attack">0</output>
+
+                <label for="amp_release">Release</label>
+                <input type="range" id="amp_release" min="0" value="0" max="10" step="0.1" data-type="audioParam">
+                <output for="amp_release">0</output>
+            </fieldset>
+
+            <fieldset id="tremolo" class="disabled">
+                <legend><input type="checkbox"> Oscilate Volume</legend>
+
+                <label for="'tremolo_speed">Speed</label>
+                <input type="range" id="tremolo_speed" min="1" value="5" max="20" step="1" data-type="audioParam" disabled="true">
+                <output for="tremolo_speed">5</output>
+
+                <label for="tremolo_depth">Depth</label>
+                <input type="range" id="tremolo_depth" min="0" value="1" max="1" step="0.1" data-type="audioParam" disabled="true">
+                <output for="tremolo_depth">1</output>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-6">
+            <fieldset id="pitchEnvelope">
+                <legend>Pitch</legend>
+
+                <label for="pitch_ammount">Ammount</label>
+                <input type="range" id="pitch_ammount" min="-12" value="0" max="12" step="1" data-type="audioParam">
+                <output for="pitch_ammount">0</output>
+            </fieldset>
+
+            <fieldset id="vibrato" class="disabled">
+                <legend><input type="checkbox"> Oscilate Pitch</legend>
+
+                <label for="vibrato_speed">Speed</label>
+                <input type="range" id="vibrato_speed" min="0" value="0" max="20" step="0.1" data-type="audioParam" disabled="true">
+                <output for="vibrato_speed">0</output>
+
+                <!--label for="pitch_osc_depth">Depth</label>
+                <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1" data-type="audioParam">
+                <output for="pitch_osc_depth">0</output-->
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="row pitch">
+        <div class="col-sm-6">
+
+        </div>
+
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+</section>
+<section class="panelContent" data-panelname="filter" id="filter">
+    Filters
+</section>
+<section class="panelContent" data-panelname="fx1" id="fx1">
+    FX1
+</section>
+<section class="panelContent" data-panelname="fx2" id="fx2">
+    FX2
+</section>
+<section class="panelContent" data-panelname="export" id="export">
+    <button id="exportBtn">Export Audio</button>
+
+    <h3>Recordings</h3>
+    <ul id="recordingslist"></ul>
+</section>
+        </div>
+    </div>
+
+
+    <!-- Vendor -->
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/jquery-ui.min.js"></script>
+    <script src="js/vendor/jquery.fileupload.js"></script>
+    <script src="js/vendor/recorder.js"></script>
+    <script src="js/vendor/Pizzicato.js"></script>
+
+    <!-- Application - Core -->
+    <script src="js/main.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/patches.js"></script>
+
+    <!-- Application - Panels -->
+    <script src="js/wave.js"></script>
+    <script src="js/envelope.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/fx.js"></script>
+    <script src="js/export.js"></script>
+</body>
+</html>

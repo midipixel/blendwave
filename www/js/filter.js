@@ -1,0 +1,5 @@
+var filter = {
+    init: function(){
+
+    }
+}
