@@ -1,8 +1,10 @@
 <section class="panelContent" data-panelname="wave" id="wave">
-    <h2 class="fileHeader">File: <span></span></h2>
+    <%- partial("_fileHeader") %>
+
+    <h4>Fonte Sonora <em>Escolha um som para servir de base</em></h4>
+
     <div class="row">
-        <div class="col-sm-6 fileList" id="fileList">
-            <h4>Choose sound:</h4>
+        <div class="col-sm-4 fileList" id="fileList">
             <ul>
                 <li class="active"><a href="samples/sine.wav">Sine</a></li>
                 <li><a href="samples/pig.wav">Pig</a></li>
@@ -11,11 +13,12 @@
                 <li><a href="samples/machine.wav">Machine</a></li>
                 <li><a href="samples/gem5.ogg">Gem5</a></li>
             </ul>
+
+            <input type="file" id="wavefile" disabled="disabled"></input>
         </div>
 
-        <div class="col-sm-6 fileUpload" style="opacity: 0.5;">
-            <h4>Upload custom sound:</h4>
-            <input type="file" id="wavefile" disabled="disabled"></input>
+        <div class="col-sm-8">
+
         </div>
     </div>
 </section>

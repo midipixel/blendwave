@@ -1,6 +1,14 @@
 /* Wave Panel: Sound File Loader */
 
 var wave = {
+    onload: function(){
+        console.log('Wave Panel Loaded');
+
+        //File Loader
+        $('#wavefile').on('change', function(){
+            var file = this.files[0];
+        });
+    },
     init: function(){
         //Initialize File List
         $('#fileList a').on('click', function(e){
@@ -12,14 +20,6 @@ var wave = {
 
             //Load new file
             wave.changeFile(this, this.href);
-        });
-    },
-    panel: function(){
-        console.log('Wave Panel Loaded');
-
-        //File Loader
-        $('#wavefile').on('change', function(){
-            var file = this.files[0];
         });
     },
     changeFile: function(selected, waveFile){

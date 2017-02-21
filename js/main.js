@@ -1,8 +1,8 @@
 $(function(){
     //Initialize jQuery UI Tab Widget
     $( "#blendwave" ).tabs({
-        active: 0,
-        disabled: [2,3,4],
+        active: 1,
+        disabled: [3],
         create: function(){
             main.init();
         },
@@ -11,22 +11,22 @@ $(function(){
 
             switch(loadedPanel.panelname){
                 case 'wave':
-                    wave.panel();
+                    wave.onload();
                 break;
                 case 'envelope':
-                    envelope.panel();
+                    envelope.onload();
                 break;
                 case 'filter':
-                    filter.panel();
+                    filter.onload();
                 break;
                 case 'fx1':
-                    fx.panel();
+                    fx.onload();
                 break;
                 case 'fx2':
-                    fx.panel();
+                    fx.onload();
                 break;
                 case 'export':
-                    audioExport.panel();
+                    audioExport.onload();
                 break;
             }
         }

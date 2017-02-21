@@ -1,11 +1,11 @@
 /* Envelope Panel: Enable and Tweak Volume and Pitch Envelopes */
 
 var envelope = {
+    onload: function(){
+        console.log("Envelope Panel Loaded");
+    },
     init: function(){
 
-    },
-    panel: function(){
-        console.log("Envelope Panel Loaded");
     },
     updateParameter: function(target, value){
         parameter = target.id;

@@ -1,11 +1,11 @@
 var audioExport = {
+    onload: function(){
+        console.log('Export Panel Loaded');
+    },
     init: function(){
         $('#exportBtn').on('click', function(){
             audioExport.exportFile();
         })
-    },
-    panel: function(){
-        console.log('Export Panel Loaded');
     },
     exportFile: function(){
         //Create Recorder object, connected to the sound's output node
