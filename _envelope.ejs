@@ -1,11 +1,11 @@
 <section class="panelContent envelope" data-panelname="envelope" id="envelope">
     <%- partial("_fileHeader") %>
 
-    <h4>Envelope<em>Manipule o comportamento do som ao longo do tempo</em></h4>
+    <h3>Envelope<em>Manipule o comportamento do som ao longo do tempo</em></h3>
 
     <div class="row amp">
         <div class="col-sm-6">
-            <fieldset id="ampEnvelope">
+            <fieldset id="ampEnvelope" class="audioParams">
                 <legend>Volume</legend>
 
                 <label for="amp_attack">Attack</label>
@@ -17,10 +17,10 @@
                 <output for="amp_release">0</output>
             </fieldset>
 
-            <fieldset id="tremolo" class="disabled">
+            <fieldset id="tremolo" class="audioParams disabled">
                 <legend><input type="checkbox" /> Oscilar Volume</legend>
 
-                <label for="'tremolo_speed">Velocidade</label>
+                <label for="tremolo_speed">Velocidade</label>
                 <input type="range" id="tremolo_speed" min="1" value="5" max="20" step="1" data-type="audioParam" disabled="true">
                 <output for="tremolo_speed">5</output>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-sm-6">
-            <fieldset id="pitchEnvelope">
+            <fieldset id="pitchEnvelope" class="audioParams">
                 <legend>Pitch</legend>
 
                 <label for="pitch_ammount">Quantidade</label>
@@ -39,7 +39,7 @@
                 <output for="pitch_ammount">0</output>
             </fieldset>
 
-            <fieldset id="vibrato" class="disabled">
+            <fieldset id="vibrato" class="audioParams disabled">
                 <legend><input type="checkbox" /> Oscilar Pitch</legend>
 
                 <label for="vibrato_speed">Speed</label>

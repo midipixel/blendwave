@@ -6,6 +6,11 @@ var default_data = {
     tremolo_speed: 5,
     tremolo_depth: 1,
     vibrato_speed: 2,
+    filter_type: 'hp',
+    filter_cutoff: 500,
+    filter_mix: 1,
+    filterOSC_speed: 0,
+    filterOSC_depth: 0,
 }
 
 var patch = {
@@ -17,6 +22,11 @@ var patch = {
         tremolo_speed: 0,
         tremolo_depth: 0,
         vibrato_speed: 0,
+        filter_type: 'hp',
+        filter_cutoff: 500,
+        filter_mix: 1,
+        filterOSC_speed: 0,
+        filterOSC_depth: 0,
     },
     effects: {
         tremolo: new Pizzicato.Effects.Tremolo({
@@ -33,7 +43,6 @@ var patch = {
                     osc.connect(patch.sound.sourceNode.playbackRate);
                     osc.start();
                 }
-
             }
         }
     },
