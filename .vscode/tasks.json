@@ -1,0 +1,15 @@
+{
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "server",
+            "command": "_blendwave.bat"
+        },
+        {
+            "taskName": "build",
+            "command": "harp",
+            "args": ["compile blendwave"],
+            "isShellCommand": true
+        }        
+    ]
+}
