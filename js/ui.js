@@ -38,7 +38,7 @@ var ui = {
             updateParameter(e.target,param);
         });
 
-        // Tremolo ON/OFF
+        // Tremolo
         $('#tremolo input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
                 $('#tremolo').removeClass('disabled');
@@ -50,7 +50,7 @@ var ui = {
                 patch.sound.removeEffect(patch.effects.tremolo);
             };
         });
-        //Vibrato ON/OFF
+        // Vibrato
         $('#vibrato input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
                 $('#vibrato').removeClass('disabled');
@@ -62,6 +62,25 @@ var ui = {
                 patch.effects.vibrato.mix = 0;
             };
         });
+
+        // Filter
+        $('#filter').on('change', function(e){
+
+            type = $('#filter option:selected').attr('id');
+
+            //Reset mix values before applying the selected one
+            patch.effects.filter.hp.mix = 0;
+            patch.effects.filter.lp.mix = 0;
+
+            if(type == 'hp'){
+                console.log('high pass');
+                patch.effects.filter.hp.mix = 1;
+            }else if(type == 'lp'){
+                console.log('low pass');
+                patch.effects.filter.hp.mix = 1;
+            }
+        });
+
     },
     reset: function(){
         setSlider(amp_attack, default_data.attack);

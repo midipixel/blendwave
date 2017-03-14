@@ -44,6 +44,16 @@ var patch = {
                     osc.start();
                 }
             }
+        },
+        filter: {
+            lp : new Pizzicato.Effects.LowPassFilter({
+                frequency: 400,
+                mix: 0
+            }),
+            hp : new Pizzicato.Effects.HighPassFilter({
+                frequency: 400,
+                mix: 0
+            }),
         }
     },
     sound: {},
