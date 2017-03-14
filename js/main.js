@@ -11,22 +11,19 @@ $(function(){
 
             switch(loadedPanel.panelname){
                 case 'wave':
-                    wave.onload();
+                    console.log('Wave Panel');
                 break;
                 case 'envelope':
-                    envelope.onload();
+                    console.log('Envelope Panel');
                 break;
                 case 'filter':
-                    filter.onload();
+                    console.log('Filter Panel');
                 break;
-                case 'fx1':
-                    fx.onload();
-                break;
-                case 'fx2':
-                    fx.onload();
+                case 'fx':
+                    console.log('FX Panel');
                 break;
                 case 'export':
-                    audioExport.onload();
+                    console.log('Export Panel');
                 break;
             }
         }

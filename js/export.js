@@ -1,7 +1,4 @@
 var audioExport = {
-    onload: function(){
-        console.log('Export Panel Loaded');
-    },
     init: function(){
         $('#exportBtn').on('click', function(){
             audioExport.exportFile();

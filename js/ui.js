@@ -35,7 +35,7 @@ var ui = {
 
             //Update Parameter
             param = parseFloat(e.target.value);
-            envelope.updateParameter(e.target,param);
+            updateParameter(e.target,param);
         });
 
         // Tremolo ON/OFF
@@ -64,12 +64,12 @@ var ui = {
         });
     },
     reset: function(){
-        setParameter(amp_attack, default_data.attack);
-        setParameter(amp_release, default_data.release);
-        setParameter(pitch_ammount, default_data.detune);
-        setParameter(tremolo_speed, default_data.tremolo_speed);
-        setParameter(tremolo_depth, default_data.tremolo_speed);
-        setParameter(vibrato_speed, default_data.vibrato_speed);
+        setSlider(amp_attack, default_data.attack);
+        setSlider(amp_release, default_data.release);
+        setSlider(pitch_ammount, default_data.detune);
+        setSlider(tremolo_speed, default_data.tremolo_speed);
+        setSlider(tremolo_depth, default_data.tremolo_speed);
+        setSlider(vibrato_speed, default_data.vibrato_speed);
 
         //Disable Tremolo
         disableUI(tremolo);
@@ -93,7 +93,39 @@ var ui = {
     }
 }
 
-function setParameter(parameter, value){
+function updateParameter(target, value){
+    parameter = target.id;
+
+    switch(parameter){
+        case 'amp_attack':
+            //Attack needs a little offset to prevent buggy behaviour
+            patch.data.attack = value + 0.04;
+        break;
+
+        case 'amp_release':
+            patch.data.release = value;
+        break;
+
+        case 'pitch_ammount':
+            //Multiply by 100 because values are shown in semitones in the UI
+            patch.data.detune = value * 100;
+        break;
+
+        case 'tremolo_speed':
+            patch.data.tremolo_speed = value;
+        break;
+
+        case 'tremolo_depth':
+            patch.data.tremolo_depth = value;
+        break;
+
+        case 'vibrato_speed':
+            patch.data.vibrato_speed = value;
+        break;
+    }
+}
+
+function setSlider(parameter, value){
     $(parameter).val(value);
     $(parameter).next('output').val(value);
 }

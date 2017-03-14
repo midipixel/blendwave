@@ -14,18 +14,23 @@ ul {
   -ms-user-select: none;
   user-select: none;
 }
+.audioParams {
+  margin-bottom: 2em;
+}
 .audioParams label {
   display: block;
   margin-bottom: 0.5em;
 }
 .audioParams input[type=range] {
   display: inline-block;
+  width: 80%;
 }
 .audioParams legend {
   padding: 0 1em;
 }
-.audioParams {
-  margin-bottom: 2em;
+.audioParams output {
+  display: inline-block;
+  width: 15%;
 }
 /* =Main
 -----------------------------------------------------------------------------*/
