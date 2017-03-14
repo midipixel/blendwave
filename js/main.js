@@ -34,7 +34,6 @@ var main = {
     init: function(){
         //Initialize all panels
         wave.init();
-        envelope.init();
         audioExport.init();
 
         //Create initial patches
