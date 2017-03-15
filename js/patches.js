@@ -6,9 +6,8 @@ var default_data = {
     tremolo_speed: 5,
     tremolo_depth: 1,
     vibrato_speed: 2,
-    filter_type: 'hp',
+    filter_type: 'noFilter',
     filter_cutoff: 500,
-    filter_mix: 1,
     filterOSC_speed: 0,
     filterOSC_depth: 0,
 }
@@ -22,9 +21,8 @@ var patch = {
         tremolo_speed: 0,
         tremolo_depth: 0,
         vibrato_speed: 0,
-        filter_type: 'hp',
+        filter_type: 'noFilter',
         filter_cutoff: 500,
-        filter_mix: 1,
         filterOSC_speed: 0,
         filterOSC_depth: 0,
     },
@@ -47,11 +45,12 @@ var patch = {
         },
         filter: {
             lp : new Pizzicato.Effects.LowPassFilter({
-                frequency: 400,
-                mix: 0
+                frequency: 500,
+                mix: 0,
+                peak: 10
             }),
             hp : new Pizzicato.Effects.HighPassFilter({
-                frequency: 400,
+                frequency: 500,
                 mix: 0
             }),
         }
@@ -85,6 +84,12 @@ var patch = {
         //Tremolo
         patch.effects.tremolo.speed = patch.data.tremolo_speed;
         patch.effects.tremolo.depth = patch.data.tremolo_depth;
+
+        //Filter
+        if(patch.data.filter_type != 'noFilter'){
+            patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
+        }
+
     },
     play: function(){
         patch.updateData();

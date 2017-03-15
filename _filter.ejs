@@ -4,48 +4,51 @@
     <h3>Filtro <em>Manipule seu som atenuando determinadas faixas de frequência</em></h3>
 
     <div class="row">
-        <div class="col-sm-6">
-            <h5>Tipo de Filtro</h5>
+        <form action="" autocomplete="off">
+            <div class="col-sm-6">
+                <h5>Tipo de Filtro</h5>
 
-            <div class="filterType">
-                <select id="filter">
-                    <option id="hp">High Pass</option>
-                    <option id="lp">Low Pass</option>
-                </select>
-                <p>
-                    Descrição
-                </p>
+                <div class="filterType">
+                    <select id="filter">
+                        <option id="noFilter" selected="selected">Sem Filtro</option>
+                        <option id="hp">High Pass</option>
+                        <option id="lp">Low Pass</option>
+                    </select>
+                    <p>
+                        Descrição
+                    </p>
+                </div>
+
+                <div class="filterSetup">
+                    <figure>
+                        <img src="img/filter_temp.gif" alt="">
+                    </figure>
+
+                    <fieldset id="filterParams" class="audioParams">
+                        <label for="filter_cutoff">Frequência de Corte</label>
+                        <input type="range" id="filter_cutoff" min="100" value="5" max="22000" step="100" data-type="audioParam">
+                        <output for="filter_cutoff">5</output>
+
+                        <label for="filter_mix">Força</label>
+                        <input type="range" id="filter_mix" min="1" value="5" max="20" step="1" data-type="audioParam">
+                        <output for="filter_mix">5</output>
+                    </fieldset>
+                </div>
             </div>
 
-            <div class="filterSetup">
-                <figure>
-                    <img src="img/filter_temp.gif" alt="">
-                </figure>
+            <div class="col-sm-6">
+                <fieldset id="filterOSC" class="audioParams disabled">
+                    <legend><input type="checkbox" />Oscilar Filtro</legend>
 
-                <fieldset id="filterParams" class="audioParams">
-                    <label for="cutoff">Frequência de Corte</label>
-                    <input type="range" id="cutoff" min="1" value="5" max="20" step="1" data-type="audioParam">
-                    <output for="cutoff">5</output>
+                    <label for="filterOSC_speed">Velocidade</label>
+                    <input type="range" id="filterOSC_speed" min="1" value="5" max="20" step="1" data-type="audioParam" disabled="true">
+                    <output for="filterOSC_speed">5</output>
 
-                    <label for="mix">Força</label>
-                    <input type="range" id="mix" min="1" value="5" max="20" step="1" data-type="audioParam">
-                    <output for="mix">5</output>
+                    <label for="filterOSC_depth">Força</label>
+                    <input type="range" id="filterOSC_depth" min="0" value="1" max="1" step="0.1" data-type="audioParam" disabled="true">
+                    <output for="filterOSC_depth">1</output>
                 </fieldset>
             </div>
-        </div>
-
-        <div class="col-sm-6">
-            <fieldset id="filterOsc" class="audioParams disabled">
-                <legend><input type="checkbox" />Oscilar Filtro</legend>
-
-                <label for="filterOsc_speed">Velocidade</label>
-                <input type="range" id="filterOsc_speed" min="1" value="5" max="20" step="1" data-type="audioParam" disabled="true">
-                <output for="filterOsc_speed">5</output>
-
-                <label for="filterOsc_depth">Força</label>
-                <input type="range" id="filterOsc_depth" min="0" value="1" max="1" step="0.1" data-type="audioParam" disabled="true">
-                <output for="filterOsc_depth">1</output>
-            </fieldset>
-        </div>
+        </form>
     </div>
 </section>

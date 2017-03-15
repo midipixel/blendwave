@@ -64,20 +64,27 @@ var ui = {
         });
 
         // Filter
-        $('#filter').on('change', function(e){
+        $('select#filter').on('change', function(e){
 
             type = $('#filter option:selected').attr('id');
 
-            //Reset mix values before applying the selected one
-            patch.effects.filter.hp.mix = 0;
-            patch.effects.filter.lp.mix = 0;
+            //Remove applied filters, if any
+            if(patch.data.filter_type != 'noFilter'){
+                var appliedFilter = patch.data.filter_type;    
+                patch.sound.removeEffect(patch.effects.filter[appliedFilter]);
+            }
 
+            //Apply selected filter
             if(type == 'hp'){
-                console.log('high pass');
-                patch.effects.filter.hp.mix = 1;
+                patch.data.filter_type = 'hp';
+                patch.sound.addEffect(patch.effects.filter.hp);              
+                console.log(patch.data.filter_type);
             }else if(type == 'lp'){
-                console.log('low pass');
-                patch.effects.filter.hp.mix = 1;
+                patch.data.filter_type = 'lp';
+                patch.sound.addEffect(patch.effects.filter.lp);
+                console.log(patch.data.filter_type);                
+            }else{
+                patch.data.filter_type = 'noFilter';
             }
         });
 
@@ -89,6 +96,10 @@ var ui = {
         setSlider(tremolo_speed, default_data.tremolo_speed);
         setSlider(tremolo_depth, default_data.tremolo_speed);
         setSlider(vibrato_speed, default_data.vibrato_speed);
+        setSlider(filter_cutoff, default_data.filter_cutoff);
+        setSlider(filter_mix, default_data.filter_mix);
+        setSlider(filterOSC_speed, default_data.filterOSC_speed);
+        setSlider(filterOSC_depth, default_data.filterOSC_depth);
 
         //Disable Tremolo
         disableUI(tremolo);
@@ -141,6 +152,14 @@ function updateParameter(target, value){
         case 'vibrato_speed':
             patch.data.vibrato_speed = value;
         break;
+
+        case 'filter_cutoff':
+            patch.data.filter_cutoff = value;
+        break;
+
+        case 'filter_mix':
+            patch.data.filter_mix = value;
+        break;                
     }
 }
 
