@@ -7,7 +7,7 @@ var default_data = {
     tremolo_depth: 1,
     vibrato_speed: 2,
     filter_type: 'noFilter',
-    filter_cutoff: 500,
+    filter_cutoff: 100,
     filterOSC_speed: 0,
     filterOSC_depth: 0,
 }

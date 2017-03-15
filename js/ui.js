@@ -90,6 +90,7 @@ var ui = {
 
     },
     reset: function(){
+        //Reset Sliders        
         setSlider(amp_attack, default_data.attack);
         setSlider(amp_release, default_data.release);
         setSlider(pitch_ammount, default_data.detune);
@@ -97,9 +98,11 @@ var ui = {
         setSlider(tremolo_depth, default_data.tremolo_speed);
         setSlider(vibrato_speed, default_data.vibrato_speed);
         setSlider(filter_cutoff, default_data.filter_cutoff);
-        setSlider(filter_mix, default_data.filter_mix);
         setSlider(filterOSC_speed, default_data.filterOSC_speed);
         setSlider(filterOSC_depth, default_data.filterOSC_depth);
+
+        //Reset Filter Type
+        setComboOption('filter', default_data.filter_type);
 
         //Disable Tremolo
         disableUI(tremolo);
@@ -166,6 +169,11 @@ function updateParameter(target, value){
 function setSlider(parameter, value){
     $(parameter).val(value);
     $(parameter).next('output').val(value);
+}
+
+function setComboOption(parameter, value){
+    var domquery = 'select#' + parameter + '>' + '#' + value;
+    $(domquery).prop({selected: true});
 }
 
 function disableUI(parameter){
