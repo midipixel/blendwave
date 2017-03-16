@@ -32,6 +32,9 @@ ul {
   display: inline-block;
   width: 15%;
 }
+.filterSetup img {
+  display: none;
+}
 /* =Main
 -----------------------------------------------------------------------------*/
 .container {

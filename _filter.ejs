@@ -14,17 +14,15 @@
                         <option id="hp">High Pass</option>
                         <option id="lp">Low Pass</option>
                     </select>
-                    <p>
-                        Descrição
-                    </p>
+                    <p></p>
                 </div>
 
                 <div class="filterSetup">
                     <figure>
-                        <img src="img/filter_temp.gif" alt="">
+                        <img src="img/filter_hp.png" alt="">
                     </figure>
 
-                    <fieldset id="filterParams" class="audioParams">
+                    <fieldset id="filterParams" class="audioParams disabled" disabled="disabled'>
                         <label for="filter_cutoff">Frequência de Corte</label>
                         <input type="range" id="filter_cutoff" min="100" value="100" max="22000" step="100" data-type="audioParam">
                         <output for="filter_cutoff">100</output>

@@ -73,21 +73,9 @@ var ui = {
                 var appliedFilter = patch.data.filter_type;    
                 patch.sound.removeEffect(patch.effects.filter[appliedFilter]);
             }
-
-            //Apply selected filter
-            if(type == 'hp'){
-                patch.data.filter_type = 'hp';
-                patch.sound.addEffect(patch.effects.filter.hp);              
-                console.log(patch.data.filter_type);
-            }else if(type == 'lp'){
-                patch.data.filter_type = 'lp';
-                patch.sound.addEffect(patch.effects.filter.lp);
-                console.log(patch.data.filter_type);                
-            }else{
-                patch.data.filter_type = 'noFilter';
-            }
+            //Apply the correct filter
+            applyFilter(type);
         });
-
     },
     reset: function(){
         //Reset Sliders        
@@ -101,8 +89,10 @@ var ui = {
         setSlider(filterOSC_speed, default_data.filterOSC_speed);
         setSlider(filterOSC_depth, default_data.filterOSC_depth);
 
-        //Reset Filter Type
+        //Reset Filter UI
         setComboOption('filter', default_data.filter_type);
+        disableUI(filterParams);
+        $('.filterType p').html('');             
 
         //Disable Tremolo
         disableUI(tremolo);
@@ -180,4 +170,51 @@ function disableUI(parameter){
     $(parameter).addClass('disabled');
     $(parameter).find('input[type="range"]').attr('disabled', true);
     $(parameter).find('input[type="checkbox"]').prop('checked', false);
+}
+
+function enableUI(parameter){
+    $(parameter).removeClass('disabled').attr('disabled', false);
+    $(parameter).find('input[type="range"]').attr('disabled', false);
+    $(parameter).find('input[type="checkbox"]').prop('checked', false);
+}
+
+function applyFilter(filterType) {
+    patch.data.filter_type = filterType;
+
+    if(filterType != "noFilter"){
+        //Change UI values according to the filter type
+        if(filterType == "lp"){
+            $('#filter_cutoff').attr({
+                min: 20,
+                max: 2000,
+                value: 20,
+                step: 10,
+            });
+            $('.filterType p').html('Low Pass é batuta');
+        }else if(filterType == "hp"){
+            $('#filter_cutoff').attr({
+                min: 1000,
+                max: 10000,
+                value: 1000,
+                step: 100,
+            });         
+            $('.filterType p').html('High Pass é maneiro');            
+        }
+        enableUI(filterParams);
+
+        //Show correct image
+        $('.filterSetup img').attr('src', 'img/filter_' + filterType + '.png');
+        $('.filterSetup img').show();
+
+        //Apply Filter
+        patch.sound.addEffect(patch.effects.filter[filterType]);        
+    }else{
+        disableUI(filterParams);
+        $('.filterType p').html('');     
+    }
+
+    //Update UI
+    var newValue = $("#filter_cutoff").val();
+    console.log(newValue);
+    $("#filter_cutoff").next('output').val(newValue);
 }
