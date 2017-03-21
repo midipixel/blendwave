@@ -195,10 +195,10 @@ function applyFilter(filterType) {
             $('.filterType p').html('Filtra as altas frequências');
         }else if(filterType == "hp"){
             filterValues = {
-                min: 1000,
-                max: 20000,
+                min: 500,
+                max: 5000,
                 step: 10,
-                value: 1000,
+                value: 500,
             }                
             $('.filterType p').html('Filtra as baixas frequências');            
         }
