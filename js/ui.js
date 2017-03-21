@@ -41,8 +41,7 @@ var ui = {
         // Tremolo
         $('#tremolo input[type=checkbox]').on('change', function(e){
             if(e.target.checked){
-                $('#tremolo').removeClass('disabled');
-                $('#tremolo input[type="range"]').attr('disabled', false);
+                enableUI(tremolo);
                 patch.sound.addEffect(patch.effects.tremolo);
             }
             else{
@@ -52,18 +51,10 @@ var ui = {
         });
         // Vibrato
         $('#vibrato input[type=checkbox]').on('change', function(e){
-            if(e.target.checked){
-                $('#vibrato').removeClass('disabled');
-                $('#vibrato input[type="range"]').attr('disabled', false);
-                patch.effects.vibrato.on = true;
-            }
-            else{
-                disableUI(vibrato);
-                patch.effects.vibrato.on = false;
-            };
+            toggleOSC(e.target, 'vibrato');
         });
 
-        // Filter
+        //Filter Type
         $('select#filter').on('change', function(){
 
             type = $('#filter option:selected').attr('id');
@@ -76,6 +67,11 @@ var ui = {
             //Apply the correct filter
             applyFilter(type);
         });
+        
+        // Filter Oscillator
+        $('#filterOSC input[type=checkbox]').on('change', function(e){
+            toggleOSC(e.target, 'filter.oscillator');
+        });        
     },
     reset: function(){
         //Reset Sliders        
@@ -175,7 +171,6 @@ function disableUI(parameter){
 function enableUI(parameter){
     $(parameter).removeClass('disabled').attr('disabled', false);
     $(parameter).find('input[type="range"]').attr('disabled', false);
-    $(parameter).find('input[type="checkbox"]').prop('checked', false);
 }
 
 function applyFilter(filterType) {
@@ -224,4 +219,17 @@ function applyFilter(filterType) {
 
     //Update UI
     $("#filter_cutoff").next('output').val(patch.data.filter_cutoff);
+}
+
+function toggleOSC(checkbox, oscType){
+    var osc = eval('patch.effects.' + oscType);
+
+    if(checkbox.checked){
+        enableUI(oscType);
+        osc.on = true;
+    }
+    else{
+        disableUI(oscType);
+        osc.on = false;
+    };  
 }

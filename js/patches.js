@@ -107,6 +107,7 @@ var patch = {
         //Filter
         if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
+            patch.effects.filter.oscillator.set();
         }
 
     },
