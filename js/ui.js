@@ -55,11 +55,11 @@ var ui = {
             if(e.target.checked){
                 $('#vibrato').removeClass('disabled');
                 $('#vibrato input[type="range"]').attr('disabled', false);
-                patch.effects.vibrato.mix = 1;
+                patch.effects.vibrato.on = true;
             }
             else{
                 disableUI(vibrato);
-                patch.effects.vibrato.mix = 0;
+                patch.effects.vibrato.on = false;
             };
         });
 
