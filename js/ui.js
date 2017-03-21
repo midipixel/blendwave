@@ -64,7 +64,7 @@ var ui = {
         });
 
         // Filter
-        $('select#filter').on('change', function(e){
+        $('select#filter').on('change', function(){
 
             type = $('#filter option:selected').attr('id');
 
@@ -182,25 +182,33 @@ function applyFilter(filterType) {
     patch.data.filter_type = filterType;
 
     if(filterType != "noFilter"){
+        var filterValues;
+
         //Change UI values according to the filter type
         if(filterType == "lp"){
-            $('#filter_cutoff').attr({
+            filterValues = {
                 min: 20,
                 max: 2000,
-                value: 20,
                 step: 10,
-            });
-            $('.filterType p').html('Low Pass é batuta');
+                value: 20,
+            }  
+            $('.filterType p').html('Filtra as altas frequências');
         }else if(filterType == "hp"){
-            $('#filter_cutoff').attr({
+            filterValues = {
                 min: 1000,
-                max: 10000,
+                max: 20000,
+                step: 10,
                 value: 1000,
-                step: 100,
-            });         
-            $('.filterType p').html('High Pass é maneiro');            
+            }                
+            $('.filterType p').html('Filtra as baixas frequências');            
         }
+
+        $('#filter_cutoff').attr(filterValues).val(filterValues.value);           
+
         enableUI(filterParams);
+
+        //Update patch data
+        patch.data.filter_cutoff = filterValues.value;       
 
         //Show correct image
         $('.filterSetup img').attr('src', 'img/filter_' + filterType + '.png');
@@ -214,7 +222,5 @@ function applyFilter(filterType) {
     }
 
     //Update UI
-    var newValue = $("#filter_cutoff").val();
-    console.log(newValue);
-    $("#filter_cutoff").next('output').val(newValue);
+    $("#filter_cutoff").next('output').val(patch.data.filter_cutoff);
 }
