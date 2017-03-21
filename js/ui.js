@@ -202,10 +202,11 @@ function applyFilter(filterType) {
             }                
             $('.filterType p').html('Filtra as baixas frequências');            
         }
-
-        $('#filter_cutoff').attr(filterValues).val(filterValues.value);           
-
+        //Enable UI, since there is a filter type
         enableUI(filterParams);
+
+        //Update slider values
+        $('#filter_cutoff').attr(filterValues).val(filterValues.value);           
 
         //Update patch data
         patch.data.filter_cutoff = filterValues.value;       
