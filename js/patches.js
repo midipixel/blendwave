@@ -53,12 +53,13 @@ var patch = {
                 frequency: 500,
                 mix: 0
             }),
-            oscillator: {
+            osc: {
                 on: false,
                 set: function(){
                     if (this.on){
                         //Create Oscillator, set up frequency
                         var osc = Pizzicato.context.createOscillator();
+                        console.log(osc);
                         osc.frequency.value = patch.data.filterOSC_speed;
 
                         //Create Gain Node, set up value
@@ -67,6 +68,7 @@ var patch = {
 
                         //Connect OSC -> gain -> filter frequency
                         osc.connect(oscGain);
+                        //TODO: Fazer o oscilador funcionar para os dois tipos de filtro
                         oscGain.connect(patch.effects.filter.hp.filterNode.frequency);
                         osc.start();
                     }
@@ -107,7 +109,7 @@ var patch = {
         //Filter
         if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
-            patch.effects.filter.oscillator.set();
+            patch.effects.filter.osc.set();
         }
 
     },

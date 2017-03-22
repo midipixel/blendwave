@@ -67,10 +67,10 @@ var ui = {
             //Apply the correct filter
             applyFilter(type);
         });
-        
+
         // Filter Oscillator
-        $('#filterOSC input[type=checkbox]').on('change', function(e){
-            toggleOSC(e.target, 'filter.oscillator');
+        $('#filter_osc input[type=checkbox]').on('change', function(e){
+            toggleOSC(e.target, 'filter_osc');
         });        
     },
     reset: function(){
@@ -222,14 +222,15 @@ function applyFilter(filterType) {
 }
 
 function toggleOSC(checkbox, oscType){
-    var osc = eval('patch.effects.' + oscType);
+    var oscPath = oscType.replace('_','.');
+    var osc = eval('patch.effects.' + oscPath);
 
     if(checkbox.checked){
-        enableUI(oscType);
+        enableUI('#' + oscType);
         osc.on = true;
     }
     else{
-        disableUI(oscType);
+        disableUI('#' + oscType);
         osc.on = false;
     };  
 }
