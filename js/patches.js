@@ -7,7 +7,7 @@ var default_data = {
     tremolo_depth: 1,
     vibrato_speed: 2,
     filter_type: 'noFilter',
-    filter_cutoff: 100,
+    filter_cutoff: 500,
     filterOSC_speed: 1,
     filterOSC_depth: 0,
 }
@@ -21,9 +21,9 @@ var patch = {
         tremolo_speed: 0,
         tremolo_depth: 0,
         vibrato_speed: 0,
-        filter_type: 'noFilter',
-        filter_cutoff: 500,
-        filterOSC_speed: 1,
+        filter_type: '',
+        filter_cutoff: 0,
+        filterOSC_speed: 0,
         filterOSC_depth: 0,
     },
     effects: {
@@ -45,32 +45,37 @@ var patch = {
         },
         filter: {
             lp : new Pizzicato.Effects.LowPassFilter({
-                frequency: 500,
-                mix: 0,
-                peak: 10
+                frequency: default_data.filter_cutoff,
+                mix: 0
             }),
             hp : new Pizzicato.Effects.HighPassFilter({
-                frequency: 500,
+                frequency: default_data.filter_cutoff,
                 mix: 0
             }),
             osc: {
                 on: false,
+                oscNode: {},
+                gainNode: Pizzicato.context.createGain(),
                 set: function(){
-                    if (this.on){
+                    if(patch.data.filter_type != 'noFilter'){                    
                         //Create Oscillator, set up frequency
-                        var osc = Pizzicato.context.createOscillator();
-                        console.log(osc);
+                        patch.effects.filter.osc.oscNode = Pizzicato.context.createOscillator();
+                        var osc = patch.effects.filter.osc.oscNode;
                         osc.frequency.value = patch.data.filterOSC_speed;
 
-                        //Create Gain Node, set up value
-                        var oscGain = Pizzicato.context.createGain();
-                        oscGain.gain.value = 500;
-
                         //Connect OSC -> gain -> filter frequency
+                        var oscGain = patch.effects.filter.osc.gainNode;
                         osc.connect(oscGain);
-                        //TODO: Fazer o oscilador funcionar para os dois tipos de filtro
-                        oscGain.connect(patch.effects.filter.hp.filterNode.frequency);
-                        osc.start();
+                        oscGain.connect(patch.effects.filter[patch.data.filter_type].filterNode.frequency);
+                        osc.start(); 
+
+                        if (this.on){
+                            var gainValue = patch.data.filterOSC_depth;
+                            oscGain.gain.value = gainValue;
+                        }
+                        else {
+                            oscGain.gain.value = 0;                        
+                        }
                     }
                 }
             }
@@ -109,19 +114,26 @@ var patch = {
         //Filter
         if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
-            patch.effects.filter.osc.set();
         }
-
     },
     play: function(){
         patch.updateData();
         patch.sound.play();
+        patch.effects.filter.osc.set();        
         patch.effects.vibrato.set();
         //Detune must be called right after playing, or the node won't exist
         patch.sound.sourceNode.detune.value = patch.data.detune;
     },
     stop: function(){
         patch.sound.stop();
+
+        //Disconnect useless filter oscillator from gain node, after release time
+        if(patch.data.filter_type != 'noFilter'){
+            var timeOut = patch.data.release * 1000;
+            window.setTimeout(function(){
+                patch.effects.filter.osc.oscNode.disconnect();        
+            }, timeOut);
+        }
     }
 }
 
@@ -130,7 +142,6 @@ var patches = {
         patch.create();
     }
 }
-
 
 
 

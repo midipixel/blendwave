@@ -6,11 +6,13 @@ var ui = {
         $('.fileHeader').on('mousedown', function(){
             ui.fileHeader.setState('active');
             patch.play();
+            //logValue.start();
         })
 
         $('.fileHeader').on('mouseup', function(){
             ui.fileHeader.setState('default');
             patch.stop();
+            //logValue.stop();
         })
 
         $('body').on('keydown', function(e){
@@ -88,6 +90,7 @@ var ui = {
         //Reset Filter UI
         setComboOption('filter', default_data.filter_type);
         disableUI(filterParams);
+        disableUI(filter_osc);
         $('.filterType p').html('');             
 
         //Disable Tremolo
@@ -146,9 +149,13 @@ function updateParameter(target, value){
             patch.data.filter_cutoff = value;
         break;
 
-        case 'filter_mix':
-            patch.data.filter_mix = value;
-        break;                
+        case 'filterOSC_speed':
+            patch.data.filterOSC_speed = value;
+        break;   
+
+        case 'filterOSC_depth':
+            patch.data.filterOSC_depth = value;
+        break;                      
     }
 }
 
@@ -185,12 +192,12 @@ function applyFilter(filterType) {
                 min: 20,
                 max: 2000,
                 step: 10,
-                value: 20,
+                value: 100,
             }  
             $('.filterType p').html('Filtra as altas frequências');
         }else if(filterType == "hp"){
             filterValues = {
-                min: 500,
+                min: 0,
                 max: 5000,
                 step: 10,
                 value: 500,
@@ -200,7 +207,7 @@ function applyFilter(filterType) {
         //Enable UI, since there is a filter type
         enableUI(filterParams);
 
-        //Update slider values
+        //Update cutoff slider values
         $('#filter_cutoff').attr(filterValues).val(filterValues.value);           
 
         //Update patch data
@@ -222,6 +229,7 @@ function applyFilter(filterType) {
 }
 
 function toggleOSC(checkbox, oscType){
+    //Convert oscType string to a usable path format
     var oscPath = oscType.replace('_','.');
     var osc = eval('patch.effects.' + oscPath);
 
@@ -232,5 +240,7 @@ function toggleOSC(checkbox, oscType){
     else{
         disableUI('#' + oscType);
         osc.on = false;
-    };  
+    };
+
+    console.log(osc);
 }
