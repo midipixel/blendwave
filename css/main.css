@@ -32,8 +32,21 @@ ul {
   display: inline-block;
   width: 15%;
 }
-.filterSetup img {
-  display: none;
+.dspType {
+  display: flex;
+  margin-bottom: 1em;
+}
+.dspType select {
+  margin-right: 2%;
+}
+.dspSetup {
+  display: flex;
+}
+.dspSetup img {
+  max-width: 100%;
+}
+.dspSetup fieldset {
+  width: 100%;
 }
 /* =Main
 -----------------------------------------------------------------------------*/
@@ -92,19 +105,14 @@ fieldset.disabled legend {
 -----------------------------------------------------------------------------*/
 /* =Filter
 -----------------------------------------------------------------------------*/
-.filterType {
-  display: flex;
-  margin-bottom: 1em;
-}
-.filterType select {
-  margin-right: 2%;
-}
-.filterSetup {
-  display: flex;
-}
 .filterSetup img {
-  max-width: 100%;
+  display: none;
 }
-.filterSetup fieldset {
-  width: 70%;
+/* =FX
+-----------------------------------------------------------------------------*/
+.fxSetup {
+  display: none;
+}
+.reverb {
+  display: flex;
 }

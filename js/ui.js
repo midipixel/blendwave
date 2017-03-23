@@ -58,7 +58,6 @@ var ui = {
 
         //Filter Type
         $('select#filter').on('change', function(){
-
             type = $('#filter option:selected').attr('id');
 
             //Remove applied filters, if any
@@ -73,7 +72,16 @@ var ui = {
         // Filter Oscillator
         $('#filter_osc input[type=checkbox]').on('change', function(e){
             toggleOSC(e.target, 'filter_osc');
-        });        
+        }); 
+
+        //FX Type
+        $('#fxSelect').on('change', function(){
+            type = $('#fxSelect option:selected').val();
+
+            $('.fxSetup').hide();
+            $('#' + type).css('display', 'flex');
+
+        });               
     },
     reset: function(){
         //Reset Sliders        
