@@ -1,5 +1,5 @@
 <section class="panelContent envelope" data-panelname="envelope" id="envelope">
-    <%- partial("_fileHeader") %>
+    <?php include('fileHeader.php')?> 
 
     <h3>Envelope<em>Manipule o comportamento do som ao longo do tempo</em></h3>
 

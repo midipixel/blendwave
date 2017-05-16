@@ -1,5 +1,5 @@
 <section class="panelContent" data-panelname="filter" id="filter">
-    <%- partial("_fileHeader") %>
+    <?php include('fileHeader.php')?> 
 
     <h3>Filtro <em>Manipule seu som atenuando determinadas faixas de frequência</em></h3>
 

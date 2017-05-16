@@ -1,5 +1,5 @@
 <section class="panelContent" data-panelname="wave" id="wave">
-    <%- partial("_fileHeader") %>
+    <?php include("fileHeader.php"); ?>
 
     <h3>Fonte Sonora <em>Escolha um som para servir de base</em></h3>
 

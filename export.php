@@ -1,5 +1,5 @@
 <section class="panelContent" data-panelname="export" id="export">
-    <%- partial("_fileHeader") %>
+    <?php include('fileHeader.php')?> 
 
     <h3>Saída<em>Revise os parâmetros de seu som e faça o download</em></h3>
 

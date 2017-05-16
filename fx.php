@@ -1,5 +1,9 @@
 <section class="panelContent" data-panelname="fx" id="fx">
-    <%- partial("_fileHeader") %>
+    <?php include('fileHeader.php')?>
+
+    <?php
+        $effects = ["reverb", "delay"];
+     ?>
 
     <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
 
