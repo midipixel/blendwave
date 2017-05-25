@@ -11,22 +11,28 @@
                 <form action="" autocomplete="off">
                     <fieldset>
                         <legend>Efeito 1</legend>
+
                         <label for="fx1_on">
-                            <input type="radio" id="fx1_on">Liga</input>
-                        </label>
-                        <label for="fx1_on">
-                            <input type="radio" id="fx1_off">Desliga</input>
+                            <input type="radio" id="fx1_on" name="fxSwitch">Liga</input>
                         </label>
 
-                        <select id="fxSelect">
-                            <?php
-                                // Populates combo box with effects
-                                foreach ($effects as $fx => $props) {
-                                    $value = strtolower(str_replace(' ', '_', $fx));
-                                    echo "<option value='{$value}'>{$fx}</option>";
-                                }
-                            ?>
-                        </select>
+                        <label for="fx1_on">
+                            <input type="radio" id="fx1_off" name="fxSwitch">Desliga</input>
+                        </label>
+
+                        <div class="fxSelect">
+                            <select>
+                                <?php
+                                    // Populates combo box with effects
+                                    foreach ($effects as $fx => $props) {
+                                        $value = strtolower(str_replace(' ', '_', $fx));
+                                        echo "<option value='{$value}'>{$fx}</option>";
+                                    }
+                                ?>
+                            </select>
+
+                            <p>Description</p>
+                        </div>
                      </fieldset>
                 </form>
             </div>
@@ -38,9 +44,8 @@
     </section>
 
 
-    <?php
-        foreach ($effects as $fx => $props):
-        // Write effect setup to HTML as a template, drawing parameters from the effects array
+    <?php foreach ($effects as $fx => $props):
+    // Write effect setup to HTML as a template, drawing parameters from the effects array
     ?>
         <?php $fxid = strtolower(str_replace(' ', '_', $fx)); ?>
 
@@ -48,15 +53,7 @@
         <div id="<?= $fxid ?>">
             <div class="row">
                 <div class="col-sm-12">
-                    <?php
-                        // Write effect description
-                        foreach ($props as $prop => $value){
-                            if ($prop == 'description'){
-                                echo "<p>{$value}</p>";
-                            }
-                            break;
-                        }
-                    ?>
+                    <?= ($props["description"]);?>
                 </div>
             </div>
 
@@ -67,16 +64,12 @@
 
                 <div class="col-sm-8" id="fxParams">
                     <fieldset class="audioParams">
-                        <?php
-                            //Write the effects parameters to form fields
-                            foreach ($props as $prop => $propType): ?>
-                            <?php if ($prop == 'params'): ?>
-                                <?php foreach ($propType as $param => $value): ?>
-                                    <label for="<?= $param ?>"><?= $param ?></label>
-                                    <input type="range" id="" min="" value="" max="" step="" data-type="audioParam">
-                                    <output for=""></output>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
+                        <?php foreach ($props["params"] as $param => $value):
+                        //Write parameters for the effect
+                        ?>
+                            <label for="<?= $param ?>"><?= $param ?></label>
+                            <input type="range" id="" value="<?= $value ?>" min="" max="" step="" data-type="audioParam">
+                            <output for=""><?= $value ?></output>
                         <?php endforeach; ?>
                     </fieldset>
                 </div>
