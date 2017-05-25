@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div id="fxSetup">
+        <div id="row fxSetup">
             <!-- Template goes here-->
         </div>
     </section>
