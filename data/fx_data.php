@@ -6,7 +6,6 @@ $effects = [
         "params" => [
             "time" => 0,
             "decay" => 0,
-            "reverse" => 0,
             "mix" => 0
         ]
     ],

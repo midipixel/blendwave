@@ -43,6 +43,6 @@ var main = {
         ui.init();
         ui.fileHeader.update();
 
-        console.log("INIT OK");
+        //console.log("INIT OK");
     }
 }
