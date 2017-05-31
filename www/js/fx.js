@@ -1,8 +1,0 @@
-var fx = {
-    init: function(){
-
-    }
-}
-
-
-
