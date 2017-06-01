@@ -44,6 +44,7 @@
     <script src="js/ui.js"></script>
     <script src="js/patches.js"></script>
     <script src="js/wave.js"></script>
+    <script src="js/data/fx_data.js"></script>
     <script src="js/fx.js"></script>
     <script src="js/export.js"></script>
 </body>
