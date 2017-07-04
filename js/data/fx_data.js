@@ -1,31 +1,47 @@
 var effects = {
+    none : {
+        name : "None",
+        description : "Escolha um efeito",
+    },
     reverb : {
-        name : "reverb",
-        description : "reverbera o som",
+        name : "Reverb",
+        description : "Reverbera o som",
     },
     delay : {
-        name : "delay",
-        description : "promove atraso do som",
+        name : "Delay",
+        description : "Promove atraso do som",
     },
     distortion : {
-        name : "distortion",
-        description : "distorce som",
+        name : "Distortion",
+        description : "Distorce som",
     },
     flanger : {
-        name : "flanger",
-        description : "bobina na cabeça",
+        name : "Flanger",
+        description : "Bobina na cabeça",
     },
     ring_modulator : {
-        name : "ring_modulator",
-        description : "modula o anel",
+        name : "RingModulator",
+        description : "Modula o anel",
     },
     compressor : {
-        name : "compressor",
-        description : "comprime loucamente",
+        name : "Compressor",
+        description : "Comprime loucamente",
     }
 };
 
-Vue.component('reverb', {
+Vue.component('None', {
+    template: '#fxTemplate',
+    data: function() {
+        return {
+            fxName: effects.none.name,
+            fxDescription: effects.none.description,
+            img: 'img/none.png',
+            params: []
+        }
+    }
+});
+
+Vue.component('Reverb', {
     template: '#fxTemplate',
     data: function() {
         return {
@@ -59,7 +75,7 @@ Vue.component('reverb', {
     }
 });
 
-Vue.component('delay', {
+Vue.component('Delay', {
     template: '#fxTemplate',
     data: function() {
         return {
@@ -93,7 +109,7 @@ Vue.component('delay', {
     }
 });
 
-Vue.component('distortion', {
+Vue.component('Distortion', {
     template: '#fxTemplate',
     data: function() {
         return {
@@ -127,7 +143,7 @@ Vue.component('distortion', {
     }
 });
 
-Vue.component('flanger', {
+Vue.component('Flanger', {
     template: '#fxTemplate',
     data: function() {
         return {
@@ -161,7 +177,7 @@ Vue.component('flanger', {
     }
 });
 
-Vue.component('ring_modulator', {
+Vue.component('RingModulator', {
     template: '#fxTemplate',
     data: function() {
         return {
@@ -195,7 +211,7 @@ Vue.component('ring_modulator', {
     }
 });
 
-Vue.component('compressor', {
+Vue.component('Compressor', {
     template: '#fxTemplate',
     data: function() {
         return {

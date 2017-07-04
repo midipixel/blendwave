@@ -23,7 +23,7 @@ var ui = {
         });
 
         $('body').on('keyup', function(e){
-            //Play audio on spacebar press
+            //Stop audio on spacebar press
             if(e.keyCode == 32){
                 patch.stop();
             }

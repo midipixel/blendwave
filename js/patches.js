@@ -79,6 +79,9 @@ var patch = {
                     }
                 }
             }
+        },
+        dsp: function(fx){
+            console.log(fx);
         }
     },
     sound: {},

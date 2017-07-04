@@ -9,7 +9,7 @@
         $fxQuantity = 2;
         for($i=1; $i <= $fxQuantity; $i++ ):
     ?>
-          <?php $fxNum = 'fx' . $i; ?>
+        <?php $fxNum = 'fxSlot' . $i; ?>
 
         <section id="<?= $fxNum ?>" class="effect">
             <div class="row">
@@ -18,16 +18,16 @@
                         <fieldset>
                             <legend>Efeito <?= $i ?></legend>
 
-                            <label for="fx1_on">
-                                <input type="radio" id="fx1_on" name="fxSwitch">Liga</input>
+                            <label for="<?= $fxNum . '_on' ?>">
+                                <input type="radio" id="<?= $fxNum . '_on' ?>" name="<?= $fxNum . 'switch' ?>">Liga</input>
                             </label>
 
-                            <label for="fx1_on">
-                                <input type="radio" id="fx1_off" name="fxSwitch">Desliga</input>
+                            <label for="<?= $fxNum . '_off' ?>">
+                                <input type="radio" id="<?= $fxNum . '_off' ?>" name="<?= $fxNum . 'switch' ?>">Desliga</input>
                             </label>
 
                             <div class="fxSelect">
-                                <select v-model="<?= $fxNum . '.selected' ?>">
+                                <select v-model="<?= $fxNum . '.selected' ?>" v-on:change='setFX(<?= $fxNum ?>, <?= $fxNum . '.selected' ?>)'>
                                     <template v-for="fx in fxList">
                                         <option :value='fx.name'>{{ fx.name }}</option>"
                                     </template>
@@ -43,7 +43,7 @@
             </div>
 
             <template v-for="fx in fxList">
-                <div :is=fx.name v-if="<?= $fxNum . '.selected' ?> == fx.name"></div>
+                <div :is=fx.name v-if="<?= $fxNum . '.selected'?> == fx.name" :class=fx.name></div>
             </template>
 
         </section>
