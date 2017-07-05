@@ -1,7 +1,7 @@
-<?= '<script type="text/x-template" id="fxTemplate">' ?>
+<?= '<script type="text/x-template" id="effectTemplate">' ?>
 <div class="row fxSetup">
     <figure class="col-sm-4">
-        <img :src=img :alt="fxName">
+        <img :src=img :alt=name>
     </figure>
 
     <div class="col-sm-8" id="fxParams">

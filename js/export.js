@@ -31,7 +31,7 @@ var audioExport = {
                 au.controls = true;
                 au.src = url;
                 hf.href = url;
-                hf.download = wave.file + '_' + new Date().toISOString() + '.wav';
+                hf.download = patch.data.file + '_' + new Date().toISOString() + '.wav';
                 //hf.download = new Date().toISOString() + '.wav';
                 hf.innerHTML = hf.download;
                 li.appendChild(au);

@@ -1,4 +1,5 @@
 <?php require('templates/vue_fxTemplate.php')?>
+<?php require('templates/vue_effect.php')?>
 
 <section class="panelContent" data-panelname="fx" id="fx">
     <?php include('fileHeader.php')?>
@@ -6,7 +7,7 @@
     <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
 
     <?php
-        $fxQuantity = 2;
+        $fxQuantity = 1;
         for($i=1; $i <= $fxQuantity; $i++ ):
     ?>
         <?php $fxNum = 'fxSlot' . $i; ?>
@@ -42,9 +43,11 @@
                 </div>
             </div>
 
-            <template v-for="fx in fxList">
+            <effect :name=fxList.reverb.name description=:fxList.reverb.description :img=fxList.reverb.img>
+
+            <!--template v-for="fx in fxList">
                 <div :is=fx.name v-if="<?= $fxNum . '.selected'?> == fx.name" :class=fx.name></div>
-            </template>
+            </template-->
 
         </section>
     <?php endfor; ?>
