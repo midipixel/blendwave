@@ -43,11 +43,9 @@
                 </div>
             </div>
 
-            <effect :name=fxList.reverb.name description=:fxList.reverb.description :img=fxList.reverb.img>
-
-            <!--template v-for="fx in fxList">
-                <div :is=fx.name v-if="<?= $fxNum . '.selected'?> == fx.name" :class=fx.name></div>
-            </template-->
+            <template v-for="fx in fxList">
+                <effect :id=fx.id v-if="<?= $fxNum . '.selected'?> == fx.name" :class=fx.id></effect>
+            </template>
 
         </section>
     <?php endfor; ?>
