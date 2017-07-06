@@ -3,8 +3,7 @@ Vue.component('effect', {
     template: '#effectTemplate',
     data: function() {
         return {
-            fxList: effects,
-            params: []
+            fxList: effects
         }
     },
     methods: {
@@ -21,26 +20,42 @@ fxPanel = new Vue({
     data: {
         fxList : effects,
         fxSlot1: {
-            selected: 'Reverb',
+            active: false,
+            selected: 'none',
             pizEffect: undefined
         },
         fxSlot2: {
-            selected: 'None',
+            active: false,
+            selected: 'none',
             pizEffect: undefined
         }
     },
     methods: {
         setFX: function(fxSlot, effect){
+
              //If there is a Pizzicato effect applied, remove it
             if(fxSlot.pizEffect != undefined){
                 patch.sound.removeEffect(fxSlot.pizEffect);
             }
 
-            //Create a new effect from user selection
-            fxSlot.pizEffect = new Pizzicato.Effects[effect]();
+            if (effect != 'none'){
+                //Create a new effect from user selection, default mix to 0
+                fxSlot.pizEffect = new Pizzicato.Effects[effect]();
+                fxSlot.pizEffect.mix = 0;
 
-            //Apply effect to sound
-            patch.sound.addEffect(fxSlot.pizEffect);
+                //Apply effect to sound
+                patch.sound.addEffect(fxSlot.pizEffect);
+            }
+        },
+        activateFX: function(fxSlot, isActive){
+            fxSlot.active = isActive;
+
+            if(fxSlot.pizEffect != undefined){
+                isActive ? fxSlot.pizEffect.mix = 1 : fxSlot.pizEffect.mix = 0;
+            }
+
+            console.log(fxSlot.active);
+            console.log(fxSlot.pizEffect.mix);
         }
     }
 });

@@ -9,32 +9,33 @@
         $fxQuantity = 1;
         for($i=1; $i <= $fxQuantity; $i++ ):
     ?>
-        <?php $fxNum = 'fxSlot' . $i; ?>
+        <?php $fxSlot = 'fxSlot' . $i; ?>
 
-        <section id="<?= $fxNum ?>" class="effect">
+        <section id="<?= $fxSlot ?>" class="effect">
             <div class="row">
                 <div class="col-sm-12">
                     <form action="" autocomplete="off">
                         <fieldset>
                             <legend>Efeito <?= $i ?></legend>
 
-                            <label for="<?= $fxNum . '_on' ?>">
-                                <input type="radio" id="<?= $fxNum . '_on' ?>" name="<?= $fxNum . 'switch' ?>">Liga</input>
+                            <label for="<?= $fxSlot . '_on' ?>">
+                                <input type="radio" name="<?= $fxSlot . 'switch' ?>" id="<?= $fxSlot . '_on' ?>" v-on:click = 'activateFX(<?= $fxSlot ?>, true)' :checked="<?= $fxSlot . '.active' ?>">Liga</input>
                             </label>
 
-                            <label for="<?= $fxNum . '_off' ?>">
-                                <input type="radio" id="<?= $fxNum . '_off' ?>" name="<?= $fxNum . 'switch' ?>">Desliga</input>
+                            <label for="<?= $fxSlot . '_off' ?>">
+                                <input type="radio" name="<?= $fxSlot . 'switch' ?>" id="<?= $fxSlot . '_off' ?>" v-on:click = 'activateFX(<?= $fxSlot ?>, false)' :checked="!<?= $fxSlot . '.active' ?>">Desliga</input>
                             </label>
 
                             <div class="fxSelect">
-                                <select v-model="<?= $fxNum . '.selected' ?>" v-on:change='setFX(<?= $fxNum ?>, <?= $fxNum . '.selected' ?>)'>
+                                <select v-model="<?= $fxSlot . '.selected' ?>" v-on:change='setFX(<?= $fxSlot ?>, <?= $fxSlot . '.selected' ?>)'>
+                                    <option value="none">Nenhum</option>
                                     <template v-for="fx in fxList">
                                         <option :value='fx.name'>{{ fx.name }}</option>"
                                     </template>
                                 </select>
 
                                 <p v-for="fx in fxList">
-                                    <span v-if="<?= $fxNum . '.selected' ?> == fx.name">{{ fx.description }}</span>
+                                    <span v-if="<?= $fxSlot . '.selected' ?> == fx.name">{{ fx.description }}</span>
                                 </p>
                             </div>
                          </fieldset>
@@ -43,7 +44,7 @@
             </div>
 
             <template v-for="fx in fxList">
-                <effect :id=fx.id v-if="<?= $fxNum . '.selected'?> == fx.name" :class=fx.id></effect>
+                <effect :id=fx.id v-if="<?= $fxSlot . '.selected'?> == fx.name" :class=fx.id></effect>
             </template>
 
         </section>

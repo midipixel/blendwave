@@ -1,4 +1,6 @@
 var effects = {
+    /* In the meanwhile, id is used to fetch data and name is used to display the effect name
+    in the front end, and also to create the pizzicato effect */
     reverb : {
         id : "reverb",
         name : "Reverb",
