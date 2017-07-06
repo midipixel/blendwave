@@ -1,4 +1,3 @@
-<?php require('templates/vue_fxTemplate.php')?>
 <?php require('templates/vue_effect.php')?>
 
 <section class="panelContent" data-panelname="fx" id="fx">
