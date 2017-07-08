@@ -21,7 +21,7 @@
                             <div class="fxControls">
                                 <button class="toggleFX" v-on:click.prevent="toggleFX(<?= $fxSlot ?>)">{{ ui.fxButtonText }}</button>
 
-                                <div class="{active: <?= $fxSlot . '.active' ?>}">
+                                <div :class="{fxParams: true, disabled: !<?= $fxSlot . '.active' ?>}">
                                     <select v-model="<?= $fxSlot . '.selected' ?>" v-on:change="setFX(<?= $fxSlot ?>, <?= $fxSlot . '.selected' ?>)" disabled="disabled">
                                         <option selected="selected" value="none">None</option>
                                         <template v-for="fx in fxList">
@@ -35,9 +35,11 @@
                                 </div>
                             </div>
 
-                            <template v-for="fx in fxList">
-                                <effect :id=fx.id v-if="<?= $fxSlot . '.selected'?> == fx.name" :class=fx.id></effect>
-                            </template>
+                            <section :class="{disabled: !<?= $fxSlot . '.active' ?>}">
+                                <template v-for="fx in fxList">
+                                    <effect :id=fx.id v-if="<?= $fxSlot . '.selected'?> == fx.name" :class=fx.id></effect>
+                                </template>
+                            </section>
                          </fieldset>
                     </form>
                 </div>

@@ -4,7 +4,7 @@
         <img :src=fxList[id].img :alt=fxList[id].name>
     </figure>
 
-    <div class="col-sm-8" id="fxParams">
+    <div class="col-sm-8">
         <fieldset class="audioParams">
             <template  v-for="param in fxList[id].params">
                 <label for="param.name">{{ param.name }}</label>
