@@ -30,6 +30,7 @@ var wave = {
         patch.resetData();
         patch.data.file = waveFile;
         file = waveFile;
+        fxPanel.resetFX();
 
         patch.stop();
 

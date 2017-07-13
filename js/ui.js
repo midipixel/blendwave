@@ -62,7 +62,7 @@ var ui = {
 
             //Remove applied filters, if any
             if(patch.data.filter_type != 'noFilter'){
-                var appliedFilter = patch.data.filter_type;    
+                var appliedFilter = patch.data.filter_type;
                 patch.sound.removeEffect(patch.effects.filter[appliedFilter]);
             }
             //Apply the correct filter
@@ -72,7 +72,7 @@ var ui = {
         // Filter Oscillator
         $('#filter_osc input[type=checkbox]').on('change', function(e){
             toggleOSC(e.target, 'filter_osc');
-        }); 
+        });
 
         //FX Type
         $('#fxSelect').on('change', function(){
@@ -81,10 +81,10 @@ var ui = {
             $('.fxSetup').hide();
             $('#' + type).css('display', 'flex');
 
-        });               
+        });
     },
     reset: function(){
-        //Reset Sliders        
+        //Reset Sliders
         setSlider(amp_attack, default_data.attack);
         setSlider(amp_release, default_data.release);
         setSlider(pitch_ammount, default_data.detune);
@@ -99,7 +99,7 @@ var ui = {
         setComboOption('filter', default_data.filter_type);
         disableUI(filterParams);
         disableUI(filter_osc);
-        $('.filterType p').html('');             
+        $('.filterType p').html('');
 
         //Disable Tremolo
         disableUI(tremolo);
@@ -159,11 +159,11 @@ function updateParameter(target, value){
 
         case 'filterOSC_speed':
             patch.data.filterOSC_speed = value;
-        break;   
+        break;
 
         case 'filterOSC_depth':
             patch.data.filterOSC_depth = value;
-        break;                      
+        break;
     }
 }
 
@@ -201,7 +201,7 @@ function applyFilter(filterType) {
                 max: 2000,
                 step: 10,
                 value: 100,
-            }  
+            }
             $('.filterType p').html('Filtra as altas frequências');
         }else if(filterType == "hp"){
             filterValues = {
@@ -209,27 +209,27 @@ function applyFilter(filterType) {
                 max: 5000,
                 step: 10,
                 value: 500,
-            }                
-            $('.filterType p').html('Filtra as baixas frequências');            
+            }
+            $('.filterType p').html('Filtra as baixas frequências');
         }
         //Enable UI, since there is a filter type
         enableUI(filterParams);
 
         //Update cutoff slider values
-        $('#filter_cutoff').attr(filterValues).val(filterValues.value);           
+        $('#filter_cutoff').attr(filterValues).val(filterValues.value);
 
         //Update patch data
-        patch.data.filter_cutoff = filterValues.value;       
+        patch.data.filter_cutoff = filterValues.value;
 
         //Show correct image
         $('.filterSetup img').attr('src', 'img/filter_' + filterType + '.png');
         $('.filterSetup img').show();
 
         //Apply Filter
-        patch.sound.addEffect(patch.effects.filter[filterType]);        
+        patch.sound.addEffect(patch.effects.filter[filterType]);
     }else{
         disableUI(filterParams);
-        $('.filterType p').html('');     
+        $('.filterType p').html('');
     }
 
     //Update UI

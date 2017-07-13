@@ -53,7 +53,6 @@ fxPanel = new Vue({
                 fxSlot.active ? fxSlot.pizEffect.mix = 1 : fxSlot.pizEffect.mix = 0;
             }
 
-
         },
         setFX: function(fxSlot, effect){
              //If there is a Pizzicato effect applied, remove it
@@ -68,6 +67,11 @@ fxPanel = new Vue({
                 //Apply effect to sound
                 patch.sound.addEffect(fxSlot.pizEffect);
             }
+        },
+        resetFX: function(){
+            this.fxSlot1.selected = 'none';
+            this.fxSlot1.pizEffect = {};
+            this.toggleFX(this.fxSlot1);
         }
     }
 });
