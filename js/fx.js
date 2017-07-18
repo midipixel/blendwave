@@ -61,9 +61,17 @@ fxPanel = new Vue({
             }
 
             if (effect != 'none'){
-                //Create a new effect from user selection, default mix to 0
-                fxSlot.pizEffect = new Pizzicato.Effects[effect]();
+                //Iterate on the effect's parameters and create an object from them
+                var key = effect.toLowerCase();
+                var fxParams = {};
 
+                for (i in this.fxList[key].params){
+                    fxParams[this.fxList[key].params[i].name] = this.fxList[key].params[i].value;
+                }; 
+                
+                //Create a new pizzicato effect from user selection, passing the params object
+                fxSlot.pizEffect = new Pizzicato.Effects[effect](fxParams);
+                
                 //Apply effect to sound
                 patch.sound.addEffect(fxSlot.pizEffect);
             }
