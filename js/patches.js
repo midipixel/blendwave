@@ -79,9 +79,6 @@ var patch = {
                     }
                 }
             }
-        },
-        dsp: function(fx){
-            console.log(fx);
         }
     },
     sound: {},
@@ -117,6 +114,14 @@ var patch = {
         //Filter
         if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
+        }
+        
+        //Effects
+        var pizEffect = fxPanel.fxSlot1.pizEffect;
+        var fxParams = fxPanel.getParams(fxPanel.fxSlot1);
+        
+        for(var param in fxParams){
+            pizEffect[param] = parseFloat(fxParams[param]);
         }
     },
     play: function(){

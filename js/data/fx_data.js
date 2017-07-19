@@ -35,7 +35,7 @@ var effects = {
         img : "img/delay.png",
         params: [
             {
-                value: 1,
+                value: 0.6,
                 name: 'feedback',
                 min: 0,
                 max: 1,
@@ -43,7 +43,7 @@ var effects = {
             },
             {
                 name: 'time',
-                value: 1,
+                value: 0.3,
                 min: 0,
                 max: 1,
                 step: 0.01

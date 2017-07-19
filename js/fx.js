@@ -4,7 +4,7 @@ Vue.component('effect', {
     data: function() {
         return {
             fxList: effects
-        }
+        };
     },
     methods: {
         updatePatch: function(){
@@ -19,6 +19,18 @@ fxPanel = new Vue({
     el: '#fx',
     data: {
         fxList : effects,
+        fxSlots : {
+            fxSlot1: {
+                active: false,
+                selected: 'none',
+                pizEffect: {}
+            },
+            fxSlot2: {
+                active: false,
+                selected: 'none',
+                pizEffect: {}
+            },            
+        },
         fxSlot1: {
             active: false,
             selected: 'none',
@@ -54,20 +66,16 @@ fxPanel = new Vue({
             }
 
         },
-        setFX: function(fxSlot, effect){
+        setFX: function(fxSlot){
+            var effect = fxSlot.selected;
+            
              //If there is a Pizzicato effect applied, remove it
             if(fxSlot.pizEffect.outputNode){
                 patch.sound.removeEffect(fxSlot.pizEffect);
             }
 
             if (effect != 'none'){
-                //Iterate on the effect's parameters and create an object from them
-                var key = effect.toLowerCase();
-                var fxParams = {};
-
-                for (i in this.fxList[key].params){
-                    fxParams[this.fxList[key].params[i].name] = this.fxList[key].params[i].value;
-                }; 
+                var fxParams = this.getParams(fxSlot);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
                 fxSlot.pizEffect = new Pizzicato.Effects[effect](fxParams);
@@ -80,6 +88,18 @@ fxPanel = new Vue({
             this.fxSlot1.selected = 'none';
             this.fxSlot1.pizEffect = {};
             this.toggleFX(this.fxSlot1);
+        },
+        getParams: function(fxSlot){
+            //Iterate on the effect properties, returning the parameters in the pizzicato object format
+            var effect = fxSlot.selected; 
+            var key = effect.toLowerCase();
+            var fxParams = {};
+
+            for (var i in this.fxList[key].params){
+                fxParams[this.fxList[key].params[i].name] = this.fxList[key].params[i].value;
+            }; 
+ 
+            return fxParams;
         }
     }
 });
