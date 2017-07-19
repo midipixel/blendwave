@@ -38,7 +38,7 @@ fxPanel = new Vue({
     methods: {
         toggleFX: function(slot){
             var fxSlot = this.fxSlots[slot];
-            console.log(slot);
+            console.log(fxSlot);
             
             // Toggle Active State and Button Text
             fxSlot.active = !fxSlot.active;
@@ -79,9 +79,11 @@ fxPanel = new Vue({
             }
         },
         resetFX: function(){
-            this.fxSlots[fxSlot1].selected = 'none';
-            this.fxSlots[fxSlot1].pizEffect = {};
-            this.toggleFX(this.fxSlots[fxSlot1]);
+            for (var slot in this.fxSlots){
+                this.fxSlots[slot].selected = 'none';
+                this.fxSlots[slot].pizEffect = {};
+                this.toggleFX(slot);                
+            }
         },
         getParams: function(slot){
             var fxSlot = slot;

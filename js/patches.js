@@ -117,12 +117,18 @@ var patch = {
         }
         
         //Effects
-        var pizEffect = fxPanel.fxSlots['fxSlot1'].pizEffect;
-        var fxParams = fxPanel.getParams(fxPanel.fxSlots['fxSlot1']);
-        
-        for(var param in fxParams){
-            pizEffect[param] = parseFloat(fxParams[param]);
+        for (var slot in fxPanel.fxSlots){
+            // For each effect slots, update pizzicato parameters with the ones from the vue instance
+            if (fxPanel.fxSlots[slot].selected != 'none'){
+                var pizEffect = fxPanel.fxSlots[slot].pizEffect;
+                var fxParams = fxPanel.getParams(fxPanel.fxSlots[slot]);
+
+                for(var param in fxParams){
+                    pizEffect[param] = parseFloat(fxParams[param]);
+                }            
+            }            
         }
+
     },
     play: function(){
         patch.updateData();
