@@ -128,7 +128,6 @@ var patch = {
                 }            
             }            
         }
-
     },
     play: function(){
         patch.updateData();

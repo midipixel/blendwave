@@ -23,39 +23,38 @@ fxPanel = new Vue({
             fxSlot1: {
                 active: false,
                 selected: 'none',
-                pizEffect: {}
+                pizEffect: {},
+                fxButtonText: 'off'
             },
             fxSlot2: {
                 active: false,
                 selected: 'none',
-                pizEffect: {}
+                pizEffect: {},
+                fxButtonText: 'off'
             },            
-        },
-        ui: {
-            fxButtonText: 'off'
         }
     },
     methods: {
         toggleFX: function(slot){
             var fxSlot = this.fxSlots[slot];
-            console.log(fxSlot);
             
             // Toggle Active State and Button Text
             fxSlot.active = !fxSlot.active;
 
             // Change UI according to the effect being active or not
             if(fxSlot.active) {
-                this.ui.fxButtonText = 'on'
-                document.querySelector('.fxControls select').removeAttribute('disabled');
+                fxSlot.fxButtonText = 'on'
+                document.querySelector('#' + slot + ' .fxControls select').removeAttribute('disabled');
             }
             else {
-                this.ui.fxButtonText = 'off';
-                document.querySelector('.fxControls select').setAttribute('disabled', 'disabled');
+                fxSlot.fxButtonText = 'off';
+                document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
 
             // If an Effect is selected, toggle the mix value
             if(fxSlot.selected != 'none'){
                 fxSlot.active ? fxSlot.pizEffect.mix = 1 : fxSlot.pizEffect.mix = 0;
+                console.log(fxSlot.pizEffect);
             }
 
         },

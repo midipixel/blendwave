@@ -6,7 +6,7 @@
     <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
 
     <?php
-        $fxQuantity = 1;
+        $fxQuantity = 2;
         for($i=1; $i <= $fxQuantity; $i++ ):
     ?>
         <?php $fxSlot = 'fxSlot' . $i; ?>
@@ -19,7 +19,7 @@
                             <legend>Efeito <?= $i ?></legend>
 
                             <div class="fxControls">
-                                <button class="toggleFX" v-on:click.prevent="toggleFX('<?= $fxSlot ?>')">{{ ui.fxButtonText }}</button>
+                                <button class="toggleFX" v-on:click.prevent="toggleFX('<?= $fxSlot ?>')">{{ fxSlots['<?= $fxSlot ?>'].fxButtonText }}</button>
 
                                 <div :class="{fxParams: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
                                     <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')" disabled="disabled">
