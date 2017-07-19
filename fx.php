@@ -19,10 +19,10 @@
                             <legend>Efeito <?= $i ?></legend>
 
                             <div class="fxControls">
-                                <button class="toggleFX" v-on:click.prevent="toggleFX(<?= $fxSlot ?>)">{{ ui.fxButtonText }}</button>
+                                <button class="toggleFX" v-on:click.prevent="toggleFX('<?= $fxSlot ?>')">{{ ui.fxButtonText }}</button>
 
-                                <div :class="{fxParams: true, disabled: !<?= $fxSlot . '.active' ?>}">
-                                    <select v-model="<?= $fxSlot . '.selected' ?>" v-on:change="setFX(<?= $fxSlot ?>)" disabled="disabled">
+                                <div :class="{fxParams: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
+                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')" disabled="disabled">
                                         <option selected="selected" value="none">None</option>
                                         <template v-for="fx in fxList">
                                             <option :value='fx.name'>{{ fx.name }}</option>"
@@ -30,14 +30,14 @@
                                     </select>
 
                                     <p v-for="fx in fxList">
-                                        <span v-if="<?= $fxSlot . '.selected' ?> == fx.name">{{ fx.description }}</span>
+                                        <span v-if="fxSlots['<?= $fxSlot ?>'].selected == fx.name">{{ fx.description }}</span>
                                     </p>
                                 </div>
                             </div>
 
-                            <section :class="{disabled: !<?= $fxSlot . '.active' ?>}">
+                            <section :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
                                 <template v-for="fx in fxList">
-                                    <effect :id=fx.name.toLowerCase() v-if="<?= $fxSlot . '.selected'?> == fx.name" :class=fx.name.toLowerCase()></effect>
+                                    <effect :id=fx.name.toLowerCase() v-if="fxSlots['<?= $fxSlot ?>'].selected == fx.name" :class=fx.name.toLowerCase()></effect>
                                 </template>
                             </section>
                          </fieldset>

@@ -31,22 +31,15 @@ fxPanel = new Vue({
                 pizEffect: {}
             },            
         },
-        fxSlot1: {
-            active: false,
-            selected: 'none',
-            pizEffect: {}
-        },
-        fxSlot2: {
-            active: false,
-            selected: 'none',
-            pizEffect: {}
-        },
         ui: {
             fxButtonText: 'off'
         }
     },
     methods: {
-        toggleFX: function(fxSlot){
+        toggleFX: function(slot){
+            var fxSlot = this.fxSlots[slot];
+            console.log(slot);
+            
             // Toggle Active State and Button Text
             fxSlot.active = !fxSlot.active;
 
@@ -66,7 +59,8 @@ fxPanel = new Vue({
             }
 
         },
-        setFX: function(fxSlot){
+        setFX: function(slot){
+            var fxSlot = this.fxSlots[slot];
             var effect = fxSlot.selected;
             
              //If there is a Pizzicato effect applied, remove it
@@ -85,11 +79,13 @@ fxPanel = new Vue({
             }
         },
         resetFX: function(){
-            this.fxSlot1.selected = 'none';
-            this.fxSlot1.pizEffect = {};
-            this.toggleFX(this.fxSlot1);
+            this.fxSlots[fxSlot1].selected = 'none';
+            this.fxSlots[fxSlot1].pizEffect = {};
+            this.toggleFX(this.fxSlots[fxSlot1]);
         },
-        getParams: function(fxSlot){
+        getParams: function(slot){
+            var fxSlot = slot;
+            
             //Iterate on the effect properties, returning the parameters in the pizzicato object format
             var effect = fxSlot.selected; 
             var key = effect.toLowerCase();

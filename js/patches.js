@@ -117,8 +117,8 @@ var patch = {
         }
         
         //Effects
-        var pizEffect = fxPanel.fxSlot1.pizEffect;
-        var fxParams = fxPanel.getParams(fxPanel.fxSlot1);
+        var pizEffect = fxPanel.fxSlots['fxSlot1'].pizEffect;
+        var fxParams = fxPanel.getParams(fxPanel.fxSlots['fxSlot1']);
         
         for(var param in fxParams){
             pizEffect[param] = parseFloat(fxParams[param]);
