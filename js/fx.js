@@ -60,9 +60,11 @@ fxPanel = new Vue({
             var fxSlot = this.fxSlots[slot];
             var effect = fxSlot.selected;
             
-             //If there is a Pizzicato effect applied, remove it
-            if(fxSlot.pizEffect.outputNode){
+             //If there is a Pizzicato effect applied
+            if(fxSlot.pizEffect.outputNode){ 
+                //Remove it from the patch and clear its reference from the vue instance
                 patch.sound.removeEffect(fxSlot.pizEffect);
+                fxSlot.pizEffect = {};
             }
 
             if (effect != 'none'){
