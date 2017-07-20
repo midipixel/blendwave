@@ -1,16 +1,21 @@
 Vue.component('effect', {
-    props: ['id'],
+    props: ['effectname'],
     template: '#effectTemplate',
     data: function() {
         return {
-            fxList: effects
+            fxList: effects,
+            fxParams: this.getFxParams(this.effectname)
         };
     },
     methods: {
-        updatePatch: function(){
-            for (param in this.params){
-                console.log(this.params[param].value);
-            }
+        getFxParams: function(id){
+            // Create a unique copy from the effects object, or vue will make a reference
+            var effectsCopy = JSON.parse(JSON.stringify(effects)); 
+            // Clone the params array
+            var params = [];
+            params = effectsCopy[id].params.slice();
+
+            return params;
         }
     }
 });
