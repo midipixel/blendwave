@@ -117,16 +117,29 @@ var patch = {
         }
         
         //Effects
-        for (var slot in fxPanel.fxSlots){
-            // For each effect slots, update pizzicato parameters with the ones from the vue instance
-            if (fxPanel.fxSlots[slot].selected != 'none'){
-                var pizEffect = fxPanel.fxSlots[slot].pizEffect;
-                var fxParams = fxPanel.getParams(fxPanel.fxSlots[slot]);
+        for (var slot in fxPanel.fxSlots){     
+            //If the panel is active, apply parameters from the sliders. If inactive
+            if(fxPanel.fxSlots[slot].active){
+                // For each effect slot, update pizzicato parameters with the ones from the component
+                if (fxPanel.fxSlots[slot].selected != 'none'){
+                    var pizEffect = fxPanel.fxSlots[slot].pizEffect;
+                    var fxParams = fxPanel.getParams(fxPanel.fxSlots[slot]);
 
-                for(var param in fxParams){
-                    pizEffect[param] = parseFloat(fxParams[param]);
-                }            
-            }            
+                    for(var param in fxParams){
+                        pizEffect[param] = parseFloat(fxParams[param]);
+                    }            
+                }
+            }
+            // If the panel is inactive, mute the effect
+            else{    
+                if(fxPanel.fxSlots[slot].selected != 'Distortion'){
+                    fxPanel.fxSlots[slot].pizEffect.mix = 0;                    
+                }
+                else{
+                    // Distortion can't really be muted, and setting the gain to 0 lowers the audio, so I'm hacking it
+                    fxPanel.fxSlots[slot].pizEffect.gain = 0.1;                    
+                }                
+            }
         }
     },
     play: function(){

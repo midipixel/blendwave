@@ -55,13 +55,6 @@ fxPanel = new Vue({
                 fxSlot.fxButtonText = 'off';
                 document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
-
-            // If an Effect is selected, toggle the mix value
-            if(fxSlot.selected != 'none'){
-                fxSlot.active ? fxSlot.pizEffect.mix = 1 : fxSlot.pizEffect.mix = 0;
-                console.log(fxSlot.pizEffect);
-            }
-
         },
         setFX: function(slot){
             var fxSlot = this.fxSlots[slot];
