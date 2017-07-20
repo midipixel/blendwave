@@ -8,7 +8,7 @@ var effects = {
         params: [
             {
                 name: 'time',
-                value: 1,
+                value: 0.5,
                 min: 0,
                 max: 3,
                 step: 0.01
@@ -16,8 +16,8 @@ var effects = {
             {
                 name: 'decay',
                 value: 0.3,
-                min: 0,
-                max: 1,
+                min: 1,
+                max: 3,
                 step: 0.01
             },
             {
@@ -35,22 +35,22 @@ var effects = {
         img : "img/delay.png",
         params: [
             {
-                value: 0.6,
                 name: 'feedback',
+                value: 0.6,
                 min: 0,
                 max: 1,
                 step: 0.01
             },
             {
                 name: 'time',
-                value: 0.3,
+                value: 0.4,
                 min: 0,
-                max: 1,
+                max: 5,
                 step: 0.01
             },
             {
                 name: 'mix',
-                value: 1,
+                value: 0.5,
                 min: 0,
                 max: 1,
                 step: 0.01
@@ -64,7 +64,7 @@ var effects = {
         params: [
             {
                 name: 'gain',
-                value: 1,
+                value: 0.5,
                 min: 0,
                 max: 1,
                 step: 0.01
@@ -78,18 +78,32 @@ var effects = {
         params: [
             {
                 name: 'time',
-                value: 1,
+                value: 0.5,
                 min: 0,
                 max: 1,
                 step: 0.01
             },
             {
-                name: 'decay',
-                value: 1,
+                name: 'speed',
+                value: 0.2,
                 min: 0,
                 max: 1,
                 step: 0.01
             },
+            {
+                name: 'depth',
+                value: 0.1,
+                min: 0,
+                max: 1,
+                step: 0.01
+            },
+            {
+                name: 'feedback',
+                value: 0.1,
+                min: 0,
+                max: 1,
+                step: 0.01
+            },            
             {
                 name: 'mix',
                 value: 1,
@@ -106,17 +120,17 @@ var effects = {
         params: [
             {
                 name: 'speed',
-                value: 1,
+                value: 30,
                 min: 0,
-                max: 1,
-                step: 0.01
+                max: 2000,
+                step: 1
             },
             {
                 name: 'distortion',
                 value: 1,
-                min: 0,
-                max: 1,
-                step: 0.01
+                min: 0.2,
+                max: 50,
+                step: 0.1
             },
             {
                 name: 'mix',
@@ -134,28 +148,28 @@ var effects = {
         params: [
             {
                 name: 'threshold',
+                value: -40,
+                min: -100,
+                max: 0,
+                step: 1
+            },
+            {
+                name: 'ratio',
                 value: 1,
                 min: 0,
                 max: 1,
                 step: 0.01
-            },
+            },            
             {
                 name: 'attack',
-                value: 1,
+                value: 0.03,
                 min: 0,
                 max: 1,
                 step: 0.01
             },
             {
                 name: 'release',
-                value: 1,
-                min: 0,
-                max: 1,
-                step: 0.01
-            },
-            {
-                name: 'ratio',
-                value: 1,
+                value: 0,
                 min: 0,
                 max: 1,
                 step: 0.01
