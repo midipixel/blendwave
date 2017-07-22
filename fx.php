@@ -37,7 +37,8 @@
 
                             <section :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
                                 <template v-for="fx in fxList">
-                                    <effect :effectname=fx.name.toLowerCase() v-if="fxSlots['<?= $fxSlot ?>'].selected == fx.name" :class=fx.name.toLowerCase()></effect>
+                                    <effect :fxname=fx.name.toLowerCase() fxslot="<?= $fxSlot ?>" v-show="fxSlots['<?= $fxSlot ?>'].selected == fx.name" :class=fx.name.toLowerCase()>
+                                    </effect>
                                 </template>
                             </section>
                          </fieldset>

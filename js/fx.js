@@ -1,10 +1,25 @@
+var slotData = {
+    fxSlot1: {
+        params: {}
+    },
+    fxSlot2: {
+        params: {}
+    },
+    updateData: function(slot, params){
+        // Update slot data with an effect's parameters in a nice key value format
+        for (var param in params){
+            this[slot].params[params[param].name] = parseFloat(params[param].value);
+        };    
+    }
+}
+
 Vue.component('effect', {
-    props: ['effectname'],
+    props: ['fxname', 'fxslot'],
     template: '#effectTemplate',
     data: function() {
         return {
             fxList: effects,
-            fxParams: this.getFxParams(this.effectname)
+            fxParams: this.getFxParams(this.fxname)
         };
     },
     methods: {
@@ -16,7 +31,11 @@ Vue.component('effect', {
             params = effectsCopy[id].params.slice();
 
             return params;
-        }
+        },
+        updateSlotData(){
+            // Update slot data with this components parameters
+            slotData.updateData(this.fxslot, this.fxParams);
+        }        
     }
 });
 
@@ -68,7 +87,10 @@ fxPanel = new Vue({
             }
 
             if (effect != 'none'){
-                var fxParams = this.getParams(fxSlot);
+                var fxkey = effect.toLowerCase();
+                var fxParams = this.fxList[fxkey].params;
+                
+                slotData.updateData(slot, fxParams);                
                 
                 //Create a new pizzicato effect from user selection, passing the params object
                 fxSlot.pizEffect = new Pizzicato.Effects[effect](fxParams);
@@ -83,20 +105,6 @@ fxPanel = new Vue({
                 this.fxSlots[slot].pizEffect = {};
                 this.toggleFX(slot);                
             }
-        },
-        getParams: function(slot){
-            var fxSlot = slot;
-            
-            //Iterate on the effect properties, returning the parameters in the pizzicato object format
-            var effect = fxSlot.selected; 
-            var key = effect.toLowerCase();
-            var fxParams = {};
-
-            for (var i in this.fxList[key].params){
-                fxParams[this.fxList[key].params[i].name] = this.fxList[key].params[i].value;
-            }; 
- 
-            return fxParams;
         }
     }
 });

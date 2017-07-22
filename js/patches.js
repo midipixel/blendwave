@@ -118,15 +118,14 @@ var patch = {
         
         //Effects
         for (var slot in fxPanel.fxSlots){     
-            //If the panel is active, apply parameters from the sliders. If inactive
+            //Only update effects parameters if the slot is active
             if(fxPanel.fxSlots[slot].active){
-                // For each effect slot, update pizzicato parameters with the ones from the component
+                // Update pizzicato parameters with the ones from the slot data object
                 if (fxPanel.fxSlots[slot].selected != 'none'){
                     var pizEffect = fxPanel.fxSlots[slot].pizEffect;
-                    var fxParams = fxPanel.getParams(fxPanel.fxSlots[slot]);
 
-                    for(var param in fxParams){
-                        pizEffect[param] = parseFloat(fxParams[param]);
+                    for(var param in slotData[slot].params){
+                        pizEffect[param] = slotData[slot].params[param];
                     }            
                 }
             }
@@ -145,9 +144,9 @@ var patch = {
     play: function(){
         patch.updateData();
         patch.sound.play();
+        //Methods that must be invoked right after playing, or the node won't exist
         patch.effects.filter.osc.set();        
         patch.effects.vibrato.set();
-        //Detune must be called right after playing, or the node won't exist
         patch.sound.sourceNode.detune.value = patch.data.detune;
     },
     stop: function(){

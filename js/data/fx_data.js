@@ -45,7 +45,7 @@ var effects = {
                 name: 'time',
                 value: 0.4,
                 min: 0,
-                max: 5,
+                max: 1,
                 step: 0.01
             },
             {
