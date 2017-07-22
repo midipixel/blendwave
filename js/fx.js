@@ -1,3 +1,4 @@
+/* Global Data Object - Stores data from the currently active effect */
 var slotData = {
     fxSlot1: {
         params: {}
@@ -13,6 +14,7 @@ var slotData = {
     }
 }
 
+/* Effect Component */
 Vue.component('effect', {
     props: ['fxname', 'fxslot'],
     template: '#effectTemplate',
@@ -39,6 +41,7 @@ Vue.component('effect', {
     }
 });
 
+/* Main Effects Vue Instance */
 fxPanel = new Vue({
     el: '#fx',
     data: {
