@@ -1,4 +1,4 @@
-<?php require('templates/vue_effect.php')?>
+<?php require('components/vue_effect.php')?>
 
 <section class="panelContent" data-panelname="fx" id="fx">
     <?php include('fileHeader.php')?>

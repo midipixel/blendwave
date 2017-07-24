@@ -93,6 +93,7 @@ fxPanel = new Vue({
                 var fxkey = effect.toLowerCase();
                 var fxParams = this.fxList[fxkey].params;
                 
+                //Update slot data with the effect's initial parameters
                 slotData.updateData(slot, fxParams);                
                 
                 //Create a new pizzicato effect from user selection, passing the params object
