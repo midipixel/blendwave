@@ -3,7 +3,7 @@
 <section class="panelContent" data-panelname="fx" id="fx">
     <?php include('fileHeader.php')?>
 
-    <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
+    <h3>Efeitos <em>Este é um super teste maroto. Yay!</em></h3>
 
     <?php
         $fxQuantity = 2;
