@@ -1,11 +1,12 @@
-<?php require('components/vue_effect.php')?>
-
 <section class="panelContent" data-panelname="fx" id="fx">
     <?php include('fileHeader.php')?>
 
-    <h3>Efeitos <em>Este é um super teste maroto. Yay!</em></h3>
+    <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
 
     <?php
+        $fxDataJSON = file_get_contents('js/data/fx_data.json');
+        $fxData = json_decode($fxDataJSON, true); 
+    
         $fxQuantity = 2;
         for($i=1; $i <= $fxQuantity; $i++ ):
     ?>
@@ -16,17 +17,17 @@
                 <div class="col-sm-12">
                     <form action="" autocomplete="off">
                         <fieldset>
-                            <legend>Efeito <?= $i ?></legend>
+                            <legend>Slot <?= $i ?></legend>
 
                             <div class="fxControls">
-                                <button class="toggleFX" v-on:click.prevent="toggleFX('<?= $fxSlot ?>')">{{ fxSlots['<?= $fxSlot ?>'].fxButtonText }}</button>
+                                <button class="toggleFX">off</button>
 
-                                <div :class="{fxParameters: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
-                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')" disabled="disabled">
+                                <div class="fxParameters">
+                                    <select _disabled="disabled">
                                         <option selected="selected" value="none">None</option>
-                                        <template v-for="fx in fxList">
-                                            <option :value='fx.name'>{{ fx.name }}</option>"
-                                        </template>
+                                        <?php foreach ($fxData as $fx => $props): ?>
+                                            <option value='<?= $fx ?>'><?= $props["name"] ?></option>
+                                        <?php endforeach; ?>
                                     </select>
 
                                     <p v-for="fx in fxList">
@@ -34,18 +35,50 @@
                                     </p>
                                 </div>
                             </div>
+                            
+                            <?php 
+                                foreach ($fxData as $fx => $props):
+                                // Write effect setup to HTML as a template, drawing parameters from the effects array
+                            ?>
 
-                            <section :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
-                                <template v-for="fx in fxList">
-                                    <effect :fxname=fx.name.toLowerCase() fxslot="<?= $fxSlot ?>" v-show="fxSlots['<?= $fxSlot ?>'].selected == fx.name" :class=fx.name.toLowerCase()>
-                                    </effect>
-                                </template>
-                            </section>
+                            <!-- TODO: Rename this div to template -->
+                                <div id="<?= $fxid ?>">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <?= ($props["description"]);?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row fxSetup">
+                                        <figure class="col-sm-4">
+                                            <img src="img/<?= $fx ?>.png" alt="">
+                                        </figure>
+
+                                        <div class="col-sm-8" id="fxParams">
+                                            <fieldset class="audioParams">
+                                                <?php 
+                                                    foreach ($props["params"] as $param => $values):
+                                                ?>
+                                                    <label for="<?= param ?>"><?= $param ?></label>
+                                                    <input type="range" id="" value="<?= $values['value'] ?>" min="<?= $values['min'] ?>" max="<?= $values['max'] ?>" step="<?= $values['step'] ?>" data-type="audioParam">
+                                                    <output for=""><?= $values["value"] ?></output>
+                                                <?php 
+                                                    endforeach;
+                                                ?>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php 
+                                endforeach; 
+                            ?>                            
                          </fieldset>
                     </form>
                 </div>
             </div>
         </section>
-    <?php endfor; ?>
+    <?php 
+        endfor; 
+    ?>
 </section>
 

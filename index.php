@@ -33,7 +33,7 @@
     <!-- Vendor -->
     <script src="js/vendor/jquery-3.1.1.min.js"></script>
     <script src="js/vendor/jquery-ui.min.js"></script>
-    <script src="js/vendor/vue.js"></script>
+    <!--script src="js/vendor/vue.js"></script-->
 
     <script src="js/vendor/recorder.js"></script>
     <script src="js/vendor/Pizzicato.js"></script>
@@ -46,8 +46,10 @@
     <script src="js/wave.js"></script>
     
     <script src="js/data/fx_data.js"></script>
-    <script src="components/vue_effect.js"></script>
-    <script src="js/fx.js"></script>
+    <script src="js/effects.js"></script>
+    <!--script src="components/vue_effect.js"></script>
+    <script src="js/fx.js"></script-->
+    
     
     <script src="js/export.js"></script>
 </body>
