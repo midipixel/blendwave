@@ -115,9 +115,11 @@ var patch = {
         if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
         }
-        
+
         //Effects
-        for (var slot in fxPanel.fxSlots){     
+        //var fxPanel = bw.$refs.fxPanel;
+        
+        /*for (var slot in fxPanel.fxSlots){
             //Only update effects parameters if the slot is active
             if(fxPanel.fxSlots[slot].active){
                 // Update pizzicato parameters with the ones from the slot data object
@@ -138,7 +140,7 @@ var patch = {
                     slotData[slot].pizEffect.gain = 0.1;                    
                 }                
             }
-        }
+        }*/
     },
     play: function(){
         patch.updateData();

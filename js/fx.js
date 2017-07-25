@@ -1,37 +1,31 @@
-/* Global Slot Data Object - Stores data from the currently active effect */
-var slotData = {
-    fxSlot1: {
-        pizEffect: {},
-        params: {}
-    },
-    fxSlot2: {
-        pizEffect: {},
-        params: {}
-    },
-    updateData: function(slot, params){
-        // Update slot data with an effect's parameters in a nice key value format
-        for (var param in params){
-            this[slot].params[params[param].name] = parseFloat(params[param].value);
-        };    
-    }
-}
+// Load effects data from JSON file
+var effects;
 
-/* Main Effects Vue Instance */
-fxPanel = new Vue({
-    el: '#fx',
-    data: {
-        fxList : effects,
-        fxSlots : {
-            fxSlot1: {
-                active: false,
-                selected: 'none',
-                fxButtonText: 'off'
-            },
-            fxSlot2: {
-                active: false,
-                selected: 'none',
-                fxButtonText: 'off'
-            },            
+$.getJSON( "js/data/fx_data.json", function(fxData) {
+    effects = fxData;
+});
+
+Vue.component('fxpanel', {
+    template: '#fxPanel', 
+    data: function(){
+        return {
+            fxList : effects,
+            fxSlots : {
+                fxSlot1: {
+                    active: false,
+                    selected: 'none',
+                    fxButtonText: 'off',
+                    pizEffect: {},
+                    params: {}                    
+                },
+                fxSlot2: {
+                    active: false,
+                    selected: 'none',
+                    fxButtonText: 'off',
+                    pizEffect: {},
+                    params: {}                    
+                },            
+            }   
         }
     },
     methods: {
@@ -51,17 +45,36 @@ fxPanel = new Vue({
                 document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
         },
-        turnOffFX: function(slot){
-            var fxSlot = this.fxSlots[slot];
-            fxSlot.active = false; 
-            fxSlot.fxButtonText = 'off';
-            document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');            
+        loadDefaultParams: function(slot, effect){
+            // Create a unique copy from the effects object, or vue will make a reference
+            var effectsCopy = JSON.parse(JSON.stringify(effects[effect].params));
+
+            // Create a neat object with the param:value format
+            var defaultParams = {};        
+            for (param in effectsCopy){
+                defaultParams[param] = effectsCopy[param].value;                
+            }
+                
+            // Clone the params array
+            //var params = [];
+            //params = effectsCopy[effect].params.slice();
+
+            console.log(defaultParams);
+            return defaultParams;
         },
-        setFX: function(slot){
-            var fxSlot = slotData[slot];
-            var effect = this.fxSlots[slot].selected;
+        updateData: function(slot, fxParams){
+            // Update slot data with an effect's parameters in a nice key value format
+            for (var param in fxParams){
+                this.fxSlots[slot].params[param] = fxParams[param];
+            };    
             
-             //If there is a Pizzicato effect applied
+            console.log(this.fxSlots[slot].params);
+        },        
+        setFX: function(slot){
+            var fxSlot = this.fxSlots[slot];
+            var effect = this.fxSlots[slot].selected;
+
+            //If there is a Pizzicato effect applied
             if(fxSlot.pizEffect.outputNode){ 
                 //Remove it from the patch and clear its reference from the vue instance
                 patch.sound.removeEffect(fxSlot.pizEffect);
@@ -69,14 +82,14 @@ fxPanel = new Vue({
             }
 
             if (effect != 'none'){
-                var fxkey = effect.toLowerCase();
-                var fxParams = this.fxList[fxkey].params;
-                
+                var fxParams = this.loadDefaultParams(fxSlot, effect);
+                  
                 //Update slot data with the effect's initial parameters
-                slotData.updateData(slot, fxParams);                
+                this.updateData(slot, fxParams);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
-                fxSlot.pizEffect = new Pizzicato.Effects[effect](fxParams);
+                var pizString = util.capitalize(effect);
+                fxSlot.pizEffect = new Pizzicato.Effects[pizString](fxParams);
                 
                 //Apply effect to sound
                 patch.sound.addEffect(fxSlot.pizEffect);
@@ -85,10 +98,38 @@ fxPanel = new Vue({
         resetFX: function(){
             for (var slot in this.fxSlots){
                 this.fxSlots[slot].selected = 'none';
-                slotData[slot].pizEffect = {};
-                this.turnOffFX(slot);                
+                this.fxSlots[slot].pizEffect = {};
+                //this.turnOffFX(slot);                
             }
+        },
+        prePlayUpdate: function(){
+            for (var slot in this.fxSlots){
+                //Only update effects parameters if the slot is active
+                if(this.fxSlots[slot].active){
+                    // Update pizzicato parameters with the ones from the slot data object
+                    if (this.fxSlots[slot].selected != 'none'){
+                        for(var param in this[slot].params){
+                            this.fxSlots[slot].pizEffect[param] = this.fxSlots[slot].params[param];
+                        }            
+                    }
+                }
+                // If the slot is inactive, mute the effect
+                else{    
+                    if(this.fxSlots[slot].selected != 'Distortion'){
+                        this.fxSlots[slot].pizEffect.mix = 0;                    
+                    }
+                    else{
+                        // Distortion can't really be muted, and setting the gain to 0 lowers the audio, so I'm hacking it
+                        this.fxSlots[slot].pizEffect.gain = 0.1;                    
+                    }                
+                }
+            }            
+        },
+        teste: function(){
+            /*console.log(this.fxSlots['fxSlot1'].params);
+            console.log(this.fxSlots['fxSlot2'].params);*/
         }
     }
 });
+
 
