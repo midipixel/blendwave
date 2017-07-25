@@ -51,6 +51,12 @@ fxPanel = new Vue({
                 document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
         },
+        turnOffFX: function(slot){
+            var fxSlot = this.fxSlots[slot];
+            fxSlot.active = false; 
+            fxSlot.fxButtonText = 'off';
+            document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');            
+        },
         setFX: function(slot){
             var fxSlot = slotData[slot];
             var effect = this.fxSlots[slot].selected;
@@ -79,8 +85,8 @@ fxPanel = new Vue({
         resetFX: function(){
             for (var slot in this.fxSlots){
                 this.fxSlots[slot].selected = 'none';
-                this.fxSlots[slot].pizEffect = {};
-                this.toggleFX(slot);                
+                slotData[slot].pizEffect = {};
+                this.turnOffFX(slot);                
             }
         }
     }
