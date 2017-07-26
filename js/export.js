@@ -13,12 +13,27 @@ var audioExport = {
         patch.play();
         patch.sound.stop();
 
-        //After the sound is played, creates download link
-        // Adds 100ms to be sure
-        patch.sound.sourceNode.onended = function(){
-            time = 100 + patch.sound.release;
-            window.setTimeout(createDownloadLink, time);
-        }
+        // Verifies the analyser node's frequencies at a short interval
+        function verifyMute(){
+            var bufferLength = 4;
+            dataArray = new Uint8Array(bufferLength);
+            patch.analyser.node.getByteFrequencyData(dataArray);
+
+            if (dataArray[0] < 1){
+                // When output is mute, creates download link
+
+                clearInterval(interval);
+
+                // Adds 100ms to be sure
+                time = 100 + patch.sound.release;
+                window.setTimeout(createDownloadLink, time);
+            }
+        };
+
+        var interval = setInterval(function(){
+            verifyMute();
+        },20);
+
 
         //Download link creation, copied from Recorder's example
         function createDownloadLink() {

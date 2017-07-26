@@ -137,14 +137,30 @@ var patch = {
                 patch.effects.filter.osc.oscNode.disconnect();        
             }, timeOut);
         }
+    },
+    analyser: {
+        create: function(){
+            //Create Analyser node and connect it to Pizzicato's master gain node
+            this.node = Pizzicato.context.createAnalyser();
+            this.node.fftSize = 32;
+            Pizzicato.masterGainNode.connect(this.node);
+        },
+        soundEnded: function(){
+
+        }
     }
 }
+
+patch.analyser.create();
 
 var patches = {
     init: function(){
         patch.create();
     }
 }
+
+
+
 
 
 
