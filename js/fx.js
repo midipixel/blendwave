@@ -1,3 +1,4 @@
+// Load effects data from JSON file
 var effects;
 
 $.getJSON( "js/data/fx_data.json", function(fxData) {  
@@ -79,7 +80,7 @@ Vue.component('fxpanel', {
                 this.updateData(slot, fxParams);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
-                var pizString = util.capitalize(effect);
+                var pizString = effect == 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
                 fxSlot.pizEffect = new Pizzicato.Effects[pizString](fxParams);
                 
                 //Apply effect to sound
@@ -120,9 +121,7 @@ Vue.component('fxpanel', {
             }            
         }, 
         teste: function(){
-            console.log(this.fxList);
-            /*console.log(this.fxSlots['fxSlot2'].params);*/
-            // testando git no brackets
+            console.log('bla');
         }
     }
 });
