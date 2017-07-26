@@ -122,6 +122,7 @@ Vue.component('fxpanel', {
         teste: function(){
             console.log(this.fxList);
             /*console.log(this.fxSlots['fxSlot2'].params);*/
+            // testando git no brackets
         }
     }
 });
