@@ -1,7 +1,6 @@
 var effects;
 
 $.getJSON( "js/data/fx_data.json", function(fxData) {  
-    //bw.$refs.fxPanel.fxList = fxData;
     effects = fxData;
 });
 
@@ -9,7 +8,6 @@ Vue.component('fxpanel', {
     template: '#fxPanel', 
     data: function(){
         return {
-            fxList: {},
             fxSlots : {
                 fxSlot1: {
                     active: false,
