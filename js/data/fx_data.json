@@ -1,0 +1,174 @@
+{
+    "reverb":{
+        "name":"Reverb",
+        "description":"Reverbera o som",
+        "img":"img/reverb.png",
+        "params":{
+            "time": {
+                "value":0.5,
+                "min":0,
+                "max":3,
+                "step":0.01
+            },
+            "decay": {
+                "value":0.3,
+                "min":1,
+                "max":3,
+                "step":0.01
+            },
+            "mix": {
+                "value":0.5,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    },
+    "delay":{
+        "name":"Delay",
+        "description":"Promove atraso do som",
+        "img":"img/delay.png",
+        "params":{
+            "time": {
+                "name":"time",
+                "value":0.4,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "feedback": {
+                "name":"feedback",
+                "value":0.6,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "mix": {
+                "name":"mix",
+                "value":0.5,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    }, 
+    "distortion":{
+        "name":"Distortion",
+        "description":"Distorce som",
+        "img":"img/distortion.png",
+        "params":{
+            "gain": {
+                "name":"gain",
+                "value":0.5,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    },
+    "flanger":{
+        "name":"Flanger",
+        "description":"Bobina na cabeça",
+        "img":"img/flanger.png",
+        "params":{
+            "time": {
+                "name":"time",
+                "value":0.5,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "speed": {
+                "name":"speed",
+                "value":0.2,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "depth": {
+                "name":"depth",
+                "value":0.1,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "feedback": {
+                "name":"feedback",
+                "value":0.1,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "mix": {
+                "name":"mix",
+                "value":1,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    },
+    "ringmodulator":{
+        "name":"RingModulator",
+        "description":"Modula o anel",
+        "img":"img/ring_modulator.png",
+        "params":{
+            "speed": {
+                "name":"speed",
+                "value":30,
+                "min":0,
+                "max":2000,
+                "step":1
+            },
+            "distortion": {
+                "name":"distortion",
+                "value":1,
+                "min":0.2,
+                "max":50,
+                "step":0.1
+            },
+            "mix": {
+                "name":"mix",
+                "value":1,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    },
+    "compressor":{
+        "name":"Compressor",
+        "description":"Comprime loucamente",
+        "img":"img/compressor.png",
+        "params":{
+            "threshold": {
+                "name":"threshold",
+                "value":-40,
+                "min":-100,
+                "max":0,
+                "step":1
+            },
+            "ratio": {
+                "name":"ratio",
+                "value":1,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "attack": {
+                "name":"attack",
+                "value":0.03,
+                "min":0,
+                "max":1,
+                "step":0.01
+            },
+            "release": {
+                "name":"release",
+                "value":0,
+                "min":0,
+                "max":1,
+                "step":0.01
+            }
+        }
+    }    
+}
