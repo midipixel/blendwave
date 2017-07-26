@@ -27,7 +27,7 @@
                                 </button>
 
                                 <div :class="{fxParameters: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
-                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')">
+                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')" disabled="disabled">
                                         <option selected="selected" value="none">None</option>
                                         <?php 
                                             foreach ($fxData as $fx => $props): 
