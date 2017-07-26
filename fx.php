@@ -20,20 +20,34 @@
                     <form action="" autocomplete="off">
                         <fieldset>
                             <legend>Slot <?= $i ?></legend>
-
+  
                             <div class="fxControls">
-                                <button class="toggleFX">off</button>
+                                <button class="toggleFX" v-on:click.prevent="toggleFX('<?= $fxSlot ?>')">
+                                    {{ this.fxSlots.<?= $fxSlot ?>.fxButtonText }}
+                                </button>
 
-                                <div class="fxParameters">
-                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')" _disabled="disabled">
+                                <div :class="{fxParameters: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
+                                    <select v-model="fxSlots['<?= $fxSlot ?>'].selected" v-on:change="setFX('<?= $fxSlot ?>')">
                                         <option selected="selected" value="none">None</option>
-                                        <?php foreach ($fxData as $fx => $props): ?>
+                                        <?php 
+                                            foreach ($fxData as $fx => $props): 
+                                        ?>
                                             <option value='<?= $fx ?>'><?= $props["name"] ?></option>
-                                        <?php endforeach; ?>
+                                        <?php 
+                                            endforeach; 
+                                        ?>
                                     </select>
 
-                                    <p _v-for="fx in fxList">
-                                        <span _v-if="fxSlots['<?= $fxSlot ?>'].selected == fx.name">fx.description</span>
+                                    <p>
+                                        <?php 
+                                            foreach ($fxData as $fx => $props): 
+                                        ?>
+                                            <span v-if="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'">
+                                            <?= $props["description"] ?>
+                                            </span>
+                                        <?php 
+                                            endforeach; 
+                                        ?>
                                     </p>
                                 </div>
                             </div>
@@ -41,12 +55,9 @@
                             <?php 
                                 foreach ($fxData as $fx => $props):
                             ?>
-                                <div id="<?= $fx ?>" v-show="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <?= ($props["description"]);?>
-                                        </div>
-                                    </div>
+                                <div id="<?= $fx ?>" 
+                                     v-if="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'"
+                                     :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
 
                                     <div class="row fxSetup">
                                         <figure class="col-sm-4">
@@ -61,7 +72,6 @@
                                                     <label for="<?= param ?>"><?= $param ?></label>
                                                     <input type="range" id="" 
                                                            v-model="fxSlots['<?= $fxSlot ?>'].params['<?= $param ?>']" 
-                                                           v-on:change="teste()" 
                                                            min="<?= $values['min'] ?>" max="<?= $values['max'] ?>" 
                                                            step="<?= $values['step'] ?>" 
                                                            data-type="audioParam">
@@ -88,7 +98,7 @@
 
 <?= '</script>'  ?>
 
-<fxpanel ref="fxPanel"></fxpanel>
+
   
 
 

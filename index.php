@@ -25,7 +25,9 @@
             <?php include("wave.php"); ?>
             <?php include("envelope.php"); ?>
             <?php include("filter.php"); ?>
-            <?php include("fx.php"); ?>
+
+            <fxpanel ref="fxPanel"></fxpanel>
+            
             <?php include("export.php"); ?>
         </div>
     </div>
@@ -45,10 +47,8 @@
     <script src="js/patches.js"></script>
     <script src="js/wave.js"></script>
     
-    <!--script src="js/data/fx_data.js"></script-->
     <script src="js/fx.js"></script>
-    <!--script src="components/vue_effect.js"></script>
-    <script src="js/fx.js"></script-->
+    <?php include("fx.php"); ?>    
     
     <script src="js/export.js"></script>
     <script src="js/vm.js"></script>

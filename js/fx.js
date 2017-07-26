@@ -1,7 +1,7 @@
-// Load effects data from JSON file
 var effects;
 
-$.getJSON( "js/data/fx_data.json", function(fxData) {
+$.getJSON( "js/data/fx_data.json", function(fxData) {  
+    //bw.$refs.fxPanel.fxList = fxData;
     effects = fxData;
 });
 
@@ -9,7 +9,7 @@ Vue.component('fxpanel', {
     template: '#fxPanel', 
     data: function(){
         return {
-            fxList : effects,
+            fxList: {},
             fxSlots : {
                 fxSlot1: {
                     active: false,
@@ -24,7 +24,7 @@ Vue.component('fxpanel', {
                     fxButtonText: 'off',
                     pizEffect: {},
                     params: {}                    
-                },            
+                }            
             }   
         }
     },
@@ -54,21 +54,14 @@ Vue.component('fxpanel', {
             for (param in effectsCopy){
                 defaultParams[param] = effectsCopy[param].value;                
             }
-                
-            // Clone the params array
-            //var params = [];
-            //params = effectsCopy[effect].params.slice();
 
-            console.log(defaultParams);
             return defaultParams;
         },
         updateData: function(slot, fxParams){
             // Update slot data with an effect's parameters in a nice key value format
             for (var param in fxParams){
                 this.fxSlots[slot].params[param] = fxParams[param];
-            };    
-            
-            console.log(this.fxSlots[slot].params);
+            };
         },        
         setFX: function(slot){
             var fxSlot = this.fxSlots[slot];
@@ -106,10 +99,13 @@ Vue.component('fxpanel', {
             for (var slot in this.fxSlots){
                 //Only update effects parameters if the slot is active
                 if(this.fxSlots[slot].active){
+                    // Create a copy of the params. Reference won't work.            
+                    var paramsCopy = JSON.parse(JSON.stringify(this.fxSlots[slot].params));
+                    
                     // Update pizzicato parameters with the ones from the slot data object
                     if (this.fxSlots[slot].selected != 'none'){
-                        for(var param in this[slot].params){
-                            this.fxSlots[slot].pizEffect[param] = this.fxSlots[slot].params[param];
+                        for(var param in paramsCopy){
+                            this.fxSlots[slot].pizEffect[param] = parseFloat(paramsCopy[param]);
                         }            
                     }
                 }
@@ -124,12 +120,10 @@ Vue.component('fxpanel', {
                     }                
                 }
             }            
-        },
+        }, 
         teste: function(){
-            /*console.log(this.fxSlots['fxSlot1'].params);
-            console.log(this.fxSlots['fxSlot2'].params);*/
+            console.log(this.fxList);
+            /*console.log(this.fxSlots['fxSlot2'].params);*/
         }
     }
 });
-
-

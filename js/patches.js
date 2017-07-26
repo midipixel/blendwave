@@ -117,30 +117,7 @@ var patch = {
         }
 
         //Effects
-        //var fxPanel = bw.$refs.fxPanel;
-        
-        /*for (var slot in fxPanel.fxSlots){
-            //Only update effects parameters if the slot is active
-            if(fxPanel.fxSlots[slot].active){
-                // Update pizzicato parameters with the ones from the slot data object
-                if (fxPanel.fxSlots[slot].selected != 'none'){
-
-                    for(var param in slotData[slot].params){
-                        slotData[slot].pizEffect[param] = slotData[slot].params[param];
-                    }            
-                }
-            }
-            // If the panel is inactive, mute the effect
-            else{    
-                if(fxPanel.fxSlots[slot].selected != 'Distortion'){
-                    slotData[slot].pizEffect.mix = 0;                    
-                }
-                else{
-                    // Distortion can't really be muted, and setting the gain to 0 lowers the audio, so I'm hacking it
-                    slotData[slot].pizEffect.gain = 0.1;                    
-                }                
-            }
-        }*/
+        bw.$refs.fxPanel.prePlayUpdate();
     },
     play: function(){
         patch.updateData();
