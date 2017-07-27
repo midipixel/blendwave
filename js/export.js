@@ -1,4 +1,5 @@
 var audioExport = {
+    interval: null,
     init: function(){
         $('#exportBtn').on('click', function(){
             audioExport.exportFile();
@@ -13,27 +14,51 @@ var audioExport = {
         patch.play();
         patch.sound.stop();
 
-        // Verifies the analyser node's frequencies at a short interval
-        function verifyMute(){
+        //When playback has ended, start listening for the sound's end
+        patch.sound.sourceNode.onended = function(){
+            exportWhenMute();
+        }
+
+        // Analyses frequencies at a set interval. When no frequency is present, create the download link
+        function exportWhenMute(){
+            var verifyCounter = 0;
+            var verifications = 10;
             var bufferLength = 4;
-            dataArray = new Uint8Array(bufferLength);
-            patch.analyser.node.getByteFrequencyData(dataArray);
+            var dataArray = new Uint8Array(bufferLength);
 
-            if (dataArray[0] < 1){
-                // When output is mute, creates download link
+            // If delays are applied, increment the verifyCounter to account for the longest
+            var fxSlots = bw.$refs.fxPanel.fxSlots;
+            var delayTimes = [0];
 
-                clearInterval(interval);
-
-                // Adds 100ms to be sure
-                time = 100 + patch.sound.release;
-                window.setTimeout(createDownloadLink, time);
+            for (slot in fxSlots){
+                if (fxSlots[slot].selected == "delay"){
+                    delayTimes.push(fxSlots[slot].params.time);
+                    var longestDelay = Math.max.apply(null, delayTimes);
+                    verifications = longestDelay * 60;
+                }
             }
+
+            function verifyMute(){
+                patch.analyser.node.getByteFrequencyData(dataArray);
+                console.log(dataArray);
+
+                if (dataArray[0] < 1){
+                    if (verifyCounter > verifications){
+                        // When output is verified mute after some checks,
+                        //clears the interval and creates download link
+                        clearInterval(audioExport.interval);
+                        createDownloadLink();
+                    }
+                    else {
+                        console.log("contador " + verifyCounter);
+                        console.log(verifications);
+                        verifyCounter++;
+                    }
+                }
+            }
+            //Start verification
+            audioExport.interval = setInterval(verifyMute,30);
         };
-
-        var interval = setInterval(function(){
-            verifyMute();
-        },20);
-
 
         //Download link creation, copied from Recorder's example
         function createDownloadLink() {

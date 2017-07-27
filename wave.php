@@ -12,7 +12,7 @@
                     $files = scandir($dir);
 
                     foreach ($files as $fileindex => $filename){
-                        if ($fileindex > 1){
+                        if ($fileindex > 1 && $filename != 'sine.wav'){
                             echo('<li><a href="samples/'. $filename .'">' . $filename . '</a></li>');
                         }
                     }
