@@ -1,7 +1,7 @@
 var default_data = {
     file: 'samples/sine.wav',
     attack: 0.01,
-    release: 0.04,
+    release: 0.2,
     detune: 1,
     tremolo_speed: 5,
     tremolo_depth: 1,
@@ -93,6 +93,7 @@ var patch = {
                 loop: true
             }
         }, function() {
+            patch.analyser.create();
             //console.log(patch.sound);
         });
     },
@@ -150,8 +151,6 @@ var patch = {
         }
     }
 }
-
-patch.analyser.create();
 
 var patches = {
     init: function(){

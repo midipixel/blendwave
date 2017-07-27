@@ -15,7 +15,7 @@ Vue.component('fxpanel', {
                     selected: 'none',
                     fxButtonText: 'off',
                     pizEffect: {},
-                    params: {}                    
+                    params: {},
                 },
                 fxSlot2: {
                     active: false,

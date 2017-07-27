@@ -7,14 +7,19 @@
         <div class="col-sm-4 fileList" id="fileList">
             <ul>
                 <li class="active"><a href="samples/sine.wav">Sine</a></li>
-                <li><a href="samples/pig.wav">Pig</a></li>
-                <li><a href="samples/sample.ogg">Acid</a></li>
-                <li><a href="samples/door.ogg">Door</a></li>
-                <li><a href="samples/machine.wav">Machine</a></li>
-                <li><a href="samples/gem5.ogg">Gem5</a></li>
+                <?php
+                    $dir    = 'samples';
+                    $files = scandir($dir);
+
+                    foreach ($files as $fileindex => $filename){
+                        if ($fileindex > 1){
+                            echo('<li><a href="samples/'. $filename .'">' . $filename . '</a></li>');
+                        }
+                    }
+                ?>
             </ul>
 
-            <input type="file" id="wavefile" disabled="disabled"></input>
+            <!--input type="file" id="wavefile" disabled="disabled"></input-->
         </div>
 
         <div class="col-sm-8">

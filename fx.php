@@ -56,7 +56,7 @@
                                 foreach ($fxData as $fx => $props):
                             ?>
                                 <div id="<?= $fx ?>" 
-                                     v-if="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'"
+                                     v-show="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'"
                                      :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
 
                                     <div class="row fxSetup">
@@ -71,11 +71,13 @@
                                                 ?>
                                                     <label for="<?= param ?>"><?= $param ?></label>
                                                     <input type="range" id="" 
-                                                           v-model="fxSlots['<?= $fxSlot ?>'].params['<?= $param ?>']" 
+                                                           v-model="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>"
                                                            min="<?= $values['min'] ?>" max="<?= $values['max'] ?>" 
                                                            step="<?= $values['step'] ?>" 
                                                            data-type="audioParam">
-                                                    <output for=""><?= $values["value"] ?></output>
+                                                    <output :value="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>">
+                                                        {{ fxSlots.<?= $fxSlot ?>.params.<?= $param ?> }}
+                                                    </output>
                                                 <?php 
                                                     endforeach;
                                                 ?>
