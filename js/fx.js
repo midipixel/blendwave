@@ -98,14 +98,19 @@ Vue.component('fxpanel', {
             for (var slot in this.fxSlots){
                 //Only update effects parameters if the slot is active
                 if(this.fxSlots[slot].active){
-                    // Create a copy of the params. Reference won't work.            
+                    // Create a deep copy of the params. Reference won't work.
                     var paramsCopy = JSON.parse(JSON.stringify(this.fxSlots[slot].params));
                     
                     // Update pizzicato parameters with the ones from the slot data object
                     if (this.fxSlots[slot].selected != 'none'){
+                        // The ringmod mix param needs a good reduction before being applied
+                        if(this.fxSlots[slot].selected === 'ringmodulator'){
+                            paramsCopy['mix'] = paramsCopy['mix']/4;
+                        }
+                        // Update params
                         for(var param in paramsCopy){
                             this.fxSlots[slot].pizEffect[param] = parseFloat(paramsCopy[param]);
-                        }            
+                        }
                     }
                 }
                 // If the slot is inactive, mute the effect

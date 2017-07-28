@@ -1,7 +1,7 @@
 $(function(){
     //Initialize jQuery UI Tab Widget
     $( "#blendwave" ).tabs({
-        active: 4,
+        active: 3,
         disabled: [],
         create: function(){
             main.init();
