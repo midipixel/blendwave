@@ -40,7 +40,7 @@ var audioExport = {
 
             function verifyMute(){
                 patch.analyser.node.getByteFrequencyData(dataArray);
-                console.log(dataArray);
+                //console.log(dataArray);
 
                 if (dataArray[0] < 1){
                     if (verifyCounter > verifications){
@@ -50,8 +50,6 @@ var audioExport = {
                         createDownloadLink();
                     }
                     else {
-                        console.log("contador " + verifyCounter);
-                        console.log(verifications);
                         verifyCounter++;
                     }
                 }
