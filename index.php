@@ -22,7 +22,8 @@
         		<li><a href="#export">Saída</a></li>
         	</ul>
 
-            <?php include("wave.php"); ?>
+            <wavepanel ref="wavePanel"></wavepanel>
+
             <?php include("envelope.php"); ?>
             <?php include("filter.php"); ?>
 
@@ -45,7 +46,9 @@
     <script src="js/main.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/patches.js"></script>
+
     <script src="js/wave.js"></script>
+    <?php include("wave.php"); ?>
     
     <script src="js/fx.js"></script>
     <?php include("fx.php"); ?>    

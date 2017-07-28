@@ -1,3 +1,5 @@
+<?= '<script type="text/x-template" id="wavePanel">' ?>
+
 <section class="panelContent" data-panelname="wave" id="wave">
     <?php include("fileHeader.php"); ?>
 
@@ -28,3 +30,4 @@
     </div>
 </section>
 
+<?= '</script>'  ?>
