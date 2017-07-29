@@ -1,4 +1,6 @@
-<section class="panelContent" data-panelname="filter" id="filter">
+<?= '<script type="text/x-template" id="filterPanel">' ?>
+
+<section class="panelContent" id="filter" v-show="active">
     <?php include('fileHeader.php')?> 
 
     <h3>Filtro <em>Manipule seu som atenuando determinadas faixas de frequência</em></h3>
@@ -46,3 +48,5 @@
         </form>
     </div>
 </section>
+
+<?= '</script>'  ?>

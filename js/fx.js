@@ -6,6 +6,7 @@ $.getJSON( "js/data/fx_data.json", function(fxData) {
 });
 
 Vue.component('fxpanel', {
+    props: ['active'],
     template: '#fxPanel', 
     data: function(){
         return {

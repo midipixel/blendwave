@@ -1,4 +1,6 @@
-<section class="panelContent envelope" data-panelname="envelope" id="envelope">
+<?= '<script type="text/x-template" id="envelopePanel">' ?>
+
+<section class="panelContent envelope" id="envelope" v-show="active">
     <?php include('fileHeader.php')?> 
 
     <h3>Envelope<em>Manipule o comportamento do som ao longo do tempo</em></h3>
@@ -63,3 +65,5 @@
         </div>
     </div>
 </section>
+
+<?= '</script>'  ?>

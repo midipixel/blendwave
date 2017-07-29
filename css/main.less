@@ -70,7 +70,7 @@ ul{
 
 h2.fileHeader{
     font-size: 1em;
-    margin-bottom: 1em;
+    margin: 0 0 1em 0;
     cursor: pointer;
     background: #eee;
     padding: 0.5em 0.5em;
@@ -80,6 +80,11 @@ h2.fileHeader{
 h2.fileHeader_active{
     background: #252525;
     color: #fff;
+}
+
+.panelContent{
+    border: 1px solid #c4c4c4;
+    padding: 3%;
 }
 
 .panelContent h3{
@@ -106,6 +111,26 @@ fieldset.disabled{
         opacity: 1;
     }
 
+}
+
+.mainNav{
+    margin: 1em 0;
+}
+
+.mainNav ul{
+    display: flex;
+}
+
+.mainNav ul li + li{
+    margin-left: 1em;
+}
+
+.mainNav li a{
+    display: block;
+    color: #000;
+    padding: 1em;
+    background: #eaeaea;
+    border-radius: 5px;
 }
 
 /* =Wave

@@ -1,3 +1,16 @@
+Vue.component('exportpanel', {
+    props: ['active'],
+    template: '#exportPanel',
+    data: function(){
+        return {
+
+        }
+    },
+    methods: {
+
+    }
+});
+
 var audioExport = {
     interval: null,
     init: function(){

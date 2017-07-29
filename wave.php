@@ -1,6 +1,6 @@
 <?= '<script type="text/x-template" id="wavePanel">' ?>
 
-<section class="panelContent" data-panelname="wave" id="wave">
+<section class="panelContent" id="wave" v-show="active">
     <?php include("fileHeader.php"); ?>
 
     <h3>Fonte Sonora <em>Escolha um som para servir de base</em></h3>
