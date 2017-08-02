@@ -16,7 +16,7 @@
             <nav class="mainNav">
                 <ul>
                     <li><a href="#" @click="activatePanel('wavePanel')">Fonte Sonora</a></li>
-                    <li><a href="#" @click="activatePanel('envelopePanel')">Envelope</a></li>
+                    <li><a href="#" @click="activatePanel('envelopePanel')">Amplitude e Pitch</a></li>
                     <li><a href="#" @click="activatePanel('filterPanel')">Filtro</a></li>
                     <li><a href="#" @click="activatePanel('fxPanel')">Efeitos</a></li>
                     <li><a href="#" @click="activatePanel('exportPanel')">Saída</a></li>

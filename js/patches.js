@@ -88,8 +88,8 @@ var patch = {
             source: 'file',
             options: {
                 path: patch.data.file,
-                attack: patch.data.attack + 0.04,
-                volume: patch.data.volume,
+                attack: 0.04,
+                volume: 1,
                 loop: true
             }
         }, function() {
@@ -103,10 +103,8 @@ var patch = {
         }
     },
     updateData: function(){
-        //Volume Envelope
-        patch.sound.volume = 1;
-        patch.sound.attack = patch.data.attack;
-        patch.sound.release = patch.data.release;
+        //Envelope
+        bw.$refs.envelopePanel.prePlayUpdate();
 
         //Tremolo
         patch.effects.tremolo.speed = patch.data.tremolo_speed;

@@ -7,16 +7,18 @@
 
     <div class="row amp">
         <div class="col-sm-6">
-            <fieldset id="ampEnvelope" class="audioParams">
-                <legend>Volume</legend>
+            <fieldset class="audioParams">
+                <legend>{{ volume_amp.name }}</legend>
 
-                <label for="amp_attack">Attack</label>
-                <input type="range" id="amp_attack" min="0" value="0" max="10" step="0.1" data-type="audioParam">
-                <output for="amp_attack">0</output>
-
-                <label for="amp_release">Release</label>
-                <input type="range" id="amp_release" min="0" value="0" max="10" step="0.1" data-type="audioParam">
-                <output for="amp_release">0</output>
+                <template v-for="param in volume_amp.params">
+                    <label :for=param>{{ param.name }}</label>
+                    <input type="range"
+                           :min=param.min
+                           v-model:value=param.value
+                           :max=param.max
+                           :step=param.step>
+                    <output :value=param.value>{{param.value}}</output>
+                </template>
             </fieldset>
 
             <fieldset id="tremolo" class="audioParams disabled">
