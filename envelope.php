@@ -8,9 +8,9 @@
     <div class="row amp">
         <div class="col-sm-6">
             <fieldset class="audioParams">
-                <legend>{{ volume_amp.name }}</legend>
+                <legend>{{ amp_envelope.name }}</legend>
 
-                <template v-for="param in volume_amp.params">
+                <template v-for="param in amp_envelope.params">
                     <label :for=param>{{ param.name }}</label>
                     <input type="range"
                            :min=param.min

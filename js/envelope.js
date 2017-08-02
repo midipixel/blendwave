@@ -3,7 +3,7 @@ Vue.component('envelopepanel', {
     template: '#envelopePanel',
     data: function(){
         return {
-            volume_amp: {
+            amp_envelope: {
                 name: 'Volume',
                 active: true,
                 params: {
@@ -23,7 +23,7 @@ Vue.component('envelopepanel', {
                     }
                 }
             },
-            volume_osc: {
+            amp_osc: {
                 name: 'Oscilar Volume',
                 active: false,
                 params: {
@@ -72,8 +72,8 @@ Vue.component('envelopepanel', {
     },
     methods: {
         prePlayUpdate: function(){
-            patch.sound.attack = parseFloat(this.volume_amp.params.attack.value);
-            patch.sound.release = parseFloat(this.volume_amp.params.release.value);
+            patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value);
+            patch.sound.release = parseFloat(this.amp_envelope.params.release.value);
         }
     }
 });
