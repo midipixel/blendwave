@@ -62,23 +62,10 @@ var ui = {
         $('#filter_osc input[type=checkbox]').on('change', function(e){
             toggleOSC(e.target, 'filter_osc');
         });
-
-        //FX Type
-        $('#fxSelect').on('change', function(){
-            type = $('#fxSelect option:selected').val();
-
-            $('.fxSetup').hide();
-            $('#' + type).css('display', 'flex');
-
-        });
     },
     reset: function(){
+        bw.$refs.envelopePanel.resetDefaults();
         //Reset Sliders
-        setSlider(amp_attack, default_data.attack);
-        setSlider(amp_release, default_data.release);
-        setSlider(pitch_ammount, default_data.detune);
-        setSlider(tremolo_speed, default_data.tremolo_speed);
-        setSlider(tremolo_depth, default_data.tremolo_speed);
         setSlider(vibrato_speed, default_data.vibrato_speed);
         setSlider(filter_cutoff, default_data.filter_cutoff);
         setSlider(filterOSC_speed, default_data.filterOSC_speed);
@@ -89,9 +76,6 @@ var ui = {
         disableUI(filterParams);
         disableUI(filter_osc);
         $('.filterType p').html('');
-
-        //Disable Tremolo
-        disableUI(tremolo);
 
         //Disable Vibrato
         disableUI(vibrato);
@@ -116,20 +100,6 @@ function updateParameter(target, value){
     parameter = target.id;
 
     switch(parameter){
-        case 'amp_attack':
-            //Attack needs a little offset to prevent buggy behaviour
-            patch.data.attack = value + 0.04;
-        break;
-
-        case 'amp_release':
-            patch.data.release = value;
-        break;
-
-        case 'pitch_ammount':
-            //Multiply by 100 because values are shown in semitones in the UI
-            patch.data.detune = value * 100;
-        break;
-
         case 'vibrato_speed':
             patch.data.vibrato_speed = value;
         break;

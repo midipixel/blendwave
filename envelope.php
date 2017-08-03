@@ -40,11 +40,17 @@
 
         <div class="col-sm-6">
             <fieldset id="pitchEnvelope" class="audioParams">
-                <legend>Pitch</legend>
+                <legend>{{ pitch.name }}</legend>
 
-                <label for="pitch_ammount">Quantidade</label>
-                <input type="range" id="pitch_ammount" min="-12" value="0" max="12" step="1" data-type="audioParam">
-                <output for="pitch_ammount">0</output>
+                <template v-for="param in pitch.params">
+                    <label :for=param>{{ param.name }}</label>
+                    <input type="range"
+                           :min=param.min
+                           v-model:value=param.value
+                           :max=param.max
+                           :step=param.step>
+                    <output :value=param.value>{{param.value}}</output>
+                </template>
             </fieldset>
 
             <fieldset id="vibrato" class="audioParams disabled">
@@ -58,16 +64,6 @@
                 <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1" data-type="audioParam">
                 <output for="pitch_osc_depth">0</output-->
             </fieldset>
-        </div>
-    </div>
-
-    <div class="row pitch">
-        <div class="col-sm-6">
-
-        </div>
-
-        <div class="col-sm-6">
-
         </div>
     </div>
 </section>

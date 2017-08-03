@@ -110,8 +110,7 @@ var patch = {
         patch.sound.play();
         //Methods that must be invoked right after playing, or the node won't exist
         patch.effects.filter.osc.set();        
-        patch.effects.vibrato.set();
-        patch.sound.sourceNode.detune.value = patch.data.detune;
+        bw.$refs.envelopePanel.postPlayUpdate();
     },
     stop: function(){
         patch.sound.stop();
