@@ -5,12 +5,12 @@ Vue.component('envelopepanel', {
         return {
             amp_envelope: {
                 name: 'Amp Envelope',
-                active: true,
+                active: false,
                 params: {
                     attack: {
                         name: 'Attack',
-                        default: 0.04,
-                        value: 0.04,
+                        default: 0,
+                        value: 0,
                         min: 0,
                         max: 3,
                         step: 0.01
@@ -80,21 +80,27 @@ Vue.component('envelopepanel', {
     methods: {
         prePlayUpdate: function(){
             //Amp Envelope
-            patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value);
-            patch.sound.release = parseFloat(this.amp_envelope.params.release.value);
+            if (this.amp_envelope.active){
+                patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value) + 0.04;
+                patch.sound.release = parseFloat(this.amp_envelope.params.release.value);
+            }
+            else{
+                patch.sound.attack = 0.04;
+                patch.sound.loop = false;
+            }
             //Amp OSC
             this.amp_osc.pizEffect.speed = parseFloat(this.amp_osc.params.speed.value);
             this.amp_osc.pizEffect.depth = parseFloat(this.amp_osc.params.depth.value);
         },
         postPlayUpdate: function(){
-            patch.effects.vibrato.set();
+            this.setPitchOSC();
             //Multiply pitch value by 100 because values are shown in semitones in the UI
             patch.sound.sourceNode.detune.value = this.pitch.params.amount.value * 100;
         },
         setAmpOSC: function(){
             this.amp_osc.active = !this.amp_osc.active;
 
-            if(this.amp_osc.active){
+            if (this.amp_osc.active){
                 patch.sound.addEffect(this.amp_osc.pizEffect);
             }
             else{
@@ -118,6 +124,7 @@ Vue.component('envelopepanel', {
             }
 
             // Reset parameters initial active state
+            this.amp_envelope.active = false;
             this.amp_osc.active = false;
             this.pitch_osc.active = false;
         }

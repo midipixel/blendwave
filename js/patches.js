@@ -92,10 +92,12 @@ var patch = {
         //Methods that must be invoked right after playing, or the node won't exist
         bw.$refs.envelopePanel.setPitchOSC();
         bw.$refs.envelopePanel.postPlayUpdate();
-
     },
     stop: function(){
-        patch.sound.stop();
+        // If the amp envelope is disabled, there is no need to stop the playback
+        if (bw.$refs.envelopePanel.amp_envelope.active){
+            patch.sound.stop();
+        }
 
         //Disconnect useless filter oscillator from gain node, after release time
         if(patch.data.filter_type != 'noFilter'){

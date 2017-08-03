@@ -7,18 +7,23 @@
 
     <div class="row amp">
         <div class="col-sm-6">
-            <fieldset class="audioParams">
-                <legend>{{ amp_envelope.name }}</legend>
+            <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
+                <legend>
+                    <input type="checkbox" :checked=amp_envelope.active @change="amp_envelope.active = !amp_envelope.active" />
+                    {{ amp_envelope.name }}
+                </legend>
 
-                <template v-for="param in amp_envelope.params">
-                    <label :for=param>{{ param.name }}</label>
-                    <input type="range"
-                           :min=param.min
-                           v-model:value=param.value
-                           :max=param.max
-                           :step=param.step>
-                    <output :value=param.value>{{param.value}}</output>
-                </template>
+                <div class="params">
+                    <template v-for="param in amp_envelope.params">
+                        <label :for=param>{{ param.name }}</label>
+                        <input type="range"
+                               :min=param.min
+                               v-model:value=param.value
+                               :max=param.max
+                               :step=param.step>
+                        <output :value=param.value>{{param.value}}</output>
+                    </template>
+                </div>
             </fieldset>
 
             <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>

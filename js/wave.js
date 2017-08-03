@@ -56,8 +56,7 @@ var wave = {
 
         ui.fileHeader.update();
         ui.reset();
-
-        console.log(waveFile);
+        //console.log(waveFile);
     }
 }
 
