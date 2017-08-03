@@ -22,7 +22,10 @@
             </fieldset>
 
             <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
-                <legend><input type="checkbox" :checked=amp_osc.active @change=setAmpOSC /> {{ amp_osc.name }}</legend>
+                <legend>
+                    <input type="checkbox" :checked=amp_osc.active @change=setAmpOSC />
+                    {{ amp_osc.name }}
+                </legend>
 
                 <div class="params">
                     <template v-for="param in amp_osc.params">
@@ -53,8 +56,27 @@
                 </template>
             </fieldset>
 
-            <fieldset id="vibrato" class="audioParams disabled">
-                <legend><input type="checkbox" /> Oscilar Pitch</legend>
+            <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
+                <legend>
+                    <input type="checkbox" :checked=pitch_osc.active @change='pitch_osc.active = !pitch_osc.active;' />
+                    {{ pitch_osc.name }}
+                </legend>
+
+                <div class="params">
+                    <template v-for="param in pitch_osc.params">
+                        <label :for=param>{{ param.name }}</label>
+                        <input type="range"
+                               :min=param.min
+                               v-model:value=param.value
+                               :max=param.max
+                               :step=param.step>
+                        <output :value=param.value>{{param.value}}</output>
+                    </template>
+                </div>
+            </fieldset>
+
+            <!--fieldset id="vibrato" class="audioParams disabled">
+                <legend><input type="checkbox" />Oscilar Pitch</legend>
 
                 <label for="vibrato_speed">Speed</label>
                 <input type="range" id="vibrato_speed" min="0" value="0" max="20" step="0.1" data-type="audioParam" disabled="true">
@@ -62,8 +84,8 @@
 
                 <!--label for="pitch_osc_depth">Depth</label>
                 <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1" data-type="audioParam">
-                <output for="pitch_osc_depth">0</output-->
-            </fieldset>
+                <output for="pitch_osc_depth">0</output>
+            </fieldset-->
         </div>
     </div>
 </section>

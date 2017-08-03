@@ -109,8 +109,9 @@ var patch = {
         patch.updateData();
         patch.sound.play();
         //Methods that must be invoked right after playing, or the node won't exist
-        patch.effects.filter.osc.set();        
+        bw.$refs.envelopePanel.setPitchOSC();
         bw.$refs.envelopePanel.postPlayUpdate();
+
     },
     stop: function(){
         patch.sound.stop();

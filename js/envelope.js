@@ -4,7 +4,7 @@ Vue.component('envelopepanel', {
     data: function(){
         return {
             amp_envelope: {
-                name: 'Volume',
+                name: 'Amp Envelope',
                 active: true,
                 params: {
                     attack: {
@@ -67,11 +67,11 @@ Vue.component('envelopepanel', {
                 params: {
                     speed: {
                         name: 'Velocidade',
-                        default: 0.5,
-                        value: 0.5,
+                        default: 5,
+                        value: 5,
                         min: 0,
-                        max: 3,
-                        step: 0.01
+                        max: 20,
+                        step: 0.1
                     }
                 }
             }
@@ -104,18 +104,22 @@ Vue.component('envelopepanel', {
         setPitchOSC: function(){
             if (this.pitch_osc.active){
                 var osc = Pizzicato.context.createOscillator();
-                osc.frequency.value = patch.data.vibrato_speed;
+                osc.frequency.value = this.pitch_osc.params.speed.value;
                 osc.connect(patch.sound.sourceNode.playbackRate);
                 osc.start();
             }
         },
         resetDefaults: function(){
-            // Reset every parameter with its default value
+            // Reset every slider with its default value
             for (item in this._data){
                 for(param in this._data[item].params){
                     this._data[item].params[param].value = this._data[item].params[param].default;
                 }
             }
+
+            // Reset parameters initial active state
+            this.amp_osc.active = false;
+            this.pitch_osc.active = false;
         }
     },
     mounted: function(){
