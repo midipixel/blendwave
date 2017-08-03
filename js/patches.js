@@ -1,9 +1,5 @@
 var default_data = {
     file: 'samples/sine.wav',
-    attack: 0.01,
-    release: 0.2,
-    detune: 1,
-    vibrato_speed: 2,
     filter_type: 'noFilter',
     filter_cutoff: 500,
     filterOSC_speed: 1,
@@ -13,27 +9,12 @@ var default_data = {
 var patch = {
     data: {
         file: '',
-        attack: 0,
-        release: 0,
-        detune: 0,
-        vibrato_speed: 0,
         filter_type: '',
         filter_cutoff: 0,
         filterOSC_speed: 0,
         filterOSC_depth: 0,
     },
     effects: {
-        vibrato: {
-            on: false,
-            set: function(){
-                if (this.on){
-                    var osc = Pizzicato.context.createOscillator();
-                    osc.frequency.value = patch.data.vibrato_speed;
-                    osc.connect(patch.sound.sourceNode.playbackRate);
-                    osc.start();
-                }
-            }
-        },
         filter: {
             lp : new Pizzicato.Effects.LowPassFilter({
                 frequency: default_data.filter_cutoff,
@@ -130,9 +111,6 @@ var patch = {
             this.node = Pizzicato.context.createAnalyser();
             this.node.fftSize = 32;
             Pizzicato.masterGainNode.connect(this.node);
-        },
-        soundEnded: function(){
-
         }
     }
 }

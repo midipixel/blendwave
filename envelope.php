@@ -74,18 +74,6 @@
                     </template>
                 </div>
             </fieldset>
-
-            <!--fieldset id="vibrato" class="audioParams disabled">
-                <legend><input type="checkbox" />Oscilar Pitch</legend>
-
-                <label for="vibrato_speed">Speed</label>
-                <input type="range" id="vibrato_speed" min="0" value="0" max="20" step="0.1" data-type="audioParam" disabled="true">
-                <output for="vibrato_speed">0</output>
-
-                <!--label for="pitch_osc_depth">Depth</label>
-                <input type="range" id="pitch_osc_depth" min="1" value="0" max="100" step="1" data-type="audioParam">
-                <output for="pitch_osc_depth">0</output>
-            </fieldset-->
         </div>
     </div>
 </section>

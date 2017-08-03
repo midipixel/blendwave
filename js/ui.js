@@ -40,11 +40,6 @@ var ui = {
             updateParameter(e.target,param);
         });
 
-        // Vibrato
-        $('#vibrato input[type=checkbox]').on('change', function(e){
-            toggleOSC(e.target, 'vibrato');
-        });
-
         //Filter Type
         $('select#filter').on('change', function(){
             type = $('#filter option:selected').attr('id');
@@ -66,7 +61,6 @@ var ui = {
     reset: function(){
         bw.$refs.envelopePanel.resetDefaults();
         //Reset Sliders
-        setSlider(vibrato_speed, default_data.vibrato_speed);
         setSlider(filter_cutoff, default_data.filter_cutoff);
         setSlider(filterOSC_speed, default_data.filterOSC_speed);
         setSlider(filterOSC_depth, default_data.filterOSC_depth);
@@ -76,10 +70,6 @@ var ui = {
         disableUI(filterParams);
         disableUI(filter_osc);
         $('.filterType p').html('');
-
-        //Disable Vibrato
-        disableUI(vibrato);
-        patch.effects.vibrato.mix = 0;
     },
     fileHeader: {
         update: function(){
@@ -100,10 +90,6 @@ function updateParameter(target, value){
     parameter = target.id;
 
     switch(parameter){
-        case 'vibrato_speed':
-            patch.data.vibrato_speed = value;
-        break;
-
         case 'filter_cutoff':
             patch.data.filter_cutoff = value;
         break;
