@@ -40,17 +40,6 @@ var ui = {
             updateParameter(e.target,param);
         });
 
-        // Tremolo
-        $('#tremolo input[type=checkbox]').on('change', function(e){
-            if(e.target.checked){
-                enableUI(tremolo);
-                patch.sound.addEffect(patch.effects.tremolo);
-            }
-            else{
-                disableUI(tremolo);
-                patch.sound.removeEffect(patch.effects.tremolo);
-            };
-        });
         // Vibrato
         $('#vibrato input[type=checkbox]').on('change', function(e){
             toggleOSC(e.target, 'vibrato');
@@ -139,14 +128,6 @@ function updateParameter(target, value){
         case 'pitch_ammount':
             //Multiply by 100 because values are shown in semitones in the UI
             patch.data.detune = value * 100;
-        break;
-
-        case 'tremolo_speed':
-            patch.data.tremolo_speed = value;
-        break;
-
-        case 'tremolo_depth':
-            patch.data.tremolo_depth = value;
         break;
 
         case 'vibrato_speed':
