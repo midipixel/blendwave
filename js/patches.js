@@ -3,8 +3,6 @@ var default_data = {
     attack: 0.01,
     release: 0.2,
     detune: 1,
-    tremolo_speed: 5,
-    tremolo_depth: 1,
     vibrato_speed: 2,
     filter_type: 'noFilter',
     filter_cutoff: 500,
@@ -18,8 +16,6 @@ var patch = {
         attack: 0,
         release: 0,
         detune: 0,
-        tremolo_speed: 0,
-        tremolo_depth: 0,
         vibrato_speed: 0,
         filter_type: '',
         filter_cutoff: 0,
@@ -27,11 +23,6 @@ var patch = {
         filterOSC_depth: 0,
     },
     effects: {
-        tremolo: new Pizzicato.Effects.Tremolo({
-            mix: 1,
-            speed: default_data.tremolo_speed,
-            depth: default_data.tremolo_depth
-        }),
         vibrato: {
             on: false,
             set: function(){
@@ -105,10 +96,6 @@ var patch = {
     updateData: function(){
         //Envelope
         bw.$refs.envelopePanel.prePlayUpdate();
-
-        //Tremolo
-        patch.effects.tremolo.speed = patch.data.tremolo_speed;
-        patch.effects.tremolo.depth = patch.data.tremolo_depth;
 
         //Filter
         if(patch.data.filter_type != 'noFilter'){

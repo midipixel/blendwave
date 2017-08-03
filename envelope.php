@@ -21,16 +21,20 @@
                 </template>
             </fieldset>
 
-            <fieldset id="tremolo" class="audioParams disabled">
-                <legend><input type="checkbox" /> Oscilar Volume</legend>
+            <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
+                <legend><input type="checkbox" :checked=amp_osc.active @change=setAmpOSC /> {{ amp_osc.name }}</legend>
 
-                <label for="tremolo_speed">Velocidade</label>
-                <input type="range" id="tremolo_speed" min="1" value="5" max="20" step="1" data-type="audioParam" disabled="true">
-                <output for="tremolo_speed">5</output>
-
-                <label for="tremolo_depth">Força</label>
-                <input type="range" id="tremolo_depth" min="0" value="1" max="1" step="0.1" data-type="audioParam" disabled="true">
-                <output for="tremolo_depth">1</output>
+                <div class="params">
+                    <template v-for="param in amp_osc.params">
+                        <label :for=param>{{ param.name }}</label>
+                        <input type="range"
+                               :min=param.min
+                               v-model:value=param.value
+                               :max=param.max
+                               :step=param.step>
+                        <output :value=param.value>{{param.value}}</output>
+                    </template>
+                </div>
             </fieldset>
         </div>
 
