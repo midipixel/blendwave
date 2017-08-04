@@ -116,13 +116,6 @@ var patch = {
     }
 }
 
-var patches = {
-    init: function(){
-        patch.create();
-    }
-}
-
-
 
 
 

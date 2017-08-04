@@ -14,7 +14,7 @@ var bw = new Vue({
             audioExport.init();
 
             //Create initial patches
-            patches.init();
+            patch.create();
 
             //Initialize UI
             ui.init();
