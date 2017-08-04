@@ -1,5 +1,4 @@
 var default_data = {
-    file: 'samples/sine.wav',
     filter_type: 'noFilter',
     filter_cutoff: 500,
     filterOSC_speed: 1,
@@ -7,8 +6,8 @@ var default_data = {
 }
 
 var patch = {
+    file: 'samples/sine.wav',
     data: {
-        file: '',
         filter_type: '',
         filter_cutoff: 0,
         filterOSC_speed: 0,
@@ -59,7 +58,7 @@ var patch = {
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
-                path: patch.data.file,
+                path: patch.file,
                 attack: 0.04,
                 volume: 1,
                 loop: true

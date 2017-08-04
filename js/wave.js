@@ -4,59 +4,41 @@ Vue.component('wavepanel', {
     template: '#wavePanel',
     data: function(){
         return {
-
+            selectedElement: ' ',
+            loading: false
         }
     },
     methods: {
-
-    }
-});
-
-var wave = {
-    onload: function(){
-        console.log('Wave Panel Loaded');
-
-        //File Loader
-        $('#wavefile').on('change', function(){
-            var file = this.files[0];
-        });
-    },
-    init: function(){
-        //Initialize File List
-        $('#fileList a').on('click', function(e){
-            e.preventDefault();
+        changeFile: function(event){
+            this.selectedElement = event.target;
+            patch.file = event.target.href;
+            this.loading = true;
 
             //Set visual styles
             $('#fileList li').removeClass();
-            $(this).parent().addClass('active');
+            $(this.selectedElement).parent().addClass('active');
 
-            //Load new file
-            wave.changeFile(this, this.href);
-        });
-    },
-    changeFile: function(selected, waveFile){
-        //Input loading text
-        $(selected).append('<span id="loadText" class="loadText">(loading...)</span>');
+            //Reset Data
+            patch.resetData();
+            bw.$refs.fxPanel.resetFX();
 
-        //Update Patch
-        patch.resetData();
-        patch.data.file = waveFile;
-        file = waveFile;
-        bw.$refs.fxPanel.resetFX();
+            //Load new sound
+            patch.sound.stop();
 
-        patch.stop();
+            patch.sound = new Pizzicato.Sound({
+                source: 'file',
+                options: { path: patch.file }
+            }, function() {
+                bw.$refs.wavePanel.loading = false;
+                patch.play();
+            });
 
-        patch.sound = new Pizzicato.Sound({
-            source: 'file',
-            options: { path: file }
-        }, function() {
-            $('#loadText').remove();
-            patch.play();
-        });
-
-        ui.fileHeader.update();
-        ui.reset();
-        //console.log(waveFile);
+            //Update old, non-vue UI
+            ui.fileHeader.update();
+            ui.reset();
+            //console.log(waveFile);
+        }
     }
-}
+});
+
 

@@ -73,7 +73,7 @@ var ui = {
     },
     fileHeader: {
         update: function(){
-            $('.fileHeader span').html(patch.data.file);
+            $('.fileHeader span').html(patch.file);
         },
         setState: function(state){
             if (state === 'active'){

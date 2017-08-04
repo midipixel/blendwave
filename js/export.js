@@ -25,7 +25,7 @@ var audioExport = {
         //Turns recorder on, plays the sound
         recorder.record();
         patch.play();
-        patch.sound.stop();
+        patch.stop();
 
         //When playback has ended, start listening for the sound's end
         patch.sound.sourceNode.onended = function(){
@@ -82,7 +82,7 @@ var audioExport = {
                 au.controls = true;
                 au.src = url;
                 hf.href = url;
-                hf.download = patch.data.file + '_' + new Date().toISOString() + '.wav';
+                hf.download = patch.file + '_' + new Date().toISOString() + '.wav';
                 //hf.download = new Date().toISOString() + '.wav';
                 hf.innerHTML = hf.download;
                 li.appendChild(au);

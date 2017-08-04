@@ -2,7 +2,7 @@ var bw = new Vue({
     el: '#blendwave',
     data: {
         panels: {
-            activePanel: 'envelopePanel'
+            activePanel: 'wavePanel'
         }
     },
     methods: {
@@ -11,7 +11,6 @@ var bw = new Vue({
         },
         mainInit: function(){
             //Initialize all panels
-            wave.init();
             audioExport.init();
 
             //Create initial patches
