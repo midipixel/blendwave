@@ -25,10 +25,15 @@ var patch = {
             }),
             osc: {
                 on: false,
-                oscNode: {},
+                oscNode: null,
                 gainNode: Pizzicato.context.createGain(),
                 set: function(){
-                    if(patch.data.filter_type != 'noFilter'){                    
+                    if(patch.data.filter_type != 'noFilter'){
+                        //If there is already an oscillator, disconnect
+                        if(patch.effects.filter.osc.oscNode){
+                            patch.effects.filter.osc.oscNode.disconnect();
+                        }
+
                         //Create Oscillator, set up frequency
                         patch.effects.filter.osc.oscNode = Pizzicato.context.createOscillator();
                         var osc = patch.effects.filter.osc.oscNode;
@@ -41,8 +46,7 @@ var patch = {
                         osc.start(); 
 
                         if (this.on){
-                            var gainValue = patch.data.filterOSC_depth;
-                            oscGain.gain.value = gainValue;
+                            oscGain.gain.value = patch.data.filterOSC_depth * 4000;
                         }
                         else {
                             oscGain.gain.value = 0;                        
@@ -89,6 +93,7 @@ var patch = {
         patch.updateData();
         patch.sound.play();
         //Methods that must be invoked right after playing, or the node won't exist
+        patch.effects.filter.osc.set();
         bw.$refs.envelopePanel.setPitchOSC();
         bw.$refs.envelopePanel.postPlayUpdate();
     },
@@ -99,12 +104,12 @@ var patch = {
         }
 
         //Disconnect useless filter oscillator from gain node, after release time
-        if(patch.data.filter_type != 'noFilter'){
+        /*if(patch.data.filter_type != 'noFilter' && patch.effects.filter.osc.on){
             var timeOut = patch.data.release * 1000;
             window.setTimeout(function(){
                 patch.effects.filter.osc.oscNode.disconnect();        
             }, timeOut);
-        }
+        }*/
     },
     analyser: {
         create: function(){

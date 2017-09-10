@@ -10,9 +10,6 @@ var bw = new Vue({
             this.panels.activePanel = panel;
         },
         mainInit: function(){
-            //Initialize all panels
-            audioExport.init();
-
             //Create initial patches
             patch.create();
 

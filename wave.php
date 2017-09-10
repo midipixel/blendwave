@@ -11,7 +11,7 @@
         <div class="col-sm-4 fileList" id="fileList">
             <ul>
                 <li class="active">
-                    <a href="samples/sine.wav">Sine</a>
+                    <a href="samples/sine.wav" @click.prevent=changeFile>Sine</a>
                 </li>
                 <?php
                     $dir    = 'samples';

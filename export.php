@@ -4,7 +4,7 @@
 
     <h3>Saída<em>Revise os parâmetros de seu som e faça o download</em></h3>
 
-    <button id="exportBtn">Exportar</button>
+    <button id="exportBtn" @click=exportFile>Exportar</button>
 
     <h5>Arquivos Exportados</h5>
     <ul id="recordingslist"></ul>
