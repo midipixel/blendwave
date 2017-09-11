@@ -73,7 +73,7 @@ var ui = {
     },
     fileHeader: {
         update: function(){
-            $('.fileHeader span').html(patch.file);
+            $('.fileHeader span').html(bw.$refs.wavePanel.fileName);
         },
         setState: function(state){
             if (state === 'active'){

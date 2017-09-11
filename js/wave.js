@@ -5,6 +5,7 @@ Vue.component('wavepanel', {
     data: function(){
         return {
             selectedElement: ' ',
+            fileName: ' ',
             loading: false
         }
     },
@@ -12,6 +13,12 @@ Vue.component('wavepanel', {
         changeFile: function(event){
             this.selectedElement = event.target;
             patch.file = event.target.href;
+
+            //Store filename from full URL string
+            var fileString = event.target.href.split('/');
+            var pos = fileString.length - 1;
+            this.fileName = fileString[pos];
+
             this.loading = true;
 
             //Set visual styles

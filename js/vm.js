@@ -2,7 +2,7 @@ var bw = new Vue({
     el: '#blendwave',
     data: {
         panels: {
-            activePanel: 'exportPanel'
+            activePanel: 'wavePanel'
         }
     },
     methods: {
@@ -15,7 +15,6 @@ var bw = new Vue({
 
             //Initialize UI
             ui.init();
-            ui.fileHeader.update();
         }
     },
     mounted: function(){

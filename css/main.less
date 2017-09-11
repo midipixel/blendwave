@@ -77,8 +77,12 @@ ul{
     .userSelect_off;
 }
 
-.fileHeader_active{
-    background: #252525;
+.fileHeader:hover{
+    background-color: #bfbfbf;
+}
+
+.fileHeader_active, .fileHeader:active{
+    background-color: #252525;
     color: #fff;
 }
 
@@ -152,9 +156,18 @@ fieldset.disabled{
 
 .wavePanel .loading{
     padding: 0.5em;
-    float: right;
-    width: 40%;
-    text-align: center;
+    height: 1em;
+    margin-bottom: 2em;
+    margin-top: -10px;
+}
+
+.wavePanel .loading p{
+    border: 1px solid #e4acac;
+    color: red;
+}
+
+.wavePanel .loading img{
+    margin-right: 10px;
 }
 
 /* =Envelope
@@ -199,6 +212,51 @@ fieldset.disabled{
 
 .reverb{
     display: flex;
+}
+
+
+/* =Export
+-----------------------------------------------------------------------------*/
+
+.exportedFiles li {
+    padding: 1em;
+    border: 1px solid #8c8c8c;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    background: #e3e3e3;
+}
+
+.exportedFiles li audio {
+    margin-right: 5%;
+}
+
+.exportedFiles li a{
+    color: #3c59d4;
+    background: #fff;
+    padding: 1em;
+    border-radius: 0.5em;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.exportedFiles li a:hover{
+    color: #000;
+}
+
+.exportBtn{
+    padding: 1em;
+    font-size: 1.2em;
+}
+
+.exports{
+    margin-top: 2em;
+}
+
+.exports h4{
+    border-bottom: 1px dotted #aaa;
+    padding-bottom: 0.5em;
+    margin-bottom: 1.5em;
 }
 
 

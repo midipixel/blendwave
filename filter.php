@@ -3,7 +3,7 @@
 <section class="panelContent" id="filter" v-show="active">
     <?php include('fileHeader.php')?> 
 
-    <h3>Filtro <em>Manipule seu som atenuando determinadas faixas de frequência</em></h3>
+    <h3>Filtro <em> Refine o som, filtrando as frequências altas ou baixas</em></h3>
 
     <div class="row">
         <form action="" autocomplete="off">
@@ -18,8 +18,8 @@
                         ga-event-action="choose filter type">
 
                         <option id="noFilter" selected="selected">Sem Filtro</option>
-                        <option id="hp">High Pass</option>
-                        <option id="lp">Low Pass</option>
+                        <option id="hp">Filtrar Baixas (HP)</option>
+                        <option id="lp">Filtrar Altas (LP)</option>
                     </select>
                     <p></p>
                 </div>

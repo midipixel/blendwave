@@ -8,7 +8,7 @@ Vue.component('envelopepanel', {
                 active: false,
                 params: {
                     attack: {
-                        name: 'Attack',
+                        name: 'Ataque',
                         default: 0,
                         value: 0,
                         min: 0,
@@ -16,7 +16,7 @@ Vue.component('envelopepanel', {
                         step: 0.01
                     },
                     release: {
-                        name: 'Release',
+                        name: 'Repouso/Release',
                         default: 0.3,
                         value: 0.3,
                         min: 1,
@@ -56,7 +56,7 @@ Vue.component('envelopepanel', {
                         default: 0,
                         value: 0,
                         min: -24,
-                        max: 12,
+                        max: 24,
                         step: 1
                     }
                 }

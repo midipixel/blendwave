@@ -4,11 +4,16 @@
 
     <?php include("fileHeader.php"); ?>
 
-    <p class="loading" v-if="loading">Loading!</p>
-
     <h3>Fonte Sonora <em>Escolha um som para servir de base</em></h3>
 
     <div class="row">
+        <div class="loading">
+            <p v-show="loading">
+                <img src="img/loading.gif" height="30">
+                Por Favor, aguarde. Carregando Som
+            </p>
+        </div>
+
         <div class="fileList" id="fileList">
             <ul>
                 <li class="active col-sm-4 ">

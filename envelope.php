@@ -3,7 +3,7 @@
 <section class="panelContent envelope" id="envelope" v-show="active">
     <?php include('fileHeader.php')?> 
 
-    <h3>Envelope<em>Manipule o comportamento do som ao longo do tempo</em></h3>
+    <h3>Amplitude e Pitch<em>Altere o volume e a tonalidade do som</em></h3>
 
     <div class="row amp">
         <div class="col-sm-6">

@@ -81,7 +81,7 @@
                                                 <?php 
                                                     foreach ($props["params"] as $param => $values):
                                                 ?>
-                                                    <label for="<?= param ?>"><?= $param ?></label>
+                                                    <label for="<?= param ?>"><?= $values['name'] ?></label>
                                                     <input type="range" id="" 
                                                             v-model="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>"
                                                             min="<?= $values['min'] ?>" max="<?= $values['max'] ?>"

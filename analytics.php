@@ -8,7 +8,7 @@ ga('require', 'pageVisibilityTracker', {
   sendInitialPageview: true,
 });
 ga('require', 'urlChangeTracker');
-// ...
+
 
 //ga('send', 'pageview'); /* not needed, using pageVisibilityTracker instead */
 </script>

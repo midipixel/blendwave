@@ -2,18 +2,23 @@
 <section class="panelContent" id="export" v-show="active">
     <?php include('fileHeader.php')?> 
 
-    <h3>Saída<em>Revise os parâmetros de seu som e faça o download</em></h3>
+    <h3>Saída<em>Exporte o resultado final em formato WAV, e faça o download</em></h3>
 
     <button
         id="exportBtn"
+        class="exportBtn"
         @click=exportFile
         ga-on="click"
         ga-event-category="exportPanel"
         ga-event-action="export file">
-        Exportar
+        Exportar Áudio
     </button>
 
-    <h5>Arquivos Exportados</h5>
-    <ul id="recordingslist"></ul>
+    <div class="exports">
+        <h4>Arquivos Exportados:</h4>
+        <ul id="recordingslist"  class="exportedFiles">
+        </ul>
+    </div>
+
 </section>
 <?= '</script>' ?>
