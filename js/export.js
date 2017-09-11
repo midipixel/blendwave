@@ -49,7 +49,7 @@ Vue.component('exportpanel', {
 
                 function verifyMute(){
                     patch.analyser.node.getByteFrequencyData(dataArray);
-                    console.log(dataArray);
+                    //console.log(dataArray);
 
                     if (dataArray[0] < 1){
                         if (verifyCounter > verifications){

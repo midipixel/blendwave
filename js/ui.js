@@ -16,15 +16,15 @@ var ui = {
         })
 
         $('body').on('keydown', function(e){
-            //Play audio on spacebar press
-            if(e.keyCode == 32){
+            //Play audio on 'P' press
+            if(e.keyCode == 80){
                 patch.play();
             }
         });
 
         $('body').on('keyup', function(e){
-            //Stop audio on spacebar press
-            if(e.keyCode == 32){
+            //Stop audio on 'p' release
+            if(e.keyCode == 80){
                 patch.stop();
             }
         });

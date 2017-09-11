@@ -68,7 +68,7 @@ ul{
     margin: 0 auto;
 }
 
-h2.fileHeader{
+.fileHeader{
     font-size: 1em;
     margin: 0 0 1em 0;
     cursor: pointer;
@@ -77,9 +77,14 @@ h2.fileHeader{
     .userSelect_off;
 }
 
-h2.fileHeader_active{
+.fileHeader_active{
     background: #252525;
     color: #fff;
+}
+
+.fileHeader small{
+    float: right;
+    font-weight: bold;
 }
 
 .panelContent{
@@ -138,10 +143,10 @@ fieldset.disabled{
 -----------------------------------------------------------------------------*/
 .fileList li a{
     display: block;
-    padding: 0.2em 0;
+    padding: 1em 0.5em;
 }
 
-.fileList .active, .fileList a:hover{
+.fileList .active a, .fileList a:hover{
     background: #eee;
 }
 

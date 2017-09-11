@@ -15,7 +15,7 @@ Vue.component('wavepanel', {
             this.loading = true;
 
             //Set visual styles
-            $('#fileList li').removeClass();
+            $('#fileList li').removeClass('active');
             $(this.selectedElement).parent().addClass('active');
 
             //Reset Data

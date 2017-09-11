@@ -9,18 +9,26 @@
         <div class="col-sm-6">
             <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
                 <legend>
-                    <input type="checkbox" :checked=amp_envelope.active @change="amp_envelope.active = !amp_envelope.active" />
+                    <input type="checkbox"
+                           :checked=amp_envelope.active
+                           @change="amp_envelope.active = !amp_envelope.active"
+                           ga-on="change"
+                           ga-event-category="ampEnvelope"
+                           ga-event-action="toggle envelope"/>
                     {{ amp_envelope.name }}
                 </legend>
 
                 <div class="params">
                     <template v-for="param in amp_envelope.params">
-                        <label :for=param>{{ param.name }}</label>
+                        <label :for=param.name>{{ param.name }}</label>
                         <input type="range"
                                :min=param.min
                                v-model:value=param.value
                                :max=param.max
-                               :step=param.step>
+                               :step=param.step
+                               ga-on="change"
+                               ga-event-category="ampEnvelope"
+                               :ga-event-action=param.name>
                         <output :value=param.value>{{param.value}}</output>
                     </template>
                 </div>
@@ -28,7 +36,12 @@
 
             <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
                 <legend>
-                    <input type="checkbox" :checked=amp_osc.active @change=setAmpOSC />
+                    <input type="checkbox"
+                           :checked=amp_osc.active
+                           @change=setAmpOSC
+                           ga-on="change"
+                           ga-event-category="ampOSC"
+                           ga-event-action="toggle oscillator"/>
                     {{ amp_osc.name }}
                 </legend>
 
@@ -39,7 +52,10 @@
                                :min=param.min
                                v-model:value=param.value
                                :max=param.max
-                               :step=param.step>
+                               :step=param.step
+                               ga-on="change"
+                               ga-event-category="ampOSC"
+                               :ga-event-action=param.name>
                         <output :value=param.value>{{param.value}}</output>
                     </template>
                 </div>
@@ -56,14 +72,22 @@
                            :min=param.min
                            v-model:value=param.value
                            :max=param.max
-                           :step=param.step>
+                           :step=param.step
+                           ga-on="change"
+                           ga-event-category="pitch"
+                           :ga-event-action=param.name>
                     <output :value=param.value>{{param.value}}</output>
                 </template>
             </fieldset>
 
             <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
                 <legend>
-                    <input type="checkbox" :checked=pitch_osc.active @change='pitch_osc.active = !pitch_osc.active;' />
+                    <input type="checkbox"
+                           :checked=pitch_osc.active
+                           @change='pitch_osc.active = !pitch_osc.active;'
+                           ga-on="change"
+                           ga-event-category="pitchOSC"
+                           ga-event-action="toggle oscillator"/>
                     {{ pitch_osc.name }}
                 </legend>
 
@@ -74,7 +98,10 @@
                                :min=param.min
                                v-model:value=param.value
                                :max=param.max
-                               :step=param.step>
+                               :step=param.step
+                               ga-on="change"
+                               ga-event-category="pitchOSC"
+                               :ga-event-action=param.name>
                         <output :value=param.value>{{param.value}}</output>
                     </template>
                 </div>

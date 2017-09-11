@@ -55,7 +55,7 @@ Vue.component('envelopepanel', {
                         name: 'Quantidade',
                         default: 0,
                         value: 0,
-                        min: -12,
+                        min: -24,
                         max: 12,
                         step: 1
                     }

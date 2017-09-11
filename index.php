@@ -15,11 +15,11 @@
         <div id="blendwave">
             <nav class="mainNav">
                 <ul>
-                    <li><a href="#" @click="activatePanel('wavePanel')">Fonte Sonora</a></li>
-                    <li><a href="#" @click="activatePanel('envelopePanel')">Amplitude e Pitch</a></li>
-                    <li><a href="#" @click="activatePanel('filterPanel')">Filtro</a></li>
-                    <li><a href="#" @click="activatePanel('fxPanel')">Efeitos</a></li>
-                    <li><a href="#" @click="activatePanel('exportPanel')">Saída</a></li>
+                    <li><a href="#wavePanel" @click="activatePanel('wavePanel')">Fonte Sonora</a></li>
+                    <li><a href="#envelopePanel" @click="activatePanel('envelopePanel')">Amplitude e Pitch</a></li>
+                    <li><a href="#filterPanel" @click="activatePanel('filterPanel')">Filtro</a></li>
+                    <li><a href="#fxPanel" @click="activatePanel('fxPanel')">Efeitos</a></li>
+                    <li><a href="#exportPanel" @click="activatePanel('exportPanel')">Saída</a></li>
                 </ul>
             </nav>
 
@@ -31,6 +31,9 @@
             <exportpanel ref="exportPanel" :active="panels.activePanel == 'exportPanel'"></exportpanel>
        </div>
     </main>
+
+    <!-- Analytics -->
+    <?php include_once("analytics.php") ?>
 
     <!-- Vendor -->
     <script src="js/vendor/jquery-3.1.1.min.js"></script>
