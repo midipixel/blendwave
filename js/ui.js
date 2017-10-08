@@ -41,7 +41,7 @@ var ui = {
         });
 
         //Filter Type
-        $('select#filter').on('change', function(){
+        /*$('select#filter').on('change', function(){
             type = $('#filter option:selected').attr('id');
 
             //Remove applied filters, if any
@@ -51,7 +51,7 @@ var ui = {
             }
             //Apply the correct filter
             applyFilter(type);
-        });
+        });*/
 
         // Filter Oscillator
         $('#filter_osc input[type=checkbox]').on('change', function(e){
@@ -109,10 +109,10 @@ function setSlider(parameter, value){
     $(parameter).next('output').val(value);
 }
 
-function setComboOption(parameter, value){
+/*function setComboOption(parameter, value){
     var domquery = 'select#' + parameter + '>' + '#' + value;
     $(domquery).prop({selected: true});
-}
+}*/
 
 function disableUI(parameter){
     $(parameter).addClass('disabled');
@@ -159,8 +159,8 @@ function applyFilter(filterType) {
         patch.data.filter_cutoff = filterValues.value;
 
         //Show correct image
-        $('.filterSetup img').attr('src', 'img/filter_' + filterType + '.png');
-        $('.filterSetup img').show();
+        /*$('.filterSetup img').attr('src', 'img/filter_' + filterType + '.png');
+        $('.filterSetup img').show();*/
 
         //Apply Filter
         patch.sound.addEffect(patch.effects.filter[filterType]);

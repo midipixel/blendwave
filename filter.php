@@ -13,24 +13,27 @@
                 <div class="dspType filterType">
                     <select
                         id="filter"
+                        v-model="selected"
+                        v-on:change="set"
+
                         ga-on="change"
                         ga-event-category="filterType"
                         ga-event-action="choose filter type">
 
-                        <option id="noFilter" selected="selected">Sem Filtro</option>
-                        <option id="hp">Filtrar Baixas (HP)</option>
-                        <option id="lp">Filtrar Altas (LP)</option>
+                        <option value="none" selected="selected">{{ none.name }}</option>
+                        <option value="lowpass">{{ lowpass.name }}</option>
+                        <option value="highpass">{{ highpass.name }}</option>
                     </select>
-                    <p></p>
+                    <p>{{ this[selected].description }}</p>
                 </div>
 
-                <div class="dspSetup filterSetup">
+                <div :class="'dspSetup filterSetup' + ' ' + this.selected" >
                     <figure>
-                        <img src="img/filter_hp.png" alt="">
+                        <img :src="'img/filter_'+ this.selected +'.png'" :alt="this.selected.name">
                     </figure>
 
-                    <fieldset id="filterParams" class="audioParams disabled" disabled="disabled">
-                        <label for="filter_cutoff">Frequência de Corte</label>
+                    <fieldset class="audioParams" :disabled="this.selected == 'none'">
+                        <label for="filter_cutoff">{{ this[selected].params ? this[selected].params.cutoff.name : this.lowpass.params.cutoff.name}}</label>
                         <input
                             type="range"
                             id="filter_cutoff"

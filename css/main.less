@@ -61,6 +61,10 @@ ul{
     width: 100%;
 }
 
+.disabled, fieldset[disabled]{
+    opacity: 0.5;
+}
+
 /* =Main
 -----------------------------------------------------------------------------*/
 .container{
@@ -176,9 +180,7 @@ fieldset.disabled{
 
 /* =Filter
 -----------------------------------------------------------------------------*/
-.filterSetup img{
-    display: none;
-}
+
 
 
 /* =FX
@@ -195,10 +197,6 @@ fieldset.disabled{
 
 .fxControls p{
     margin: 0 10px;
-}
-
-.disabled{
-    opacity: 0.5;
 }
 
 .fxSetup img{
