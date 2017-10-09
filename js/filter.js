@@ -4,28 +4,11 @@ Vue.component('filterpanel', {
     data: function(){
         return {
             selected: 'lowpass',
-            none: {
-                name: 'Sem Filtro',
-                description: " ",
-                params: {
-                    cutoff: {
-                        name: 'Frequência de Corte',
-                        default: 100,
-                        value: 100,
-                        min: 100,
-                        max: 22000,
-                        step: 100
-                    }
-                }
-            },
             filter: {
                 lowpass: {
-                    name: 'Passa Baixa (LP)',
-                    description: 'Filtra as altas frequências',
                     pizEffect: {},
                     params: {
                         cutoff: {
-                            name: 'Frequência de Corte',
                             default: 100,
                             value: 300,
                             min: 100,
@@ -35,12 +18,9 @@ Vue.component('filterpanel', {
                     }
                 },
                 highpass: {
-                    name: 'Passa Alta (HP)',
-                    description: 'Filtra as baixas frequências',
                     pizEffect: {},
                     params: {
                         cutoff: {
-                            name: 'Frequência de Corte',
                             default: 100,
                             value: 100,
                             min: 100,
@@ -68,7 +48,6 @@ Vue.component('filterpanel', {
                     speed: "Velocidade",
                     depth: "Força"
                 }
-
             }
         }
     },
