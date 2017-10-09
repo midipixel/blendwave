@@ -3,12 +3,12 @@
 <section class="panelContent" id="filter" v-show="active">
     <?php include('fileHeader.php')?> 
 
-    <h3>Filtro <em> Refine o som, filtrando as frequências altas ou baixas</em></h3>
+    <h3>{{ content.<?= $locale ?>.title }} <em> {{ content.<?= $locale ?>.subtitle }}</em></h3>
 
     <div class="row">
         <form action="" autocomplete="off">
             <div class="col-sm-6">
-                <h5><label for="filter">Tipo de Filtro</label></h5>
+                <h5><label for="filter">{{ content.<?= $locale ?>.filterType }}</label></h5>
 
                 <div class="dspType filterType">
                     <select
@@ -20,11 +20,11 @@
                         ga-event-category="filterType"
                         ga-event-action="choose filter type">
 
-                        <option value="none" selected="selected">{{ none.name }}</option>
-                        <option value="lowpass">{{ lowpass.name }}</option>
-                        <option value="highpass">{{ highpass.name }}</option>
+                        <option value="none" selected="selected">{{ content.<?= $locale ?>.none }}</option>
+                        <option value="lowpass">{{ content.<?= $locale ?>.lowpass[0] }}</option>
+                        <option value="highpass">{{ content.<?= $locale ?>.highpass[0] }}</option>
                     </select>
-                    <p>{{ this[selected].description }}</p>
+                    <p>{{ selected != 'none' ? content.<?= $locale ?>[selected][1] : ' ' }}</p>
                 </div>
 
                 <div :class="'dspSetup filterSetup' + ' ' + this.selected" >
@@ -33,19 +33,45 @@
                     </figure>
 
                     <fieldset class="audioParams" :disabled="this.selected == 'none'">
-                        <label for="filter_cutoff">{{ this[selected].params ? this[selected].params.cutoff.name : this.lowpass.params.cutoff.name}}</label>
-                        <input
-                            type="range"
-                            id="filter_cutoff"
-                            min="100"
-                            value="100"
-                            max="22000"
-                            step="100"
-                            data-type="audioParam"
-                            ga-on="change"
-                            ga-event-category="filterCutoff"
-                            ga-event-action="Change Cutoff">
-                        <output for="filter_cutoff">100</output>
+                        <label for="filter_cutoff">{{ content.<?= $locale ?>.cutoff }}</label>
+
+                        <!-- Low Pass -->
+                        <template v-if="selected === 'lowpass'">
+                            <input
+                                type="range"
+                                :min="filter.lowpass.params.cutoff.min"
+                                :max="filter.lowpass.params.cutoff.max"
+                                :step="filter.lowpass.params.cutoff.step"
+                                v-model="filter.lowpass.params.cutoff.value"
+
+                                ga-on="change"
+                                ga-event-category="filterCutoff"
+                                ga-event-action="LP Cutoff">
+
+                                <output for="filter_cutoff">{{ filter.lowpass.params.cutoff.value }}</output>
+                        </template>
+
+                        <!-- High Pass -->
+                        <template v-else-if="selected === 'highpass'">
+                            <input
+                                type="range"
+                                :min="filter.highpass.params.cutoff.min"
+                                :max="filter.highpass.params.cutoff.max"
+                                :step="filter.highpass.params.cutoff.step"
+                                v-model="filter.highpass.params.cutoff.value"
+
+                                ga-on="change"
+                                ga-event-category="filterCutoff"
+                                ga-event-action="HP Cutoff">
+
+                                <output for="filter_cutoff">{{ filter.highpass.params.cutoff.value }}</output>
+                        </template>
+
+                        <!-- None: Dummy Slider -->
+                        <template v-else-if="selected === 'none'">
+                            <input type="range" value="0">
+                            <output>{{ filter.highpass.params.cutoff.value }}</output>
+                        </template>
                     </fieldset>
                 </div>
             </div>
@@ -58,10 +84,10 @@
                             ga-on="change"
                             ga-event-category="filterOSC"
                             ga-event-action="toggle filter oscillator"/>
-                        Oscilar Filtro
+                        {{ content.<?= $locale ?>.oscillateFilter }}
                     </legend>
 
-                    <label for="filterOSC_speed">Velocidade</label>
+                    <label for="filterOSC_speed">{{ content.<?= $locale ?>.speed }}</label>
                     <input
                         type="range"
                         id="filterOSC_speed"
@@ -76,7 +102,7 @@
                         ga-event-action="speed">
                     <output for="filterOSC_speed">5</output>
 
-                    <label for="filterOSC_depth">Força</label>
+                    <label for="filterOSC_depth">{{ content.<?= $locale ?>.depth }}</label>
                     <input
                         type="range"
                         id="filterOSC_depth"

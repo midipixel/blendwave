@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
+<?php
+    $locale = 'pt'
+?>
+
 <body>
     <main class="container">
         <div id="blendwave">
