@@ -6,7 +6,8 @@ Vue.component('wavepanel', {
         return {
             selectedElement: ' ',
             fileName: ' ',
-            loading: false
+            loading: false,
+            wavesurfer: null
         }
     },
     methods: {
@@ -40,11 +41,21 @@ Vue.component('wavepanel', {
                 patch.play();
             });
 
+            this.wavesurfer.load(patch.file);
+
             //Update old, non-vue UI
             ui.fileHeader.update();
             ui.reset();
             //console.log(waveFile);
         }
+    },
+    mounted: function(){
+        //Initialize Wave Preview
+        this.wavesurfer = WaveSurfer.create({
+            container: '#wavePreview',
+            waveColor: 'violet',
+            progressColor: 'purple'
+        });
     }
 });
 

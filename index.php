@@ -45,6 +45,7 @@
 
     <script src="js/vendor/recorder.js"></script>
     <script src="js/vendor/Pizzicato.js"></script>
+    <script src="js/vendor/wavesurfer-1.4.0.js"></script>
 
     <!-- Application -->
     <script src="js/util.js"></script>
