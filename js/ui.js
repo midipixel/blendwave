@@ -54,9 +54,9 @@ var ui = {
         });*/
 
         // Filter Oscillator
-        $('#filter_osc input[type=checkbox]').on('change', function(e){
+        /*$('#filter_osc input[type=checkbox]').on('change', function(e){
             toggleOSC(e.target, 'filter_osc');
-        });
+        });*/
     },
     reset: function(){
         //Reset Sliders
@@ -172,7 +172,7 @@ function applyFilter(filterType) {
     $("#filter_cutoff").next('output').val(patch.data.filter_cutoff);
 }
 
-function toggleOSC(checkbox, oscType){
+/*function toggleOSC(checkbox, oscType){
     //Convert oscType string to a usable path format
     var oscPath = oscType.replace('_','.');
     var osc = eval('patch.effects.' + oscPath);
@@ -187,4 +187,4 @@ function toggleOSC(checkbox, oscType){
     };
 
     console.log(osc);
-}
+}*/

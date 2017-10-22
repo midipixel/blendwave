@@ -63,8 +63,33 @@ Vue.component('filterpanel', {
                 this.filter[this.selected].pizEffect.frequency = this.filter[this.selected].params.cutoff.value;
             }
         },
-        postPlayUpdate: function(){
+        setOSC: function(){
+            if(this.selected != 'none'){
+                //If there is already an oscillator, disconnect
+                if(this.osc.oscNode){
+                    this.osc.oscNode.disconnect();
+                }
 
+                //Create Oscillator, set up frequency
+                this.osc.oscNode = Pizzicato.context.createOscillator();
+                this.osc.oscNode.frequency.value = 5;
+
+                //Connect OSC -> gain -> filter frequency
+                this.osc.oscNode.connect(this.osc.gainNode);
+                this.osc.gainNode.connect(this.filter[this.selected].pizEffect.filterNode.frequency);
+                this.osc.oscNode.start();
+
+                if (this.osc.active){
+                    this.osc.gainNode.gain.value = 4000;
+                    console.log(this.osc.gainNode);
+                }
+                else {
+                    this.osc.gainNode.gain.value = 0;
+                }
+            }
+        },
+        postPlayUpdate: function(){
+            this.setOSC();
         },
         ignoreKeyboard: function(e){
             // Ignore keys on combobox, so that the user can use "P" to preview

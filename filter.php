@@ -82,6 +82,8 @@
                     <legend>
                         <input
                             type="checkbox"
+                            :checked=osc.active
+                            @change='osc.active = !osc.active;'
                             ga-on="change"
                             ga-event-category="filterOSC"
                             ga-event-action="toggle filter oscillator"/>

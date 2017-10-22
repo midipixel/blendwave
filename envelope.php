@@ -76,7 +76,7 @@
                            ga-on="change"
                            ga-event-category="pitch"
                            :ga-event-action=param.name>
-                    <output :value=param.value>{{param.value}}</output>
+                    <output :value=param.value>{{ param.value }}</output>
                 </template>
             </fieldset>
 
@@ -84,7 +84,8 @@
                 <legend>
                     <input type="checkbox"
                            :checked=pitch_osc.active
-                           @change='pitch_osc.active = !pitch_osc.active;'
+                           @change="pitch_osc.active = !pitch_osc.active;"
+
                            ga-on="change"
                            ga-event-category="pitchOSC"
                            ga-event-action="toggle oscillator"/>
@@ -102,7 +103,7 @@
                                ga-on="change"
                                ga-event-category="pitchOSC"
                                :ga-event-action=param.name>
-                        <output :value=param.value>{{param.value}}</output>
+                        <output :value=param.value>{{ param.value }}</output>
                     </template>
                 </div>
             </fieldset>

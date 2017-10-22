@@ -4,14 +4,14 @@ var default_data = {
 }
 
 var patch = {
-    file: 'samples/aula_flor.wav',
+    file: 'samples/sine.wav',
     data: {
         filterOSC_speed: 0,
         filterOSC_depth: 0,
     },
     effects: {
         filter: {
-            osc: {
+            /*osc: {
                 on: false,
                 oscNode: null,
                 gainNode: Pizzicato.context.createGain(),
@@ -41,7 +41,7 @@ var patch = {
                         }
                     }
                 }
-            }
+            }*/
         }
     },
     sound: {},
@@ -75,6 +75,7 @@ var patch = {
         //Methods that must be invoked right after playing, or the node won't exist
         //patch.effects.filter.osc.set();
         bw.$refs.envelopePanel.postPlayUpdate();
+        bw.$refs.filterPanel.postPlayUpdate();
     },
     stop: function(){
         // If the amp envelope is disabled, there is no need to stop the playback
