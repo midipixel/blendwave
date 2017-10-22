@@ -6,7 +6,7 @@ var default_data = {
 }
 
 var patch = {
-    file: 'samples/sine.wav',
+    file: 'samples/aula_flor.wav',
     data: {
         filter_type: '',
         filter_cutoff: 0,
@@ -15,14 +15,14 @@ var patch = {
     },
     effects: {
         filter: {
-            lp : new Pizzicato.Effects.LowPassFilter({
+            /*lp : new Pizzicato.Effects.LowPassFilter({
                 frequency: default_data.filter_cutoff,
                 mix: 0
             }),
             hp : new Pizzicato.Effects.HighPassFilter({
                 frequency: default_data.filter_cutoff,
                 mix: 0
-            }),
+            }),*/
             osc: {
                 on: false,
                 oscNode: null,
@@ -82,9 +82,10 @@ var patch = {
         bw.$refs.envelopePanel.prePlayUpdate();
 
         //Filter
-        if(patch.data.filter_type != 'noFilter'){
+        bw.$refs.filterPanel.prePlayUpdate();
+        /*if(patch.data.filter_type != 'noFilter'){
             patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
-        }
+        }*/
 
         //Effects
         bw.$refs.fxPanel.prePlayUpdate();

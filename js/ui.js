@@ -30,7 +30,7 @@ var ui = {
         });
 
         // Audio Parameter Slider
-        $('input[data-type=audioParam]').on('input', function(e){
+        /*$('input[data-type=audioParam]').on('input', function(e){
             //Update UI
             output = $(e.target).next('output');
             $(output)[0].value = e.target.value;
@@ -41,7 +41,7 @@ var ui = {
         });
 
         //Filter Type
-        /*$('select#filter').on('change', function(){
+        $('select#filter').on('change', function(){
             type = $('#filter option:selected').attr('id');
 
             //Remove applied filters, if any
@@ -61,7 +61,7 @@ var ui = {
     reset: function(){
         bw.$refs.envelopePanel.resetDefaults();
         //Reset Sliders
-        setSlider(filter_cutoff, default_data.filter_cutoff);
+        /*setSlider(filter_cutoff, default_data.filter_cutoff);
         setSlider(filterOSC_speed, default_data.filterOSC_speed);
         setSlider(filterOSC_depth, default_data.filterOSC_depth);
 
@@ -69,7 +69,7 @@ var ui = {
         setComboOption('filter', default_data.filter_type);
         disableUI(filterParams);
         disableUI(filter_osc);
-        $('.filterType p').html('');
+        $('.filterType p').html('');*/
     },
     fileHeader: {
         update: function(){

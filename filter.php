@@ -14,7 +14,7 @@
                     <select
                         id="filter"
                         v-model="selected"
-                        v-on:change="set"
+                        @change="set"
 
                         ga-on="change"
                         ga-event-category="filterType"
@@ -42,7 +42,7 @@
                                 :min="filter.lowpass.params.cutoff.min"
                                 :max="filter.lowpass.params.cutoff.max"
                                 :step="filter.lowpass.params.cutoff.step"
-                                v-model="filter.lowpass.params.cutoff.value"
+                                v-model.number="filter.lowpass.params.cutoff.value"
 
                                 ga-on="change"
                                 ga-event-category="filterCutoff"
@@ -58,7 +58,7 @@
                                 :min="filter.highpass.params.cutoff.min"
                                 :max="filter.highpass.params.cutoff.max"
                                 :step="filter.highpass.params.cutoff.step"
-                                v-model="filter.highpass.params.cutoff.value"
+                                v-model.number="filter.highpass.params.cutoff.value"
 
                                 ga-on="change"
                                 ga-event-category="filterCutoff"

@@ -53,7 +53,7 @@ Vue.component('wavepanel', {
         //Initialize Wave Preview
         this.wavesurfer = WaveSurfer.create({
             container: '#wavePreview',
-            waveColor: 'violet',
+            waveColor: 'blue',
             progressColor: 'purple'
         });
     }
