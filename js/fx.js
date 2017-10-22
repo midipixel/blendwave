@@ -92,7 +92,6 @@ Vue.component('fxpanel', {
             for (var slot in this.fxSlots){
                 this.fxSlots[slot].selected = 'none';
                 this.fxSlots[slot].pizEffect = {};
-                //this.turnOffFX(slot);                
             }
         },
         prePlayUpdate: function(){
@@ -124,10 +123,7 @@ Vue.component('fxpanel', {
                         this.fxSlots[slot].pizEffect.gain = 0.1;                    
                     }                
                 }
-            }            
-        }, 
-        teste: function(){
-            console.log('bla');
+            }
         }
     }
 });

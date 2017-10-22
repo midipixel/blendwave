@@ -1,6 +1,4 @@
 var default_data = {
-    filter_type: 'noFilter',
-    filter_cutoff: 500,
     filterOSC_speed: 1,
     filterOSC_depth: 0,
 }
@@ -8,21 +6,11 @@ var default_data = {
 var patch = {
     file: 'samples/aula_flor.wav',
     data: {
-        filter_type: '',
-        filter_cutoff: 0,
         filterOSC_speed: 0,
         filterOSC_depth: 0,
     },
     effects: {
         filter: {
-            /*lp : new Pizzicato.Effects.LowPassFilter({
-                frequency: default_data.filter_cutoff,
-                mix: 0
-            }),
-            hp : new Pizzicato.Effects.HighPassFilter({
-                frequency: default_data.filter_cutoff,
-                mix: 0
-            }),*/
             osc: {
                 on: false,
                 oscNode: null,
@@ -58,7 +46,6 @@ var patch = {
     },
     sound: {},
     create: function(){
-        patch.resetData();
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
@@ -72,20 +59,12 @@ var patch = {
             //console.log(patch.sound);
         });
     },
-    resetData: function(){
-        for (var property in patch.data) {
-            patch.data[property] = default_data[property];
-        }
-    },
     updateData: function(){
         //Envelope
         bw.$refs.envelopePanel.prePlayUpdate();
 
         //Filter
         bw.$refs.filterPanel.prePlayUpdate();
-        /*if(patch.data.filter_type != 'noFilter'){
-            patch.effects.filter[patch.data.filter_type].frequency = patch.data.filter_cutoff;       
-        }*/
 
         //Effects
         bw.$refs.fxPanel.prePlayUpdate();
@@ -94,8 +73,7 @@ var patch = {
         patch.updateData();
         patch.sound.play();
         //Methods that must be invoked right after playing, or the node won't exist
-        patch.effects.filter.osc.set();
-        bw.$refs.envelopePanel.setPitchOSC();
+        //patch.effects.filter.osc.set();
         bw.$refs.envelopePanel.postPlayUpdate();
     },
     stop: function(){

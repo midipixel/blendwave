@@ -15,6 +15,7 @@
                         id="filter"
                         v-model="selected"
                         @change="set"
+                        @keydown="ignoreKeyboard"
 
                         ga-on="change"
                         ga-event-category="filterType"

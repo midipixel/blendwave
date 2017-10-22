@@ -59,7 +59,6 @@ var ui = {
         });
     },
     reset: function(){
-        bw.$refs.envelopePanel.resetDefaults();
         //Reset Sliders
         /*setSlider(filter_cutoff, default_data.filter_cutoff);
         setSlider(filterOSC_speed, default_data.filterOSC_speed);

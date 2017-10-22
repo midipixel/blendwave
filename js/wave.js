@@ -27,8 +27,7 @@ Vue.component('wavepanel', {
             $(this.selectedElement).parent().addClass('active');
 
             //Reset Data
-            patch.resetData();
-            bw.$refs.fxPanel.resetFX();
+            bw.resetData();
 
             //Load new sound
             patch.sound.stop();
@@ -41,16 +40,15 @@ Vue.component('wavepanel', {
                 patch.play();
             });
 
+            //load file into Wave Previewer
             this.wavesurfer.load(patch.file);
 
             //Update old, non-vue UI
             ui.fileHeader.update();
-            ui.reset();
-            //console.log(waveFile);
         }
     },
     mounted: function(){
-        //Initialize Wave Preview
+        //Initialize Wave Previewer
         this.wavesurfer = WaveSurfer.create({
             container: '#wavePreview',
             waveColor: 'blue',

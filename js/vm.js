@@ -15,6 +15,11 @@ var bw = new Vue({
 
             //Initialize UI
             ui.init();
+        },
+        resetData: function(){
+            bw.$refs.fxPanel.resetFX();
+            bw.$refs.envelopePanel.resetDefaults();
+            bw.$refs.filterPanel.resetDefaults();
         }
     },
     mounted: function(){

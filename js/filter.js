@@ -31,7 +31,7 @@ Vue.component('filterpanel', {
                 },
             },
             osc: {
-                on: false,
+                active: false,
                 oscNode: null,
                 gainNode: Pizzicato.context.createGain()
             },
@@ -62,6 +62,26 @@ Vue.component('filterpanel', {
             if (this.selected != 'none'){
                 this.filter[this.selected].pizEffect.frequency = this.filter[this.selected].params.cutoff.value;
             }
+        },
+        postPlayUpdate: function(){
+
+        },
+        ignoreKeyboard: function(e){
+            // Ignore keys on combobox, so that the user can use "P" to preview
+            if (e.keyCode >= 65 && e.keyCode <= 90) // A to Z
+            {
+                e.returnValue=false;
+                e.cancel = true;
+            }
+        },
+        resetDefaults: function(){
+            //Reset filter params
+            this.selected = 'none';
+            this.filter.lowpass.params.cutoff.value = this.filter.lowpass.params.cutoff.default;
+            this.filter.highpass.params.cutoff.value = this.filter.highpass.params.cutoff.default;
+
+            //Reset osc params
+            this.osc.active = false;
         }
     },
     mounted: function() {
