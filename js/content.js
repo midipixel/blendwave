@@ -17,7 +17,7 @@ const content = {
         },
         en: {
             title: "Sound Source",
-            subtitle: "Choose a base sound to start",
+            subtitle: "Choose a base sound sample to start",
             loading: "Loading sound file. Please wait."
         }
     },
@@ -37,12 +37,17 @@ const content = {
             speed: "Velocidade"
         },
         en: {
-            title: "Amplitude e Pitch",
-            subtitle: "Altere o volume e a tonalidade do som",
+            title: "Amplitude and Pitch",
+            subtitle: "Fiddle with the sound sample's volume and pitch",
             ampEnvelope: "Amp Envelope",
-            ampOSC: "Oscilar Volume",
+            ampOSC: "Volume Shake",
             pitch: "Pitch",
-            pitchOSC: "Oscilar Pitch"
+            pitchOSC: "Pitch Shake",
+            attack: "Attack",
+            release: "Release",
+            amount: "Amount",
+            depth: "Depth",
+            speed: "Speed"
         }
     },
 

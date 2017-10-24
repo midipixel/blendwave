@@ -1,6 +1,11 @@
 /* File Header: Shared component */
 Vue.component('fileheader', {
     template: '#fileHeader',
+    data: function() {
+        return {
+            content: content.general
+        }
+    },
     methods: {
         play: function(){
             patch.play();
