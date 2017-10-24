@@ -1,7 +1,7 @@
 <?= '<script type="text/x-template" id="fxPanel">' ?>
 
 <section class="panelContent" id="fx" v-show="active">
-    <?php include('fileHeader.php')?>
+    <fileheader></fileheader>
 
     <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
 

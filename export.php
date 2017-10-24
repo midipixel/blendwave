@@ -1,6 +1,6 @@
 <?= '<script type="text/x-template" id="exportPanel">' ?>
 <section class="panelContent" id="export" v-show="active">
-    <?php include('fileHeader.php')?> 
+    <fileheader></fileheader>
 
     <h3>Saída<em>Exporte o resultado final em formato WAV, e faça o download</em></h3>
 

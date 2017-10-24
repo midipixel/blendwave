@@ -1,7 +1,7 @@
 <?= '<script type="text/x-template" id="filterPanel">' ?>
 
 <section class="panelContent" id="filter" v-show="active">
-    <?php include('fileHeader.php')?> 
+    <fileheader></fileheader>
 
     <h3>{{ content.<?= $locale ?>.title }} <em> {{ content.<?= $locale ?>.subtitle }}</em></h3>
 

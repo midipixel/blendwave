@@ -1,7 +1,7 @@
 <?= '<script type="text/x-template" id="envelopePanel">' ?>
 
 <section class="panelContent envelope" id="envelope" v-show="active">
-    <?php include('fileHeader.php')?> 
+    <fileheader></fileheader>
 
     <h3>Amplitude e Pitch<em>Altere o volume e a tonalidade do som</em></h3>
 

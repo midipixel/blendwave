@@ -2,7 +2,7 @@
 
 <section class="panelContent wavePanel" id="wave" v-show="active">
 
-    <?php include("fileHeader.php"); ?>
+    <fileheader></fileheader>
 
     <h3>Fonte Sonora <em>Escolha um som para servir de base</em></h3>
 
