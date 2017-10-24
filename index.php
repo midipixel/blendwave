@@ -49,7 +49,6 @@
 
     <!-- Application -->
     <script src="js/util.js"></script>
-    <script src="js/ui.js"></script>
     <script src="js/patches.js"></script>
 
     <script src="js/fileheader.js"></script>
