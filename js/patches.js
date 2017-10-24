@@ -1,14 +1,5 @@
-var default_data = {
-    filterOSC_speed: 1,
-    filterOSC_depth: 0,
-}
-
 var patch = {
     file: 'samples/sine.wav',
-    data: {
-        filterOSC_speed: 0,
-        filterOSC_depth: 0,
-    },
     sound: {},
     create: function(){
         patch.sound = new Pizzicato.Sound({

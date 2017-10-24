@@ -40,7 +40,7 @@
     <?php include_once("analytics.php") ?>
 
     <!-- Vendor -->
-    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/zepto.min.js"></script>
     <script src="js/vendor/vue.js"></script>
 
     <script src="js/vendor/recorder.js"></script>
