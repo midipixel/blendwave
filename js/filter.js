@@ -33,7 +33,23 @@ Vue.component('filterpanel', {
             osc: {
                 active: false,
                 oscNode: null,
-                gainNode: Pizzicato.context.createGain()
+                gainNode: Pizzicato.context.createGain(),
+                params: {
+                    speed: {
+                        default: 5,
+                        value: 5,
+                        min: 0,
+                        max: 20,
+                        step: 0.1
+                    },
+                    amount: {
+                        default: 1,
+                        value: 1,
+                        min: 0,
+                        max: 5,
+                        step: 1
+                    }
+                }
             },
             content: {
                 pt: {
@@ -53,7 +69,6 @@ Vue.component('filterpanel', {
     },
     methods: {
         set: function(){
-            console.log(this.selected);
             if (this.selected != 'none'){
                 patch.sound.addEffect(this.filter[this.selected].pizEffect);
             }
@@ -72,7 +87,7 @@ Vue.component('filterpanel', {
 
                 //Create Oscillator, set up frequency
                 this.osc.oscNode = Pizzicato.context.createOscillator();
-                this.osc.oscNode.frequency.value = 5;
+                this.osc.oscNode.frequency.value = this.osc.params.speed.value;
 
                 //Connect OSC -> gain -> filter frequency
                 this.osc.oscNode.connect(this.osc.gainNode);
@@ -80,8 +95,7 @@ Vue.component('filterpanel', {
                 this.osc.oscNode.start();
 
                 if (this.osc.active){
-                    this.osc.gainNode.gain.value = 4000;
-                    console.log(this.osc.gainNode);
+                    this.osc.gainNode.gain.value = this.osc.params.amount.value * 500;
                 }
                 else {
                     this.osc.gainNode.gain.value = 0;
@@ -107,6 +121,8 @@ Vue.component('filterpanel', {
 
             //Reset osc params
             this.osc.active = false;
+            this.osc.params.speed.value = this.osc.params.speed.default;
+            this.osc.params.amount.value = this.osc.params.amount.default;
         }
     },
     mounted: function() {

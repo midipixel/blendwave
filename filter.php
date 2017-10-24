@@ -78,7 +78,7 @@
             </div>
 
             <div class="col-sm-6">
-                <fieldset id="filter_osc" class="audioParams disabled">
+                <fieldset id="filter_osc" :class="{audioParams:true, disabled: !osc.active}" :disabled="!osc.active">
                     <legend>
                         <input
                             type="checkbox"
@@ -93,32 +93,28 @@
                     <label for="filterOSC_speed">{{ content.<?= $locale ?>.speed }}</label>
                     <input
                         type="range"
-                        id="filterOSC_speed"
-                        min="1"
-                        value="5"
-                        max="20"
-                        step="1"
-                        data-type="audioParam"
-                        disabled="true"
+                        :min="osc.params.speed.min"
+                        :max="osc.params.speed.max"
+                        :step="osc.params.speed.step"
+                        v-model.number="osc.params.speed.value"
+
                         ga-on="change"
                         ga-event-category="filterOSC"
                         ga-event-action="speed">
-                    <output for="filterOSC_speed">5</output>
+                    <output for="filterOSC_speed">{{ osc.params.speed.value }}</output>
 
                     <label for="filterOSC_depth">{{ content.<?= $locale ?>.depth }}</label>
                     <input
                         type="range"
-                        id="filterOSC_depth"
-                        min="0"
-                        value="0"
-                        max="1"
-                        step="0.1"
-                        data-type="audioParam"
-                        disabled="true"
+                        :min="osc.params.amount.min"
+                        :max="osc.params.amount.max"
+                        :step="osc.params.amount.step"
+                        v-model.number="osc.params.amount.value"
+
                         ga-on="change"
                         ga-event-category="filterOSC"
                         ga-event-action="depth">
-                    <output for="filterOSC_depth">1</output>
+                    <output for="filterOSC_depth">{{ osc.params.amount.value }}</output>
                 </fieldset>
             </div>
         </form>
