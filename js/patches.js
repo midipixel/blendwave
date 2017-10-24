@@ -1,11 +1,10 @@
 var patch = {
-    file: 'samples/sine.wav',
     sound: {},
     create: function(){
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
-                path: patch.file,
+                path: 'samples/sine.wav',
                 attack: 0.04,
                 volume: 1,
                 loop: true

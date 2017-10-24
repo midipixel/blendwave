@@ -4,20 +4,18 @@ Vue.component('wavepanel', {
     template: '#wavePanel',
     data: function(){
         return {
-            selectedElement: ' ',
             loading: false,
             wavesurfer: null
         }
     },
     methods: {
         changeFile: function(event){
-            this.selectedElement = event.target;
-            patch.file = event.target.href;
+            this.$root.file.path = event.target.href;
 
             //Update filename
             var fileString = event.target.href.split('/');
             var pos = fileString.length - 1;
-            this.$root.file = fileString[pos];
+            this.$root.file.name = fileString[pos];
 
             this.loading = true;
 
@@ -33,14 +31,14 @@ Vue.component('wavepanel', {
 
             patch.sound = new Pizzicato.Sound({
                 source: 'file',
-                options: { path: patch.file }
+                options: { path: this.$root.file.path }
             }, function() {
                 bw.$refs.wavePanel.loading = false;
                 patch.play();
             });
 
             //load file into Wave Previewer
-            this.wavesurfer.load(patch.file);
+            this.wavesurfer.load(this.$root.file.path);
 
         }
     },

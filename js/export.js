@@ -81,7 +81,7 @@ Vue.component('exportpanel', {
                     hf.download = bw.$refs.wavePanel.fileName + '_' + new Date().toISOString() + '.wav';
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;
-                    var downloadText = 'Baixar: ' + bw.$refs.wavePanel.fileName;
+                    var downloadText = 'Baixar: ' + bw.file.name;
                     hf.innerHTML = downloadText;
                     li.appendChild(au);
                     li.appendChild(hf);
