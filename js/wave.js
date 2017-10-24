@@ -4,6 +4,7 @@ Vue.component('wavepanel', {
     template: '#wavePanel',
     data: function(){
         return {
+            content: content.wavePanel,
             loading: false,
             wavesurfer: null
         }

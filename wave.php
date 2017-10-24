@@ -4,13 +4,13 @@
 
     <fileheader></fileheader>
 
-    <h3>Fonte Sonora <em>Escolha um som para servir de base</em></h3>
+    <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="row">
         <div class="loading">
             <p v-show="loading">
                 <img src="img/loading.gif" height="30">
-                Por Favor, aguarde. Carregando Som
+                {{ content[$root.locale].loading }}
             </p>
         </div>
 
@@ -22,7 +22,7 @@
                         ga-on="click"
                         ga-event-category="wavePanel"
                         ga-event-action="Change File">
-                        Sine
+                        {{ $root.file.name }}
                     </a>
                 </li>
                 <?php
