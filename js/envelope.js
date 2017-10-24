@@ -3,12 +3,13 @@ Vue.component('envelopepanel', {
     template: '#envelopePanel',
     data: function(){
         return {
+            content: content.envelopePanel,
             amp_envelope: {
                 name: 'Amp Envelope',
                 active: false,
                 params: {
                     attack: {
-                        name: 'Ataque',
+                        name: 'attack',
                         default: 0,
                         value: 0,
                         min: 0,
@@ -16,7 +17,7 @@ Vue.component('envelopepanel', {
                         step: 0.01
                     },
                     release: {
-                        name: 'Repouso/Release',
+                        name: 'release',
                         default: 0.3,
                         value: 0.3,
                         min: 1,
@@ -31,7 +32,7 @@ Vue.component('envelopepanel', {
                 pizEffect: {},
                 params: {
                     speed: {
-                        name: 'Velocidade',
+                        name: 'speed',
                         default: 5,
                         value: 5,
                         min: 0,
@@ -39,7 +40,7 @@ Vue.component('envelopepanel', {
                         step: 0.1
                     },
                     depth: {
-                        name: 'Força',
+                        name: 'depth',
                         default: 1,
                         value: 1,
                         min: 0,
@@ -52,7 +53,7 @@ Vue.component('envelopepanel', {
                 name: 'Pitch',
                 params: {
                     amount: {
-                        name: 'Quantidade',
+                        name: 'amount',
                         default: 0,
                         value: 0,
                         min: -24,
@@ -66,7 +67,7 @@ Vue.component('envelopepanel', {
                 active: false,
                 params: {
                     speed: {
-                        name: 'Velocidade',
+                        name: 'speed',
                         default: 5,
                         value: 5,
                         min: 0,

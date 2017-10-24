@@ -3,7 +3,7 @@
 <section class="panelContent envelope" id="envelope" v-show="active">
     <fileheader></fileheader>
 
-    <h3>Amplitude e Pitch<em>Altere o volume e a tonalidade do som</em></h3>
+    <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="row amp">
         <div class="col-sm-6">
@@ -15,12 +15,12 @@
                            ga-on="change"
                            ga-event-category="ampEnvelope"
                            ga-event-action="toggle envelope"/>
-                    {{ amp_envelope.name }}
+                    {{ content[$root.locale].ampEnvelope }}
                 </legend>
 
                 <div class="params">
                     <template v-for="param in amp_envelope.params">
-                        <label :for=param.name>{{ param.name }}</label>
+                        <label :for=param.name>{{ content[$root.locale][param.name] }}</label>
                         <input type="range"
                                :min=param.min
                                v-model:value=param.value
@@ -42,12 +42,12 @@
                            ga-on="change"
                            ga-event-category="ampOSC"
                            ga-event-action="toggle oscillator"/>
-                    {{ amp_osc.name }}
+                    {{ content[$root.locale].ampOSC }}
                 </legend>
 
                 <div class="params">
                     <template v-for="param in amp_osc.params">
-                        <label :for=param>{{ param.name }}</label>
+                        <label :for=param>{{ content[$root.locale][param.name] }}</label>
                         <input type="range"
                                :min=param.min
                                v-model:value=param.value
@@ -64,10 +64,10 @@
 
         <div class="col-sm-6">
             <fieldset id="pitchEnvelope" class="audioParams">
-                <legend>{{ pitch.name }}</legend>
+                <legend>{{ content[$root.locale].pitch }}</legend>
 
                 <template v-for="param in pitch.params">
-                    <label :for=param>{{ param.name }}</label>
+                    <label :for=param>{{ content[$root.locale][param.name] }}</label>
                     <input type="range"
                            :min=param.min
                            v-model:value=param.value
@@ -89,12 +89,12 @@
                            ga-on="change"
                            ga-event-category="pitchOSC"
                            ga-event-action="toggle oscillator"/>
-                    {{ pitch_osc.name }}
+                    {{ content[$root.locale].pitchOSC }}
                 </legend>
 
                 <div class="params">
                     <template v-for="param in pitch_osc.params">
-                        <label :for=param>{{ param.name }}</label>
+                        <label :for=param>{{ content[$root.locale][param.name] }}</label>
                         <input type="range"
                                :min=param.min
                                v-model:value=param.value

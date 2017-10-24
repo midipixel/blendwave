@@ -1,7 +1,12 @@
 const content = {
 
-    globalContent: {
+    general: {
+        pt: {
 
+        },
+        en: {
+
+        }
     },
 
     wavePanel: {
@@ -19,10 +24,25 @@ const content = {
 
     envelopePanel: {
         pt: {
-
+            title: "Amplitude e Pitch",
+            subtitle: "Altere o volume e a tonalidade do som",
+            ampEnvelope: "Amp Envelope",
+            ampOSC: "Oscilar Volume",
+            pitch: "Pitch",
+            pitchOSC: "Oscilar Pitch",
+            attack: "Ataque",
+            release: "Repouso (Release)",
+            amount: "Quantidade",
+            depth: "Força",
+            speed: "Velocidade"
         },
         en: {
-
+            title: "Amplitude e Pitch",
+            subtitle: "Altere o volume e a tonalidade do som",
+            ampEnvelope: "Amp Envelope",
+            ampOSC: "Oscilar Volume",
+            pitch: "Pitch",
+            pitchOSC: "Oscilar Pitch"
         }
     },
 
