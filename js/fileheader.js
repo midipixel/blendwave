@@ -1,16 +1,9 @@
 /* File Header: Shared component */
 Vue.component('fileheader', {
-    props: ['active'],
     template: '#fileHeader',
-    data: function(){
-        return{
-
+    computed: {
+        fileName: function(){
+            return this.$root.file;
         }
-    },
-    methods: {
-
-    },
-    mounted: function(){
-
     }
 });

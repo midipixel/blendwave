@@ -3,7 +3,8 @@ var bw = new Vue({
     data: {
         panels: {
             activePanel: 'wavePanel'
-        }
+        },
+        file: 'sine.wav'
     },
     methods: {
         activatePanel: function(panel){
@@ -17,13 +18,11 @@ var bw = new Vue({
         initUI: function(){
             //Global File Play Input
             $('.fileHeader').on('mousedown', function(){
-                ui.fileHeader.setState('active');
                 patch.play();
                 //logValue.start();
             })
 
             $('.fileHeader').on('mouseup', function(){
-                ui.fileHeader.setState('default');
                 patch.stop();
                 //logValue.stop();
             })

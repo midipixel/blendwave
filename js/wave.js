@@ -5,7 +5,6 @@ Vue.component('wavepanel', {
     data: function(){
         return {
             selectedElement: ' ',
-            fileName: ' ',
             loading: false,
             wavesurfer: null
         }
@@ -15,10 +14,10 @@ Vue.component('wavepanel', {
             this.selectedElement = event.target;
             patch.file = event.target.href;
 
-            //Store filename from full URL string
+            //Update filename
             var fileString = event.target.href.split('/');
             var pos = fileString.length - 1;
-            this.fileName = fileString[pos];
+            this.$root.file = fileString[pos];
 
             this.loading = true;
 
@@ -43,8 +42,6 @@ Vue.component('wavepanel', {
             //load file into Wave Previewer
             this.wavesurfer.load(patch.file);
 
-            //Update old, non-vue UI
-            ui.fileHeader.update();
         }
     },
     mounted: function(){
