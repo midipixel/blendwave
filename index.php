@@ -53,7 +53,7 @@
     <script src="js/patches.js"></script>
 
     <script src="js/fileheader.js"></script>
-    <?php include("filehead.php"); ?>
+    <?php include("fileheader.php"); ?>
 
     <script src="js/wave.js"></script>
     <?php include("wave.php"); ?>

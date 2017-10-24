@@ -1,3 +1,4 @@
+<?= '<script type="text/x-template" id="fileHeader">' ?>
     <header class="fileHeader"
             ga-on="click"
             ga-event-category="fileHeader"
@@ -7,3 +8,4 @@
 
         <section id="wavePreview"></section>
     </header>
+<?= '</script>'  ?>
