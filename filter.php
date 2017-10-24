@@ -3,12 +3,12 @@
 <section class="panelContent" id="filter" v-show="active">
     <fileheader></fileheader>
 
-    <h3>{{ content.<?= $locale ?>.title }} <em> {{ content.<?= $locale ?>.subtitle }}</em></h3>
+    <h3>{{ content[$root.locale].title }} <em> {{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="row">
         <form action="" autocomplete="off">
             <div class="col-sm-6">
-                <h5><label for="filter">{{ content.<?= $locale ?>.filterType }}</label></h5>
+                <h5><label for="filter">{{ content[$root.locale].filterType }}</label></h5>
 
                 <div class="dspType filterType">
                     <select
@@ -21,11 +21,11 @@
                         ga-event-category="filterType"
                         ga-event-action="choose filter type">
 
-                        <option value="none" selected="selected">{{ content.<?= $locale ?>.none }}</option>
-                        <option value="lowpass">{{ content.<?= $locale ?>.lowpass[0] }}</option>
-                        <option value="highpass">{{ content.<?= $locale ?>.highpass[0] }}</option>
+                        <option value="none" selected="selected">{{ content[$root.locale].none }}</option>
+                        <option value="lowpass">{{ content[$root.locale].lowpass[0] }}</option>
+                        <option value="highpass">{{ content[$root.locale].highpass[0] }}</option>
                     </select>
-                    <p>{{ selected != 'none' ? content.<?= $locale ?>[selected][1] : ' ' }}</p>
+                    <p>{{ selected != 'none' ? content[$root.locale][selected][1] : ' ' }}</p>
                 </div>
 
                 <div :class="'dspSetup filterSetup' + ' ' + this.selected" >
@@ -34,7 +34,7 @@
                     </figure>
 
                     <fieldset class="audioParams" :disabled="this.selected == 'none'">
-                        <label for="filter_cutoff">{{ content.<?= $locale ?>.cutoff }}</label>
+                        <label for="filter_cutoff">{{ content[$root.locale].cutoff }}</label>
 
                         <!-- Low Pass -->
                         <template v-if="selected === 'lowpass'">
@@ -87,10 +87,10 @@
                             ga-on="change"
                             ga-event-category="filterOSC"
                             ga-event-action="toggle filter oscillator"/>
-                        {{ content.<?= $locale ?>.oscillateFilter }}
+                        {{ content[$root.locale].oscillateFilter }}
                     </legend>
 
-                    <label for="filterOSC_speed">{{ content.<?= $locale ?>.speed }}</label>
+                    <label for="filterOSC_speed">{{ content[$root.locale].speed }}</label>
                     <input
                         type="range"
                         :min="osc.params.speed.min"
@@ -103,7 +103,7 @@
                         ga-event-action="speed">
                     <output for="filterOSC_speed">{{ osc.params.speed.value }}</output>
 
-                    <label for="filterOSC_depth">{{ content.<?= $locale ?>.depth }}</label>
+                    <label for="filterOSC_depth">{{ content[$root.locale].depth }}</label>
                     <input
                         type="range"
                         :min="osc.params.amount.min"

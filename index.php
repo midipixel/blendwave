@@ -48,6 +48,7 @@
     <script src="js/vendor/wavesurfer-1.4.0.js"></script>
 
     <!-- Application -->
+    <script src="js/content.js"></script>
     <script src="js/util.js"></script>
     <script src="js/patches.js"></script>
 

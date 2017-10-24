@@ -49,6 +49,8 @@ Vue.component('wavepanel', {
             waveColor: 'blue',
             progressColor: 'purple'
         });
+
+        this.wavesurfer.load(this.$root.file.path);
     }
 });
 
