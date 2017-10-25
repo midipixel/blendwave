@@ -10,10 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<?php
-    $locale = 'pt'
-?>
-
 <body>
     <main class="container">
         <div id="blendwave">
@@ -37,7 +33,12 @@
     </main>
 
     <!-- Analytics -->
-    <?php include_once("analytics.php") ?>
+    <?php
+        // Include Analytics only when on production
+        if($_SERVER["REMOTE_ADDR"] != "127.0.0.1"){
+            include_once("analytics.php");
+        }
+    ?>
 
     <!-- Vendor -->
     <script src="js/vendor/zepto.min.js"></script>

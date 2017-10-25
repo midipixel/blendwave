@@ -134,7 +134,10 @@ const content = {
 
     exportPanel: {
         pt: {
-
+            title: "Saída",
+            subtitle: "Exporte o resultado final em formato WAV, e faça o download",
+            exportButton: "Exportar Áudio",
+            filesTitle: "Arquivos Exportados"
         },
         en: {
 

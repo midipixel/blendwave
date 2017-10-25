@@ -2,7 +2,7 @@
 <section class="panelContent" id="export" v-show="active">
     <fileheader></fileheader>
 
-    <h3>Saída<em>Exporte o resultado final em formato WAV, e faça o download</em></h3>
+    <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <button
         id="exportBtn"
@@ -11,11 +11,11 @@
         ga-on="click"
         ga-event-category="exportPanel"
         ga-event-action="export file">
-        Exportar Áudio
+        {{ content[$root.locale].exportButton }}
     </button>
 
     <div class="exports">
-        <h4>Arquivos Exportados:</h4>
+        <h4>{{ content[$root.locale].filesTitle }}</h4>
         <ul id="recordingslist"  class="exportedFiles">
         </ul>
     </div>

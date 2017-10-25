@@ -3,6 +3,7 @@ Vue.component('exportpanel', {
     template: '#exportPanel',
     data: function(){
         return {
+            content: content.exportPanel,
             interval: null
         }
     },
