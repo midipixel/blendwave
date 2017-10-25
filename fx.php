@@ -44,7 +44,7 @@
                                         <?php 
                                             foreach ($fxData as $fx => $props): 
                                         ?>
-                                            <option value='<?= $fx ?>'><?= $props["name"] ?></option>
+                                            <option value='<?= $fx ?>'>{{ content[$root.locale].<?= $fx ?>[0] }}</option>
                                         <?php 
                                             endforeach; 
                                         ?>
@@ -55,7 +55,7 @@
                                             foreach ($fxData as $fx => $props): 
                                         ?>
                                             <span v-if="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'">
-                                            <?= $props["description"] ?>
+                                            {{ content[$root.locale].<?= $fx ?>[1] }}
                                             </span>
                                         <?php 
                                             endforeach; 
@@ -81,7 +81,7 @@
                                                 <?php 
                                                     foreach ($props["params"] as $param => $values):
                                                 ?>
-                                                    <label for="<?= param ?>"><?= $values['name'] ?></label>
+                                                    <label for="<?= param ?>">{{ content[$root.locale].params.<?= $param ?> }}</label>
                                                     <input type="range" id="" 
                                                             v-model="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>"
                                                             min="<?= $values['min'] ?>" max="<?= $values['max'] ?>"

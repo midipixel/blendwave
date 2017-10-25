@@ -9,6 +9,17 @@ const content = {
         }
     },
 
+    fileHeader: {
+        pt: {
+            title: "Som Escolhido",
+            hint: 'Aperte "P" para Preview'
+        },
+        en: {
+            title: "Selected Sample",
+            hint: 'Press "P" to Preview'
+        }
+    },
+
     wavePanel: {
         pt: {
             title: "Fonte Sonora",
@@ -80,10 +91,44 @@ const content = {
 
     fxPanel: {
         pt: {
-
+            title: "Efeitos",
+            subtitle: "Experimente com seu som utilizando efeitos DSP!",
+            reverb: ["Reverb", "Simula a reverberação do som em ambientes fechados"],
+            delay: ["Delay", "Toca o som original e com atraso, gerando um efeito de eco"],
+            distortion: ["Distortion", "Distorce som de forma ruidosa, dando um caráter agressivo ao timbre"],
+            flanger: ["Flanger", "Filtra frequências ao longo do tempo, conferindo uma estética incomum ao som"],
+            ringmodulator: ["Ring Modulator", "Modula o som a partir de dois sinais, resultando em um timbre metálico e alienígena"],
+            params: {
+                // Had to create the extra level because distortion doubles both as effect and param
+                time: "Tempo",
+                decay: "Decaimento (Decay)",
+                distortion: "Distorção",
+                mix: "Mix",
+                feedback: "Feedback",
+                gain: "Ganho",
+                speed: "Velocidade",
+                depth: "Profundidade"
+            }
         },
         en: {
-
+            title: "Effects",
+            subtitle: "Experiment with your sound sample by utilizing DSP Effects!",
+            reverb: ["Reverb", "Simulates the reverberation of indoors locations."],
+            delay: ["Delay", "The sample is replayed multiple times, creating an echo chamber."],
+            distortion: ["Distortion", "The sample is harshly distorted, providing an agressive character."],
+            flanger: ["Flanger", "Frequencies are filtered and modulated over time, resulting in an unusual aesthetic."],
+            ringmodulator: ["Ring Modulator", "The sample is modulated by two signals, resulting in an alien and metalic timbre"],
+            params: {
+                // Had to create the extra level because distortion is both an effect and param
+                time: "Time",
+                decay: "Decay",
+                distortion: "Distortion",
+                mix: "Mix",
+                feedback: "Feedback",
+                gain: "Gain",
+                speed: "Speed",
+                depth: "Depth"
+            }
         }
     },
 

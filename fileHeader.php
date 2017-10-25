@@ -6,8 +6,8 @@
             ga-on="click"
             ga-event-category="fileHeader"
             ga-event-action="Click To Play">
-        &#x25BA; Som Escolhido: {{ fileName }}
-        <small>(aperte 'P' para Preview)</small>
+        &#x25BA; {{ content[$root.locale].title }} : {{ fileName }}
+        <small>({{ content[$root.locale].hint }})</small>
 
         <section id="wavePreview"></section>
     </header>

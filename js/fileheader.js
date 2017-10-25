@@ -3,7 +3,7 @@ Vue.component('fileheader', {
     template: '#fileHeader',
     data: function() {
         return {
-            content: content.general
+            content: content.fileHeader
         }
     },
     methods: {

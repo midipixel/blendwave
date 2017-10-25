@@ -10,6 +10,7 @@ Vue.component('fxpanel', {
     template: '#fxPanel', 
     data: function(){
         return {
+            content: content.fxPanel,
             fxSlots : {
                 fxSlot1: {
                     active: false,
