@@ -2,10 +2,18 @@ const content = {
 
     general: {
         pt: {
-
+            wavePanel: "Fonte Sonora",
+            envelopePanel: "Amplitude e Pitch",
+            filterPanel: "Filtro",
+            fxPanel: "Efeitos",
+            exportPanel: "Saída"
         },
         en: {
-
+            wavePanel: "Choose Sample",
+            envelopePanel: "Amplitude and Pitch",
+            filterPanel: "Filter",
+            fxPanel: "Effects",
+            exportPanel: "Output"
         }
     },
 
@@ -77,15 +85,15 @@ const content = {
         },
         en: {
             title: 'Filter',
-            subtitle: 'Refine o som, filtrando as frequências altas ou baixas',
-            filterType: 'Tipo de Filtro',
-            highpass: ["Passa Alta (HP)", "Filtra as baixas frequências"],
-            lowpass: ["Passa Baixa (LP)", "Filtra as altas frequências"],
-            none: "Nenhum",
-            cutoff: 'Frequência de Corte',
-            oscillateFilter: "Oscilar Filtro",
-            speed: "Velocidade",
-            depth: "Força"
+            subtitle: 'Sculpt your sample by filtering high or low frequencies',
+            filterType: 'Filter Type',
+            highpass: ["High Pass (HP)", "Filters low frequencies"],
+            lowpass: ["Low Pass (LP)", "Filters high frequencies"],
+            none: "None",
+            cutoff: 'Cutoff Frequency',
+            oscillateFilter: "Filter Shake",
+            speed: "Speed",
+            depth: "Depth"
         }
     },
 
@@ -93,6 +101,7 @@ const content = {
         pt: {
             title: "Efeitos",
             subtitle: "Experimente com seu som utilizando efeitos DSP!",
+            none: ["Nenhum", "Nenhum efeito selecionado"],
             reverb: ["Reverb", "Simula a reverberação do som em ambientes fechados"],
             delay: ["Delay", "Toca o som original e com atraso, gerando um efeito de eco"],
             distortion: ["Distortion", "Distorce som de forma ruidosa, dando um caráter agressivo ao timbre"],
@@ -113,6 +122,7 @@ const content = {
         en: {
             title: "Effects",
             subtitle: "Experiment with your sound sample by utilizing DSP Effects!",
+            none: ["None", "No Effect Selected"],
             reverb: ["Reverb", "Simulates the reverberation of indoors locations."],
             delay: ["Delay", "The sample is replayed multiple times, creating an echo chamber."],
             distortion: ["Distortion", "The sample is harshly distorted, providing an agressive character."],
@@ -140,7 +150,10 @@ const content = {
             filesTitle: "Arquivos Exportados"
         },
         en: {
-
+            title: "Output",
+            subtitle: "Export your final result to a WAV file, and download",
+            exportButton: "Export Audio",
+            filesTitle: "Exported Files"
         }
     },
 

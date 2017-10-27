@@ -20,7 +20,7 @@ Vue.component('envelopepanel', {
                         name: 'release',
                         default: 0.3,
                         value: 0.3,
-                        min: 1,
+                        min: 0.3,
                         max: 3,
                         step: 0.01
                     }

@@ -15,11 +15,11 @@
         <div id="blendwave">
             <nav class="mainNav">
                 <ul>
-                    <li><a href="#wavePanel" @click="activatePanel('wavePanel')">Fonte Sonora</a></li>
-                    <li><a href="#envelopePanel" @click="activatePanel('envelopePanel')">Amplitude e Pitch</a></li>
-                    <li><a href="#filterPanel" @click="activatePanel('filterPanel')">Filtro</a></li>
-                    <li><a href="#fxPanel" @click="activatePanel('fxPanel')">Efeitos</a></li>
-                    <li><a href="#exportPanel" @click="activatePanel('exportPanel')">Saída</a></li>
+                    <li><a href="#wavePanel" @click="activatePanel('wavePanel')">{{ content[locale].wavePanel }}</a></li>
+                    <li><a href="#envelopePanel" @click="activatePanel('envelopePanel')">{{ content[locale].envelopePanel }}</a></li>
+                    <li><a href="#filterPanel" @click="activatePanel('filterPanel')">{{ content[locale].filterPanel }}</a></li>
+                    <li><a href="#fxPanel" @click="activatePanel('fxPanel')">{{ content[locale].fxPanel }}</a></li>
+                    <li><a href="#exportPanel" @click="activatePanel('exportPanel')">{{ content[locale].exportPanel }}</a></li>
                 </ul>
             </nav>
 
@@ -49,7 +49,7 @@
     <script src="js/vendor/wavesurfer-1.4.0.js"></script>
 
     <!-- Application -->
-    <script src="js/content.js"></script>
+    <script src="js/data/content.js"></script>
     <script src="js/util.js"></script>
     <script src="js/patches.js"></script>
 
@@ -65,6 +65,7 @@
     <script src="js/filter.js"></script>
     <?php include("filter.php"); ?>
 
+    <script src="js/data/fx_data.js"></script>
     <script src="js/fx.js"></script>
     <?php include("fx.php"); ?>    
     

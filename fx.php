@@ -3,7 +3,7 @@
 <section class="panelContent" id="fx" v-show="active">
     <fileheader></fileheader>
 
-    <h3>Efeitos <em>Experimente com seu som utilizando efeitos DSP!</em></h3>
+    <h3>{{ content[$root.locale].title }} <em>{{ content[$root.locale].title }}</em></h3>
 
     <?php
         $fxDataJSON = file_get_contents('js/data/fx_data.json');
@@ -24,7 +24,8 @@
                             <div class="fxControls">
                                 <button
                                     class="toggleFX"
-                                    v-on:click.prevent="toggleFX('<?= $fxSlot ?>')"
+                                    @click.prevent="toggleFX('<?= $fxSlot ?>')"
+
                                     ga-on="click"
                                     ga-event-category="<?= $fxSlot ?>"
                                     ga-event-action="toggle FX">
@@ -37,73 +38,53 @@
                                         v-on:change="setFX('<?= $fxSlot ?>')"
                                         ga-on="change"
                                         ga-event-category="<?= $fxSlot ?>"
-                                        :ga-event-action="fxSlots['<?= $fxSlot ?>'].selected">
+                                        :ga-event-action="fxSlots['<?= $fxSlot ?>'].selected"
                                         disabled="disabled">
 
-                                        <option selected="selected" value="none">None</option>
-                                        <?php 
-                                            foreach ($fxData as $fx => $props): 
-                                        ?>
-                                            <option value='<?= $fx ?>'>{{ content[$root.locale].<?= $fx ?>[0] }}</option>
-                                        <?php 
-                                            endforeach; 
-                                        ?>
+                                        <option selected="selected" value="none">{{ content[$root.locale].none[0] }}</option>
+                                        <template v-for="fx in fxSlots.<?= $fxSlot ?>.fxData">
+                                            <option :value='fx.key'>{{ content[$root.locale][fx.key][0] }}</option>
+                                        </template>
                                     </select>
 
                                     <p>
-                                        <?php 
-                                            foreach ($fxData as $fx => $props): 
-                                        ?>
-                                            <span v-if="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'">
-                                            {{ content[$root.locale].<?= $fx ?>[1] }}
-                                            </span>
-                                        <?php 
-                                            endforeach; 
-                                        ?>
+                                        {{ content[$root.locale][fxSlots.<?= $fxSlot ?>.selected][1] }}
                                     </p>
                                 </div>
                             </div>
 
-                            <?php 
-                                foreach ($fxData as $fx => $props):
-                            ?>
-                                <div id="<?= $fx ?>" 
-                                     v-show="fxSlots['<?= $fxSlot ?>'].selected == '<?= $fx ?>'"
+                            <template v-for="fx in fxSlots.<?= $fxSlot ?>.fxData">
+                                <div v-if="fxSlots.<?= $fxSlot ?>.selected === fx.key"
                                      :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
 
                                     <div class="row fxSetup">
                                         <figure class="col-sm-4">
-                                            <img src="img/<?= $fx ?>.png" alt="">
+                                            <img :src="fx.img" alt="">
                                         </figure>
 
                                         <div class="col-sm-8" id="fxParams">
                                             <fieldset class="audioParams">
-                                                <?php 
-                                                    foreach ($props["params"] as $param => $values):
-                                                ?>
-                                                    <label for="<?= param ?>">{{ content[$root.locale].params.<?= $param ?> }}</label>
-                                                    <input type="range" id="" 
-                                                            v-model="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>"
-                                                            min="<?= $values['min'] ?>" max="<?= $values['max'] ?>"
-                                                            step="<?= $values['step'] ?>"
-                                                            data-type="audioParam"
+                                                <template v-for="param in fxSlots.<?= $fxSlot ?>.fxData[fxSlots.<?= $fxSlot ?>.selected].params">
+                                                    <label :for="param">{{ content[$root.locale].params[param.id] }}</label>
+                                                    <input type="range"
+                                                            v-model.number="param.value"
+                                                            :min="param.min"
+                                                            :max="param.max"
+                                                            :step="param.step"
+
                                                             ga-on="change"
-                                                            ga-event-category="<?= $fx ?> param"
-                                                            ga-event-action="<?= $param ?>"
-                                                           >
-                                                    <output :value="fxSlots.<?= $fxSlot ?>.params.<?= $param ?>">
-                                                        {{ fxSlots.<?= $fxSlot ?>.params.<?= $param ?> }}
+                                                            :ga-event-category="'fxSlots.<?= $fxSlot ?>.selected' + ' param'"
+                                                            :ga-event-action="param">
+
+                                                    <output value="">
+                                                        {{ param.value }}
                                                     </output>
-                                                <?php 
-                                                    endforeach;
-                                                ?>
+                                                </template>
                                             </fieldset>
                                         </div>
                                     </div>
                                 </div>
-                            <?php 
-                                endforeach; 
-                            ?>                            
+                            </template>
                          </fieldset>
                     </form>
                 </div>

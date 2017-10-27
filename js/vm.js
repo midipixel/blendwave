@@ -2,13 +2,14 @@ var bw = new Vue({
     el: '#blendwave',
     data: {
         panels: {
-            activePanel: 'wavePanel'
+            activePanel: 'fxPanel'
         },
         file: {
             name: 'sine.wav',
             path: 'samples/sine.wav'
         },
-        locale: 'pt'
+        locale: 'pt',
+        content: content.general
     },
     methods: {
         activatePanel: function(panel){

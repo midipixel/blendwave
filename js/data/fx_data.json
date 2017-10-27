@@ -23,26 +23,21 @@
         }
     },
     "delay":{
-        "name":"Delay",
-        "description":"Toca o som original e com atraso, gerando um efeito de eco",
         "img":"img/delay.png",
         "params":{
             "time": {
-                "name":"Tempo",
                 "value":0.4,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "feedback": {
-                "name":"Feedback",
                 "value":0.6,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "mix": {
-                "name":"Mix",
                 "value":0.5,
                 "min":0,
                 "max":1,
@@ -51,12 +46,9 @@
         }
     }, 
     "distortion":{
-        "name":"Distortion",
-        "description":"Distorce som de forma ruidosa, dando um caráter agressivo ao timbre",
         "img":"img/distortion.png",
         "params":{
             "gain": {
-                "name":"Ganho",
                 "value":0.5,
                 "min":0,
                 "max":1,
@@ -65,40 +57,33 @@
         }
     },
     "flanger":{
-        "name":"Flanger",
-        "description":"Filtra frequências ao longo do tempo, conferindo uma estética incomum ao som",
         "img":"img/flanger.png",
         "params":{
             "time": {
-                "name":"Tempo",
                 "value":0.5,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "speed": {
-                "name":"Velocidade",
                 "value":0.2,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "depth": {
-                "name":"Profundidade",
                 "value":0.1,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "feedback": {
-                "name":"Feedback",
                 "value":0.1,
                 "min":0,
                 "max":1,
                 "step":0.01
             },
             "mix": {
-                "name":"Mix",
                 "value":1,
                 "min":0,
                 "max":1,
@@ -107,26 +92,21 @@
         }
     },
     "ringmodulator":{
-        "name":"Ring Modulator",
-        "description":"Modula o som a partir de dois sinais, resultando em um timbre metálico e alienígena",
         "img":"img/ring_modulator.png",
         "params":{
             "speed": {
-                "name":"Velocidade",
                 "value":110,
                 "min":0,
                 "max":2000,
                 "step":1
             },
             "distortion": {
-                "name":"Distorção",
                 "value":1,
                 "min":0.1,
                 "max":50,
                 "step":0.1
             },
             "mix": {
-                "name":"Mix",
                 "value":0.5,
                 "min":0,
                 "max":1,

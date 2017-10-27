@@ -1,9 +1,9 @@
 // Load effects data from JSON file
-var effects;
+/*var effects;
 
 $.getJSON( "js/data/fx_data.json", function(fxData) {  
     effects = fxData;
-});
+});*/
 
 Vue.component('fxpanel', {
     props: ['active'],
@@ -17,15 +17,15 @@ Vue.component('fxpanel', {
                     selected: 'none',
                     fxButtonText: 'off',
                     pizEffect: {},
-                    params: {},
+                    fxData: {}
                 },
                 fxSlot2: {
                     active: false,
                     selected: 'none',
                     fxButtonText: 'off',
                     pizEffect: {},
-                    params: {}                    
-                }            
+                    fxData: {}
+                }
             }   
         }
     },
@@ -76,10 +76,16 @@ Vue.component('fxpanel', {
             }
 
             if (effect != 'none'){
-                var fxParams = this.loadDefaultParams(fxSlot, effect);
+                //var fxParams = this.loadDefaultParams(fxSlot, effect);
+                // Create a neat object with the param:value format
+                var fxParams = {};
+                for (index in fxSlot.fxData[effect].params){
+                    var param = fxSlot.fxData[effect].params[index];
+                    fxParams[param.id] = param.value;
+                }
                   
                 //Update slot data with the effect's initial parameters
-                this.updateData(slot, fxParams);
+                //this.updateData(slot, fxParams);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
                 var pizString = effect == 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
@@ -126,5 +132,10 @@ Vue.component('fxpanel', {
                 }
             }
         }
+    },
+    mounted: function(){
+        // On mount, create deep copies of effects params for each slot
+            this.fxSlots.fxSlot1.fxData = JSON.parse(JSON.stringify(effects));
+            this.fxSlots.fxSlot2.fxData = JSON.parse(JSON.stringify(effects));
     }
 });
