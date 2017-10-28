@@ -86,15 +86,16 @@ Vue.component('fxpanel', {
                     var currentParams = this.fxSlots[slot].fxData[this.fxSlots[slot].selected].params;
                     var defaultParams = effects[this.fxSlots[slot].selected].params;
 
-                    console.log(defaultParams);
-
+                    // Reset current params to default
                     for (i in currentParams){
                         currentParams[i].value = defaultParams[i].value;
                     }
-                }
 
-                this.fxSlots[slot].selected = 'none';
-                this.fxSlots[slot].pizEffect = {};
+                    // Reset UI and states
+                    this.toggleFX(slot);
+                    this.fxSlots[slot].selected = 'none';
+                    this.fxSlots[slot].pizEffect = {};
+                }
             }
         },
         prePlayUpdate: function(){

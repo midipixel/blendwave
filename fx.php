@@ -36,10 +36,11 @@
                                     <select
                                         v-model="fxSlots['<?= $fxSlot ?>'].selected"
                                         v-on:change="setFX('<?= $fxSlot ?>')"
+                                        disabled="disabled"
+
                                         ga-on="change"
                                         ga-event-category="<?= $fxSlot ?>"
-                                        :ga-event-action="fxSlots['<?= $fxSlot ?>'].selected"
-                                        disabled="disabled">
+                                        :ga-event-action="fxSlots['<?= $fxSlot ?>'].selected">
 
                                         <option selected="selected" value="none">{{ content[$root.locale].none[0] }}</option>
                                         <template v-for="fx in fxSlots.<?= $fxSlot ?>.fxData">
