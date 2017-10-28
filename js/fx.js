@@ -46,18 +46,6 @@ Vue.component('fxpanel', {
                 document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
         },
-        loadDefaultParams: function(slot, effect){
-            // Create a unique copy from the effects object, or vue will make a reference
-            var effectsCopy = JSON.parse(JSON.stringify(effects[effect].params));
-
-            // Create a neat object with the param:value format
-            var defaultParams = {};        
-            for (param in effectsCopy){
-                defaultParams[param] = effectsCopy[param].value;                
-            }
-
-            return defaultParams;
-        },
         getParams: function(fxSlot, effect){
             // Create a neat object with the param:value format
             var fxParams = {};
@@ -94,6 +82,17 @@ Vue.component('fxpanel', {
         },
         resetFX: function(){
             for (var slot in this.fxSlots){
+                if(this.fxSlots[slot].selected != "none"){
+                    var currentParams = this.fxSlots[slot].fxData[this.fxSlots[slot].selected].params;
+                    var defaultParams = effects[this.fxSlots[slot].selected].params;
+
+                    console.log(defaultParams);
+
+                    for (i in currentParams){
+                        currentParams[i].value = defaultParams[i].value;
+                    }
+                }
+
                 this.fxSlots[slot].selected = 'none';
                 this.fxSlots[slot].pizEffect = {};
             }
