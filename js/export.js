@@ -42,7 +42,14 @@ Vue.component('exportpanel', {
 
                 for (slot in fxSlots){
                     if (fxSlots[slot].selected == "delay"){
-                        delayTimes.push(fxSlots[slot].params.time);
+                        // Get delay time and push it to an array
+                        for (i in fxSlots[slot].fxData.delay.params){
+                            if(fxSlots[slot].fxData.delay.params[i].id === "time"){
+                                delayTimes.push(fxSlots[slot].fxData.delay.params[i].value);
+                            }
+                        }
+
+                        // Get longest delay from array and add its multiplied time to the verification
                         var longestDelay = Math.max.apply(null, delayTimes);
                         verifications = longestDelay * 60;
                     }

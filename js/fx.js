@@ -58,11 +58,17 @@ Vue.component('fxpanel', {
 
             return defaultParams;
         },
-        updateData: function(slot, fxParams){
-            // Update slot data with an effect's parameters in a nice key value format
-            for (var param in fxParams){
-                this.fxSlots[slot].params[param] = fxParams[param];
-            };
+        getParams: function(fxSlot, effect){
+            // Create a neat object with the param:value format
+            var fxParams = {};
+
+            for (index in fxSlot.fxData[effect].params){
+                var param = fxSlot.fxData[effect].params[index];
+                fxParams[param.id] = param.value;
+            }
+
+            //console.log(fxParams);
+            return fxParams;
         },        
         setFX: function(slot){
             var fxSlot = this.fxSlots[slot];
@@ -76,16 +82,7 @@ Vue.component('fxpanel', {
             }
 
             if (effect != 'none'){
-                //var fxParams = this.loadDefaultParams(fxSlot, effect);
-                // Create a neat object with the param:value format
-                var fxParams = {};
-                for (index in fxSlot.fxData[effect].params){
-                    var param = fxSlot.fxData[effect].params[index];
-                    fxParams[param.id] = param.value;
-                }
-                  
-                //Update slot data with the effect's initial parameters
-                //this.updateData(slot, fxParams);
+                var fxParams = this.getParams(fxSlot, effect);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
                 var pizString = effect == 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
@@ -105,18 +102,16 @@ Vue.component('fxpanel', {
             for (var slot in this.fxSlots){
                 //Only update effects parameters if the slot is active
                 if(this.fxSlots[slot].active){
-                    // Create a deep copy of the params. Reference won't work.
-                    var paramsCopy = JSON.parse(JSON.stringify(this.fxSlots[slot].params));
-                    
-                    // Update pizzicato parameters with the ones from the slot data object
+                    // Update pizzicato parameters with the current FX params
                     if (this.fxSlots[slot].selected != 'none'){
+                        var fxParams = this.getParams(this.fxSlots[slot], this.fxSlots[slot].selected);
                         // The ringmod mix param needs a good reduction before being applied
                         if(this.fxSlots[slot].selected === 'ringmodulator'){
-                            paramsCopy['mix'] = paramsCopy['mix']/4;
+                            fxParams['mix'] = fxParams['mix']/4;
                         }
                         // Update params
-                        for(var param in paramsCopy){
-                            this.fxSlots[slot].pizEffect[param] = parseFloat(paramsCopy[param]);
+                        for(var param in fxParams){
+                            this.fxSlots[slot].pizEffect[param] = fxParams[param];
                         }
                     }
                 }
