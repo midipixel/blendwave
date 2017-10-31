@@ -63,8 +63,17 @@
         </div>
 
         <div class="col-sm-6">
-            <fieldset id="pitchEnvelope" class="audioParams">
-                <legend>{{ content[$root.locale].pitch }}</legend>
+            <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
+                <legend>
+                    <input type="checkbox"
+                           :checked=pitch.active
+                           @change="pitch.active = !pitch.active"
+
+                           ga-on="change"
+                           ga-event-category="pitch"
+                           ga-event-action="toggle pitch shift"/>
+                    {{ content[$root.locale].pitch }}
+                </legend>
 
                 <template v-for="param in pitch.params">
                     <label :for=param>{{ content[$root.locale][param.name] }}</label>

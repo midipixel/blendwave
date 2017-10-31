@@ -51,6 +51,7 @@ Vue.component('envelopepanel', {
             },
             pitch: {
                 name: 'Pitch',
+                active: false,
                 params: {
                     amount: {
                         name: 'amount',
@@ -95,8 +96,11 @@ Vue.component('envelopepanel', {
         },
         postPlayUpdate: function(){
             this.setPitchOSC();
-            //Multiply pitch value by 100 because values are shown in semitones in the UI
-            patch.sound.sourceNode.detune.value = this.pitch.params.amount.value * 100;
+
+            if (this.pitch.active){
+                //Multiply pitch value by 100 because values are shown in semitones in the UI
+                patch.sound.sourceNode.detune.value = this.pitch.params.amount.value * 100;
+            }
         },
         setAmpOSC: function(){
             this.amp_osc.active = !this.amp_osc.active;
@@ -128,6 +132,16 @@ Vue.component('envelopepanel', {
             this.amp_envelope.active = false;
             this.amp_osc.active = false;
             this.pitch_osc.active = false;
+        }
+    },
+    computed: {
+        getSnapshot: function(){
+            return {
+                amp_envelope: this.amp_envelope.active,
+                amp_osc: this.amp_osc.active,
+                pitch: this.pitch.params.amount.value,
+                pitch_osc: this.pitch_osc.active
+            }
         }
     },
     mounted: function(){

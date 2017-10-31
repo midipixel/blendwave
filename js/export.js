@@ -4,10 +4,52 @@ Vue.component('exportpanel', {
     data: function(){
         return {
             content: content.exportPanel,
-            interval: null
+            interval: null,
+            mixer: {
+                envelope: {
+                    active: true,
+                    snapshot: {}
+                },
+                filter: {
+                    active: true
+                },
+                effects: {
+                    active: true
+                }
+            }
         }
     },
     methods: {
+        togglePanel: function(panel){
+            this.mixer[panel].active = !this.mixer[panel].active;
+
+            // If panel is being disabled
+            if(!this.mixer[panel].active) {
+                //Save snapshot
+                this.mixer[panel].snapshot = bw.$refs.envelopePanel.getSnapshot;
+
+                //Disable relevant params according to panel
+                switch(panel){
+                    case 'envelope':
+                        bw.$refs.envelopePanel.amp_envelope.active = false;
+                        bw.$refs.envelopePanel.amp_osc.active = false;
+                        bw.$refs.envelopePanel.pitch.params.amount.value = 0;
+                        bw.$refs.envelopePanel.pitch_osc.active = false;
+                    break;
+
+                    case 'filter':
+                        console.log('filter');
+                    break;
+
+                    case 'effects':
+                        console.log('effects');
+                    break;
+                }
+            }
+            else if(this.mixer[panel].active){
+                console.log(this.mixer[panel].snapshot);
+            }
+        },
         exportFile: function(){
             //Create Recorder object, connected to the sound's output node
             var recorder = new Recorder(patch.sound.masterVolume);
