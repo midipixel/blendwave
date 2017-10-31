@@ -2,7 +2,7 @@ var bw = new Vue({
     el: '#blendwave',
     data: {
         panels: {
-            activePanel: 'exportPanel'
+            activePanel: 'filterPanel'
         },
         file: {
             name: 'sine.wav',

@@ -4,7 +4,7 @@ var patch = {
         patch.sound = new Pizzicato.Sound({
             source: 'file',
             options: {
-                path: 'samples/sine.wav',
+                path: 'samples/aula_flor02.wav',
                 attack: 0.04,
                 volume: 1,
                 loop: true

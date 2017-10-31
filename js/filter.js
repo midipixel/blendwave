@@ -3,8 +3,9 @@ Vue.component('filterpanel', {
     template: '#filterPanel',
     data: function(){
         return {
-            selected: 'none',
             content: content.filterPanel,
+            selected: 'none',
+            applied: null,
             filter: {
                 lowpass: {
                     pizEffect: {},
@@ -57,13 +58,28 @@ Vue.component('filterpanel', {
     methods: {
         set: function(){
             if (this.selected != 'none'){
+                //If there is already a filter, remove
+                if (this.applied != null){
+                   patch.sound.removeEffect(this.applied);
+                }
+
+                //Add selected filter, store reference to applied Effect
                 patch.sound.addEffect(this.filter[this.selected].pizEffect);
+                this.applied = this.filter[this.selected].pizEffect;
+            }
+            else{
+                //User selected none, remove applied filter
+                patch.sound.removeEffect(this.applied);
+                this.applied = null;
             }
         },
         prePlayUpdate: function(){
             if (this.selected != 'none'){
                 this.filter[this.selected].pizEffect.frequency = this.filter[this.selected].params.cutoff.value;
             }
+        },
+        postPlayUpdate: function(){
+            this.setOSC();
         },
         setOSC: function(){
             if(this.selected != 'none'){
@@ -89,9 +105,6 @@ Vue.component('filterpanel', {
                 }
             }
         },
-        postPlayUpdate: function(){
-            this.setOSC();
-        },
         ignoreKeyboard: function(e){
             // Ignore keys on combobox, so that the user can use "P" to preview
             if (e.keyCode >= 65 && e.keyCode <= 90) // A to Z
@@ -110,6 +123,17 @@ Vue.component('filterpanel', {
             this.osc.active = false;
             this.osc.params.speed.value = this.osc.params.speed.default;
             this.osc.params.amount.value = this.osc.params.amount.default;
+        }
+    },
+    computed: {
+        getSnapshot: function(){
+            return {
+                selected: this.selected,
+                osc: this.osc.active
+            }
+        },
+        storeApplied: function(){
+            return this.filter[this.selected].pizEffect;
         }
     },
     mounted: function() {
