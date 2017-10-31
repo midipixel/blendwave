@@ -128,12 +128,9 @@ Vue.component('filterpanel', {
     computed: {
         getSnapshot: function(){
             return {
-                selected: this.selected,
+                applied: this.applied,
                 osc: this.osc.active
             }
-        },
-        storeApplied: function(){
-            return this.filter[this.selected].pizEffect;
         }
     },
     mounted: function() {

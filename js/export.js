@@ -11,10 +11,12 @@ Vue.component('exportpanel', {
                     snapshot: {}
                 },
                 filter: {
-                    active: true
+                    active: true,
+                    snapshot: {}
                 },
                 effects: {
-                    active: true
+                    active: true,
+                    snapshot: {}
                 }
             }
         }
@@ -29,17 +31,16 @@ Vue.component('exportpanel', {
                 this.mixer[panel].snapshot = bw.$refs.envelopePanel.getSnapshot;
 
                 //Turn off relevant parameters
-                for (param in this.mixer[panel].snapshot){
-                    bw.$refs.envelopePanel[param].active = false;
-                }
-
                 switch(panel){
                     case 'envelope':
-                        console.log('envelope');
+                        // Turn every active boolean to false
+                        for (param in this.mixer[panel].snapshot){
+                            bw.$refs.envelopePanel[param].active = false;
+                        }
                     break;
 
                     case 'filter':
-                        console.log('filter');
+                        console.log('filter ON');
                     break;
 
                     case 'effects':
@@ -50,8 +51,20 @@ Vue.component('exportpanel', {
             // If panel is being enabled
             else if(this.mixer[panel].active){
                 // Restore parameters from snapshot
-                for (param in this.mixer[panel].snapshot){
-                    bw.$refs.envelopePanel[param].active = this.mixer[panel].snapshot[param];
+                switch(panel){
+                    case 'envelope':
+                        for (param in this.mixer[panel].snapshot){
+                            bw.$refs.envelopePanel[param].active = this.mixer[panel].snapshot[param];
+                        }
+                    break;
+
+                    case 'filter':
+                        console.log('filter OFF');
+                    break;
+
+                    case 'effects':
+                        console.log('effects');
+                    break;
                 }
             }
         },
