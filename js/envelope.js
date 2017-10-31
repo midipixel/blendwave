@@ -131,6 +131,7 @@ Vue.component('envelopepanel', {
             // Reset parameters initial active state
             this.amp_envelope.active = false;
             this.amp_osc.active = false;
+            this.pitch.active = false;
             this.pitch_osc.active = false;
         }
     },
@@ -139,7 +140,7 @@ Vue.component('envelopepanel', {
             return {
                 amp_envelope: this.amp_envelope.active,
                 amp_osc: this.amp_osc.active,
-                pitch: this.pitch.params.amount.value,
+                pitch: this.pitch.active,
                 pitch_osc: this.pitch_osc.active
             }
         }

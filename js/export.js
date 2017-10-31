@@ -28,13 +28,14 @@ Vue.component('exportpanel', {
                 //Save snapshot
                 this.mixer[panel].snapshot = bw.$refs.envelopePanel.getSnapshot;
 
-                //Disable relevant params according to panel
+                //Turn off relevant parameters
+                for (param in this.mixer[panel].snapshot){
+                    bw.$refs.envelopePanel[param].active = false;
+                }
+
                 switch(panel){
                     case 'envelope':
-                        bw.$refs.envelopePanel.amp_envelope.active = false;
-                        bw.$refs.envelopePanel.amp_osc.active = false;
-                        bw.$refs.envelopePanel.pitch.params.amount.value = 0;
-                        bw.$refs.envelopePanel.pitch_osc.active = false;
+                        console.log('envelope');
                     break;
 
                     case 'filter':
@@ -46,8 +47,12 @@ Vue.component('exportpanel', {
                     break;
                 }
             }
+            // If panel is being enabled
             else if(this.mixer[panel].active){
-                console.log(this.mixer[panel].snapshot);
+                // Restore parameters from snapshot
+                for (param in this.mixer[panel].snapshot){
+                    bw.$refs.envelopePanel[param].active = this.mixer[panel].snapshot[param];
+                }
             }
         },
         exportFile: function(){
