@@ -128,6 +128,14 @@ Vue.component('fxpanel', {
             }
         }
     },
+    computed: {
+        getSnapshot: function(){
+            return {
+                fxSlot1: this.fxSlots.fxSlot1.active,
+                fxSlot2: this.fxSlots.fxSlot2.active
+            }
+        }
+    },
     mounted: function(){
         // On mount, create deep copies of effects params for each slot
             this.fxSlots.fxSlot1.fxData = JSON.parse(JSON.stringify(effects));

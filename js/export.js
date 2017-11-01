@@ -33,9 +33,9 @@ Vue.component('exportpanel', {
                 //Turn off relevant parameters
                 switch(panel){
                     case 'envelopePanel':
-                        // Turn every active boolean to false
+                        // Turn every active envelope to false
                         for (param in this.mixer[panel].snapshot){
-                            bw.$refs.envelopePanel[param].active = false;
+                            bw.$refs[panel][param].active = false;
                         }
                     break;
 
@@ -47,7 +47,11 @@ Vue.component('exportpanel', {
                     break;
 
                     case 'fxPanel':
-                        console.log('effects');
+                        console.log(this.mixer[panel].snapshot);
+                        // Turn every active effect to false
+                        for (fxSlot in this.mixer[panel].snapshot){
+                            bw.$refs[panel].fxSlots[fxSlot].active = false;
+                        }
                     break;
                 }
             }
@@ -68,7 +72,9 @@ Vue.component('exportpanel', {
                     break;
 
                     case 'fxPanel':
-                        console.log('effects ON');
+                        for (fxSlot in this.mixer[panel].snapshot){
+                            bw.$refs[panel].fxSlots[fxSlot].active = this.mixer[panel].snapshot[fxSlot];
+                        }
                     break;
                 }
             }
