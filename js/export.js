@@ -29,7 +29,9 @@ Vue.component('exportpanel', {
     },
     methods: {
         togglePanel: function(panel){
+            // Flip booleans on local active values and general disabled values
             this.mixer[panel].active = !this.mixer[panel].active;
+            bw.panels[panel].disabled = !this.mixer[panel].active;
 
             // Panel is being disabled
             if(!this.mixer[panel].active) {
@@ -53,7 +55,6 @@ Vue.component('exportpanel', {
                     break;
 
                     case 'fxPanel':
-                        console.log(this.mixer[panel].snapshot);
                         // Turn every active effect to false
                         for (fxSlot in this.mixer[panel].snapshot){
                             bw.$refs[panel].fxSlots[fxSlot].active = false;

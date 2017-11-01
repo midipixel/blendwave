@@ -6,14 +6,16 @@ const content = {
             envelopePanel: "Amplitude e Pitch",
             filterPanel: "Filtro",
             fxPanel: "Efeitos",
-            exportPanel: "Saída"
+            exportPanel: "Saída",
+            disabledWarning: "Desabilitado pelo painel Saída"
         },
         en: {
             wavePanel: "Choose Sample",
             envelopePanel: "Amplitude and Pitch",
             filterPanel: "Filter",
             fxPanel: "Effects",
-            exportPanel: "Output"
+            exportPanel: "Output",
+            disabledWarning: "Disabled by the Export Panel"
         }
     },
 

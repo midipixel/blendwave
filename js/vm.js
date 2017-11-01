@@ -3,8 +3,7 @@ var bw = new Vue({
     data: {
         panels: {
             wavePanel: {
-                active: false,
-                disabled: false
+                active: false
             },
             envelopePanel: {
                 active: false,
@@ -19,8 +18,7 @@ var bw = new Vue({
                 disabled: false
             },
             exportPanel: {
-                active: true,
-                disabled: false
+                active: true
             }
         },
         file: {
@@ -33,6 +31,9 @@ var bw = new Vue({
     methods: {
         activatePanel: function(panel){
             if(!this.panels[panel].disabled){
+                for (p in this.panels){
+                    this.panels[p].active = false;
+                }
                 this.panels[panel].active = true;
             }
         },

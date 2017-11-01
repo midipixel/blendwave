@@ -19,13 +19,25 @@
                         <a href="#wavePanel" @click="activatePanel('wavePanel')">{{ content[locale].wavePanel }}</a>
                     </li>
                     <li :class="{disabled: panels.envelopePanel.disabled}">
-                        <a href="#envelopePanel" @click="activatePanel('envelopePanel')">{{ content[locale].envelopePanel }}</a>
+                        <a :href="panels.envelopePanel.disabled ? null : '#envelopePanel'"
+                           :title="panels.envelopePanel.disabled ? content[locale].disabledWarning : null"
+                           @click="activatePanel('envelopePanel')">
+                            {{ content[locale].envelopePanel }}
+                        </a>
                     </li>
                     <li :class="{disabled: panels.filterPanel.disabled}">
-                        <a href="#filterPanel" @click="activatePanel('filterPanel')">{{ content[locale].filterPanel }}</a>
+                        <a :href="panels.filterPanel.disabled ? null : '#filterPanel'"
+                           :title="panels.filterPanel.disabled ? content[locale].disabledWarning : null"
+                           @click="activatePanel('filterPanel')">
+                            {{ content[locale].filterPanel }}
+                        </a>
                     </li>
                     <li :class="{disabled: panels.fxPanel.disabled}">
-                        <a href="#fxPanel" @click="activatePanel('fxPanel')">{{ content[locale].fxPanel }}</a>
+                        <a :href="panels.fxPanel.disabled ? null : '#fxPanel'"
+                           :title="panels.fxPanel.disabled ? content[locale].disabledWarning : null"
+                           @click="activatePanel('fxPanel')">
+                            {{ content[locale].fxPanel }}
+                        </a>
                     </li>
                     <li>
                         <a href="#exportPanel" @click="activatePanel('exportPanel')">{{ content[locale].exportPanel }}</a>
