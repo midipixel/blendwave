@@ -35,9 +35,17 @@
         <div class="strip">
             <p>
                 <span>Volume</span>
-                <output for="mixervolume">100%</output>
+                <output for="mixervolume">{{ masterVolume }}%</output>
             </p>
-            <input type="range" id="mixervolume">
+            <input type="range"
+                   :min=mixer.volume.min
+                   v-model:value.number=mixer.volume.value
+                   :max=mixer.volume.max
+                   :step=mixer.volume.step
+
+                   ga-on="change"
+                   ga-event-category="mixer"
+                   ga-event-action="volume">
         </div>
 
         <div class="strip">

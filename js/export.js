@@ -17,6 +17,12 @@ Vue.component('exportpanel', {
                 fxPanel: {
                     active: true,
                     snapshot: {}
+                },
+                volume: {
+                    value: 0.8,
+                    min: 0,
+                    max: 1,
+                    step: 0.01
                 }
             }
         }
@@ -169,6 +175,14 @@ Vue.component('exportpanel', {
                 //Stop must be called to account for the envelope off situation
                 patch.sound.stop();
             }
+        },
+        prePlayUpdate: function(){
+            Pizzicato.volume = this.mixer.volume.value;
+        }
+    },
+    computed: {
+        masterVolume: function(){
+            return parseInt(this.mixer.volume.value * 100);
         }
     }
 });

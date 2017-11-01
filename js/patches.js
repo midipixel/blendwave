@@ -23,6 +23,9 @@ var patch = {
 
         //Effects
         bw.$refs.fxPanel.prePlayUpdate();
+
+        //Mixer
+        bw.$refs.exportPanel.prePlayUpdate();
     },
     play: function(){
         patch.updateData();
