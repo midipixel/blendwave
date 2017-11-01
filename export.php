@@ -8,25 +8,28 @@
         <div class="strip">
             <p>Amp e Pitch</p>
             <input type="checkbox"
-                   @change="togglePanel('envelope')"
-                   :checked="mixer.envelope.active">
-            Ligado
+                   id="envelopeToggle"
+                   @change="togglePanel('envelopePanel')"
+                   :checked="mixer.envelopePanel.active">
+            <label for="envelopeToggle">Ligado</label>
         </div>
 
         <div class="strip">
             <p>Filtro</p>
             <input type="checkbox"
-                   @change="togglePanel('filter')"
-                   :checked="mixer.filter.active">
-            Ligado
+                   id="filterToggle"
+                   @change="togglePanel('filterPanel')"
+                   :checked="mixer.filterPanel.active">
+            <label for="filterToggle">Ligado</label>
         </div>
 
         <div class="strip">
             <p>Efeitos</p>
             <input type="checkbox"
-                   @change="togglePanel('effects')"
-                   :checked="mixer.effects.active">
-            Ligado
+                   id="fxToggle"
+                   @change="togglePanel('fxPanel')"
+                   :checked="mixer.fxPanel.active">
+            <label for="fxToggle">Ligado</label>
         </div>
 
         <div class="strip">

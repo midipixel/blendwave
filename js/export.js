@@ -6,15 +6,15 @@ Vue.component('exportpanel', {
             content: content.exportPanel,
             interval: null,
             mixer: {
-                envelope: {
+                envelopePanel: {
                     active: true,
                     snapshot: {}
                 },
-                filter: {
+                filterPanel: {
                     active: true,
                     snapshot: {}
                 },
-                effects: {
+                fxPanel: {
                     active: true,
                     snapshot: {}
                 }
@@ -25,45 +25,50 @@ Vue.component('exportpanel', {
         togglePanel: function(panel){
             this.mixer[panel].active = !this.mixer[panel].active;
 
-            // If panel is being disabled
+            // Panel is being disabled
             if(!this.mixer[panel].active) {
                 //Save snapshot
-                this.mixer[panel].snapshot = bw.$refs.envelopePanel.getSnapshot;
+                this.mixer[panel].snapshot = bw.$refs[panel].getSnapshot;
 
                 //Turn off relevant parameters
                 switch(panel){
-                    case 'envelope':
+                    case 'envelopePanel':
                         // Turn every active boolean to false
                         for (param in this.mixer[panel].snapshot){
                             bw.$refs.envelopePanel[param].active = false;
                         }
                     break;
 
-                    case 'filter':
-                        console.log('filter ON');
+                    case 'filterPanel':
+                        // Remove filter if applied
+                        if(this.mixer[panel].snapshot.applied != null){
+                            patch.sound.removeEffect(this.mixer[panel].snapshot.applied);
+                        }
                     break;
 
-                    case 'effects':
+                    case 'fxPanel':
                         console.log('effects');
                     break;
                 }
             }
-            // If panel is being enabled
+            // Panel is being enabled
             else if(this.mixer[panel].active){
                 // Restore parameters from snapshot
                 switch(panel){
-                    case 'envelope':
+                    case 'envelopePanel':
                         for (param in this.mixer[panel].snapshot){
                             bw.$refs.envelopePanel[param].active = this.mixer[panel].snapshot[param];
                         }
                     break;
 
-                    case 'filter':
-                        console.log('filter OFF');
+                    case 'filterPanel':
+                        if(this.mixer[panel].snapshot.applied != null){
+                            patch.sound.addEffect(this.mixer[panel].snapshot.applied);
+                        }
                     break;
 
-                    case 'effects':
-                        console.log('effects');
+                    case 'fxPanel':
+                        console.log('effects ON');
                     break;
                 }
             }
