@@ -149,13 +149,25 @@ const content = {
             title: "Saída",
             subtitle: "Exporte o resultado final em formato WAV, e faça o download",
             exportButton: "Exportar Áudio",
-            filesTitle: "Arquivos Exportados"
+            filesTitle: "Arquivos Exportados",
+            envelopeStrip: "Amp e Pitch",
+            filterStrip: "Filtro",
+            fxStrip: "Efeitos",
+            volumeStrip: "Volume",
+            exportStrip: "Exportar",
+            toggleLabel: "Ligado"
         },
         en: {
             title: "Output",
             subtitle: "Export your final result to a WAV file, and download",
             exportButton: "Export Audio",
-            filesTitle: "Exported Files"
+            filesTitle: "Exported Files",
+            envelopeStrip: "Amp & Pitch",
+            filterStrip: "Filter",
+            fxStrip: "Effects",
+            volumeStrip: "Volume",
+            exportStrip: "Export",
+            toggleLabel: "On"
         }
     },
 

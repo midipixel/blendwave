@@ -6,35 +6,35 @@
 
     <div class="mixer">
         <div class="strip">
-            <p>Amp e Pitch</p>
+            <p>{{ content[$root.locale].envelopeStrip }}</p>
             <input type="checkbox"
                    id="envelopeToggle"
                    @change="togglePanel('envelopePanel')"
                    :checked="mixer.envelopePanel.active">
-            <label for="envelopeToggle">Ligado</label>
+            <label for="envelopeToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
         <div class="strip">
-            <p>Filtro</p>
+            <p>{{ content[$root.locale].filterStrip }}</p>
             <input type="checkbox"
                    id="filterToggle"
                    @change="togglePanel('filterPanel')"
                    :checked="mixer.filterPanel.active">
-            <label for="filterToggle">Ligado</label>
+            <label for="filterToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
         <div class="strip">
-            <p>Efeitos</p>
+            <p>{{ content[$root.locale].fxStrip }}</p>
             <input type="checkbox"
                    id="fxToggle"
                    @change="togglePanel('fxPanel')"
                    :checked="mixer.fxPanel.active">
-            <label for="fxToggle">Ligado</label>
+            <label for="fxToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
         <div class="strip">
             <p>
-                <span>Volume</span>
+                <span>{{ content[$root.locale].volumeStrip }}</span>
                 <output for="mixervolume">{{ masterVolume }}%</output>
             </p>
             <input type="range"
@@ -49,7 +49,7 @@
         </div>
 
         <div class="strip">
-            <p>Export</p>
+            <p>{{ content[$root.locale].exportStrip }}</p>
             <button
                 id="exportBtn"
                 class="exportBtn"
