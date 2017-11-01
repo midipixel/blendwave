@@ -2,7 +2,26 @@ var bw = new Vue({
     el: '#blendwave',
     data: {
         panels: {
-            activePanel: 'exportPanel'
+            wavePanel: {
+                active: false,
+                disabled: false
+            },
+            envelopePanel: {
+                active: false,
+                disabled: false
+            },
+            filterPanel: {
+                active: false,
+                disabled: false
+            },
+            fxPanel: {
+                active: false,
+                disabled: false
+            },
+            exportPanel: {
+                active: true,
+                disabled: false
+            }
         },
         file: {
             name: 'sine.wav',
@@ -13,7 +32,9 @@ var bw = new Vue({
     },
     methods: {
         activatePanel: function(panel){
-            this.panels.activePanel = panel;
+            if(!this.panels[panel].disabled){
+                this.panels[panel].active = true;
+            }
         },
         resetData: function(){
             bw.$refs.fxPanel.resetFX();

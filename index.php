@@ -15,20 +15,30 @@
         <div id="blendwave">
             <nav class="mainNav">
                 <ul>
-                    <li><a href="#wavePanel" @click="activatePanel('wavePanel')">{{ content[locale].wavePanel }}</a></li>
-                    <li><a href="#envelopePanel" @click="activatePanel('envelopePanel')">{{ content[locale].envelopePanel }}</a></li>
-                    <li><a href="#filterPanel" @click="activatePanel('filterPanel')">{{ content[locale].filterPanel }}</a></li>
-                    <li><a href="#fxPanel" @click="activatePanel('fxPanel')">{{ content[locale].fxPanel }}</a></li>
-                    <li><a href="#exportPanel" @click="activatePanel('exportPanel')">{{ content[locale].exportPanel }}</a></li>
+                    <li>
+                        <a href="#wavePanel" @click="activatePanel('wavePanel')">{{ content[locale].wavePanel }}</a>
+                    </li>
+                    <li :class="{disabled: panels.envelopePanel.disabled}">
+                        <a href="#envelopePanel" @click="activatePanel('envelopePanel')">{{ content[locale].envelopePanel }}</a>
+                    </li>
+                    <li :class="{disabled: panels.filterPanel.disabled}">
+                        <a href="#filterPanel" @click="activatePanel('filterPanel')">{{ content[locale].filterPanel }}</a>
+                    </li>
+                    <li :class="{disabled: panels.fxPanel.disabled}">
+                        <a href="#fxPanel" @click="activatePanel('fxPanel')">{{ content[locale].fxPanel }}</a>
+                    </li>
+                    <li>
+                        <a href="#exportPanel" @click="activatePanel('exportPanel')">{{ content[locale].exportPanel }}</a>
+                    </li>
                 </ul>
             </nav>
 
             <!-- vueJS Components -->
-            <wavepanel ref="wavePanel" :active="panels.activePanel == 'wavePanel'"></wavepanel>
-            <envelopepanel ref="envelopePanel" :active="panels.activePanel == 'envelopePanel'"></envelopepanel>
-            <filterpanel ref="filterPanel" :active="panels.activePanel == 'filterPanel'"></filterpanel>
-            <fxpanel ref="fxPanel" :active="panels.activePanel == 'fxPanel'"></fxpanel>
-            <exportpanel ref="exportPanel" :active="panels.activePanel == 'exportPanel'"></exportpanel>
+            <wavepanel ref="wavePanel" :active="panels.wavePanel.active"></wavepanel>
+            <envelopepanel ref="envelopePanel" :active="panels.envelopePanel.active"></envelopepanel>
+            <filterpanel ref="filterPanel" :active="panels.filterPanel.active"></filterpanel>
+            <fxpanel ref="fxPanel" :active="panels.fxPanel.active"></fxpanel>
+            <exportpanel ref="exportPanel" :active="panels.exportPanel.active"></exportpanel>
        </div>
     </main>
 

@@ -139,12 +139,25 @@ fieldset.disabled{
     margin-left: 1em;
 }
 
+.mainNav li{
+    transition: all 1s;
+}
+
 .mainNav li a{
     display: block;
     color: #000;
     padding: 1em;
     background: #eaeaea;
     border-radius: 5px;
+}
+
+.mainNav li.disabled a{
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.mainNav li.disabled a:hover{
+    text-decoration: none;
 }
 
 /* =Wave
