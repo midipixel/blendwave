@@ -10,7 +10,12 @@
             <input type="checkbox"
                    id="envelopeToggle"
                    @change="togglePanel('envelopePanel')"
-                   :checked="mixer.envelopePanel.active">
+                   :checked="mixer.envelopePanel.active"
+
+                   ga-on="change"
+                   ga-event-category="exportPanel"
+                   ga-event-action="toggle Envelope"
+            >
             <label for="envelopeToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
@@ -19,7 +24,12 @@
             <input type="checkbox"
                    id="filterToggle"
                    @change="togglePanel('filterPanel')"
-                   :checked="mixer.filterPanel.active">
+                   :checked="mixer.filterPanel.active"
+
+                   ga-on="change"
+                   ga-event-category="exportPanel"
+                   ga-event-action="toggle Filter"
+            >
             <label for="filterToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
@@ -28,7 +38,12 @@
             <input type="checkbox"
                    id="fxToggle"
                    @change="togglePanel('fxPanel')"
-                   :checked="mixer.fxPanel.active">
+                   :checked="mixer.fxPanel.active"
+
+                   ga-on="change"
+                   ga-event-category="exportPanel"
+                   ga-event-action="toggle Effects"
+            >
             <label for="fxToggle">{{ content[$root.locale].toggleLabel }}</label>
         </div>
 
@@ -44,8 +59,9 @@
                    :step=mixer.volume.step
 
                    ga-on="change"
-                   ga-event-category="mixer"
-                   ga-event-action="volume">
+                   ga-event-category="exportPanel"
+                   ga-event-action="volume"
+            >
         </div>
 
         <div class="strip">
@@ -54,15 +70,15 @@
                 id="exportBtn"
                 class="exportBtn"
                 @click=exportFile
+
                 ga-on="click"
                 ga-event-category="exportPanel"
-                ga-event-action="export file">
+                ga-event-action="export file"
+            >
                 {{ content[$root.locale].exportButton }}
             </button>
         </div>
     </div>
-
-
 
     <div class="exports">
         <h4>{{ content[$root.locale].filesTitle }}</h4>

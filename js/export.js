@@ -167,8 +167,8 @@ Vue.component('exportpanel', {
                     hf.download = bw.$refs.wavePanel.fileName + '_' + new Date().toISOString() + '.wav';
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;
-                    var downloadText = 'Baixar: ' + bw.file.name;
-                    hf.innerHTML = downloadText;
+                    var text = bw.$refs.exportPanel.content[bw.locale].downloadText + ': ' + bw.file.name;
+                    hf.innerHTML = text;
                     li.appendChild(au);
                     li.appendChild(hf);
                     recordingslist.appendChild(li);

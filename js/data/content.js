@@ -155,7 +155,8 @@ const content = {
             fxStrip: "Efeitos",
             volumeStrip: "Volume",
             exportStrip: "Exportar",
-            toggleLabel: "Ligado"
+            toggleLabel: "Ligado",
+            downloadText: "Baixar Arquivo"
         },
         en: {
             title: "Output",
@@ -167,7 +168,8 @@ const content = {
             fxStrip: "Effects",
             volumeStrip: "Volume",
             exportStrip: "Export",
-            toggleLabel: "On"
+            toggleLabel: "On",
+            downloadText: "Download File"
         }
     },
 
