@@ -3,7 +3,7 @@
 <section class="panelContent" id="fx" v-show="active">
     <fileheader></fileheader>
 
-    <h3>{{ content[$root.locale].title }} <em>{{ content[$root.locale].title }}</em></h3>
+    <h3>{{ content[$root.locale].title }} <em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <?php
         $fxDataJSON = file_get_contents('js/data/fx_data.json');

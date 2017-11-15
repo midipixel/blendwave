@@ -6,7 +6,7 @@ var bw = new Vue({
                 active: false
             },
             envelopePanel: {
-                active: false,
+                active: true,
                 disabled: false
             },
             filterPanel: {
@@ -18,14 +18,14 @@ var bw = new Vue({
                 disabled: false
             },
             exportPanel: {
-                active: true
+                active: false
             }
         },
         file: {
             name: 'sine.wav',
             path: 'samples/sine.wav'
         },
-        locale: 'pt',
+        locale: 'en',
         content: content.general
     },
     methods: {

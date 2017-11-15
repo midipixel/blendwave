@@ -19,10 +19,11 @@
                 <li class="active col-sm-4 ">
                     <a href="samples/sine.wav"
                         @click.prevent=changeFile
+                       
                         ga-on="click"
                         ga-event-category="wavePanel"
                         ga-event-action="Change File">
-                        {{ $root.file.name }}
+                        sine.wave
                     </a>
                 </li>
                 <?php

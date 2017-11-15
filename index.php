@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <title>Blendwave</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-grid.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
