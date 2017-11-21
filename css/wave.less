@@ -3,11 +3,77 @@ Blendwave - Wave Panel Styles
 Author: Werther Azevedo
 -----------------------------------------------------------------------------*/
 
-/* =Wave
+/* =General
 -----------------------------------------------------------------------------*/
-.fileList li a{
+@subTitleColor: #8266ba;
+
+.wavePanel>h3{
+    color: #9d72f6;
+}
+
+
+/* =Navigation
+-----------------------------------------------------------------------------*/
+.wavePanel .titleBox header{
+    border-bottom-color: @subTitleColor;
+}
+
+.titleBox nav a.active, .titleBox nav a:hover{
+    color: @subTitleColor;
+}
+
+.titleBox nav a.active:hover{
+    color: #a275ff;
+}
+
+/* =Samples List
+-----------------------------------------------------------------------------*/
+.samplesList header{
+    display: flex;
+    align-items: center;
+}
+
+.samplesList header h4{
+    color: @subTitleColor;
+    flex-grow: 1;
+}
+
+.samplesList header label{
+    font-size: 0.8em;
+    font-weight: 400;
+    display: inherit;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.samplesList header label input[type="checkbox"]{
+    margin-right: 2%;
+}
+
+.wavePreview{
+    background: #262930;
+}
+
+.fileContainer{
+    width: 100%;
+    overflow-x: scroll;
+    padding-bottom: 1rem;
+}
+
+.fileList{
+    display: flex;
+}
+
+.fileList .subcol + .subcol{
+    margin: 0 2%;
+}
+
+.fileList a{
     display: block;
-    padding: 1em 0.5em;
+    padding: 0.5rem 0.5rem;
+    color: #7184d3;
+    text-decoration: underline;
 }
 
 .fileList .active a, .fileList a:hover{
@@ -29,3 +95,10 @@ Author: Werther Azevedo
 .wavePanel .loading img{
     margin-right: 10px;
 }
+
+
+
+
+
+
+

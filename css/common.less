@@ -75,11 +75,24 @@ ul{
     opacity: 0.5;
 }
 
+fieldset.disabled{
+    opacity: 1;
+    * {
+        opacity: 0.5;
+    }
+    legend{
+        opacity: 1;
+    }
+
+}
+
 .bwBody{
     background-color: @appBG;
     color: #c8cada;
     border-radius: 0 0 6px 6px;
+    padding-bottom: 3rem;
 }
+
 
 
 /* =Header
@@ -159,8 +172,8 @@ ul{
     font-size: 1em;
     margin: 0 0 1em 0;
     cursor: pointer;
-    background: #454850;
-    padding: 0.5em 0.5em;
+    background: #454850 url(../img/bt_play.png) 1rem center no-repeat;
+    padding: 0.5rem 1rem 0.5rem 3rem;
     .userSelect_off;
 }
 
@@ -175,44 +188,93 @@ ul{
 
 .fileHeader strong{
     color: #e8e8e8;
+    font-weight: 700;
 }
 
 .fileHeader small{
     float: right;
-    font-weight: bold;
+    font-weight: 700;
+    color: #9494a0;
 }
 
-/* =Panels General
+/* =Titles
 -----------------------------------------------------------------------------*/
 
-.panelContent{
-
-}
-
-.panelContent h3{
-    font-size: 1.4em;
-    border-bottom: 1px solid #A0A0A0;
-    margin: 1em 0;
-    padding-bottom: 0.5em;
+.panelContent>h3{
+    font-family: Comfortaa, sans-serif;
+    font-weight: normal;
+    font-size: 1.6rem;
+    margin: 1rem 0 1rem 0;
+    padding: 2rem 0 0 0;
+    border-top: 1px solid #5d616f;
 }
 
 .panelContent h3 em{
+    font-family: interUI, Arial, Helvetica, sans-serif;
     font-style: normal;
-    font-size: 0.8em;
+    font-size: 1rem;
+    color: #c8cada;
 }
 
 .panelContent h3 em::before{
     content: ' - ';
 }
 
-fieldset.disabled{
-    opacity: 1;
-    * {
-        opacity: 0.5;
-    }
-    legend{
-        opacity: 1;
+
+
+/* =Components
+-----------------------------------------------------------------------------*/
+
+.titleBox header{
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: #fff;
+    margin-bottom: 1px;
+}
+
+.titleBox .main{
+    background: #4b4f58;
+    padding: 1rem 15px;
+    font-weight: 500;
+    color: #bcc2ce;
+}
+
+.titleBox{
+     nav a, h4 {
+        font-weight: 500;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        transition: all 0.2s ease-in;
     }
 
+    nav a{
+        color: #646876;
+        display: inline-block;
+    }
+
+}
+
+.titleBox nav a + a{
+    margin-left: 1.1rem;
+}
+
+.titleBox nav a.active{
+    font-weight: 700;
+}
+
+.titleBox nav a:hover{
+    text-decoration: none;
+}
+
+.categoryList li{
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: color 0.2s ease-in;
+}
+
+.categoryList li:hover{
+    color: #fff;
 }
 
