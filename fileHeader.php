@@ -6,9 +6,7 @@
             ga-on="click"
             ga-event-category="fileHeader"
             ga-event-action="Click To Play">
-        &#x25BA; {{ content[$root.locale].title }} : {{ fileName }}
+        <strong>{{ content[$root.locale].title }}</strong> : {{ fileName }}
         <small>({{ content[$root.locale].hint }})</small>
-
-        <section id="wavePreview"></section>
     </header>
 <?= '</script>'  ?>

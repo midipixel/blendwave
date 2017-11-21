@@ -37,8 +37,8 @@ const content = {
             loading: "Por Favor, aguarde. Carregando Som."
         },
         en: {
-            title: "Sound Source",
-            subtitle: "Choose a base sound sample to start",
+            title: "Choose Sample",
+            subtitle: "Choose a sound sample from the library or upload your own file!",
             loading: "Loading sound file. Please wait."
         }
     },

@@ -12,48 +12,57 @@
 </head>
 
 <body>
-    <main class="container">
-        <div id="blendwave">
-            <nav class="mainNav">
-                <ul>
-                    <li>
+    <main id="blendwave">
+        <header class="bwHeader container">
+            <nav class="row no-gutters mainNav">
+                <figure class="col-md-2 logo">
+                    <img src="img/bw_logo.svg" alt="Blendwave">
+                </figure>
+
+                <ul class="col-md-10">
+                    <li class="wave">
                         <a href="#wavePanel" @click="activatePanel('wavePanel')">{{ content[locale].wavePanel }}</a>
                     </li>
-                    <li :class="{disabled: panels.envelopePanel.disabled}">
+                    <li :class="{envelope: true, disabled: panels.envelopePanel.disabled}">
                         <a :href="panels.envelopePanel.disabled ? null : '#envelopePanel'"
                            :title="panels.envelopePanel.disabled ? content[locale].disabledWarning : null"
                            @click="activatePanel('envelopePanel')">
                             {{ content[locale].envelopePanel }}
                         </a>
                     </li>
-                    <li :class="{disabled: panels.filterPanel.disabled}">
+                    <li :class="{filter: true, disabled: panels.filterPanel.disabled}">
                         <a :href="panels.filterPanel.disabled ? null : '#filterPanel'"
                            :title="panels.filterPanel.disabled ? content[locale].disabledWarning : null"
                            @click="activatePanel('filterPanel')">
                             {{ content[locale].filterPanel }}
                         </a>
                     </li>
-                    <li :class="{disabled: panels.fxPanel.disabled}">
+                    <li :class="{fx: true, disabled: panels.fxPanel.disabled}">
                         <a :href="panels.fxPanel.disabled ? null : '#fxPanel'"
                            :title="panels.fxPanel.disabled ? content[locale].disabledWarning : null"
                            @click="activatePanel('fxPanel')">
                             {{ content[locale].fxPanel }}
                         </a>
                     </li>
-                    <li>
+                    <li class="export">
                         <a href="#exportPanel" @click="activatePanel('exportPanel')">{{ content[locale].exportPanel }}</a>
                     </li>
                 </ul>
             </nav>
+        </header>
 
+        <section class="container bwBody">
             <!-- vueJS Components -->
             <wavepanel ref="wavePanel" :active="panels.wavePanel.active"></wavepanel>
             <envelopepanel ref="envelopePanel" :active="panels.envelopePanel.active"></envelopepanel>
             <filterpanel ref="filterPanel" :active="panels.filterPanel.active"></filterpanel>
             <fxpanel ref="fxPanel" :active="panels.fxPanel.active"></fxpanel>
             <exportpanel ref="exportPanel" :active="panels.exportPanel.active"></exportpanel>
-       </div>
+        </section>
     </main>
+
+
+
 
     <!-- Analytics -->
     <?php

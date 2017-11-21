@@ -3,10 +3,10 @@ var bw = new Vue({
     data: {
         panels: {
             wavePanel: {
-                active: false
+                active: true
             },
             envelopePanel: {
-                active: true,
+                active: false,
                 disabled: false
             },
             filterPanel: {

@@ -3,18 +3,28 @@ Blendwave - Common styles
 Author: Werther Azevedo
 -----------------------------------------------------------------------------*/
 
-/* =General
+/* =Global Vars
 -----------------------------------------------------------------------------*/
-ul{
-    list-style: none;
-    padding: 0;
-}
+
+@appBG: #373a43;
 
 .userSelect_off{
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/* =General
+-----------------------------------------------------------------------------*/
+body{
+    background: #191c28;
+    font-family: 'interUI', Arial, Helvetica, sans-serif;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
 }
 
 .audioParams {
@@ -65,24 +75,97 @@ ul{
     opacity: 0.5;
 }
 
-/* =Main
------------------------------------------------------------------------------*/
-.container{
-    max-width: 990px;
-    margin: 0 auto;
+.bwBody{
+    background-color: @appBG;
+    color: #c8cada;
+    border-radius: 0 0 6px 6px;
 }
+
+
+/* =Header
+-----------------------------------------------------------------------------*/
+
+.bwHeader{
+    background-color: @appBG;
+    color: #c8cada;
+    border-radius: 6px 6px 0 0;
+    margin-top: 2rem;
+    padding-top: 1.6rem;
+    padding-bottom: 1rem;
+}
+
+/* Main Nav */
+
+.mainNav .logo{
+    text-align: center;
+}
+
+.mainNav .logo img{
+    width: 70%;
+}
+
+.mainNav ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mainNav li{
+    transition: all 1s;
+    font-size: 1rem;
+}
+
+.mainNav li + li{
+    margin-left: 1em;
+}
+
+.mainNav li a{
+    padding: 0 0 0 2.7rem;
+    color: #cfd5e7;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    line-height: 1.2em;
+}
+
+.mainNav li a[href*="wave"]{
+    background: url(../img/ic_wave.svg) no-repeat left center;
+}
+
+.mainNav li a[href*="envelope"]{
+    background: url(../img/ic_envelope.svg) no-repeat left center;
+}
+
+.mainNav li a[href*="filter"]{
+    background: url(../img/ic_filter.svg) no-repeat left center;
+}
+
+.mainNav li a[href*="fx"]{
+    background: url(../img/ic_effects.svg) no-repeat left center;
+}
+
+.mainNav li a[href*="export"]{
+    background: url(../img/ic_export.svg) no-repeat left center;
+}
+
+
+.mainNav li.disabled a{
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* File Header */
 
 .fileHeader{
     font-size: 1em;
     margin: 0 0 1em 0;
     cursor: pointer;
-    background: #eee;
+    background: #454850;
     padding: 0.5em 0.5em;
     .userSelect_off;
 }
 
 .fileHeader:hover{
-    background-color: #bfbfbf;
+    background-color: #000;
 }
 
 .fileHeader_active, .fileHeader:active{
@@ -90,14 +173,20 @@ ul{
     color: #fff;
 }
 
+.fileHeader strong{
+    color: #e8e8e8;
+}
+
 .fileHeader small{
     float: right;
     font-weight: bold;
 }
 
+/* =Panels General
+-----------------------------------------------------------------------------*/
+
 .panelContent{
-    border: 1px solid #c4c4c4;
-    padding: 3%;
+
 }
 
 .panelContent h3{
@@ -127,31 +216,3 @@ fieldset.disabled{
 
 }
 
-.mainNav{
-    margin: 1em 0;
-}
-
-.mainNav ul{
-    display: flex;
-}
-
-.mainNav ul li + li{
-    margin-left: 1em;
-}
-
-.mainNav li{
-    transition: all 1s;
-}
-
-.mainNav li a{
-    display: block;
-    color: #000;
-    padding: 1em;
-    background: #eaeaea;
-    border-radius: 5px;
-}
-
-.mainNav li.disabled a{
-    cursor: not-allowed;
-    text-decoration: line-through;
-}
