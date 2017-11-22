@@ -3,7 +3,7 @@ var bw = new Vue({
     data: {
         panels: {
             wavePanel: {
-                active: true
+                active: false
             },
             envelopePanel: {
                 active: false,
@@ -26,7 +26,8 @@ var bw = new Vue({
             path: 'samples/sine.wav'
         },
         locale: 'en',
-        content: content.general
+        content: content.general,
+        mainClass: ''
     },
     methods: {
         activatePanel: function(panel){
@@ -36,6 +37,7 @@ var bw = new Vue({
                 }
                 this.panels[panel].active = true;
             }
+            this.mainClass = panel;
         },
         resetData: function(){
             bw.$refs.fxPanel.resetFX();
@@ -44,6 +46,7 @@ var bw = new Vue({
         }
     },
     mounted: function(){
+        //Create Patch Object, which stores the pizzicato sound
         patch.create();
 
         //Bind Keyboard Events
@@ -55,10 +58,13 @@ var bw = new Vue({
         });
 
         $('body').on('keyup', function(e){
-            //Stop audio on 'p' release
+            //Stop audio on 'P' release
             if(e.keyCode == 80){
                 patch.stop();
             }
         });
+
+        //Activate Default Panel
+        this.activatePanel('wavePanel');
     }
 });

@@ -4,8 +4,8 @@
 <svg width="35" height="35" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="matrix(1 0 0 1 -628.489929 -64.489914)">
     <g id="Ellipse">
-      <path fill="none" stroke="#c8cddf" d="M629 82 C629 72.61 636.61 65 646 65 C655.39 65 663 72.61 663 82 C663 91.39 655.39 99 646 99 C636.61 99 629 91.39 629 82 Z"/>
+      <path class="circle" fill="none" stroke="#c8cddf" d="M629 82 C629 72.61 636.61 65 646 65 C655.39 65 663 72.61 663 82 C663 91.39 655.39 99 646 99 C636.61 99 629 91.39 629 82 Z"/>
     </g>
-    <path fill="none" stroke="#c8cddf" d="M637.5 77.5 L654.5 77.5 L647.5 85 L647.5 89.5 L644.5 89.5 L644.5 85 Z"/>
+    <path class="icon" fill="none" stroke="#c8cddf" d="M637.5 77.5 L654.5 77.5 L647.5 85 L647.5 89.5 L644.5 89.5 L644.5 85 Z"/>
   </g>
 </svg>

@@ -4,10 +4,13 @@
 <svg width="35" height="35" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="matrix(1 0 0 1 -860.489929 -64.489914)">
     <g id="Ellipse">
-      <path fill="none" stroke="#c8cddf" d="M861 82 C861 72.61 868.61 65 878 65 C887.39 65 895 72.61 895 82 C895 91.39 887.39 99 878 99 C868.61 99 861 91.39 861 82 Z"/>
+      <path class="circle" fill="none" stroke="#c8cddf" d="M861 82 C861 72.61 868.61 65 878 65 C887.39 65 895 72.61 895 82 C895 91.39 887.39 99 878 99 C868.61 99 861 91.39 861 82 Z"/>
     </g>
-    <path stroke-width="2" fill="none" stroke="#b7bccd" d="M879.88 74 L885 74 L885 79.69"/>
-    <path stroke-width="2" fill="none" stroke="#b7bccd" d="M878 81 L884.5 74.5"/>
-    <path fill="none" stroke="#b7bccd" d="M875.5 75.5 L872.5 75.5 L872.5 87.5 L883.5 87.5 L883.5 82.33"/>
+
+    <g class="icon">
+        <path stroke-width="2" fill="none" stroke="#b7bccd" d="M879.88 74 L885 74 L885 79.69"/>
+        <path stroke-width="2" fill="none" stroke="#b7bccd" d="M878 81 L884.5 74.5"/>
+        <path fill="none" stroke="#b7bccd" d="M875.5 75.5 L872.5 75.5 L872.5 87.5 L883.5 87.5 L883.5 82.33"/>
+    </g>
   </g>
 </svg>

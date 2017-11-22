@@ -3,7 +3,7 @@ Blendwave - Common styles
 Author: Werther Azevedo
 -----------------------------------------------------------------------------*/
 
-/* =Global Vars
+/* =Globals
 -----------------------------------------------------------------------------*/
 
 @appBG: #373a43;
@@ -132,7 +132,6 @@ fieldset.disabled{
 }
 
 .mainNav li a{
-    padding: 0 0 0 2.7rem;
     color: #cfd5e7;
     display: flex;
     height: 100%;
@@ -140,26 +139,14 @@ fieldset.disabled{
     line-height: 1.2em;
 }
 
-.mainNav li a[href*="wave"]{
-    background: url(../img/ic_wave.svg) no-repeat left center;
+.mainNav li a:hover{
+    text-decoration: none;
+    color: #fff;
 }
 
-.mainNav li a[href*="envelope"]{
-    background: url(../img/ic_envelope.svg) no-repeat left center;
+.mainNav li svg{
+    margin-right: 0.5rem;
 }
-
-.mainNav li a[href*="filter"]{
-    background: url(../img/ic_filter.svg) no-repeat left center;
-}
-
-.mainNav li a[href*="fx"]{
-    background: url(../img/ic_effects.svg) no-repeat left center;
-}
-
-.mainNav li a[href*="export"]{
-    background: url(../img/ic_export.svg) no-repeat left center;
-}
-
 
 .mainNav li.disabled a{
     cursor: not-allowed;
