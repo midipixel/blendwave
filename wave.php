@@ -25,9 +25,9 @@
                     </nav>
                 </header>
 
-                <div class="main">
-                    <ul class="categoryList">
-                        <li>Animals</li>
+                <nav class="main">
+                    <ul class="sampleCategories">
+                        <li class="active">Animals</li>
                         <li>Ambiences</li>
                         <li>Cartoon</li>
                         <li>Doors and Gates</li>
@@ -41,7 +41,7 @@
                         <li>Vehicles</li>
                         <li>Weapons</li>
                     </ul>
-                </div>
+                </nav>
             </div>
 
         </div>
@@ -75,7 +75,7 @@
                                         <a href="samples/'. $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $filename . '</a>
                                     ');
                                 }
-                                if($fileindex > 0 && $fileindex % $files_per_col == 0){
+                                if($fileindex > 0 && ($fileindex + 1) % $files_per_col == 0){
                                     echo('</div>');
                                     echo('<div class="subcol">');
                                 }

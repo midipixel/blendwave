@@ -46,6 +46,26 @@ nav .wave:hover{
     color: #a275ff;
 }
 
+.sampleCategories li{
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: color 0.2s ease-out;
+}
+
+.sampleCategories li.active{
+    background: #61646e;
+    padding: 0.5rem;
+    border-radius: 2px;
+    color: #e7e7ea;
+    font-weight: 700;
+}
+
+.sampleCategories li:hover{
+    color: #fff;
+}
+
 /* =Samples List
 -----------------------------------------------------------------------------*/
 .samplesList header{
@@ -94,10 +114,12 @@ nav .wave:hover{
     padding: 0.5rem 0.5rem;
     color: #7184d3;
     text-decoration: underline;
+    font-size: 0.9rem;
 }
 
 .fileList .active a, .fileList a:hover{
-    background: #eee;
+    background: #262930;
+    color: #cfd5e7;
 }
 
 .wavePanel .loading{
