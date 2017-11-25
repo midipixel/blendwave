@@ -6,7 +6,10 @@ Author: Werther Azevedo
 /* =Globals
 -----------------------------------------------------------------------------*/
 
-@appBG: #373a43;
+@bwBase: #373a43;
+@bwBright: #4b4f58;
+@bwDark: #30323a;
+@bwDarker: #262930;
 
 .userSelect_off{
     -webkit-user-select: none;
@@ -21,10 +24,21 @@ body{
     background: #191c28;
     font-family: 'interUI', Arial, Helvetica, sans-serif;
     padding: 2rem 0;
+    color: #acacb8;
 }
 
-main > .container{
-    max-width: 880px;
+.bwBody{
+    background-color: @bwBase;
+    border-radius: 0 0 6px 6px;
+    color: #c8cada;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+.container{
+    max-width: 890px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 ul{
@@ -88,26 +102,15 @@ fieldset.disabled{
     legend{
         opacity: 1;
     }
-
 }
-
-.bwBody{
-    background-color: @appBG;
-    color: #c8cada;
-    border-radius: 0 0 6px 6px;
-    padding-bottom: 3rem;
-}
-
-
 
 /* =Header
 -----------------------------------------------------------------------------*/
-
 .bwHeader{
-    background-color: @appBG;
-    color: #c8cada;
+    background-color: @bwDark;
     border-radius: 6px 6px 0 0;
-    padding-top: 1.6rem;
+    color: #c8cada;
+    padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
@@ -115,15 +118,19 @@ fieldset.disabled{
 
 .mainNav .logo{
     text-align: center;
+    margin: 0;
 }
 
 .mainNav .logo img{
     width: 70%;
+    max-width: 120px;
 }
 
 .mainNav ul{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-bottom: 0;
 }
 
 .mainNav li{
@@ -160,15 +167,20 @@ fieldset.disabled{
 /* File Header */
 
 .fileHeader{
-    font-size: 1em;
-    margin: 0 0 1em 0;
+    background: @bwBase;
+    padding: 0 0 0.8rem 0;
+    border-bottom: 1px solid #5d616f;
+}
+
+.fhBody{
+    font-size: 0.85em;
     cursor: pointer;
     background: #454850 url(../img/bt_play.png) 1rem center no-repeat;
     padding: 0.5rem 1rem 0.5rem 3rem;
     .userSelect_off;
 }
 
-.fileHeader:hover{
+.fhBody:hover{
     background-color: #000;
 }
 
@@ -190,14 +202,11 @@ fieldset.disabled{
 
 /* =Titles
 -----------------------------------------------------------------------------*/
-
 .panelContent>h3{
     font-family: Comfortaa, sans-serif;
     font-weight: normal;
     font-size: 1.6rem;
-    margin: 1rem 0 1rem 0;
-    padding: 2rem 0 0 0;
-    border-top: 1px solid #5d616f;
+    margin: 0 0 3rem 0;
 }
 
 .panelContent h3 em{
@@ -211,11 +220,8 @@ fieldset.disabled{
     content: ' - ';
 }
 
-
-
 /* =Components
 -----------------------------------------------------------------------------*/
-
 .titleBox header{
     border-bottom-width: 3px;
     border-bottom-style: solid;

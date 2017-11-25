@@ -2,16 +2,11 @@
 
 <section class="panelContent wavePanel" id="wave" v-show="active">
 
-    <fileheader></fileheader>
-
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <section class="row">
         <div class="col loading">
-            <p v-show="loading">
-                <img src="img/loading.gif" height="30">
-                {{ content[$root.locale].loading }}
-            </p>
+
         </div>
     </section>
 
@@ -54,7 +49,15 @@
                 </label>
             </header>
 
-            <section id="wavePreview" class="wavePreview"></section>
+            <section id="wavePreview" class="wavePreview">
+                <div class="loadingSample" v-show="loading">
+                    <div class="content">
+                        <img src="img/loading.gif" height="30">
+                        {{ content[$root.locale].loading }}
+                    </div>
+                </div>
+            </section>
+
 
             <div class="fileContainer">
                 <div class="fileList">

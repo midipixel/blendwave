@@ -1,8 +1,6 @@
 <?= '<script type="text/x-template" id="envelopePanel">' ?>
 
 <section class="panelContent envelope" id="envelope" v-show="active">
-    <fileheader></fileheader>
-
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="row amp">

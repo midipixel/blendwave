@@ -1,8 +1,6 @@
 <?= '<script type="text/x-template" id="filterPanel">' ?>
 
 <section class="panelContent" id="filter" v-show="active">
-    <fileheader></fileheader>
-
     <h3>{{ content[$root.locale].title }} <em> {{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="row">

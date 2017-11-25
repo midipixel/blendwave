@@ -1,8 +1,6 @@
 <?= '<script type="text/x-template" id="fxPanel">' ?>
 
 <section class="panelContent" id="fx" v-show="active">
-    <fileheader></fileheader>
-
     <h3>{{ content[$root.locale].title }} <em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <?php

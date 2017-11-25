@@ -3,8 +3,9 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
     <title>Blendwave</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-reboot.css">
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-grid.css">
@@ -58,6 +59,8 @@
                 </ul>
             </nav>
         </header>
+
+        <fileheader></fileheader>
 
         <section class="container bwBody">
             <!-- vueJS Components -->

@@ -91,8 +91,29 @@ nav .wave:hover{
     margin-right: 2%;
 }
 
+@wpHeight: 80px;
+
 .wavePreview{
     background: #262930;
+    height: @wpHeight;
+}
+
+.loadingSample{
+    float: left;
+    display: table;
+    width: 100%;
+    height: 100%;
+    background: #262930;
+    text-align: center;
+}
+
+.loadingSample .content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.loadingSample img{
+    margin-right: 10px;
 }
 
 .fileContainer{
@@ -122,21 +143,7 @@ nav .wave:hover{
     color: #cfd5e7;
 }
 
-.wavePanel .loading{
-    padding: 0.5em;
-    height: 1em;
-    margin-bottom: 2em;
-    margin-top: -10px;
-}
 
-.wavePanel .loading p{
-    border: 1px solid #e4acac;
-    color: red;
-}
-
-.wavePanel .loading img{
-    margin-right: 10px;
-}
 
 
 

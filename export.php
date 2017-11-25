@@ -1,7 +1,5 @@
 <?= '<script type="text/x-template" id="exportPanel">' ?>
 <section class="panelContent" id="export" v-show="active">
-    <fileheader></fileheader>
-
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="mixer">
