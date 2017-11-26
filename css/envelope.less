@@ -1,0 +1,56 @@
+/*-----------------------------------------------------------------------------
+Blendwave - Envelope Panel
+Author: Werther Azevedo
+-----------------------------------------------------------------------------*/
+
+/* =Colors
+-----------------------------------------------------------------------------*/
+@ampPrimary: #6ed2e1;
+@ampSecondary: #46afc8;
+@pitchPrimary: #54cd76;
+@pitchSecondary: #52c673;
+
+/* =General
+-----------------------------------------------------------------------------*/
+.envelopePanel .panelContent>h3 b:nth-child(1){
+    color: @ampPrimary;
+}
+
+.envelopePanel .panelContent>h3 b:nth-child(2){
+    color: @pitchPrimary;
+}
+
+nav .envelope:hover{
+    .circle{
+        stroke: #46aec6;
+    }
+}
+
+.envelopePanel{
+    nav .envelope a{
+        color: #46aec6;
+    }
+
+    nav .envelope .circle{
+        stroke: #46aec6;
+    }
+
+    nav .envelope .icon{
+        stroke: #fff;
+    }
+}
+
+
+/* =Amplitude
+-----------------------------------------------------------------------------*/
+.amplitude legend{
+    color: @ampPrimary;
+    border-color: @ampSecondary;
+}
+
+/* =Pitch
+-----------------------------------------------------------------------------*/
+.pitch legend{
+    color: @pitchPrimary;
+    border-color: @pitchSecondary;
+}

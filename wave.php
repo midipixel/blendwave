@@ -1,6 +1,6 @@
 <?= '<script type="text/x-template" id="wavePanel">' ?>
 
-<section class="panelContent wavePanel" id="wave" v-show="active">
+<section class="panelContent" id="wave" v-show="active">
 
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 

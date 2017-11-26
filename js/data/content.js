@@ -45,7 +45,7 @@ const content = {
 
     envelopePanel: {
         pt: {
-            title: "Amplitude e Pitch",
+            title: "(b)Amplitude(/b) e (b)Pitch(/b)",
             subtitle: "Altere o volume e a tonalidade do som",
             ampEnvelope: "Amp Envelope",
             ampOSC: "Oscilar Volume",
@@ -58,7 +58,7 @@ const content = {
             speed: "Velocidade"
         },
         en: {
-            title: "Amplitude and Pitch",
+            title: "(b)Amplitude(/b) & (b)Pitch(/b)",
             subtitle: "Fiddle with the sound sample's volume and pitch",
             ampEnvelope: "Amp Envelope",
             ampOSC: "Volume Shake",

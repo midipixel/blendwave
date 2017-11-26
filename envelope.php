@@ -3,8 +3,8 @@
 <section class="panelContent envelope" id="envelope" v-show="active">
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
-    <div class="row amp">
-        <div class="col-sm-6">
+    <div class="row">
+        <div class="col-sm-6 amplitude">
             <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
                 <legend>
                     <input type="checkbox"
@@ -16,18 +16,20 @@
                     {{ content[$root.locale].ampEnvelope }}
                 </legend>
 
-                <div class="params">
+                <div class="main params">
                     <template v-for="param in amp_envelope.params">
                         <label :for=param.name>{{ content[$root.locale][param.name] }}</label>
-                        <input type="range"
-                               :min=param.min
-                               v-model:value=param.value
-                               :max=param.max
-                               :step=param.step
-                               ga-on="change"
-                               ga-event-category="ampEnvelope"
-                               :ga-event-action=param.name>
-                        <output :value=param.value>{{param.value}}</output>
+                        <div class="slider">
+                            <input type="range"
+                                   :min=param.min
+                                   v-model:value=param.value
+                                   :max=param.max
+                                   :step=param.step
+                                   ga-on="change"
+                                   ga-event-category="ampEnvelope"
+                                   :ga-event-action=param.name>
+                            <output :value=param.value>{{param.value}}</output>
+                        </div>
                     </template>
                 </div>
             </fieldset>
@@ -43,24 +45,26 @@
                     {{ content[$root.locale].ampOSC }}
                 </legend>
 
-                <div class="params">
+                <div class="main params">
                     <template v-for="param in amp_osc.params">
                         <label :for=param>{{ content[$root.locale][param.name] }}</label>
-                        <input type="range"
-                               :min=param.min
-                               v-model:value=param.value
-                               :max=param.max
-                               :step=param.step
-                               ga-on="change"
-                               ga-event-category="ampOSC"
-                               :ga-event-action=param.name>
-                        <output :value=param.value>{{param.value}}</output>
+                        <div class="slider">
+                            <input type="range"
+                                   :min=param.min
+                                   v-model:value=param.value
+                                   :max=param.max
+                                   :step=param.step
+                                   ga-on="change"
+                                   ga-event-category="ampOSC"
+                                   :ga-event-action=param.name>
+                            <output :value=param.value>{{param.value}}</output>
+                        </div>
                     </template>
                 </div>
             </fieldset>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6 pitch">
             <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
                 <legend>
                     <input type="checkbox"
@@ -73,18 +77,23 @@
                     {{ content[$root.locale].pitch }}
                 </legend>
 
-                <template v-for="param in pitch.params">
-                    <label :for=param>{{ content[$root.locale][param.name] }}</label>
-                    <input type="range"
-                           :min=param.min
-                           v-model:value=param.value
-                           :max=param.max
-                           :step=param.step
-                           ga-on="change"
-                           ga-event-category="pitch"
-                           :ga-event-action=param.name>
-                    <output :value=param.value>{{ param.value }}</output>
-                </template>
+                <div class="main">
+                    <template v-for="param in pitch.params">
+                            <label :for=param>{{ content[$root.locale][param.name] }}</label>
+
+                            <div class="slider">
+                                <input type="range"
+                                       :min=param.min
+                                       v-model:value=param.value
+                                       :max=param.max
+                                       :step=param.step
+                                       ga-on="change"
+                                       ga-event-category="pitch"
+                                       :ga-event-action=param.name>
+                                <output :value=param.value>{{ param.value }}</output>
+                            </div>
+                    </template>
+                </div>
             </fieldset>
 
             <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
@@ -99,18 +108,20 @@
                     {{ content[$root.locale].pitchOSC }}
                 </legend>
 
-                <div class="params">
+                <div class="main params">
                     <template v-for="param in pitch_osc.params">
                         <label :for=param>{{ content[$root.locale][param.name] }}</label>
-                        <input type="range"
-                               :min=param.min
-                               v-model:value=param.value
-                               :max=param.max
-                               :step=param.step
-                               ga-on="change"
-                               ga-event-category="pitchOSC"
-                               :ga-event-action=param.name>
-                        <output :value=param.value>{{ param.value }}</output>
+                        <div class="slider">
+                            <input type="range"
+                                   :min=param.min
+                                   v-model:value=param.value
+                                   :max=param.max
+                                   :step=param.step
+                                   ga-on="change"
+                                   ga-event-category="pitchOSC"
+                                   :ga-event-action=param.name>
+                            <output :value=param.value>{{ param.value }}</output>
+                        </div>
                     </template>
                 </div>
             </fieldset>

@@ -152,5 +152,10 @@ Vue.component('envelopepanel', {
             speed: parseFloat(this.amp_osc.params.speed.value),
             depth: parseFloat(this.amp_osc.params.depth.value)
         });
+
+        //Replace (b) flags with <b> tags to format the multi-colored title
+        var titleText = $('#envelope h3').html();
+        var newText = titleText.split('(b)').join('<b>').split('(/b)').join('</b>');
+        $('#envelope h3').html(newText);
     }
 });

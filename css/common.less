@@ -6,7 +6,9 @@ Author: Werther Azevedo
 /* =Globals
 -----------------------------------------------------------------------------*/
 
+/* Gray Tones Color Palette */
 @bwBase: #373a43;
+@bwBrighter: #61646e;
 @bwBright: #4b4f58;
 @bwDark: #30323a;
 @bwDarker: #262930;
@@ -44,29 +46,6 @@ body{
 ul{
     list-style: none;
     padding: 0;
-}
-
-.audioParams {
-    margin-bottom: 2em;
-}
-
-.audioParams label{
-    display: block;
-    margin-bottom: 0.5em;
-}
-
-.audioParams input[type=range]{
-    display: inline-block;
-    width: 80%;
-}
-
-.audioParams legend{
-    padding: 0 1em;
-}
-
-.audioParams output{
-    display: inline-block;
-    width: 15%;
 }
 
 .dspType{
@@ -222,22 +201,30 @@ fieldset.disabled{
 
 /* =Components
 -----------------------------------------------------------------------------*/
-.titleBox header{
-    border-bottom-width: 3px;
-    border-bottom-style: solid;
-    border-bottom-color: #fff;
-    margin-bottom: 1px;
-}
-
-.titleBox .main{
-    background: #4b4f58;
-    padding: 1rem 15px;
-    font-weight: 500;
-    color: #bcc2ce;
-}
-
 .titleBox{
-     nav a, h4 {
+    header, legend{
+        font-size: 1rem;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #fff;
+        margin-bottom: 1px;
+    }
+
+    legend{
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .main{
+        background: #4b4f58;
+        padding: 1rem 15px;
+        font-weight: 500;
+        color: #bcc2ce;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    nav a, h4 {
         font-weight: 500;
         font-size: 1rem;
         margin-bottom: 0.5rem;
@@ -251,18 +238,53 @@ fieldset.disabled{
         display: inline-block;
     }
 
+    nav a + a{
+        margin-left: 1.1rem;
+    }
+
+    nav a.active{
+        font-weight: 700;
+    }
+
+    nav a:hover{
+        text-decoration: none;
+    }
 }
 
-.titleBox nav a + a{
-    margin-left: 1.1rem;
+.audioParams {
+    margin-bottom: 2em;
 }
 
-.titleBox nav a.active{
-    font-weight: 700;
+.audioParams label{
+    display: block;
+    margin-bottom: 0.5em;
 }
 
-.titleBox nav a:hover{
-    text-decoration: none;
+
+
+/* =Forms
+-----------------------------------------------------------------------------*/
+
+fieldset{
+    .titleBox;
+}
+
+.slider{
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.slider input[type=range]{
+    display: inline-block;
+    width: 80%;
+}
+
+.slider output{
+    display: inline-block;
+    width: 15%;
+    background: @bwBrighter;
+    border-radius: 2px;
+    text-align: center;
 }
 
 
