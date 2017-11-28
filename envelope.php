@@ -40,12 +40,15 @@
 
             <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
                 <legend>
-                    <input type="checkbox"
-                           :checked=amp_osc.active
-                           @change=setAmpOSC
-                           ga-on="change"
-                           ga-event-category="ampOSC"
-                           ga-event-action="toggle oscillator"/>
+                    <label for="amp_osc_toggle">
+                        <input type="checkbox"
+                               id="amp_osc_toggle"
+                               :checked=amp_osc.active
+                               @change=setAmpOSC
+                               ga-on="change"
+                               ga-event-category="ampOSC"
+                               ga-event-action="toggle oscillator"/>
+                    </label>
                     {{ content[$root.locale].ampOSC }}
                 </legend>
 
@@ -71,44 +74,50 @@
         <div class="col-sm-6 pitch">
             <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
                 <legend>
+                    <label for="pitch_toggle">
                     <input type="checkbox"
+                           id="pitch_toggle"
                            :checked=pitch.active
                            @change="pitch.active = !pitch.active"
 
                            ga-on="change"
                            ga-event-category="pitch"
                            ga-event-action="toggle pitch shift"/>
+                    </label>
                     {{ content[$root.locale].pitch }}
                 </legend>
 
-                <div class="main">
+                <div class="main params">
                     <template v-for="param in pitch.params">
-                            <label :for=param>{{ content[$root.locale][param.name] }}</label>
+                        <label :for=param>{{ content[$root.locale][param.name] }}</label>
 
-                            <div class="slider">
-                                <input type="range"
-                                       :min=param.min
-                                       v-model:value=param.value
-                                       :max=param.max
-                                       :step=param.step
-                                       ga-on="change"
-                                       ga-event-category="pitch"
-                                       :ga-event-action=param.name>
-                                <output :value=param.value>{{ param.value }}</output>
-                            </div>
+                        <div class="slider">
+                            <input type="range"
+                                   :min=param.min
+                                   v-model:value=param.value
+                                   :max=param.max
+                                   :step=param.step
+                                   ga-on="change"
+                                   ga-event-category="pitch"
+                                   :ga-event-action=param.name>
+                            <output :value=param.value>{{ param.value }}</output>
+                        </div>
                     </template>
                 </div>
             </fieldset>
 
             <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
                 <legend>
-                    <input type="checkbox"
-                           :checked=pitch_osc.active
-                           @change="pitch_osc.active = !pitch_osc.active;"
+                    <label for="pitch_osc_toggle">
+                        <input type="checkbox"
+                               id="pitch_osc_toggle"
+                               :checked=pitch_osc.active
+                               @change="pitch_osc.active = !pitch_osc.active;"
 
-                           ga-on="change"
-                           ga-event-category="pitchOSC"
-                           ga-event-action="toggle oscillator"/>
+                               ga-on="change"
+                               ga-event-category="pitchOSC"
+                               ga-event-action="toggle oscillator"/>
+                    </label>
                     {{ content[$root.locale].pitchOSC }}
                 </legend>
 

@@ -73,16 +73,6 @@ ul{
     opacity: 0.5;
 }
 
-fieldset.disabled{
-    opacity: 1;
-    * {
-        opacity: 0.5;
-    }
-    legend{
-        opacity: 1;
-    }
-}
-
 /* =Header
 -----------------------------------------------------------------------------*/
 .bwHeader{
@@ -204,7 +194,7 @@ fieldset.disabled{
 .titleBox{
     header, legend{
         font-size: 1rem;
-        border-bottom-width: 3px;
+        border-bottom-width: 2px;
         border-bottom-style: solid;
         border-bottom-color: #fff;
         margin-bottom: 1px;
@@ -251,6 +241,15 @@ fieldset.disabled{
     }
 }
 
+/* =Forms
+-----------------------------------------------------------------------------*/
+@switchWidth: 3rem;
+@buttonDiameter: 1.1rem;
+
+.audioParams{
+    .titleBox;
+}
+
 .audioParams {
     margin-bottom: 2em;
 }
@@ -258,36 +257,116 @@ fieldset.disabled{
 .audioParams label{
     display: block;
     margin-bottom: 0.5em;
+    font-size: 0.95rem;
+    font-weight: 400;
 }
 
-/* =Forms
------------------------------------------------------------------------------*/
+/* Sliders */
 
-.audioParams{
-    .titleBox;
-}
+@sliderHeight: 1.6rem;
 
 .audioParams .slider{
     display: flex;
     margin-bottom: 0.5rem;
+    height: @sliderHeight;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .audioParams .slider input[type=range]{
     display: inline-block;
-    width: 80%;
+    width: 82%;
+    height: 100%;
+    background: transparent; /* Otherwise white in Chrome */
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+}
+
+.audioParams .slider input[type=range]:focus {
+  outline: none;
+}
+
+/* Slider Thumb - Common rules */
+
+.thumbStyle{
+    border: 1px solid #000000;
+    height: @buttonDiameter;
+    width: @buttonDiameter;
+    cursor: pointer;
+    background: @bwBrighter;
+    border: 0.15em solid #fff;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.8);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Slider Thumb - Browser Specific */
+
+.audioParams .slider input[type=range]::-webkit-slider-thumb {
+    .thumbStyle;
+    -webkit-appearance: none;
+    top: 3px;
+    margin: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+.audioParams .slider input[type=range]::-moz-range-thumb{
+    .thumbStyle;
+}
+
+.audioParams .slider input[type=range]::-ms-thumb{
+    .thumbStyle;
+}
+
+/* Slider Track - Common rules */
+
+.trackStyle{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid #939395;
+    background-color: rgb(66, 66, 75);
+    box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,1);
+    border-radius: 4px;
+    padding: 0 3px;
+}
+
+/* Slider Track - Browser Specific */
+input[type=range]::-webkit-slider-runnable-track {
+    .trackStyle;
+}
+
+input[type=range]::-moz-range-track{
+    .trackStyle;
+}
+
+input[type=range]::-ms-track {
+    .trackStyle;
+}
+
+.audioParams .slider input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
 }
 
 .audioParams .slider output{
-    display: inline-block;
-    width: 15%;
+    width: 14%;
+    height: 100%;
     background: @bwBrighter;
     border-radius: 2px;
     text-align: center;
+    font-size: 0.9rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.audioParams legend{
-
-}
+/* Switch Track */
 
 .audioParams legend label{
     display: inline-block;
@@ -296,29 +375,48 @@ fieldset.disabled{
     box-shadow:
         0px 0px 3px 0px rgba(147,147,149,0.4),
         inset 0px 0px 8px 0px rgba(0,0,0,1);
-    width: 3rem;
+    width: @switchWidth;
     border-radius: 1rem;
     margin: 0 0.4rem 0 0;
     position: relative;
+    height: 1.55rem;
+    cursor: pointer;
 }
 
+/* Switch button - Enabled */
 .audioParams legend label::before{
     content: ' ';
     position: absolute;
     top: 3px;
-    left: 4px;
+    left: @switchWidth - @buttonDiameter - 0.3rem;
+    width: @buttonDiameter;
+    height: @buttonDiameter;
     background: @bwBrighter;
     border: 0.15em solid #fff;
     border-radius: 50%;
     display: block;
-    width: 1.1rem;
-    height: 1.1rem;
     z-index: 10;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.8);
+    transition: all 0.2s ease-in;
+}
+
+/* Switch button - Disabled */
+
+.audioParams.disabled legend label::before{
+    left: 0.2rem;
+    background: #cdcdcd;
 }
 
 .audioParams legend input[type="checkbox"]{
     visibility: hidden;
+}
+
+fieldset.disabled{
+    opacity: 1;
+    .params {
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+    }
 }
 
 

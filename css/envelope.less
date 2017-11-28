@@ -40,7 +40,6 @@ nav .envelope:hover{
     }
 }
 
-
 /* =Amplitude
 -----------------------------------------------------------------------------*/
 .amplitude legend{
@@ -52,9 +51,37 @@ nav .envelope:hover{
     background: @ampPrimary;
 }
 
+.amplitude .slider input[type=range]::-webkit-slider-thumb {
+    background: @ampPrimary;
+}
+
+.amplitude .slider input[type=range]::-moz-range-thumb{
+    background: @ampPrimary;
+}
+
+.amplitude .slider input[type=range]::-ms-thumb{
+    background: @ampPrimary;
+}
+
 /* =Pitch
 -----------------------------------------------------------------------------*/
 .pitch legend{
     color: @pitchPrimary;
     border-color: @pitchSecondary;
+}
+
+.pitch legend label::before{
+    background: @pitchSecondary;
+}
+
+.pitch .slider input[type=range]::-webkit-slider-thumb {
+    background: @pitchPrimary;
+}
+
+.pitch .slider input[type=range]::-moz-range-thumb{
+    background: @pitchPrimary;
+}
+
+.pitch .slider input[type=range]::-ms-thumb{
+    background: @pitchPrimary;
 }
