@@ -7,12 +7,16 @@
         <div class="col-sm-6 amplitude">
             <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
                 <legend>
-                    <input type="checkbox"
-                           :checked=amp_envelope.active
-                           @change="amp_envelope.active = !amp_envelope.active"
-                           ga-on="change"
-                           ga-event-category="ampEnvelope"
-                           ga-event-action="toggle envelope"/>
+                    <label for="amp_envelope_toggle">
+                        <input type="checkbox"
+                               id="amp_envelope_toggle"
+                               :checked=amp_envelope.active
+                               @change="amp_envelope.active = !amp_envelope.active"
+                               ga-on="change"
+                               ga-event-category="ampEnvelope"
+                               ga-event-action="toggle envelope"/>
+                    </label>
+
                     {{ content[$root.locale].ampEnvelope }}
                 </legend>
 

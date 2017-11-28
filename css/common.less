@@ -260,32 +260,67 @@ fieldset.disabled{
     margin-bottom: 0.5em;
 }
 
-
-
 /* =Forms
 -----------------------------------------------------------------------------*/
 
-fieldset{
+.audioParams{
     .titleBox;
 }
 
-.slider{
+.audioParams .slider{
     display: flex;
     margin-bottom: 0.5rem;
 }
 
-.slider input[type=range]{
+.audioParams .slider input[type=range]{
     display: inline-block;
     width: 80%;
 }
 
-.slider output{
+.audioParams .slider output{
     display: inline-block;
     width: 15%;
     background: @bwBrighter;
     border-radius: 2px;
     text-align: center;
 }
+
+.audioParams legend{
+
+}
+
+.audioParams legend label{
+    display: inline-block;
+    border: 1px solid #5a5c62;
+    background-color: rgb(66, 66, 75);
+    box-shadow:
+        0px 0px 3px 0px rgba(147,147,149,0.4),
+        inset 0px 0px 8px 0px rgba(0,0,0,1);
+    width: 3rem;
+    border-radius: 1rem;
+    margin: 0 0.4rem 0 0;
+    position: relative;
+}
+
+.audioParams legend label::before{
+    content: ' ';
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    background: @bwBrighter;
+    border: 0.15em solid #fff;
+    border-radius: 50%;
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    z-index: 10;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.8);
+}
+
+.audioParams legend input[type="checkbox"]{
+    visibility: hidden;
+}
+
 
 
 
