@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-sm-6 amplitude">
-            <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
+            <fieldset :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
                 <legend>
                     <label for="amp_envelope_toggle" class="switch">
                         <input type="checkbox"
@@ -16,8 +16,8 @@
                                ga-event-category="ampEnvelope"
                                ga-event-action="toggle envelope"/>
                     </label>
-
-                    {{ content[$root.locale].ampEnvelope }}
+                    <strong>{{ content[$root.locale].ampEnvelope }}</strong>
+                    <span class="description">{{ content[$root.locale].ampEnvelopeDescription }}</span>
                 </legend>
 
                 <div class="main params">
@@ -49,7 +49,8 @@
                                ga-event-category="ampOSC"
                                ga-event-action="toggle oscillator"/>
                     </label>
-                    {{ content[$root.locale].ampOSC }}
+                    <strong>{{ content[$root.locale].ampOSC }}</strong>
+                    <span class="description">{{ content[$root.locale].ampOSCDescription }}</span>
                 </legend>
 
                 <div class="main params">
@@ -75,16 +76,17 @@
             <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
                 <legend>
                     <label for="pitch_toggle" class="switch">
-                    <input type="checkbox"
-                           id="pitch_toggle"
-                           :checked=pitch.active
-                           @change="pitch.active = !pitch.active"
+                        <input type="checkbox"
+                               id="pitch_toggle"
+                               :checked=pitch.active
+                               @change="pitch.active = !pitch.active"
 
-                           ga-on="change"
-                           ga-event-category="pitch"
-                           ga-event-action="toggle pitch shift"/>
+                               ga-on="change"
+                               ga-event-category="pitch"
+                               ga-event-action="toggle pitch shift"/>
                     </label>
-                    {{ content[$root.locale].pitch }}
+                    <strong>{{ content[$root.locale].pitch }}</strong>
+                    <span class="description">{{ content[$root.locale].pitchDescription }}</span>
                 </legend>
 
                 <div class="main params">
@@ -118,7 +120,8 @@
                                ga-event-category="pitchOSC"
                                ga-event-action="toggle oscillator"/>
                     </label>
-                    {{ content[$root.locale].pitchOSC }}
+                    <strong>{{ content[$root.locale].pitchOSC }}</strong>
+                    <span class="description">{{ content[$root.locale].pitchOSCDescription }}</span>
                 </legend>
 
                 <div class="main params">

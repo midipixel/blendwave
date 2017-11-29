@@ -12,6 +12,7 @@ Author: Werther Azevedo
 @bwBright: #4b4f58;
 @bwDark: #30323a;
 @bwDarker: #262930;
+@bwText: #acacb8;
 
 .userSelect_off{
     -webkit-user-select: none;
@@ -26,7 +27,7 @@ body{
     background: #191c28;
     font-family: 'interUI', Arial, Helvetica, sans-serif;
     padding: 2rem 0;
-    color: #acacb8;
+    color: @bwText;
 }
 
 .bwBody{
@@ -46,27 +47,6 @@ body{
 ul{
     list-style: none;
     padding: 0;
-}
-
-.dspType{
-    display: flex;
-    margin-bottom: 1em;
-}
-
-.dspType select{
-    margin-right: 2%;
-}
-
-.dspSetup{
-    display: flex;
-}
-
-.dspSetup img{
-    max-width: 100%;
-}
-
-.dspSetup fieldset{
-    width: 100%;
 }
 
 .disabled, fieldset[disabled]{
@@ -146,11 +126,12 @@ ul{
     cursor: pointer;
     background: #454850 url(../img/bt_play.png) 1rem center no-repeat;
     padding: 0.5rem 1rem 0.5rem 3rem;
+    transition: background 0.1s linear;
     .userSelect_off;
 }
 
 .fhBody:hover{
-    background-color: #000;
+    background-color: @bwDarker;
 }
 
 .fileHeader_active, .fileHeader:active{
@@ -193,6 +174,11 @@ ul{
     font-weight: normal;
 }
 
+.description{
+    font-weight: 400;
+    font-size: 0.75em;
+}
+
 /* =Components
 -----------------------------------------------------------------------------*/
 .titleBox{
@@ -205,8 +191,8 @@ ul{
     }
 
     legend{
-        padding-bottom: 0.5rem;
         font-weight: 700;
+        min-height: 2.2em;
     }
 
     .main{
@@ -249,6 +235,7 @@ ul{
 -----------------------------------------------------------------------------*/
 @switchWidth: 3rem;
 @buttonDiameter: 1.1rem;
+@fieldMargin: 0.8rem;
 
 .audioParams{
     .titleBox;
@@ -258,11 +245,79 @@ ul{
     margin-bottom: 2em;
 }
 
-.audioParams label{
+.audioParams legend .description{
+    float: right;
+    margin-top: 0.6rem;
+    color: @bwText;
+}
+
+.audioParams select{
+    background: @bwBase;
+    border: 1px solid #939395;
+    color: #bcc2ce;
+    padding: 0.1rem 0;
+    font-size: 0.9rem;
+}
+
+.audioParams select option{
+    font-size: 0.9rem;
+}
+
+.audioParams .params label{
     display: block;
     margin-bottom: 0.5em;
     font-size: 0.95rem;
     font-weight: 400;
+}
+
+fieldset.disabled{
+    opacity: 1;
+
+    .params {
+        pointer-events: none;
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+    }
+}
+
+/* Switch: Track */
+.audioParams label.switch{
+    border: 1px solid #5a5c62;
+    background-color: rgb(66, 66, 75);
+    box-shadow:
+        0px 0px 3px 0px rgba(147,147,149,0.4),
+        inset 0px 0px 8px 0px rgba(0,0,0,1);
+    width: @switchWidth;
+    border-radius: 1rem;
+    margin: 0 0.4rem 0 0;
+    position: relative;
+    height: 1.55rem;
+    cursor: pointer;
+    flex-grow: 2;
+}
+
+/* Switch: Button - Enabled */
+.audioParams label.switch::before{
+    content: ' ';
+    position: absolute;
+    top: 3px;
+    left: @switchWidth - @buttonDiameter - 0.3rem;
+    width: @buttonDiameter;
+    height: @buttonDiameter;
+    background: @bwBrighter;
+    border: 0.15em solid #fff;
+    border-radius: 50%;
+    display: block;
+    z-index: 10;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.8);
+    transition: all 0.2s ease-in;
+}
+
+/* Switch: Button - Disabled */
+
+.audioParams.disabled label.switch::before{
+    left: 0.2rem;
+    background: #cdcdcd;
 }
 
 /* Sliders */
@@ -271,7 +326,7 @@ ul{
 
 .audioParams .slider{
     display: flex;
-    margin-bottom: 0.5rem;
+    margin-bottom: @fieldMargin;
     height: @sliderHeight;
     align-items: center;
     justify-content: space-between;
@@ -365,57 +420,11 @@ input[type=range]::-ms-track {
     justify-content: center;
 }
 
-/* Switch Track */
-.audioParams label.switch{
-    display: inline-block;
-    border: 1px solid #5a5c62;
-    background-color: rgb(66, 66, 75);
-    box-shadow:
-        0px 0px 3px 0px rgba(147,147,149,0.4),
-        inset 0px 0px 8px 0px rgba(0,0,0,1);
-    width: @switchWidth;
-    border-radius: 1rem;
-    margin: 0 0.4rem 0 0;
-    position: relative;
-    height: 1.55rem;
-    cursor: pointer;
-}
-
-/* Switch button - Enabled */
-.audioParams label.switch::before{
-    content: ' ';
-    position: absolute;
-    top: 3px;
-    left: @switchWidth - @buttonDiameter - 0.3rem;
-    width: @buttonDiameter;
-    height: @buttonDiameter;
-    background: @bwBrighter;
-    border: 0.15em solid #fff;
-    border-radius: 50%;
-    display: block;
-    z-index: 10;
-    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.8);
-    transition: all 0.2s ease-in;
-}
-
-/* Switch button - Disabled */
-
-.audioParams.disabled label.switch::before{
-    left: 0.2rem;
-    background: #cdcdcd;
-}
-
 .audioParams legend input[type="checkbox"]{
     visibility: hidden;
 }
 
-fieldset.disabled{
-    opacity: 1;
-    .params {
-        opacity: 0.5;
-        mix-blend-mode: overlay;
-    }
-}
+
 
 
 

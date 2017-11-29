@@ -15,22 +15,22 @@ Author: Werther Azevedo
     color: @filterPrimary;
 }
 
-nav .envelope:hover{
+nav .filter:hover{
     .circle{
-        stroke: #46aec6;
+        stroke: #f2ba41;
     }
 }
 
 .filterPanel{
-    nav .envelope a{
-        color: #46aec6;
+    nav .filter a{
+        color: @filterSecondary;
     }
 
-    nav .envelope .circle{
-        stroke: #46aec6;
+    nav .filter .circle{
+        stroke: @filterPrimary;
     }
 
-    nav .envelope .icon{
+    nav .filter .icon{
         stroke: #fff;
     }
 }
@@ -42,7 +42,7 @@ nav .envelope:hover{
     border-color: @filterSecondary;
 }
 
-.filterPanel legend label::before{
+.filterPanel label.switch::before{
     background: @filterPrimary;
 }
 
@@ -57,5 +57,30 @@ nav .envelope:hover{
 .filterPanel .slider input[type=range]::-ms-thumb{
     background: @filterPrimary;
 }
+
+/* =filterType
+-----------------------------------------------------------------------------*/
+.filterType .none{
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.filterSelect{
+    display: flex;
+    align-items: center;
+    margin-bottom: @fieldMargin + 0.5rem;
+}
+
+.filterSelect p{
+    margin: 0 0 0 3%;
+}
+
+.filterType img{
+    width: 100%;
+}
+
+
+
 
 

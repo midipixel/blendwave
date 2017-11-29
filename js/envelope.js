@@ -6,7 +6,7 @@ Vue.component('envelopepanel', {
             content: content.envelopePanel,
             amp_envelope: {
                 name: 'Amp Envelope',
-                active: true,
+                active: false,
                 params: {
                     attack: {
                         name: 'attack',
