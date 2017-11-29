@@ -1,0 +1,61 @@
+/*-----------------------------------------------------------------------------
+Blendwave - Filter Panel
+Author: Werther Azevedo
+-----------------------------------------------------------------------------*/
+
+/* =Colors
+-----------------------------------------------------------------------------*/
+@filterPrimary: #f2ba41;
+@filterSecondary: #edab25;
+
+
+/* =General
+-----------------------------------------------------------------------------*/
+.filterPanel .panelContent>h3{
+    color: @filterPrimary;
+}
+
+nav .envelope:hover{
+    .circle{
+        stroke: #46aec6;
+    }
+}
+
+.filterPanel{
+    nav .envelope a{
+        color: #46aec6;
+    }
+
+    nav .envelope .circle{
+        stroke: #46aec6;
+    }
+
+    nav .envelope .icon{
+        stroke: #fff;
+    }
+}
+
+/* =filterPanel
+-----------------------------------------------------------------------------*/
+.filterPanel legend{
+    color: @filterPrimary;
+    border-color: @filterSecondary;
+}
+
+.filterPanel legend label::before{
+    background: @filterPrimary;
+}
+
+.filterPanel .slider input[type=range]::-webkit-slider-thumb {
+    background: @filterPrimary;
+}
+
+.filterPanel .slider input[type=range]::-moz-range-thumb{
+    background: @filterPrimary;
+}
+
+.filterPanel .slider input[type=range]::-ms-thumb{
+    background: @filterPrimary;
+}
+
+

@@ -3,10 +3,12 @@
 <section class="panelContent" id="filter" v-show="active">
     <h3>{{ content[$root.locale].title }} <em> {{ content[$root.locale].subtitle }}</em></h3>
 
-    <div class="row">
-        <form action="" autocomplete="off">
-            <div class="col-sm-6">
-                <h5><label for="filter">{{ content[$root.locale].filterType }}</label></h5>
+    <form class="row" action="" autocomplete="off">
+        <div class="col-sm-6">
+            <fieldset class="audioParams">
+                <legend>
+                    <label for="filter">{{ content[$root.locale].filterType }}</label>
+                </legend>
 
                 <div class="dspType filterType">
                     <select
@@ -25,98 +27,99 @@
                     </select>
                     <p>{{ selected != 'none' ? content[$root.locale][selected][1] : ' ' }}</p>
                 </div>
+            </fieldset>
 
-                <div :class="'dspSetup filterSetup' + ' ' + this.selected" >
-                    <figure>
-                        <img :src="'img/filter_'+ this.selected +'.png'" :alt="this.selected.name">
-                    </figure>
 
-                    <fieldset class="audioParams" :disabled="this.selected == 'none'">
-                        <label for="filter_cutoff">{{ content[$root.locale].cutoff }}</label>
+            <div :class="'dspSetup filterSetup' + ' ' + this.selected" >
+                <figure>
+                    <img :src="'img/filter_'+ this.selected +'.png'" :alt="this.selected.name">
+                </figure>
 
-                        <!-- Low Pass -->
-                        <template v-if="selected === 'lowpass'">
-                            <input
-                                type="range"
-                                :min="filter.lowpass.params.cutoff.min"
-                                :max="filter.lowpass.params.cutoff.max"
-                                :step="filter.lowpass.params.cutoff.step"
-                                v-model.number="filter.lowpass.params.cutoff.value"
+                <fieldset class="audioParams" :disabled="this.selected == 'none'">
+                    <label for="filter_cutoff">{{ content[$root.locale].cutoff }}</label>
 
-                                ga-on="change"
-                                ga-event-category="filterCutoff"
-                                ga-event-action="LP Cutoff">
-
-                                <output for="filter_cutoff">{{ filter.lowpass.params.cutoff.value }}</output>
-                        </template>
-
-                        <!-- High Pass -->
-                        <template v-else-if="selected === 'highpass'">
-                            <input
-                                type="range"
-                                :min="filter.highpass.params.cutoff.min"
-                                :max="filter.highpass.params.cutoff.max"
-                                :step="filter.highpass.params.cutoff.step"
-                                v-model.number="filter.highpass.params.cutoff.value"
-
-                                ga-on="change"
-                                ga-event-category="filterCutoff"
-                                ga-event-action="HP Cutoff">
-
-                                <output for="filter_cutoff">{{ filter.highpass.params.cutoff.value }}</output>
-                        </template>
-
-                        <!-- None: Dummy Slider -->
-                        <template v-else-if="selected === 'none'">
-                            <input type="range" value="0">
-                            <output>{{ filter.highpass.params.cutoff.value }}</output>
-                        </template>
-                    </fieldset>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <fieldset id="filter_osc" :class="{audioParams:true, disabled: !osc.active}" :disabled="!osc.active">
-                    <legend>
+                    <!-- Low Pass -->
+                    <template v-if="selected === 'lowpass'">
                         <input
-                            type="checkbox"
-                            :checked=osc.active
-                            @change='osc.active = !osc.active;'
+                            type="range"
+                            :min="filter.lowpass.params.cutoff.min"
+                            :max="filter.lowpass.params.cutoff.max"
+                            :step="filter.lowpass.params.cutoff.step"
+                            v-model.number="filter.lowpass.params.cutoff.value"
+
                             ga-on="change"
-                            ga-event-category="filterOSC"
-                            ga-event-action="toggle filter oscillator"/>
-                        {{ content[$root.locale].oscillateFilter }}
-                    </legend>
+                            ga-event-category="filterCutoff"
+                            ga-event-action="LP Cutoff">
 
-                    <label for="filterOSC_speed">{{ content[$root.locale].speed }}</label>
-                    <input
-                        type="range"
-                        :min="osc.params.speed.min"
-                        :max="osc.params.speed.max"
-                        :step="osc.params.speed.step"
-                        v-model.number="osc.params.speed.value"
+                            <output for="filter_cutoff">{{ filter.lowpass.params.cutoff.value }}</output>
+                    </template>
 
-                        ga-on="change"
-                        ga-event-category="filterOSC"
-                        ga-event-action="speed">
-                    <output for="filterOSC_speed">{{ osc.params.speed.value }}</output>
+                    <!-- High Pass -->
+                    <template v-else-if="selected === 'highpass'">
+                        <input
+                            type="range"
+                            :min="filter.highpass.params.cutoff.min"
+                            :max="filter.highpass.params.cutoff.max"
+                            :step="filter.highpass.params.cutoff.step"
+                            v-model.number="filter.highpass.params.cutoff.value"
 
-                    <label for="filterOSC_depth">{{ content[$root.locale].depth }}</label>
-                    <input
-                        type="range"
-                        :min="osc.params.amount.min"
-                        :max="osc.params.amount.max"
-                        :step="osc.params.amount.step"
-                        v-model.number="osc.params.amount.value"
+                            ga-on="change"
+                            ga-event-category="filterCutoff"
+                            ga-event-action="HP Cutoff">
 
-                        ga-on="change"
-                        ga-event-category="filterOSC"
-                        ga-event-action="depth">
-                    <output for="filterOSC_depth">{{ osc.params.amount.value }}</output>
+                            <output for="filter_cutoff">{{ filter.highpass.params.cutoff.value }}</output>
+                    </template>
+
+                    <!-- None: Dummy Slider -->
+                    <template v-else-if="selected === 'none'">
+                        <input type="range" value="0">
+                        <output>{{ filter.highpass.params.cutoff.value }}</output>
+                    </template>
                 </fieldset>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="col-sm-6">
+            <fieldset id="filter_osc" :class="{audioParams:true, disabled: !osc.active}" :disabled="!osc.active">
+                <legend>
+                    <input
+                        type="checkbox"
+                        :checked=osc.active
+                        @change='osc.active = !osc.active;'
+                        ga-on="change"
+                        ga-event-category="filterOSC"
+                        ga-event-action="toggle filter oscillator"/>
+                    {{ content[$root.locale].oscillateFilter }}
+                </legend>
+
+                <label for="filterOSC_speed">{{ content[$root.locale].speed }}</label>
+                <input
+                    type="range"
+                    :min="osc.params.speed.min"
+                    :max="osc.params.speed.max"
+                    :step="osc.params.speed.step"
+                    v-model.number="osc.params.speed.value"
+
+                    ga-on="change"
+                    ga-event-category="filterOSC"
+                    ga-event-action="speed">
+                <output for="filterOSC_speed">{{ osc.params.speed.value }}</output>
+
+                <label for="filterOSC_depth">{{ content[$root.locale].depth }}</label>
+                <input
+                    type="range"
+                    :min="osc.params.amount.min"
+                    :max="osc.params.amount.max"
+                    :step="osc.params.amount.step"
+                    v-model.number="osc.params.amount.value"
+
+                    ga-on="change"
+                    ga-event-category="filterOSC"
+                    ga-event-action="depth">
+                <output for="filterOSC_depth">{{ osc.params.amount.value }}</output>
+            </fieldset>
+        </div>
+    </form>
 </section>
 
 <?= '</script>'  ?>

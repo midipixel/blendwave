@@ -7,7 +7,7 @@
         <div class="col-sm-6 amplitude">
             <fieldset  :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
                 <legend>
-                    <label for="amp_envelope_toggle">
+                    <label for="amp_envelope_toggle" class="switch">
                         <input type="checkbox"
                                id="amp_envelope_toggle"
                                :checked=amp_envelope.active
@@ -40,7 +40,7 @@
 
             <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
                 <legend>
-                    <label for="amp_osc_toggle">
+                    <label for="amp_osc_toggle" class="switch">
                         <input type="checkbox"
                                id="amp_osc_toggle"
                                :checked=amp_osc.active
@@ -74,7 +74,7 @@
         <div class="col-sm-6 pitch">
             <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
                 <legend>
-                    <label for="pitch_toggle">
+                    <label for="pitch_toggle" class="switch">
                     <input type="checkbox"
                            id="pitch_toggle"
                            :checked=pitch.active
@@ -108,7 +108,7 @@
 
             <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
                 <legend>
-                    <label for="pitch_osc_toggle">
+                    <label for="pitch_osc_toggle" class="switch">
                         <input type="checkbox"
                                id="pitch_osc_toggle"
                                :checked=pitch_osc.active
