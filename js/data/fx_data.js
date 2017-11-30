@@ -1,7 +1,7 @@
 var effects = {
     reverb: {
         key: 'reverb',
-        img: 'img/reverb.png',
+        img: 'img/fx_reverb.jpg',
         params: [
             {
                 id: 'time',
@@ -28,7 +28,7 @@ var effects = {
     },
     delay: {
         key: 'delay',
-        img: 'img/delay.png',
+        img: 'img/fx_delay.jpg',
         params: [
             {
                 id: 'time',
@@ -55,7 +55,7 @@ var effects = {
     },
     distortion: {
         key: 'distortion',
-        img: 'img/distortion.png',
+        img: 'img/fx_distortion.jpg',
         params: [
             {
                 id: 'gain',
@@ -68,7 +68,7 @@ var effects = {
     },
     flanger: {
         key: 'flanger',
-        img: 'img/flanger.png',
+        img: 'img/fx_flanger.jpg',
         params: [
             {
                 id: 'time',
@@ -109,7 +109,7 @@ var effects = {
     },
     ringmodulator: {
         key: 'ringmodulator',
-        img: 'img/ringmodulator.png',
+        img: 'img/fx_ringmodulator.jpg',
         params: [
             {
                 id: 'speed',

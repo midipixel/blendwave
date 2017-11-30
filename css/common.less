@@ -117,7 +117,7 @@ ul{
 
 .fileHeader{
     background: @bwBase;
-    padding: 0 0 0.8rem 0;
+    padding: 0.8rem 15px;
     border-bottom: 1px solid #5d616f;
 }
 
@@ -241,6 +241,10 @@ ul{
     .titleBox;
 }
 
+.audioParams.disabled legend{
+    border-color: @bwBrighter;
+}
+
 .audioParams {
     margin-bottom: 2em;
 }
@@ -249,6 +253,11 @@ ul{
     float: right;
     margin-top: 0.6rem;
     color: @bwText;
+}
+
+.audioParams legend strong{
+    display: inline-block;
+    vertical-align: top;
 }
 
 .audioParams select{
@@ -281,7 +290,7 @@ fieldset.disabled{
 }
 
 /* Switch: Track */
-.audioParams label.switch{
+.audioParams .switch{
     border: 1px solid #5a5c62;
     background-color: rgb(66, 66, 75);
     box-shadow:
@@ -297,7 +306,7 @@ fieldset.disabled{
 }
 
 /* Switch: Button - Enabled */
-.audioParams label.switch::before{
+.audioParams .switch::before{
     content: ' ';
     position: absolute;
     top: 3px;
@@ -315,9 +324,13 @@ fieldset.disabled{
 
 /* Switch: Button - Disabled */
 
-.audioParams.disabled label.switch::before{
+.audioParams.disabled .switch::before, .audioParams .disabledSwitch::before{
     left: 0.2rem;
     background: #cdcdcd;
+}
+
+.audioParams .switch:focus{
+    outline: none;
 }
 
 /* Sliders */

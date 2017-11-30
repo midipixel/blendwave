@@ -3,19 +3,76 @@ Blendwave - Effects Panel Styles
 Author: Werther Azevedo
 -----------------------------------------------------------------------------*/
 
-/* =FX
+/* =Colors
+-----------------------------------------------------------------------------*/
+@fxPrimary: #77df29;
+@fxSecondary: #6cfe00;
+
+
+/* =General
+-----------------------------------------------------------------------------*/
+.fxPanel .panelContent>h3{
+    color: @fxPrimary;
+}
+
+nav .filter:hover{
+    .circle{
+        stroke: #f2ba41;
+    }
+}
+
+.fxPanel{
+    nav .fx a{
+        color: @fxSecondary;
+    }
+
+    nav .fx .circle{
+        stroke: @fxPrimary;
+    }
+
+    nav .fx .icon path{
+        stroke: #fff;
+    }
+}
+
+/* =Forms
+-----------------------------------------------------------------------------*/
+.fxPanel legend{
+    color: @fxPrimary;
+    border-color: @fxSecondary;
+}
+
+.fxPanel .switch::before{
+    background: @fxPrimary;
+}
+
+.fxPanel .slider input[type=range]::-webkit-slider-thumb {
+    background: @fxPrimary;
+}
+
+.fxPanel .slider input[type=range]::-moz-range-thumb{
+    background: @fxPrimary;
+}
+
+.fxPanel .slider input[type=range]::-ms-thumb{
+    background: @fxPrimary;
+}
+
+
+/* =FX Setup
 -----------------------------------------------------------------------------*/
 
 .fxSetup{
     margin-top: 20px;
 }
 
-.fxControls{
+.fxSelect{
     margin: 10px 0;
     display: flex;
+    align-items: center;
 }
 
-.fxControls p{
+.fxSelect p{
     margin: 0 10px;
 }
 
@@ -24,8 +81,7 @@ Author: Werther Azevedo
 }
 
 .effect{
-    border-bottom: 1px dashed #000;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 .reverb{

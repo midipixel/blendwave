@@ -73,7 +73,7 @@ Vue.component('fxpanel', {
                 var fxParams = this.getParams(fxSlot, effect);
                 
                 //Create a new pizzicato effect from user selection, passing the params object
-                var pizString = effect == 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
+                var pizString = effect === 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
                 fxSlot.pizEffect = new Pizzicato.Effects[pizString](fxParams);
                 
                 //Apply effect to sound

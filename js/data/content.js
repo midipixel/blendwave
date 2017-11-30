@@ -135,7 +135,7 @@ const content = {
         },
         en: {
             title: "Effects",
-            subtitle: "Experiment with your sound sample by utilizing DSP Effects!",
+            subtitle: "Experiment with and spice up your sound sample by utilizing DSP Effects!",
             none: ["None", "No Effect Selected"],
             reverb: ["Reverb", "Simulates the reverberation of indoors locations."],
             delay: ["Delay", "The sample is replayed multiple times, creating an echo chamber."],
