@@ -48,9 +48,10 @@ Author: Werther Azevedo
 /* =General
 -----------------------------------------------------------------------------*/
 body {
-  background: #191c28;
+  background: url(../img/bg_pattern.png) repeat-x 0 0, #191c28 url(../img/bg_pattern_bottom.png) repeat-x bottom left;
   font-family: 'interUI', Arial, Helvetica, sans-serif;
   padding: 2rem 0;
+  min-height: 100vh;
   color: #acacb8;
 }
 .bwBody {
@@ -803,8 +804,8 @@ Author: Werther Azevedo
 .fxPanel .panelContent > h3 {
   color: #77df29;
 }
-nav .filter:hover .circle {
-  stroke: #f2ba41;
+nav .fx:hover .circle {
+  stroke: #77df29;
 }
 .fxPanel nav .fx a {
   color: #6cfe00;

@@ -65,6 +65,6 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('fxPanel');
+        this.activatePanel('exportPanel');
     }
 });
