@@ -164,6 +164,7 @@ Vue.component('exportpanel', {
                     au.controls = true;
                     au.src = url;
                     hf.href = url;
+                    hf.setAttribute('class', 'bwButton');
                     hf.download = bw.$refs.wavePanel.fileName + '_' + new Date().toISOString() + '.wav';
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;

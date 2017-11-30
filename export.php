@@ -78,10 +78,16 @@
         </div>
     </div>
 
-    <div class="exports">
-        <h4>{{ content[$root.locale].filesTitle }}</h4>
-        <ul id="recordingslist"  class="exportedFiles">
-        </ul>
+    <div class="exports titleBox">
+        <header>
+            <h4>{{ content[$root.locale].filesTitle }}</h4>
+        </header>
+
+        <div class="main">
+            <ul id="recordingslist"  class="exportedFiles">
+                <li><audio controls="" src="samples/aula_bola_fogo.wav"></audio><a href="bla.wav" class="bwButton">Download File: sine.wav</a></li>
+            </ul>
+        </div>
     </div>
 
 </section>
