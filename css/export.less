@@ -60,7 +60,7 @@ nav .export:hover{
 }
 
 .mixer .titleBox{
-
+    height: 100%;
 }
 
 .mixer .titleBox .main{
@@ -80,6 +80,26 @@ nav .export:hover{
 .mixer .strip .toggleLabel{
     margin: 0.2rem 0 0 0;
     text-transform: uppercase;
+}
+
+.volumeMixer{
+    border: 1px solid yellow;
+}
+
+.volumeMixer .main{
+    border: 1px solid green;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.volumeMixer .slider{
+    border: 1px solid red;
+    //display: none;
+}
+
+.volumeMixer .slider input{
+    transform-origin: top center;
+    transform: rotate(-90deg);
 }
 
 

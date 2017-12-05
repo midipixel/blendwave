@@ -91,20 +91,28 @@
         </div>
 
         <div class="strip">
-            <p>
-                <span>{{ content[$root.locale].volumeStrip }}</span>
-                <output for="mixervolume">{{ masterVolume }}%</output>
-            </p>
-            <input type="range"
-                   :min=mixer.volume.min
-                   v-model:value.number=mixer.volume.value
-                   :max=mixer.volume.max
-                   :step=mixer.volume.step
+            <div class="titleBox volumeMixer">
+                <header>
+                    <span>{{ content[$root.locale].volumeStrip }}</span>
+                </header>
 
-                   ga-on="change"
-                   ga-event-category="exportPanel"
-                   ga-event-action="volume"
-            >
+                <div class="main audioParams">
+                    <div class="slider">
+                        <input type="range"
+                               :min=mixer.volume.min
+                               v-model:value.number=mixer.volume.value
+                               :max=mixer.volume.max
+                               :step=mixer.volume.step
+
+                               ga-on="change"
+                               ga-event-category="exportPanel"
+                               ga-event-action="volume"
+                        >
+                    </div>
+
+                    <output for="mixervolume">{{ masterVolume }}%</output>
+                </div>
+            </div>
         </div>
 
         <div class="strip">

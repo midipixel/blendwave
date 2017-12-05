@@ -934,6 +934,9 @@ nav .export:hover .circle {
   flex: 0 0 18%;
   text-align: center;
 }
+.mixer .titleBox {
+  height: 100%;
+}
 .mixer .titleBox .main {
   padding: 0 0 1rem 0;
 }
@@ -948,6 +951,25 @@ nav .export:hover .circle {
 .mixer .strip .toggleLabel {
   margin: 0.2rem 0 0 0;
   text-transform: uppercase;
+}
+.volumeMixer {
+  border: 1px solid yellow;
+}
+.volumeMixer .main {
+  border: 1px solid green;
+  margin-bottom: 0;
+  height: 100%;
+}
+.volumeMixer .slider {
+  border: 1px solid red;
+}
+.volumeMixer .slider input {
+  -webkit-transform-origin: top center;
+  -ms-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 /* =Exported Files
 -----------------------------------------------------------------------------*/
