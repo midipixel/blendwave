@@ -22,7 +22,7 @@ Vue.component('exportpanel', {
                     value: 0.8,
                     min: 0,
                     max: 1,
-                    step: 0.01
+                    step: 0.01,
                 }
             }
         }

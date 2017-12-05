@@ -96,7 +96,10 @@
                     <span>{{ content[$root.locale].volumeStrip }}</span>
                 </header>
 
-                <div class="main audioParams">
+                <div class="main audioParams"
+                     :style="{background: 'linear-gradient(to top, #61646e ' + masterVolume + '%, #4b4f58 ' + masterVolume + '%, #4b4f58 100%)'}"
+                >
+
                     <div class="slider">
                         <input type="range"
                                :min=mixer.volume.min
