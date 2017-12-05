@@ -65,6 +65,7 @@ nav .export:hover{
 
 .mixer .titleBox .main{
     padding: 0 0 1rem 0;
+    height: 90%;
 }
 
 .mixer .strip figure{
@@ -83,25 +84,35 @@ nav .export:hover{
 }
 
 .volumeMixer{
-    border: 1px solid yellow;
+
 }
 
-.volumeMixer .main{
-    border: 1px solid green;
-    margin-bottom: 0;
-    height: 100%;
+.mixer .volumeMixer .main{
+    padding-top: 10%;
 }
+
+@volSlider: 8rem;
 
 .volumeMixer .slider{
-    border: 1px solid red;
-    //display: none;
+    position: relative;
+    height: 85%;
+    margin: 0;
 }
 
-.volumeMixer .slider input{
-    transform-origin: top center;
+.volumeMixer .slider input[type=range]{
+    height: @sliderHeight;
+    width: @volSlider;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    margin-right: @sliderHeight/2;
+    transform-origin: top right;
     transform: rotate(-90deg);
 }
 
+.volumeMixer output{
+    margin: 0;
+}
 
 /* =Exported Files
 -----------------------------------------------------------------------------*/

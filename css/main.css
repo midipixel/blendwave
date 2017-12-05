@@ -939,6 +939,7 @@ nav .export:hover .circle {
 }
 .mixer .titleBox .main {
   padding: 0 0 1rem 0;
+  height: 90%;
 }
 .mixer .strip figure {
   background: #41444d;
@@ -952,24 +953,30 @@ nav .export:hover .circle {
   margin: 0.2rem 0 0 0;
   text-transform: uppercase;
 }
-.volumeMixer {
-  border: 1px solid yellow;
-}
-.volumeMixer .main {
-  border: 1px solid green;
-  margin-bottom: 0;
-  height: 100%;
+.mixer .volumeMixer .main {
+  padding-top: 10%;
 }
 .volumeMixer .slider {
-  border: 1px solid red;
+  position: relative;
+  height: 85%;
+  margin: 0;
 }
-.volumeMixer .slider input {
-  -webkit-transform-origin: top center;
-  -ms-transform-origin: top center;
-  transform-origin: top center;
+.volumeMixer .slider input[type=range] {
+  height: 1.6rem;
+  width: 8rem;
+  position: absolute;
+  top: 0;
+  right: 50%;
+  margin-right: 0.8rem;
+  -webkit-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
+}
+.volumeMixer output {
+  margin: 0;
 }
 /* =Exported Files
 -----------------------------------------------------------------------------*/
