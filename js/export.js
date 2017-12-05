@@ -5,6 +5,7 @@ Vue.component('exportpanel', {
         return {
             content: content.exportPanel,
             interval: null,
+            exported: false,
             mixer: {
                 envelopePanel: {
                     active: true,
@@ -157,25 +158,48 @@ Vue.component('exportpanel', {
             function createDownloadLink() {
                 recorder && recorder.exportWAV(function(blob) {
                     var url = URL.createObjectURL(blob);
+                    var fileName = bw.file.name + '_' + new Date().toISOString() + '.wav';
+
+                    //File List DOM Structure
+                    var fileHeader = document.createElement('h5');
+                    var mediaContainer = document.createElement('div');
+                    mediaContainer.className = 'mediaContainer';
                     var li = document.createElement('li');
+                    var player = document.createElement('div');
+                    player.className = 'player';
                     var au = document.createElement('audio');
                     var hf = document.createElement('a');
 
+                    //Audio Element
                     au.controls = true;
                     au.src = url;
+
+                    //Download Button
                     hf.href = url;
-                    hf.setAttribute('class', 'bwButton');
-                    hf.download = bw.$refs.wavePanel.fileName + '_' + new Date().toISOString() + '.wav';
+                    hf.className = 'bwButton';
+                    hf.download = fileName;
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;
-                    var text = bw.$refs.exportPanel.content[bw.locale].downloadText + ': ' + bw.file.name;
-                    hf.innerHTML = text;
-                    li.appendChild(au);
-                    li.appendChild(hf);
+                    var text = bw.$refs.exportPanel.content[bw.locale].downloadText;
+
+                    //File Header
+                    fileHeader.innerHTML = fileName;
+                    li.appendChild(fileHeader);
+
+                    //Media Container
+                    li.appendChild(mediaContainer);
+                        mediaContainer.appendChild(player);
+                            player.appendChild(au);
+                        mediaContainer.appendChild(hf);
+                        hf.innerHTML = text;
+
                     recordingslist.appendChild(li);
                 });
                 //Stop must be called to account for the envelope off situation
                 patch.sound.stop();
+
+                //Flag exported as true
+                bw.$refs.exportPanel.exported = true;
             }
         },
         prePlayUpdate: function(){

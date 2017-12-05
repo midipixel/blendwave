@@ -169,7 +169,8 @@ const content = {
             exportStrip: "Exportar",
             toggleOn: "Ligado",
             toggleOff: "Desligado",
-            downloadText: "Baixar Arquivo"
+            downloadText: "Baixar Arquivo",
+            exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar Áudio' quando terminar de trabalhar em seu efeito sonoro!"
         },
         en: {
             title: "Output",
@@ -183,7 +184,8 @@ const content = {
             exportStrip: "Export",
             toggleOn: "On",
             toggleOff: "Off",
-            downloadText: "Download File"
+            downloadText: "Download File",
+            exportPlaceholder: "No exported files yet. Press 'Export Audio' when you are done working on your sound effect!"
         }
     },
 

@@ -3,7 +3,7 @@
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <div class="mixer">
-        <div class="strip">
+        <div :class="{strip:true, envelope: mixer.envelopePanel.active}">
             <div class="titleBox">
                 <header>{{ content[$root.locale].envelopeStrip }}</header>
 
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="strip">
+        <div :class="{strip:true, filter: mixer.filterPanel.active}">
             <div class="titleBox">
                 <header>{{ content[$root.locale].filterStrip }}</header>
 
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="strip">
+        <div :class="{strip:true, fx: mixer.fxPanel.active}">
             <div class="titleBox">
                 <header>{{ content[$root.locale].fxStrip }}</header>
 
@@ -90,11 +90,9 @@
             </div>
         </div>
 
-        <div class="strip">
-            <div class="titleBox volumeMixer">
-                <header>
-                    <span>{{ content[$root.locale].volumeStrip }}</span>
-                </header>
+        <div class="strip volumeMixer">
+            <div class="titleBox">
+                <header>{{ content[$root.locale].volumeStrip }}</header>
 
                 <div class="main audioParams"
                      :style="{background: 'linear-gradient(to top, #61646e ' + masterVolume + '%, #4b4f58 ' + masterVolume + '%, #4b4f58 100%)'}"
@@ -118,19 +116,28 @@
             </div>
         </div>
 
-        <div class="strip">
-            <p>{{ content[$root.locale].exportStrip }}</p>
-            <button
-                id="exportBtn"
-                class="exportBtn"
-                @click=exportFile
+        <div class="strip export">
+            <div class="titleBox">
+                <header>{{ content[$root.locale].exportStrip }}</header>
 
-                ga-on="click"
-                ga-event-category="exportPanel"
-                ga-event-action="export file"
-            >
-                {{ content[$root.locale].exportButton }}
-            </button>
+                <div class="main">
+                    <figure>
+                        <?php echo file_get_contents("img/ic_export.svg"); ?>
+                    </figure>
+
+                    <button
+                        id="exportBtn"
+                        class="bwButton"
+                        @click=exportFile
+
+                        ga-on="click"
+                        ga-event-category="exportPanel"
+                        ga-event-action="export file"
+                    >
+                        {{ content[$root.locale].exportButton }}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -140,8 +147,10 @@
         </header>
 
         <div class="main">
+            <p v-if="!exported">{{ content[$root.locale].exportPlaceholder }}</p>
+
             <ul id="recordingslist"  class="exportedFiles">
-                <li><audio controls="" src="samples/aula_bola_fogo.wav"></audio><a href="bla.wav" class="bwButton">Download File: sine.wav</a></li>
+
             </ul>
         </div>
     </div>

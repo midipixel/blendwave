@@ -40,15 +40,6 @@ nav .export:hover{
 -----------------------------------------------------------------------------*/
 @iconDiameter: 50%;
 
-.exportBtn{
-    padding: 1em;
-    font-size: 1.2em;
-}
-
-.exports{
-    margin-top: 2em;
-}
-
 .mixer{
     display: flex;
     justify-content: space-between;
@@ -63,9 +54,14 @@ nav .export:hover{
     height: 100%;
 }
 
+.mixer .titleBox header{
+    font-weight: bold;
+}
+
 .mixer .titleBox .main{
     padding: 0 0 1rem 0;
     height: 90%;
+    transition: opacity 0.3s ease-out;
 }
 
 .mixer .strip figure{
@@ -81,10 +77,6 @@ nav .export:hover{
 .mixer .strip .toggleLabel{
     margin: 0.2rem 0 0 0;
     text-transform: uppercase;
-}
-
-.volumeMixer{
-
 }
 
 .mixer .volumeMixer .main{
@@ -114,19 +106,151 @@ nav .export:hover{
     margin: 0;
 }
 
+.export button{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.export .titleBox header{
+    border-color: @bwBright;
+}
+
+.strip{
+    .icon{
+        stroke: #fff;
+    }
+    .icon path{
+        stroke: #fff;
+    }
+}
+
+.strip.envelope{
+    .titleBox header{
+        border-color: @ampSecondary;
+        color: @ampPrimary;
+    }
+
+    .circle{
+        stroke: @ampPrimary;
+    }
+
+    .toggleLabel{
+        color: @ampPrimary;
+    }
+
+    label.switch::before{
+        background: @ampPrimary;
+    }
+}
+
+.strip.filter{
+    .titleBox header{
+        color: @filterPrimary;
+        border-color: @filterSecondary;
+    }
+
+    .circle{
+        stroke: @filterPrimary;
+    }
+
+    .toggleLabel{
+        color: @filterPrimary;
+    }
+
+    label.switch::before{
+        background: @filterPrimary;
+    }
+}
+
+.strip.fx{
+    .titleBox header{
+        color: @fxPrimary;
+        border-color: @fxSecondary;
+    }
+
+    .circle{
+        stroke: @fxPrimary;
+    }
+
+    .icon #Ellipse2 path{
+        fill: #fff;
+    }
+
+    .toggleLabel{
+        color: @fxPrimary;
+    }
+
+    label.switch::before{
+        background: @fxPrimary;
+    }
+}
+
+.strip.volumeMixer{
+    .titleBox header{
+        color: @bwSecondary;
+        border-color: @bwPrimary;
+    }
+
+    .slider input[type=range]::-webkit-slider-thumb {
+        background: @bwPrimary;
+    }
+
+    .slider input[type=range]::-moz-range-thumb{
+        background: @bwPrimary;
+    }
+
+    .slider input[type=range]::-ms-thumb{
+        background: @bwPrimary;
+    }
+}
+
+
+
+.strip.export{
+    .titleBox header{
+        color: @exportPrimary;
+        border-color: @exportSecondary;
+    }
+
+    .circle{
+        stroke: @exportSecondary;
+    }
+
+    .toggleLabel{
+        color: @exportPrimary;
+    }
+
+    label.switch::before{
+        background: @exportPrimary;
+    }
+}
+
 /* =Exported Files
 -----------------------------------------------------------------------------*/
 .exportedFiles li {
-    padding: 1em;
-    border: 1px solid #8c8c8c;
-    margin-bottom: 1em;
-    display: flex;
-    align-items: center;
-    background: #e3e3e3;
+    margin-bottom: 1.5em;
 }
 
-.exportedFiles li audio {
-    margin-right: 5%;
+.exportedFiles .mediaContainer{
+    display: flex;
+    align-items: center;
+}
+
+.exportedFiles .mediaContainer .player{
+    margin-right: 3%;
+    background: #8192c7;
+}
+
+.exportedFiles li audio{
+    mix-blend-mode: overlay;
+}
+
+.exportedFiles h5{
+    font-size: 0.9rem;
+}
+
+.exports{
+    margin-top: 2em;
 }
 
 
