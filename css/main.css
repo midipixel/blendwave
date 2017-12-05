@@ -347,7 +347,7 @@ fieldset.disabled .params {
   mix-blend-mode: overlay;
 }
 /* Switch: Track */
-.audioParams .switch {
+.switch {
   border: 1px solid #5a5c62;
   background-color: #42424b;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(147, 147, 149, 0.4), inset 0px 0px 8px 0px #000000;
@@ -363,8 +363,11 @@ fieldset.disabled .params {
   -ms-flex-positive: 2;
   flex-grow: 2;
 }
+.switch input[type="checkbox"] {
+  visibility: hidden;
+}
 /* Switch: Button - Enabled */
-.audioParams .switch::before {
+.switch::before {
   content: ' ';
   position: absolute;
   top: 3px;
@@ -383,12 +386,12 @@ fieldset.disabled .params {
   transition: all 0.2s ease-in;
 }
 /* Switch: Button - Disabled */
-.audioParams.disabled .switch::before,
+.disabled .switch::before,
 .audioParams .disabledSwitch::before {
   left: 0.2rem;
   background: #cdcdcd;
 }
-.audioParams .switch:focus {
+.switch:focus {
   outline: none;
 }
 /* Sliders */
@@ -546,9 +549,6 @@ input[type=range]::-ms-track {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-.audioParams legend input[type="checkbox"] {
-  visibility: hidden;
 }
 /*-----------------------------------------------------------------------------
 Blendwave - Wave Panel Styles
@@ -922,43 +922,32 @@ nav .export:hover .circle {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 .mixer .strip {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 18%;
+  -ms-flex: 0 0 18%;
+  flex: 0 0 18%;
   text-align: center;
 }
-.mixer .strip p {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 8rem;
-  width: 8rem;
-  border-radius: 50%;
-  background: #a2a2a2;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin: 0 auto 1rem auto;
+.mixer .titleBox .main {
+  padding: 0 0 1rem 0;
+}
+.mixer .strip figure {
+  background: #41444d;
+  padding: 1rem 0;
+}
+.mixer figure svg {
+  width: 50%;
+  height: auto;
+}
+.mixer .strip .toggleLabel {
+  margin: 0.2rem 0 0 0;
+  text-transform: uppercase;
 }
 /* =Exported Files
 -----------------------------------------------------------------------------*/

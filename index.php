@@ -62,18 +62,15 @@
 
         <fileheader></fileheader>
 
-        <section class="container bwBody">
+        <article class="container bwBody">
             <!-- vueJS Components -->
             <wavepanel ref="wavePanel" :active="panels.wavePanel.active"></wavepanel>
             <envelopepanel ref="envelopePanel" :active="panels.envelopePanel.active"></envelopepanel>
             <filterpanel ref="filterPanel" :active="panels.filterPanel.active"></filterpanel>
             <fxpanel ref="fxPanel" :active="panels.fxPanel.active"></fxpanel>
             <exportpanel ref="exportPanel" :active="panels.exportPanel.active"></exportpanel>
-        </section>
+        </article>
     </main>
-
-
-
 
     <!-- Analytics -->
     <?php

@@ -15,7 +15,7 @@ const content = {
             filterPanel: "Filter",
             fxPanel: "Effects",
             exportPanel: "Output",
-            disabledWarning: "Disabled by the Export Panel"
+            disabledWarning: "Disabled by the Output Panel"
         }
     },
 
@@ -162,12 +162,13 @@ const content = {
             subtitle: "Exporte o resultado final em formato WAV, e faça o download",
             exportButton: "Exportar Áudio",
             filesTitle: "Arquivos Exportados",
-            envelopeStrip: "Amp e Pitch",
+            envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filtro",
             fxStrip: "Efeitos",
             volumeStrip: "Volume",
             exportStrip: "Exportar",
-            toggleLabel: "Ligado",
+            toggleOn: "Ligado",
+            toggleOff: "Desligado",
             downloadText: "Baixar Arquivo"
         },
         en: {
@@ -175,12 +176,13 @@ const content = {
             subtitle: "Export your final result to a WAV file, and download",
             exportButton: "Export Audio",
             filesTitle: "Exported Files",
-            envelopeStrip: "Amp & Pitch",
+            envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filter",
             fxStrip: "Effects",
             volumeStrip: "Volume",
             exportStrip: "Export",
-            toggleLabel: "On",
+            toggleOn: "On",
+            toggleOff: "Off",
             downloadText: "Download File"
         }
     },

@@ -4,45 +4,90 @@
 
     <div class="mixer">
         <div class="strip">
-            <p>{{ content[$root.locale].envelopeStrip }}</p>
-            <input type="checkbox"
-                   id="envelopeToggle"
-                   @change="togglePanel('envelopePanel')"
-                   :checked="mixer.envelopePanel.active"
+            <div class="titleBox">
+                <header>{{ content[$root.locale].envelopeStrip }}</header>
 
-                   ga-on="change"
-                   ga-event-category="exportPanel"
-                   ga-event-action="toggle Envelope"
-            >
-            <label for="envelopeToggle">{{ content[$root.locale].toggleLabel }}</label>
+                <div :class="{main: true, disabled: !mixer.envelopePanel.active}">
+                    <figure>
+                        <?php echo file_get_contents("img/ic_envelope.svg"); ?>
+                    </figure>
+
+                    <label for="envelopeToggle" class="switch">
+                        <input type="checkbox"
+                               id="envelopeToggle"
+                               @change="togglePanel('envelopePanel')"
+                               :checked="mixer.envelopePanel.active"
+
+                               ga-on="change"
+                               ga-event-category="exportPanel"
+                               ga-event-action="toggle Envelope"
+                        >
+                    </label>
+
+                    <p class="toggleLabel">
+                        <span v-if="mixer.envelopePanel.active">{{ content[$root.locale].toggleOn }}</span>
+                        <span v-else>{{ content[$root.locale].toggleOff }}</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="strip">
-            <p>{{ content[$root.locale].filterStrip }}</p>
-            <input type="checkbox"
-                   id="filterToggle"
-                   @change="togglePanel('filterPanel')"
-                   :checked="mixer.filterPanel.active"
+            <div class="titleBox">
+                <header>{{ content[$root.locale].filterStrip }}</header>
 
-                   ga-on="change"
-                   ga-event-category="exportPanel"
-                   ga-event-action="toggle Filter"
-            >
-            <label for="filterToggle">{{ content[$root.locale].toggleLabel }}</label>
+                <div :class="{main: true, disabled: !mixer.filterPanel.active}">
+                    <figure>
+                        <?php echo file_get_contents("img/ic_filter.svg"); ?>
+                    </figure>
+
+                    <label for="filterToggle" class="switch">
+                        <input type="checkbox"
+                               id="filterToggle"
+                               @change="togglePanel('filterPanel')"
+                               :checked="mixer.filterPanel.active"
+
+                               ga-on="change"
+                               ga-event-category="exportPanel"
+                               ga-event-action="toggle Filter"
+                        >
+                    </label>
+
+                    <p class="toggleLabel">
+                        <span v-if="mixer.filterPanel.active">{{ content[$root.locale].toggleOn }}</span>
+                        <span v-else>{{ content[$root.locale].toggleOff }}</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="strip">
-            <p>{{ content[$root.locale].fxStrip }}</p>
-            <input type="checkbox"
-                   id="fxToggle"
-                   @change="togglePanel('fxPanel')"
-                   :checked="mixer.fxPanel.active"
+            <div class="titleBox">
+                <header>{{ content[$root.locale].fxStrip }}</header>
 
-                   ga-on="change"
-                   ga-event-category="exportPanel"
-                   ga-event-action="toggle Effects"
-            >
-            <label for="fxToggle">{{ content[$root.locale].toggleLabel }}</label>
+                <div :class="{main: true, disabled: !mixer.fxPanel.active}">
+                    <figure>
+                        <?php echo file_get_contents("img/ic_fx.svg"); ?>
+                    </figure>
+
+                    <label for="fxToggle" class="switch">
+                        <input type="checkbox"
+                               id="fxToggle"
+                               @change="togglePanel('fxPanel')"
+                               :checked="mixer.fxPanel.active"
+
+                               ga-on="change"
+                               ga-event-category="exportPanel"
+                               ga-event-action="toggle Effects"
+                        >
+                    </label>
+
+                    <p class="toggleLabel">
+                        <span v-if="mixer.fxPanel.active">{{ content[$root.locale].toggleOn }}</span>
+                        <span v-else>{{ content[$root.locale].toggleOff }}</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="strip">

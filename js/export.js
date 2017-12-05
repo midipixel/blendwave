@@ -185,6 +185,9 @@ Vue.component('exportpanel', {
     computed: {
         masterVolume: function(){
             return parseInt(this.mixer.volume.value * 100);
+        },
+        toggleButton: function(mixerStrip){
+            return(mixerStrip)    ;
         }
     }
 });
