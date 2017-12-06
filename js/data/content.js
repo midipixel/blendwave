@@ -160,7 +160,7 @@ const content = {
         pt: {
             title: "Saída",
             subtitle: "Exporte o resultado final em formato WAV, e faça o download",
-            exportButton: "Exportar Áudio",
+            exportButton: "Exportar WAV",
             filesTitle: "Arquivos Exportados",
             envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filtro",
@@ -170,12 +170,12 @@ const content = {
             toggleOn: "Ligado",
             toggleOff: "Desligado",
             downloadText: "Baixar Arquivo",
-            exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar Áudio' quando terminar de trabalhar em seu efeito sonoro!"
+            exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar WAV' quando terminar de trabalhar em seu efeito sonoro!"
         },
         en: {
             title: "Output",
             subtitle: "Export your final result to a WAV file, and download",
-            exportButton: "Export Audio",
+            exportButton: "Export WAV",
             filesTitle: "Exported Files",
             envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filter",
@@ -185,7 +185,7 @@ const content = {
             toggleOn: "On",
             toggleOff: "Off",
             downloadText: "Download File",
-            exportPlaceholder: "No exported files yet. Press 'Export Audio' when you are done working on your sound effect!"
+            exportPlaceholder: "No exported files yet. Press 'Export WAV' when you are done working on your sound effect!"
         }
     },
 

@@ -68,7 +68,7 @@
                         $files = array_slice($dir, 2);
 
                         // Establish max files per col, determine number of cols
-                        $files_per_col = 12;
+                        $files_per_col = 10;
 
                         echo('<div class="subcol">');
 
