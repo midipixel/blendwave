@@ -472,6 +472,7 @@ body .disabled .switch::before,
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.8);
   position: relative;
   box-sizing: border-box;
+  margin-left: 0.15rem;
 }
 /* Slider Track - Common rules */
 .trackStyle {
@@ -482,6 +483,8 @@ body .disabled .switch::before,
   background-color: #42424b;
   -webkit-box-shadow: inset 0px 0px 8px 0px #000000;
   box-shadow: inset 0px 0px 8px 0px #000000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 4px;
   padding: 0 3px;
 }
@@ -498,6 +501,8 @@ input[type=range]::-webkit-slider-runnable-track {
   background-color: #42424b;
   -webkit-box-shadow: inset 0px 0px 8px 0px #000000;
   box-shadow: inset 0px 0px 8px 0px #000000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 4px;
   padding: 0 3px;
 }
@@ -508,6 +513,7 @@ input[type=range]::-moz-range-track {
   border: 1px solid #939395;
   background-color: #42424b;
   box-shadow: inset 0px 0px 8px 0px #000000;
+  box-sizing: border-box;
   border-radius: 4px;
   padding: 0 3px;
 }
@@ -518,6 +524,7 @@ input[type=range]::-ms-track {
   border: 1px solid #939395;
   background-color: #42424b;
   box-shadow: inset 0px 0px 8px 0px #000000;
+  box-sizing: border-box;
   border-radius: 4px;
   padding: 0 3px;
 }
@@ -982,6 +989,20 @@ nav .export:hover .circle {
 }
 .strip .icon path {
   stroke: #fff;
+}
+.strip .disabled figure {
+  border: 1px solid #3a3c44;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+.strip .disabled .circle {
+  stroke: #969696;
+}
+.strip .disabled .icon {
+  stroke: #969696;
+}
+.strip .disabled .icon path {
+  stroke: #969696;
 }
 .strip.envelope .titleBox header {
   border-color: #46afc8;

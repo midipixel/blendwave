@@ -159,7 +159,7 @@ const content = {
     exportPanel: {
         pt: {
             title: "Saída",
-            subtitle: "Exporte o resultado final em formato WAV, e faça o download",
+            subtitle: "Ajuste seus parâmetros, exporte o resultado final em formato WAV, e faça o download",
             exportButton: "Exportar WAV",
             filesTitle: "Arquivos Exportados",
             envelopeStrip: "Amplitude & Pitch",
@@ -174,7 +174,7 @@ const content = {
         },
         en: {
             title: "Output",
-            subtitle: "Export your final result to a WAV file, and download",
+            subtitle: "Ajust your settings, export the final result to a WAV file, and download",
             exportButton: "Export WAV",
             filesTitle: "Exported Files",
             envelopeStrip: "Amplitude & Pitch",

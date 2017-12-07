@@ -409,6 +409,7 @@ body .disabled .switch::before, .audioParams .disabledSwitch::before{
 
 .audioParams .slider input[type=range]::-ms-thumb{
     .thumbStyle;
+    margin-left: 0.15rem;
 }
 
 /* Slider Track - Common rules */
@@ -420,14 +421,15 @@ body .disabled .switch::before, .audioParams .disabledSwitch::before{
     border: 1px solid #939395;
     background-color: rgb(66, 66, 75);
     box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,1);
+    box-sizing: border-box;
     border-radius: 4px;
     padding: 0 3px;
 }
 
 /* Slider Track - Browser Specific */
 .audioParams .slider input[type=range]::-ms-track {
-  width: 100%;
-  cursor: pointer;
+    width: 100%;
+    cursor: pointer;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
