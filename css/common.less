@@ -187,15 +187,12 @@ ul{
 /* =Components
 -----------------------------------------------------------------------------*/
 .titleBox{
-    header, legend{
+    header{
         font-size: 1rem;
         border-bottom-width: 2px;
         border-bottom-style: solid;
         border-bottom-color: #fff;
         margin-bottom: 1px;
-    }
-
-    legend{
         font-weight: 700;
         min-height: 2.2em;
     }
@@ -278,13 +275,13 @@ ul{
     margin-bottom: 2em;
 }
 
-.audioParams legend .description{
+.audioParams header .description{
     float: right;
     margin-top: 0.6rem;
     color: @bwText;
 }
 
-.audioParams legend strong{
+.audioParams header strong{
     display: inline-block;
     vertical-align: top;
 }
@@ -357,7 +354,7 @@ fieldset.disabled{
 
 /* Switch: Button - Disabled */
 
-.disabled .switch::before, .audioParams .disabledSwitch::before{
+body .disabled .switch::before, .audioParams .disabledSwitch::before{
     left: 0.2rem;
     background: #cdcdcd;
 }

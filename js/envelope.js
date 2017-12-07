@@ -133,6 +133,9 @@ Vue.component('envelopepanel', {
             this.amp_osc.active = false;
             this.pitch.active = false;
             this.pitch_osc.active = false;
+        },
+        bla: function(){
+            console.log('bla');
         }
     },
     computed: {

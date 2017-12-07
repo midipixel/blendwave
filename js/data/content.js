@@ -99,7 +99,7 @@ const content = {
             title: 'Filter',
             subtitle: 'Sculpt your sample by filtering high or low frequencies',
             filterType: 'Filter Type',
-            filterTypeDescription: 'Choose the frequencies do filter',
+            filterTypeDescription: 'Choose the frequencies to filter',
             highpass: ["High Pass (HP)", "Filters low frequencies"],
             lowpass: ["Low Pass (LP)", "Filters high frequencies"],
             none: "None",

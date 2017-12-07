@@ -5,8 +5,8 @@
 
     <div class="row">
         <div class="col-sm-6 amplitude">
-            <fieldset :class="{audioParams:true, disabled: !amp_envelope.active}" :disabled= !amp_envelope.active>
-                <legend>
+            <div :class="{audioParams: true, disabled: !amp_envelope.active}" >
+                <header>
                     <label for="amp_envelope_toggle" class="switch">
                         <input type="checkbox"
                                id="amp_envelope_toggle"
@@ -18,9 +18,9 @@
                     </label>
                     <strong>{{ content[$root.locale].ampEnvelope }}</strong>
                     <span class="description">{{ content[$root.locale].ampEnvelopeDescription }}</span>
-                </legend>
+                </header>
 
-                <div class="main params">
+                <fieldset class="main params" :disabled= !amp_envelope.active>
                     <template v-for="param in amp_envelope.params">
                         <label :for=param.name>{{ content[$root.locale][param.name] }}</label>
                         <div class="slider">
@@ -35,11 +35,11 @@
                             <output :value=param.value>{{param.value}}</output>
                         </div>
                     </template>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
 
-            <fieldset :class="{audioParams:true, disabled: !amp_osc.active}" :disabled= !amp_osc.active>
-                <legend>
+            <div :class="{audioParams:true, disabled: !amp_osc.active}">
+                <header>
                     <label for="amp_osc_toggle" class="switch">
                         <input type="checkbox"
                                id="amp_osc_toggle"
@@ -51,9 +51,9 @@
                     </label>
                     <strong>{{ content[$root.locale].ampOSC }}</strong>
                     <span class="description">{{ content[$root.locale].ampOSCDescription }}</span>
-                </legend>
+                </header>
 
-                <div class="main params">
+                <fieldset class="main params" :disabled= !amp_osc.active>
                     <template v-for="param in amp_osc.params">
                         <label :for=param>{{ content[$root.locale][param.name] }}</label>
                         <div class="slider">
@@ -68,13 +68,13 @@
                             <output :value=param.value>{{param.value}}</output>
                         </div>
                     </template>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
 
         <div class="col-sm-6 pitch">
-            <fieldset id="pitchEnvelope" :class="{audioParams:true, disabled: !pitch.active}" :disabled= !pitch.active>
-                <legend>
+            <div :class="{audioParams:true, disabled: !pitch.active}">
+                <header>
                     <label for="pitch_toggle" class="switch">
                         <input type="checkbox"
                                id="pitch_toggle"
@@ -87,9 +87,9 @@
                     </label>
                     <strong>{{ content[$root.locale].pitch }}</strong>
                     <span class="description">{{ content[$root.locale].pitchDescription }}</span>
-                </legend>
+                </header>
 
-                <div class="main params">
+                <fieldset class="main params" :disabled= !pitch.active>
                     <template v-for="param in pitch.params">
                         <label :for=param>{{ content[$root.locale][param.name] }}</label>
 
@@ -105,11 +105,11 @@
                             <output :value=param.value>{{ param.value }}</output>
                         </div>
                     </template>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
 
-            <fieldset :class="{audioParams:true, disabled: !pitch_osc.active}" :disabled= !pitch_osc.active>
-                <legend>
+            <div :class="{audioParams:true, disabled: !pitch_osc.active}">
+                <header>
                     <label for="pitch_osc_toggle" class="switch">
                         <input type="checkbox"
                                id="pitch_osc_toggle"
@@ -122,9 +122,9 @@
                     </label>
                     <strong>{{ content[$root.locale].pitchOSC }}</strong>
                     <span class="description">{{ content[$root.locale].pitchOSCDescription }}</span>
-                </legend>
+                </header>
 
-                <div class="main params">
+                <fieldset class="main params" :disabled= !pitch_osc.active>
                     <template v-for="param in pitch_osc.params">
                         <label :for=param>{{ content[$root.locale][param.name] }}</label>
                         <div class="slider">
@@ -139,8 +139,8 @@
                             <output :value=param.value>{{ param.value }}</output>
                         </div>
                     </template>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
     </div>
 </section>
