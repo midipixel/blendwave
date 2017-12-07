@@ -7,7 +7,7 @@ var patch = {
                 path: 'samples/aula_flor02.wav',
                 attack: 0.04,
                 volume: 1,
-                loop: true
+                loop: false
             }
         }, function() {
             patch.analyser.create();

@@ -302,7 +302,7 @@ ul {
 .audioParams nav a:hover {
   text-decoration: none;
 }
-.audioParams.disabled header {
+#blendwave .audioParams.disabled header {
   border-color: #61646e;
 }
 .audioParams {
@@ -766,7 +766,7 @@ nav .filter:hover .circle {
 }
 /* =Forms
 -----------------------------------------------------------------------------*/
-.filterPanel header {
+.filterPanel .audioParams header {
   color: #f2ba41;
   border-color: #edab25;
 }
@@ -831,7 +831,7 @@ nav .fx:hover .circle {
 }
 /* =Forms
 -----------------------------------------------------------------------------*/
-.fxPanel legend {
+.fxPanel .audioParams header {
   color: #77df29;
   border-color: #6cfe00;
 }
