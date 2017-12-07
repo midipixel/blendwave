@@ -5,11 +5,11 @@
 
     <form class="row" action="" autocomplete="off">
         <div class="col-sm-6">
-            <fieldset class="audioParams filterType">
-                <legend>
+            <div class="audioParams filterType">
+                <header>
                     {{ content[$root.locale].filterType }}
                     <span class="description">{{ content[$root.locale].filterTypeDescription }}</span>
-                </legend>
+                </header>
 
                 <div class="main">
                     <div class="filterSelect">
@@ -30,7 +30,7 @@
                         <p class="description">{{ selected != 'none' ? content[$root.locale][selected][1] : ' ' }}</p>
                     </div>
 
-                    <div class="params" :class="this.selected" >
+                    <fieldset class="params" :class="this.selected" >
                         <label for="filter_cutoff">{{ content[$root.locale].cutoff }}</label>
 
                         <!-- Low Pass -->
@@ -76,15 +76,14 @@
                         <figure>
                             <img v-if="this.selected != 'none'" :src="'img/filter_'+ this.selected +'.png'" :alt="this.selected.name">
                         </figure>
-                    </div>
-
+                    </fieldset>
                 </div>
-            </fieldset>
+            </div>
         </div>
 
         <div class="col-sm-6">
-            <fieldset id="filter_osc" :class="{audioParams:true, disabled: !osc.active}" :disabled="!osc.active">
-                <legend>
+            <div id="filter_osc" :class="{audioParams:true, disabled: !osc.active}">
+                <header>
                     <label class="switch">
                         <input
                             type="checkbox"
@@ -96,9 +95,9 @@
                     </label>
                     <strong>{{ content[$root.locale].oscillateFilter }}</strong>
                     <span class="description">{{ content[$root.locale].oscillateFilterDescription }}</span>
-                </legend>
+                </header>
 
-                <div class="main params">
+                <fieldset class="main params" :disabled="!osc.active">
                     <label for="filterOSC_speed">{{ content[$root.locale].speed }}</label>
 
                     <div class="slider">
@@ -130,8 +129,8 @@
                             ga-event-action="depth">
                         <output for="filterOSC_depth">{{ osc.params.amount.value }}</output>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
     </form>
 </section>

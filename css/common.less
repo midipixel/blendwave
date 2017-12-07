@@ -54,10 +54,6 @@ ul{
     padding: 0;
 }
 
-.disabled, fieldset[disabled]{
-    opacity: 0.5;
-}
-
 /* =Header
 -----------------------------------------------------------------------------*/
 .bwHeader{
@@ -267,7 +263,7 @@ ul{
     .titleBox;
 }
 
-.audioParams.disabled legend{
+.audioParams.disabled header{
     border-color: @bwBrighter;
 }
 
@@ -305,14 +301,10 @@ ul{
     font-weight: 400;
 }
 
-fieldset.disabled{
-    opacity: 1;
-
-    .params {
-        pointer-events: none;
-        opacity: 0.5;
-        mix-blend-mode: overlay;
-    }
+.disabled .params{
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
 }
 
 /* Switch: Track */
