@@ -5,6 +5,7 @@ Vue.component('exportpanel', {
         return {
             content: content.exportPanel,
             interval: null,
+            exporting: false,
             exported: false,
             mixer: {
                 envelopePanel: {
@@ -88,6 +89,11 @@ Vue.component('exportpanel', {
             }
         },
         exportFile: function(){
+            var self = this;
+
+            // Enter exporting state
+            self.exporting = true;
+
             //Create Recorder object, connected to the sound's output node
             var recorder = new Recorder(patch.sound.masterVolume);
 
@@ -144,6 +150,7 @@ Vue.component('exportpanel', {
                             //clears the interval and creates download link
                             clearInterval(this.interval);
                             createDownloadLink();
+                            self.exporting = false;
                         }
                         else {
                             verifyCounter++;
@@ -193,13 +200,13 @@ Vue.component('exportpanel', {
                         mediaContainer.appendChild(hf);
                         hf.innerHTML = text;
 
-                    recordingslist.appendChild(li);
+                    $('#recordingslist').prepend(li);
                 });
                 //Stop must be called to account for the envelope off situation
                 patch.sound.stop();
 
                 //Flag exported as true
-                bw.$refs.exportPanel.exported = true;
+                self.exported = true;
             }
         },
         prePlayUpdate: function(){

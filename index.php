@@ -63,7 +63,6 @@
         <fileheader></fileheader>
 
         <article class="container bwBody">
-            <!-- vueJS Components -->
             <wavepanel ref="wavePanel" :active="panels.wavePanel.active"></wavepanel>
             <envelopepanel ref="envelopePanel" :active="panels.envelopePanel.active"></envelopepanel>
             <filterpanel ref="filterPanel" :active="panels.filterPanel.active"></filterpanel>
@@ -95,6 +94,9 @@
 
     <script src="js/fileheader.js"></script>
     <?php include("fileheader.php"); ?>
+
+    <script src="js/modaloverlay.js"></script>
+    <?php include("modaloverlay.php"); ?>
 
     <script src="js/wave.js"></script>
     <?php include("wave.php"); ?>

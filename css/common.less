@@ -127,7 +127,7 @@ ul{
     cursor: pointer;
     background: #454850 url(../img/bt_play.png) 1rem center no-repeat;
     padding: 0.5rem 1rem 0.5rem 3rem;
-    transition: background 0.1s linear;
+    transition: background 0.2s ease-out;
     .userSelect_off;
 }
 
@@ -135,8 +135,8 @@ ul{
     background-color: @bwDarker;
 }
 
-.fileHeader_active, .fileHeader:active{
-    background-color: #252525;
+.fileHeader_active .fhBody, .fileHeader:active .fhBody{
+    background-color: @bwBrighter;
     color: #fff;
 }
 
@@ -251,6 +251,46 @@ ul{
 
 .bwButton:focus{
     outline: none;
+}
+
+.modalOverlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+}
+
+@modalBorderRadius: 6px;
+
+.modal{
+    background: @bwDark;
+    width: 80%;
+    max-width: 450px;
+    margin-top: 10%;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: @modalBorderRadius;
+}
+
+.modal h6{
+    background: @bwDarker;
+    border-top-right-radius: @modalBorderRadius;
+    border-top-right-radius: @modalBorderRadius;
+    font-size: 1rem;
+    padding: 0.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.modal img{
+    display: inline-block;
+    margin-bottom: 1.5rem;
 }
 
 /* =Forms

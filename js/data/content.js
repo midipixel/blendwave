@@ -170,7 +170,11 @@ const content = {
             toggleOn: "Ligado",
             toggleOff: "Desligado",
             downloadText: "Baixar Arquivo",
-            exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar WAV' quando terminar de trabalhar em seu efeito sonoro!"
+            exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar WAV' quando terminar de trabalhar em seu efeito sonoro!",
+            modal: {
+                title: "Exportando",
+                message: "Exportando arquivo WAV. Só um segundinho!"
+            }
         },
         en: {
             title: "Output",
@@ -185,7 +189,11 @@ const content = {
             toggleOn: "On",
             toggleOff: "Off",
             downloadText: "Download File",
-            exportPlaceholder: "No exported files yet. Press 'Export WAV' when you are done working on your sound effect!"
+            exportPlaceholder: "No exported files yet. Press 'Export WAV' when you are done working on your sound effect!",
+            modal: {
+                title: "Exporting",
+                message: "Exporting WAV File. Just a sec!"
+            }
         }
     },
 

@@ -155,5 +155,6 @@
         </div>
     </div>
 
+    <modaloverlay :modalcontent="content[$root.locale].modal" :active="exporting"></modaloverlay>
 </section>
 <?= '</script>' ?>

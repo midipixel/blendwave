@@ -35,6 +35,11 @@ nav .export:hover{
     }
 }
 
+.exportPanel .modal h6{
+    border-bottom: 1px solid @exportSecondary;
+}
+
+
 
 /* =Mixer
 -----------------------------------------------------------------------------*/
@@ -67,6 +72,7 @@ nav .export:hover{
 .mixer .strip figure{
     background: @bwBase + 10%;
     padding: 1rem 0;
+    border: 1px solid transparent; //hack for Edge
 }
 
 .mixer figure svg{
