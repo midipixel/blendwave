@@ -165,7 +165,9 @@ Vue.component('exportpanel', {
             function createDownloadLink() {
                 recorder && recorder.exportWAV(function(blob) {
                     var url = URL.createObjectURL(blob);
-                    var fileName = bw.file.name + '_' + new Date().toISOString() + '.wav';
+
+                    var listItems = $('#recordingslist li');
+                    var fileName = bw.file.name + '_' + listItems.length + '.wav';
 
                     //File List DOM Structure
                     var fileHeader = document.createElement('h5');
