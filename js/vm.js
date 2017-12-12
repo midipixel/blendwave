@@ -23,7 +23,7 @@ var bw = new Vue({
         },
         file: {
             name: 'sine.wav',
-            path: 'samples/sine.wav'
+            path: 'samples/animals/pig03.mp4'
         },
         locale: 'en',
         content: content.general,
@@ -65,6 +65,6 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('exportPanel');
+        this.activatePanel('wavePanel');
     }
 });

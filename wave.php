@@ -22,23 +22,20 @@
 
                 <nav class="main">
                     <ul class="sampleCategories">
-                        <li class="active">Animals</li>
-                        <li>Ambiences</li>
-                        <li>Cartoon</li>
-                        <li>Doors and Gates</li>
-                        <li>Elements</li>
-                        <li>Explosions</li>
-                        <li>Foley</li>
-                        <li>Machinery</li>
-                        <li>Metallic</li>
-                        <li>Retro</li>
-                        <li>User Interface</li>
-                        <li>Vehicles</li>
-                        <li>Weapons</li>
+                    <?php
+                        $dir = scandir('samples');
+
+                        // Remove dir paths
+                        $library = array_slice($dir, 2);
+
+                        // Print folder names
+                        foreach ($library as $index => $category){
+                            echo('<li>' .$category. '</li>');
+                        }
+                    ?>
                     </ul>
                 </nav>
             </div>
-
         </div>
 
         <div class="col-md-8 titleBox samplesList">
@@ -60,33 +57,32 @@
 
 
             <div class="fileContainer">
-                <div class="fileList">
-                    <?php
-                        $dir = scandir('samples');
+                <?php
+                    foreach ($library as $index => $category){
 
-                        // Remove dir paths
-                        $files = array_slice($dir, 2);
+                        $catDir = scandir('samples/' . $category);
+                        $catDir = array_slice($catDir, 2);
 
-                        // Establish max files per col, determine number of cols
-                        $files_per_col = 10;
+                        echo("<div class='fileList' v-show=\"category === '" . $category . "'\">");
+                            // Establish max files per col, determine number of cols
+                            $files_per_col = 10;
 
-                        echo('<div class="subcol">');
+                            echo('<div class="subcol">');
 
-                            foreach ($files as $fileindex => $filename){
-                                if ($filename != 'sine.wav'){
+                                foreach ($catDir as $fileindex => $filename){
                                     echo('
-                                        <a href="samples/'. $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $filename . '</a>
+                                        <a href="samples/'. $category . "/" . $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $filename . '</a>
                                     ');
-                                }
-                                if($fileindex > 0 && ($fileindex + 1) % $files_per_col == 0){
-                                    echo('</div>');
-                                    echo('<div class="subcol">');
-                                }
-                            }
 
-                        echo ('</div>');
-                    ?>
-                </div>
+                                    if($fileindex > 0 && ($fileindex + 1) % $files_per_col == 0){
+                                        echo('</div>');
+                                        echo('<div class="subcol">');
+                                    }
+                                }
+                            echo('</div>');
+                        echo('</div>');
+                    }
+                ?>
             </div>
         </div>
     </section>

@@ -6,7 +6,8 @@ Vue.component('wavepanel', {
         return {
             content: content.wavePanel,
             loading: false,
-            wavesurfer: null
+            wavesurfer: null,
+            category: 'animals'
         }
     },
     methods: {
