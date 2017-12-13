@@ -92,10 +92,6 @@
             </div>
         </div>
     </section>
-
-
-
-
 </section>
 
 <?= '</script>'  ?>
