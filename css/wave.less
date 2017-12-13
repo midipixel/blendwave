@@ -47,15 +47,15 @@ nav .wave:hover{
 
 .sampleCategories li{
     font-size: 0.9rem;
-    padding: 0 0.5rem;
-    margin-bottom: 1rem;
+    padding: 0.6rem 0.5rem;
     cursor: pointer;
     transition: color 0.2s ease-out;
+    text-transform: capitalize;
+    line-height: 1;
 }
 
 .sampleCategories li.active{
     background: #61646e;
-    padding: 0.5rem;
     border-radius: 2px;
     color: #e7e7ea;
     font-weight: 700;
@@ -87,7 +87,8 @@ nav .wave:hover{
     font-weight: 400;
     display: inherit;
     align-items: center;
-    flex-grow: 1;
+    flex: 0 1 auto;
+    white-space: nowrap;
     justify-content: flex-end;
 }
 
@@ -100,7 +101,6 @@ nav .wave:hover{
 .wavePreview{
     background: #262930;
     height: @wpHeight;
-    margin-bottom: 0.5rem;
 }
 
 .loadingSample{
@@ -126,6 +126,7 @@ nav .wave:hover{
     flex: 1;
     overflow-x: scroll;
     padding-bottom: 1rem;
+    padding-top: 0.5rem;
 }
 
 .fileList{
@@ -145,7 +146,7 @@ nav .wave:hover{
 
 .fileList a{
     display: block;
-    padding: 0.5rem 0.5rem;
+    padding: 0.55rem 0.5rem;
     color: #7184d3;
     text-decoration: underline;
     font-size: 0.9rem;
@@ -155,7 +156,7 @@ nav .wave:hover{
     text-overflow: ellipsis;
 }
 
-.fileList .active a, .fileList a:hover{
+.fileList .active, .fileList a:hover{
     background: #262930;
     color: #cfd5e7;
 }

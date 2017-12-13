@@ -30,7 +30,7 @@
 
                         // Print folder names
                         foreach ($library as $index => $category){
-                            echo("<li @click='category = \"" . $category . "\"'>");
+                            echo("<li @click='changeCategory' id='" . $category . "'>");
                                 echo($category);
                             echo('</li>');
                         }
@@ -44,9 +44,11 @@
             <div class="samplesHeader">
                 <header>
                     <h4>Samples List</h4>
-                    <label>
+                    <?php
+                    /*<label>
                         <input type="checkbox"> Show Waveform Preview
-                    </label>
+                    </label>*/
+                    ?>
                 </header>
 
                 <section id="wavePreview" class="wavePreview">

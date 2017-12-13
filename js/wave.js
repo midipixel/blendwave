@@ -7,7 +7,8 @@ Vue.component('wavepanel', {
             content: content.wavePanel,
             loading: false,
             wavesurfer: null,
-            category: 'animals'
+            category: 'animals',
+            activeElement: null
         }
     },
     methods: {
@@ -22,8 +23,11 @@ Vue.component('wavepanel', {
             this.loading = true;
 
             //Set visual styles
-            $('#fileList li').removeClass('active');
-            $(this.selectedElement).parent().addClass('active');
+            if(this.activeElement != null){
+                $(this.activeElement).removeClass('active');
+            }
+            $(event.srcElement).addClass('active');
+            this.activeElement = event.srcElement;
 
             //Reset Data
             bw.resetData();
@@ -41,7 +45,12 @@ Vue.component('wavepanel', {
 
             //load file into Wave Previewer
             this.wavesurfer.load(this.$root.file.path);
+        },
+        changeCategory: function(event){
+            this.category = event.srcElement.id;
 
+            $('.sampleCategories li').removeClass('active');
+            $(event.srcElement).addClass('active');
         }
     },
     mounted: function(){
