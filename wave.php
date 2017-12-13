@@ -30,7 +30,9 @@
 
                         // Print folder names
                         foreach ($library as $index => $category){
-                            echo('<li>' .$category. '</li>');
+                            echo("<li @click='category = \"" . $category . "\"'>");
+                                echo($category);
+                            echo('</li>');
                         }
                     ?>
                     </ul>
@@ -39,24 +41,25 @@
         </div>
 
         <div class="col-md-8 titleBox samplesList">
-            <header>
-                <h4>Samples List</h4>
-                <label>
-                    <input type="checkbox"> Show Waveform Preview
-                </label>
-            </header>
+            <div class="samplesHeader">
+                <header>
+                    <h4>Samples List</h4>
+                    <label>
+                        <input type="checkbox"> Show Waveform Preview
+                    </label>
+                </header>
 
-            <section id="wavePreview" class="wavePreview">
-                <div class="loadingSample" v-show="loading">
-                    <div class="content">
-                        <img src="img/loading.gif" height="30">
-                        {{ content[$root.locale].loading }}
+                <section id="wavePreview" class="wavePreview">
+                    <div class="loadingSample" v-show="loading">
+                        <div class="content">
+                            <img src="img/loading.gif" height="30">
+                            {{ content[$root.locale].loading }}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-
-            <div class="fileContainer">
+            <div class="samplesBody">
                 <?php
                     foreach ($library as $index => $category){
 
@@ -70,8 +73,11 @@
                             echo('<div class="subcol">');
 
                                 foreach ($catDir as $fileindex => $filename){
+                                    //Remove .mp4 extension
+                                    $soundname = explode(".", $filename);
+
                                     echo('
-                                        <a href="samples/'. $category . "/" . $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $filename . '</a>
+                                        <a href="samples/'. $category . "/" . $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $soundname[0] . '</a>
                                     ');
 
                                     if($fileindex > 0 && ($fileindex + 1) % $files_per_col == 0){

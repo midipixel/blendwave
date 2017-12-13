@@ -67,6 +67,15 @@ nav .wave:hover{
 
 /* =Samples List
 -----------------------------------------------------------------------------*/
+.samplesList{
+    display: flex;
+    flex-direction: column;
+}
+
+.samplesList > div{
+    border: 1px solid green;
+}
+
 .samplesList header{
     display: flex;
     align-items: center;
@@ -116,14 +125,22 @@ nav .wave:hover{
     margin-right: 10px;
 }
 
-.fileContainer{
+.samplesBody{
     width: 100%;
+    flex: 1;
     overflow-x: scroll;
     padding-bottom: 1rem;
 }
 
 .fileList{
     display: flex;
+    justify-content: flex-start;
+}
+
+.fileList .subcol{
+    flex: 0 1 auto;
+    min-width: 25%;
+    //border: 1px solid red;
 }
 
 .fileList .subcol + .subcol{
@@ -136,6 +153,10 @@ nav .wave:hover{
     color: #7184d3;
     text-decoration: underline;
     font-size: 0.9rem;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .fileList .active a, .fileList a:hover{
