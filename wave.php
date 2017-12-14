@@ -16,7 +16,7 @@
                 <header>
                     <nav>
                         <a href="#" class="active">Library</a>
-                        <a href="#">Your Files</a>
+                        <!--a href="#">Your Files</a-->
                     </nav>
                 </header>
 
@@ -64,11 +64,10 @@
             <div class="samplesBody">
                 <?php
                     foreach ($library as $index => $category){
-
                         $catDir = scandir('samples/' . $category);
                         $catDir = array_slice($catDir, 2);
 
-                        echo("<div class='fileList' v-show=\"category === '" . $category . "'\">");
+                        echo("<div class='fileList' v-show=\"category === '" . $category . "'\" id='list_" . $category . "'>");
                             // Establish max files per col, determine number of cols
                             $files_per_col = 10;
 

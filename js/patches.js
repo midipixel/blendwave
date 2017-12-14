@@ -1,19 +1,5 @@
 var patch = {
     sound: {},
-    create: function(){
-        patch.sound = new Pizzicato.Sound({
-            source: 'file',
-            options: {
-                path: 'samples/animals/pig03.mp4',
-                attack: 0.04,
-                volume: 1,
-                loop: false
-            }
-        }, function() {
-            patch.analyser.create();
-            //console.log(patch.sound);
-        });
-    },
     updateData: function(){
         //Envelope
         bw.$refs.envelopePanel.prePlayUpdate();
@@ -28,8 +14,8 @@ var patch = {
         bw.$refs.exportPanel.prePlayUpdate();
     },
     play: function(){
-        patch.updateData();
-        patch.sound.play();
+        this.updateData();
+        this.sound.play();
         //Methods that must be invoked right after playing, or the node won't exist
         bw.$refs.envelopePanel.postPlayUpdate();
         bw.$refs.filterPanel.postPlayUpdate();

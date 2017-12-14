@@ -20,7 +20,7 @@
                     <img src="img/bw_logo.svg" alt="Blendwave">
                 </figure>
 
-                <ul class="col-md-10">
+                <ul class="col-md-10" style="display: none;" v-show="loaded" >
                     <li class="wave">
                         <a href="#wavePanel" @click="activatePanel('wavePanel')">
                             <?php echo file_get_contents("img/ic_wave.svg"); ?>

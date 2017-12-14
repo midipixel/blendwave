@@ -54,6 +54,27 @@ Vue.component('wavepanel', {
         }
     },
     mounted: function(){
+        // Get random file from DOM node list
+        var files = $('.fileList a');
+        var rnd = Math.floor(Math.random() * files.length);
+        var rndElement = files[rnd];
+
+        // Organize info from file path
+        var path = files[rnd].href.split('/');
+        var folder = path[path.length - 3];
+        var category = path[path.length - 2];
+        var file = path[path.length - 1];
+        var name = rndElement.innerHTML;
+
+        //Update VM Data with random file
+        this.category = category;
+        this.$root.file.name = name;
+        this.$root.file.path = folder + '/' + category + '/' + file;
+
+        //Set UI active styles
+        $('.sampleCategories ' + '#' + category).addClass('active');
+        $(rndElement).addClass('active');
+
         //Initialize Wave Previewer
         this.wavesurfer = WaveSurfer.create({
             container: '#wavePreview',

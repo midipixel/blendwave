@@ -90,14 +90,11 @@ ul {
 }
 .mainNav ul {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-pack: space-evenly;
-  -webkit-justify-content: space-evenly;
   -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
   margin-bottom: 0;
@@ -114,12 +111,10 @@ ul {
 .mainNav li a {
   color: #cfd5e7;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   height: 100%;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   line-height: 1.2em;
@@ -269,16 +264,13 @@ ul {
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   z-index: 100;
@@ -394,7 +386,6 @@ ul {
   height: 1.55rem;
   cursor: pointer;
   -webkit-box-flex: 2;
-  -webkit-flex-grow: 2;
   -ms-flex-positive: 2;
   flex-grow: 2;
 }
@@ -432,17 +423,14 @@ body .disabled .switch::before,
 /* Sliders */
 .audioParams .slider {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 0.8rem;
   height: 1.6rem;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
@@ -580,15 +568,12 @@ input[type=range]::-ms-track {
   font-size: 0.9rem;
   line-height: 1;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
@@ -627,16 +612,16 @@ nav .wave:hover .circle {
 }
 .sampleCategories li {
   font-size: 0.9rem;
-  padding: 0 0.5rem;
-  margin-bottom: 1rem;
+  padding: 0.6rem 0.5rem;
   cursor: pointer;
   -webkit-transition: color 0.2s ease-out;
   -o-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
+  text-transform: capitalize;
+  line-height: 1;
 }
 .sampleCategories li.active {
   background: #61646e;
-  padding: 0.5rem;
   border-radius: 2px;
   color: #e7e7ea;
   font-weight: 700;
@@ -648,32 +633,24 @@ nav .wave:hover .circle {
 -----------------------------------------------------------------------------*/
 .samplesList {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.samplesList > div {
-  border: 1px solid green;
-}
 .samplesList header {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
 }
 .samplesList header h4 {
   color: #8266ba;
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
@@ -682,15 +659,13 @@ nav .wave:hover .circle {
   font-weight: 400;
   display: inherit;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  white-space: nowrap;
   -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
 }
@@ -700,7 +675,6 @@ nav .wave:hover .circle {
 .wavePreview {
   background: #262930;
   height: 80px;
-  margin-bottom: 0.5rem;
 }
 .loadingSample {
   float: left;
@@ -720,25 +694,22 @@ nav .wave:hover .circle {
 .samplesBody {
   width: 100%;
   -webkit-box-flex: 1;
-  -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
   overflow-x: scroll;
   padding-bottom: 1rem;
+  padding-top: 0.5rem;
 }
 .fileList {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
 }
 .fileList .subcol {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
   min-width: 25%;
@@ -748,7 +719,7 @@ nav .wave:hover .circle {
 }
 .fileList a {
   display: block;
-  padding: 0.5rem 0.5rem;
+  padding: 0.55rem 0.5rem;
   color: #7184d3;
   text-decoration: underline;
   font-size: 0.9rem;
@@ -758,7 +729,7 @@ nav .wave:hover .circle {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
-.fileList .active a,
+.fileList .active,
 .fileList a:hover {
   background: #262930;
   color: #cfd5e7;
@@ -875,11 +846,9 @@ nav .filter:hover .circle {
 }
 .filterSelect {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: 1.3rem;
@@ -939,11 +908,9 @@ nav .fx:hover .circle {
 .fxSelect {
   margin: 10px 0;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
 }
@@ -958,7 +925,6 @@ nav .fx:hover .circle {
 }
 .reverb {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -992,17 +958,14 @@ nav .export:hover .circle {
 -----------------------------------------------------------------------------*/
 .mixer {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .mixer .strip {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 18%;
   -ms-flex: 0 0 18%;
   flex: 0 0 18%;
   text-align: center;
@@ -1160,11 +1123,9 @@ nav .export:hover .circle {
 }
 .exportedFiles .mediaContainer {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
 }
@@ -1190,3 +1151,5 @@ nav .export:hover .circle {
     min-height: 11rem;
   }
 }
+
+/*# sourceMappingURL=main.css.map */

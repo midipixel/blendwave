@@ -22,12 +22,13 @@ var bw = new Vue({
             }
         },
         file: {
-            name: 'sine.wav',
+            name: ' ',
             path: 'samples/animals/pig03.mp4'
         },
         locale: 'en',
         content: content.general,
-        mainClass: ''
+        mainClass: '',
+        loaded: false
     },
     methods: {
         activatePanel: function(panel){
@@ -43,11 +44,25 @@ var bw = new Vue({
             bw.$refs.fxPanel.resetFX();
             bw.$refs.envelopePanel.resetDefaults();
             bw.$refs.filterPanel.resetDefaults();
+        },
+        initializePatch: function(){
+            //Create Patch Object, which stores the pizzicato sound
+            patch.sound = new Pizzicato.Sound({
+                source: 'file',
+                options: {
+                    path: this.file.path,
+                    attack: 0.04,
+                    volume: 1,
+                    loop: false
+                }
+            }, function() {
+                patch.analyser.create();
+                //console.log(patch.sound);
+            });
         }
     },
     mounted: function(){
-        //Create Patch Object, which stores the pizzicato sound
-        patch.create();
+        this.initializePatch();
 
         //Bind Keyboard Events
         $('body').on('keydown', function(e){
@@ -66,5 +81,7 @@ var bw = new Vue({
 
         //Activate Default Panel
         this.activatePanel('wavePanel');
+
+        this.loaded = true;
     }
 });
