@@ -41,6 +41,7 @@ var bw = new Vue({
             this.mainClass = panel;
         },
         resetData: function(){
+            bw.$refs.wavePanel.resetDefaults();
             bw.$refs.fxPanel.resetFX();
             bw.$refs.envelopePanel.resetDefaults();
             bw.$refs.filterPanel.resetDefaults();

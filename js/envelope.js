@@ -13,16 +13,16 @@ Vue.component('envelopepanel', {
                         default: 0,
                         value: 0,
                         min: 0,
-                        max: 3,
-                        step: 0.01
+                        max: 5,
+                        step: 0.1
                     },
                     release: {
                         name: 'release',
-                        default: 0.3,
-                        value: 0.3,
+                        default: 1,
+                        value: 1,
                         min: 0.3,
-                        max: 3,
-                        step: 0.01
+                        max: 5,
+                        step: 0.1
                     }
                 }
             },

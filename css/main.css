@@ -296,6 +296,11 @@ ul {
   display: inline-block;
   margin-bottom: 1.5rem;
 }
+.tip {
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #9095a8;
+}
 /* =Forms
 -----------------------------------------------------------------------------*/
 .audioParams header {
@@ -654,10 +659,7 @@ nav .wave:hover .circle {
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
-.samplesList header label {
-  font-size: 0.8em;
-  font-weight: 400;
-  display: inherit;
+.samplesList header .tip {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -665,12 +667,7 @@ nav .wave:hover .circle {
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
   white-space: nowrap;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-.samplesList header label input[type="checkbox"] {
-  margin-right: 2%;
+  margin-bottom: 0.5rem;
 }
 .wavePreview {
   background: #262930;
@@ -1151,5 +1148,3 @@ nav .export:hover .circle {
     min-height: 11rem;
   }
 }
-
-/*# sourceMappingURL=main.css.map */

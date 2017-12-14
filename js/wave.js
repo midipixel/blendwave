@@ -8,7 +8,8 @@ Vue.component('wavepanel', {
             loading: false,
             wavesurfer: null,
             category: 'animals',
-            activeElement: null
+            activeElement: null,
+            offset: 0
         }
     },
     methods: {
@@ -51,6 +52,9 @@ Vue.component('wavepanel', {
 
             $('.sampleCategories li').removeClass('active');
             $(event.target).addClass('active');
+        },
+        resetDefaults: function(){
+            this.offset = 0;
         }
     },
     mounted: function(){
@@ -58,9 +62,10 @@ Vue.component('wavepanel', {
         var files = $('.fileList a');
         var rnd = Math.floor(Math.random() * files.length);
         var rndElement = files[rnd];
+        this.activeElement = rndElement;
 
         // Organize info from file path
-        var path = files[rnd].href.split('/');
+        var path = rndElement.href.split('/');
         var folder = path[path.length - 3];
         var category = path[path.length - 2];
         var file = path[path.length - 1];
@@ -78,9 +83,18 @@ Vue.component('wavepanel', {
         //Initialize Wave Previewer
         this.wavesurfer = WaveSurfer.create({
             container: '#wavePreview',
-            waveColor: '#fff',
-            progressColor: 'purple',
+            waveColor: '#d0d4de',
+            progressColor: '#4b4f58',
+            cursorColor: '#fff',
+            cursorWidth: 3,
             height: 80
+        });
+
+        var self = this;
+
+        this.wavesurfer.on('seek', function(){
+            time = self.wavesurfer.getCurrentTime().toFixed(2);
+            self.offset = parseFloat(time);
         });
 
         this.wavesurfer.load(this.$root.file.path);

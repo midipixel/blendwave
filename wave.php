@@ -15,7 +15,7 @@
             <div class="titleBox">
                 <header>
                     <nav>
-                        <a href="#" class="active">Library</a>
+                        <a href="#" class="active">{{ content[$root.locale].library }}</a>
                         <!--a href="#">Your Files</a-->
                     </nav>
                 </header>
@@ -43,12 +43,12 @@
         <div class="col-md-8 titleBox samplesList">
             <div class="samplesHeader">
                 <header>
-                    <h4>Samples List</h4>
-                    <?php
-                    /*<label>
-                        <input type="checkbox"> Show Waveform Preview
-                    </label>*/
-                    ?>
+                    <h4>{{ content[$root.locale].samplesList }}</h4>
+
+                    <p class="tip">
+                        {{ content[$root.locale].offsetTip }}
+                    </p>
+
                 </header>
 
                 <section id="wavePreview" class="wavePreview">

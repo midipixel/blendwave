@@ -34,12 +34,18 @@ const content = {
         pt: {
             title: "Fonte Sonora",
             subtitle: "Escolha um som para servir de base",
-            loading: "Por Favor, aguarde. Carregando Som."
+            loading: "Por Favor, aguarde. Carregando Som.",
+            library: "Biblioteca",
+            samplesList: "Lista de Sons",
+            offsetTip: "Clique na onda sonora para escolher um ponto inicial de playback"
         },
         en: {
             title: "Choose Sample",
             subtitle: "Choose a sound sample from the library or upload your own file!",
-            loading: "Loading sound file. Please wait."
+            loading: "Loading sound file. Please wait.",
+            library: "Library",
+            samplesList: "Samples List",
+            offsetTip: "Click on the waveform to choose a playback starting point"
         }
     },
 
@@ -55,8 +61,8 @@ const content = {
             pitchDescription: "Altere a tonalidade de seu som.",
             pitchOSC: "Oscilar Pitch",
             pitchOSCDescription: "Sacuda o pitch!",
-            attack: "Ataque",
-            release: "Repouso (Release)",
+            attack: "Ataque/Fade In",
+            release: "Repouso/Fade Out",
             amount: "Quantidade",
             depth: "Força",
             speed: "Velocidade"
@@ -72,8 +78,8 @@ const content = {
             pitchDescription: "Go chipmunk or ape on your sound!",
             pitchOSC: "Pitch Shake",
             pitchOSCDescription: "Shake the pitch!",
-            attack: "Attack",
-            release: "Release",
+            attack: "Attack/Fade In",
+            release: "Release/Fade Out",
             amount: "Amount",
             depth: "Depth",
             speed: "Speed"
