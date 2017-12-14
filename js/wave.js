@@ -2,7 +2,7 @@
 Vue.component('wavepanel', {
     props: ['active'],
     template: '#wavePanel',
-    data: function(){
+    data: function () {
         return {
             content: content.wavePanel,
             loading: false,
@@ -26,8 +26,8 @@ Vue.component('wavepanel', {
             if(this.activeElement != null){
                 $(this.activeElement).removeClass('active');
             }
-            $(event.srcElement).addClass('active');
-            this.activeElement = event.srcElement;
+            $(event.target).addClass('active');
+            this.activeElement = event.target;
 
             //Reset Data
             bw.resetData();
@@ -47,10 +47,10 @@ Vue.component('wavepanel', {
             this.wavesurfer.load(this.$root.file.path);
         },
         changeCategory: function(event){
-            this.category = event.srcElement.id;
+            this.category = event.target.id;
 
             $('.sampleCategories li').removeClass('active');
-            $(event.srcElement).addClass('active');
+            $(event.target).addClass('active');
         }
     },
     mounted: function(){
