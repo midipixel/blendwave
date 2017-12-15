@@ -7,10 +7,12 @@ Vue.component('modaloverlay', {
 
         }
     },
-    methods: {
-
-    },
-    computed: {
-
+    updated: function(){
+        if(this.active){
+            $('html').addClass('modalOn');
+        }
+        else{
+            $('html').removeClass('modalOn');
+        }
     }
 });

@@ -35,6 +35,10 @@ body{
     color: @bwText;
 }
 
+html.modalOn{
+    overflow: hidden;
+}
+
 .bwBody{
     background-color: @bwBase;
     border-radius: 0 0 6px 6px;
@@ -53,6 +57,8 @@ ul{
     list-style: none;
     padding: 0;
 }
+
+
 
 /* =Header
 -----------------------------------------------------------------------------*/
@@ -262,7 +268,7 @@ ul{
 }
 
 .modalOverlay{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;

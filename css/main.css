@@ -54,6 +54,9 @@ body {
   min-height: 100vh;
   color: #acacb8;
 }
+html.modalOn {
+  overflow: hidden;
+}
 .bwBody {
   background-color: #373a43;
   border-radius: 0 0 6px 6px;
@@ -264,7 +267,7 @@ ul {
   font-weight: bold;
 }
 .modalOverlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
