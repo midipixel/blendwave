@@ -6,7 +6,7 @@ Vue.component('exportpanel', {
             content: content.exportPanel,
             interval: null,
             exporting: false,
-            exported: false,
+            emptyList: true,
             mixer: {
                 envelopePanel: {
                     active: true,
@@ -178,6 +178,9 @@ Vue.component('exportpanel', {
                     player.className = 'player';
                     var au = document.createElement('audio');
                     var hf = document.createElement('a');
+                    hf.className = 'bwButton';
+                    var remove = document.createElement('button');
+                    remove.className = 'bwButton delButton';
 
                     //Audio Element
                     au.controls = true;
@@ -185,7 +188,6 @@ Vue.component('exportpanel', {
 
                     //Download Button
                     hf.href = url;
-                    hf.className = 'bwButton';
                     hf.download = fileName;
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;
@@ -202,13 +204,50 @@ Vue.component('exportpanel', {
                         mediaContainer.appendChild(hf);
                         hf.innerHTML = text;
 
+                    //Remove Button
+                    mediaContainer.appendChild(remove);
+                    remove.innerHTML = "Remove File";
+                    $(remove).on('click', function(e){
+                        self.removeFile(e);
+                    });
+
+
                     $('#recordingslist').prepend(li);
                 });
                 //Stop must be called to account for the envelope off situation
                 patch.sound.stop();
 
-                //Flag exported as true
-                self.exported = true;
+                //File list no longer empty
+                self.emptyList = false;
+            }
+        },
+        removeFile: function(e){
+            var self = this;
+
+            //Remove the list item
+            fileNode = e.target.parentElement.parentElement;
+
+            var removeAnim = anime({
+                targets: fileNode,
+                height: 0,
+                paddingBottom: 0,
+                opacity: 0,
+                duration: 500,
+                easing: 'easeOutSine',
+                complete: function(){
+                    afterRemoval();
+                }
+            });
+
+            function afterRemoval(){
+                $(fileNode).remove();
+
+                //Check if the list is empty after exporting
+                var exportedFiles = $('#recordingslist').children('li');
+
+                if(exportedFiles.length < 1){
+                    self.emptyList = true;
+                }
             }
         },
         prePlayUpdate: function(){
@@ -220,7 +259,7 @@ Vue.component('exportpanel', {
             return parseInt(this.mixer.volume.value * 100);
         },
         toggleButton: function(mixerStrip){
-            return(mixerStrip)    ;
+            return(mixerStrip);
         }
     }
 });

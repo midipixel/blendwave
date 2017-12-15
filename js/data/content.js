@@ -184,7 +184,7 @@ const content = {
         },
         en: {
             title: "Output",
-            subtitle: "Ajust your settings, export the final result to a WAV file, and download",
+            subtitle: "Adjust your settings, export the final result to a WAV file, and download",
             exportButton: "Export WAV",
             filesTitle: "Exported Files",
             envelopeStrip: "Amplitude & Pitch",
@@ -195,7 +195,7 @@ const content = {
             toggleOn: "On",
             toggleOff: "Off",
             downloadText: "Download File",
-            exportPlaceholder: "No exported files yet. Press 'Export WAV' when you are done working on your sound effect!",
+            exportPlaceholder: "No exported files. Press 'Export WAV' when you are done working on your sound effect!",
             modal: {
                 title: "Exporting",
                 message: "Exporting WAV File. Just a sec!"

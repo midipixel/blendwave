@@ -82,6 +82,7 @@
 
     <!-- Vendor -->
     <script src="js/vendor/zepto.min.js"></script>
+    <script src="js/vendor/anime.min.js"></script>
     <script src="js/vendor/vue.js"></script>
 
     <script src="js/vendor/recorder.js"></script>

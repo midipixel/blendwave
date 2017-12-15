@@ -147,10 +147,10 @@
         </header>
 
         <div class="main">
-            <p v-if="!exported">{{ content[$root.locale].exportPlaceholder }}</p>
+            <p v-if="emptyList">{{ content[$root.locale].exportPlaceholder }}</p>
 
             <ul id="recordingslist"  class="exportedFiles">
-
+                <!--li><h5>zapfx002_0.wav</h5><div class="mediaContainer"><div class="player"><audio controls="" src=""></audio></div><a class="bwButton" href="blob:http://localhost:7879/ea609d36-ecd3-4615-82a4-38a99453630f" download="zapfx002_0.wav">Download File</a><a class="bwButton delButton">Remove File</a></div></li-->
             </ul>
         </div>
     </div>

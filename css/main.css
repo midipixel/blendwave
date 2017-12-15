@@ -256,6 +256,13 @@ ul {
 .bwButton:focus {
   outline: none;
 }
+.delButton::before {
+  content: "X";
+  display: inline-block;
+  margin-right: 5px;
+  color: #e40404;
+  font-weight: bold;
+}
 .modalOverlay {
   position: absolute;
   top: 0;
@@ -1116,7 +1123,8 @@ nav .export:hover .circle {
 /* =Exported Files
 -----------------------------------------------------------------------------*/
 .exportedFiles li {
-  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  overflow: hidden;
 }
 .exportedFiles .mediaContainer {
   display: -webkit-box;
@@ -1129,6 +1137,9 @@ nav .export:hover .circle {
 .exportedFiles .mediaContainer .player {
   margin-right: 3%;
   background: #8192c7;
+}
+.exportedFiles .mediaContainer .bwButton {
+  margin-right: 2%;
 }
 .exportedFiles li audio {
   mix-blend-mode: overlay;
