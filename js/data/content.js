@@ -19,61 +19,6 @@ const content = {
         }
     },
 
-    credits: {
-        en: {
-            title: "Credits",
-            description: "Blendwave is a one-man endeavour, but its existence wouldn't be possible without the work and/or help from these amazing people:",
-            samples: {
-                title: "Library Samples",
-                list: [
-                    {
-                        name: "Archive.org",
-                        link: "archive.org",
-                        description: "Multiple CC0 samples"
-                    },                    {
-                        name: "Atom Splitter",
-                        link: false,
-                        description: "Games and 8 Bit Kit, Bird Calls"
-                    },
-                    {
-                        name: "Kenney",
-                        link: "www.kenney.nl",
-                        description: "Free Audio Assets"
-                    },
-                    {
-                        name: "Soundbible.com",
-                        link: "www.soundbible.com",
-                        description: "Recordings by Daniel Simion"
-                    },
-                    {
-                        name: "Soundimage.org",
-                        link: "http://soundimage.org/",
-                        description: "Sound Effects by Eric Matyas"
-                    }
-                ]
-            },
-            tech: {
-                title: "Technology",
-                list: [
-                    {
-                        name: "Pizzicato.js",
-                        link: "https://github.com/alemangui/pizzicato",
-                        description: "Used as Blendwave's audio engine"
-                    },                    {
-                        name: "Vue JS",
-                        link: false,
-                        description: "Most application logic is written in Vue."
-                    },
-                    {
-                        name: "Wavesurfer",
-                        link: "https://wavesurfer-js.org/",
-                        description: "Audio file visualizations are generated with this lib."
-                    }
-                ]
-            }
-        }
-    },
-
     fileHeader: {
         pt: {
             title: "Som Escolhido",
@@ -254,6 +199,175 @@ const content = {
             modal: {
                 title: "Exporting",
                 message: "Exporting WAV File. Just a sec!"
+            }
+        }
+    },
+
+    credits: {
+        pt: {
+            title: "Credits",
+            description: "O Blendwave é um projeto de uma pessoa, mas sua existência não seria possível sem o trabalho destas pessoas incríveis:",
+            samples: {
+                title: "Samples de Áudio",
+                list: [
+                    {
+                        name: "Archive.org",
+                        link: "archive.org",
+                        description: "Múltiplas samples CC0"
+                    },                    {
+                        name: "Atom Splitter",
+                        link: false,
+                        description: "Games and 8 Bit Kit, Bird Calls"
+                    },
+                    {
+                        name: "Kenney",
+                        link: "www.kenney.nl",
+                        description: "Free Audio Assets"
+                    },
+                    {
+                        name: "Open Game Art",
+                        link: "https://opengameart.org",
+                        description: "Diversas samples CC0"
+                    },
+                    {
+                        name: "Soundbible.com",
+                        link: "www.soundbible.com",
+                        description: "Recordings by Daniel Simion"
+                    },
+                    {
+                        name: "Soundimage.org",
+                        link: "http://soundimage.org/",
+                        description: "Sound Effects by Eric Matyas"
+                    },
+                    {
+                        name: "Volterock & undocument",
+                        link: "http://www.volterock.com/",
+                        description: "Vocal Hazard Pack vol.I and II"
+                    },
+                    {
+                        name: "Wikimedia",
+                        link: "https://commons.wikimedia.org",
+                        description: "Audio files of animal sounds from the United States Fish and Wildlife Service"
+                    }
+                ]
+            },
+            tech: {
+                title: "Tecnologia",
+                list: [
+                    {
+                        name: "Anime.js",
+                        link: "http://animejs.com/",
+                        description: "Utilizada em algumas animações de UI."
+                    },
+                    {
+                        name: "Pizzicato.js",
+                        link: "https://github.com/alemangui/pizzicato",
+                        description: "A engine de áudio do Blendwave. Uma ótima biblioteca para trabalhar com samples na Web Audio API."
+                    },
+                    {
+                        name: "RecorderJS",
+                        link: "https://github.com/mattdiamond/Recorderjs",
+                        description: "Utilizada para gravar a saída de som do app e consodilá-la num arquivo WAV."
+                    },
+                    {
+                        name: "Vue JS",
+                        link: "https://vuejs.org",
+                        description: "É onde a maior parte da lógica do app foi escrita. Eu adoro trabalhar com essa lib!"
+                    },
+                    {
+                        name: "Wavesurfer",
+                        link: "https://wavesurfer-js.org/",
+                        description: "As visualizações dos arquivos de som são geradas com esta biblioteca."
+                    },
+                    {
+                        name: "Zepto",
+                        link: "http://zeptojs.com/",
+                        description: "Porque as vezes tudo que você quer é um açúcar sintático estilo jQuery!"
+                    }
+                ]
+            }
+        },
+        en: {
+            title: "Credits",
+            description: "Blendwave is a one-man endeavour, but its existence wouldn't be possible without the work and/or help from these amazing people:",
+            samples: {
+                title: "Audio Samples",
+                list: [
+                    {
+                        name: "Archive.org",
+                        link: "archive.org",
+                        description: "Multiple CC0 samples"
+                    },                    {
+                        name: "Atom Splitter",
+                        link: false,
+                        description: "Games and 8 Bit Kit, Bird Calls"
+                    },
+                    {
+                        name: "Kenney",
+                        link: "www.kenney.nl",
+                        description: "Free Audio Assets"
+                    },
+                    {
+                        name: "Open Game Art",
+                        link: "https://opengameart.org",
+                        description: "Too many CC0 Sound Effects to mention!"
+                    },
+                    {
+                        name: "Soundbible.com",
+                        link: "www.soundbible.com",
+                        description: "Recordings by Daniel Simion"
+                    },
+                    {
+                        name: "Soundimage.org",
+                        link: "http://soundimage.org/",
+                        description: "Sound Effects by Eric Matyas"
+                    },
+                    {
+                        name: "Volterock & undocument",
+                        link: "http://www.volterock.com/",
+                        description: "Vocal Hazard Pack vol.I and II"
+                    },
+                    {
+                        name: "Wikimedia",
+                        link: "https://commons.wikimedia.org",
+                        description: "Audio files of animal sounds from the United States Fish and Wildlife Service"
+                    }
+                ]
+            },
+            tech: {
+                title: "Technology",
+                list: [
+                    {
+                        name: "Anime.js",
+                        link: "http://animejs.com/",
+                        description: "Used on some UI animations."
+                    },
+                    {
+                        name: "Pizzicato.js",
+                        link: "https://github.com/alemangui/pizzicato",
+                        description: "Blendwave's audio engine. A great Web Audio API library to work with audio samples."
+                    },
+                    {
+                        name: "RecorderJS",
+                        link: "https://github.com/mattdiamond/Recorderjs",
+                        description: "Used to record the app's output and bounce it to a WAV file."
+                    },
+                    {
+                        name: "Vue JS",
+                        link: "https://vuejs.org",
+                        description: "Is where most of the App logic was written. I like it very much!"
+                    },
+                    {
+                        name: "Wavesurfer",
+                        link: "https://wavesurfer-js.org/",
+                        description: "The audio file visualizations are generated with this lib."
+                    },
+                    {
+                        name: "Zepto",
+                        link: "http://zeptojs.com/",
+                        description: "Because sometimes you just need some jQueryish syntatic sugar"
+                    }
+                ]
             }
         }
     }

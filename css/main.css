@@ -146,6 +146,8 @@ a:hover {
 }
 .mainNav li svg {
   margin-right: 0.5rem;
+  max-width: 30px;
+  max-height: 30px;
 }
 .mainNav li.disabled a {
   cursor: not-allowed;
@@ -628,12 +630,35 @@ input[type=range]::-ms-track {
 .credits {
   text-align: left;
   font-size: 0.8rem;
+  max-width: 60%;
+  margin-top: 1rem;
 }
 .credits h5 {
   text-align: center;
 }
-.credits li {
+.credits h6 {
+  color: #8f68dc;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.creditsLists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.creditsLists .list {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 48%;
+  flex: 0 1 48%;
+}
+.creditsLists li {
   margin: 0;
+}
+.creditsLists li a {
+  text-decoration: underline;
 }
 /*-----------------------------------------------------------------------------
 Blendwave - Wave Panel Styles

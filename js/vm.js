@@ -30,7 +30,7 @@ var bw = new Vue({
         mainClass: '',
         loaded: false,
         credits: {
-            visible: true,
+            visible: false,
             content: content.credits
         }
     },
@@ -64,6 +64,9 @@ var bw = new Vue({
                 patch.analyser.create();
                 //console.log(patch.sound);
             });
+        },
+        closeModal: function(modal){
+            this.credits.visible = false;
         }
     },
     mounted: function(){
@@ -88,5 +91,6 @@ var bw = new Vue({
         this.activatePanel('wavePanel');
 
         this.loaded = true;
+        console.log('obj');
     }
 });

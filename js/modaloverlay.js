@@ -7,6 +7,11 @@ Vue.component('modaloverlay', {
 
         }
     },
+    methods: {
+        close: function(type){
+            this.$emit('close');
+        }
+    },
     updated: function(){
         if(this.active){
             $('html').addClass('modalOn');

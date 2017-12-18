@@ -8,6 +8,7 @@
 </footer>
 
 <modaloverlay
+    v-on:close="closeModal()"
     :modalcontent="credits.content[$root.locale]"
     :active="credits.visible"
     type="credits">

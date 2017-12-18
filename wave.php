@@ -67,7 +67,7 @@
                         $catDir = scandir('samples/' . $category);
                         $catDir = array_slice($catDir, 2);
 
-                        echo("<div class='fileList' v-show=\"category === '" . $category . "'\" id='list_" . $category . "'>");
+                        echo("<div class='fileList' v-if=\"category === '" . $category . "'\" id='list_" . $category . "'>");
                             // Establish max files per col, determine number of cols
                             $files_per_col = 10;
 
