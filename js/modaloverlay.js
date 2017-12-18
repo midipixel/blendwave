@@ -1,7 +1,7 @@
 /* Modal Overlay: Shared Component */
 Vue.component('modaloverlay', {
     template: '#modalOverlay',
-    props: ['modalcontent', 'active'],
+    props: ['modalcontent', 'active', 'type'],
     data: function() {
         return {
 

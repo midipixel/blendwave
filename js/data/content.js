@@ -15,7 +15,62 @@ const content = {
             filterPanel: "Filter",
             fxPanel: "Effects",
             exportPanel: "Output",
-            disabledWarning: "Disabled by the Output Panel"
+            disabledWarning: "Disabled by the Output Panel",
+        }
+    },
+
+    credits: {
+        en: {
+            title: "Credits",
+            description: "Blendwave is a one-man endeavour, but its existence wouldn't be possible without the work and/or help from these amazing people:",
+            samples: {
+                title: "Library Samples",
+                list: [
+                    {
+                        name: "Archive.org",
+                        link: "archive.org",
+                        description: "Multiple CC0 samples"
+                    },                    {
+                        name: "Atom Splitter",
+                        link: false,
+                        description: "Games and 8 Bit Kit, Bird Calls"
+                    },
+                    {
+                        name: "Kenney",
+                        link: "www.kenney.nl",
+                        description: "Free Audio Assets"
+                    },
+                    {
+                        name: "Soundbible.com",
+                        link: "www.soundbible.com",
+                        description: "Recordings by Daniel Simion"
+                    },
+                    {
+                        name: "Soundimage.org",
+                        link: "http://soundimage.org/",
+                        description: "Sound Effects by Eric Matyas"
+                    }
+                ]
+            },
+            tech: {
+                title: "Technology",
+                list: [
+                    {
+                        name: "Pizzicato.js",
+                        link: "https://github.com/alemangui/pizzicato",
+                        description: "Used as Blendwave's audio engine"
+                    },                    {
+                        name: "Vue JS",
+                        link: false,
+                        description: "Most application logic is written in Vue."
+                    },
+                    {
+                        name: "Wavesurfer",
+                        link: "https://wavesurfer-js.org/",
+                        description: "Audio file visualizations are generated with this lib."
+                    }
+                ]
+            }
         }
     },
 
@@ -201,6 +256,5 @@ const content = {
                 message: "Exporting WAV File. Just a sec!"
             }
         }
-    },
-
+    }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with PhotoLine 20.02 (www.pl32.com) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="23" height="23" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="matrix(1 0 0 1 -427.489929 -33.489914)">
+    <g id="Ellipse">
+      <path fill="none" stroke="#c8cddf" d="M428 45 C428 38.92 432.92 34 439 34 C445.08 34 450 38.92 450 45 C450 51.08 445.08 56 439 56 C432.92 56 428 51.08 428 45 Z"/>
+    </g>
+    <g id="Line">
+      <path fill="none" stroke="#c8cddf" d="M434.29 49.71 L443.71 40.29"/>
+    </g>
+    <g id="Line2">
+      <path fill="none" stroke="#c8cddf" d="M443.71 49.71 L434.29 40.29"/>
+    </g>
+  </g>
+</svg>

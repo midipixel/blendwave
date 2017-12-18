@@ -58,13 +58,24 @@ html.modalOn {
   overflow: hidden;
 }
 .bwBody {
-  background-color: #373a43;
-  border-radius: 0 0 6px 6px;
-  color: #c8cada;
   padding-top: 1.5rem;
   padding-bottom: 3rem;
 }
+.bwFooter {
+  border-radius: 0 0 6px 6px;
+  font-size: 0.8rem;
+}
+.footerMain {
+  border-top: 1px solid #4b4f58;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+.footerMain p {
+  display: inline-block;
+}
 .container {
+  background-color: #373a43;
+  color: #c8cada;
   max-width: 890px;
   padding-left: 30px;
   padding-right: 30px;
@@ -72,6 +83,13 @@ html.modalOn {
 ul {
   list-style: none;
   padding: 0;
+}
+a,
+a:link {
+  color: #8f68dc;
+}
+a:hover {
+  color: #fff;
 }
 /* =Header
 -----------------------------------------------------------------------------*/
@@ -294,17 +312,30 @@ ul {
   text-align: center;
   border-radius: 6px;
 }
-.modal h6 {
+.modal h5 {
   background: #262930;
   border-top-right-radius: 6px;
   font-size: 1rem;
   padding: 0.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
+  position: relative;
+}
+.modal.closeable .closeButton {
+  display: inline-block;
+  position: absolute;
+  height: 24px;
+  top: 50%;
+  margin-top: -12px;
+  right: 10px;
+  cursor: pointer;
 }
 .modal img {
   display: inline-block;
   margin-bottom: 1.5rem;
+}
+.modalBody {
+  padding: 0 1rem;
 }
 .tip {
   font-size: 0.8em;
@@ -591,6 +622,18 @@ input[type=range]::-ms-track {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+/* =Credits
+-----------------------------------------------------------------------------*/
+.credits {
+  text-align: left;
+  font-size: 0.8rem;
+}
+.credits h5 {
+  text-align: center;
+}
+.credits li {
+  margin: 0;
 }
 /*-----------------------------------------------------------------------------
 Blendwave - Wave Panel Styles
@@ -1162,3 +1205,5 @@ nav .export:hover .circle {
     min-height: 11rem;
   }
 }
+
+/*# sourceMappingURL=main.css.map */

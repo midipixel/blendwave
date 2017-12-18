@@ -28,7 +28,11 @@ var bw = new Vue({
         locale: 'en',
         content: content.general,
         mainClass: '',
-        loaded: false
+        loaded: false,
+        credits: {
+            visible: true,
+            content: content.credits
+        }
     },
     methods: {
         activatePanel: function(panel){
@@ -81,7 +85,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('exportPanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
     }
