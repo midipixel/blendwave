@@ -1,4 +1,4 @@
-const content = {
+var content = {
 
     general: {
         pt: {

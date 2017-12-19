@@ -5,12 +5,6 @@
     <h3>{{ content[$root.locale].title }}<em>{{ content[$root.locale].subtitle }}</em></h3>
 
     <section class="row">
-        <div class="col loading">
-
-        </div>
-    </section>
-
-    <section class="row">
         <div class="col-md-4">
             <div class="titleBox">
                 <header>

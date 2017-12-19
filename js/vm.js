@@ -91,6 +91,5 @@ var bw = new Vue({
         this.activatePanel('wavePanel');
 
         this.loaded = true;
-        console.log('obj');
     }
 });
