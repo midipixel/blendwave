@@ -1,0 +1,31 @@
+/*-----------------------------------------------------------------------------
+Blendwave - Landing Page
+Author: Werther Azevedo
+-----------------------------------------------------------------------------*/
+
+.landingPage{
+    background: none;
+    text-align: center;
+}
+
+.landingPage .logo{
+    display: inline-block;
+    max-width: 200px;
+    margin-bottom: 2rem;
+}
+
+.landingPage .screenshots{
+    margin: 2rem 0;
+}
+
+.landingPage .screenshots img{
+    width: 100%;
+}
+
+.hb-wrapper .hb-main-container{
+    background: rgba(0,0,0,0.5);
+}
+
+.hb-wrapper .hb-main-container button svg{
+    fill: #fff;
+}
