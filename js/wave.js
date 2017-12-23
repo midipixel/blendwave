@@ -19,7 +19,8 @@ Vue.component('wavepanel', {
             //Update filename
             var fileString = event.target.href.split('/');
             var pos = fileString.length - 1;
-            this.$root.file.name = fileString[pos];
+            var fileName = fileString[pos].split('.');
+            this.$root.file.name = fileName[0];
 
             this.loading = true;
 
@@ -95,6 +96,7 @@ Vue.component('wavepanel', {
         this.wavesurfer.on('seek', function(){
             time = self.wavesurfer.getCurrentTime().toFixed(2);
             self.offset = parseFloat(time);
+            console.log(self.offset);
         });
 
         this.wavesurfer.load(this.$root.file.path);

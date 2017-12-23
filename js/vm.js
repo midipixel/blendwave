@@ -91,5 +91,6 @@ var bw = new Vue({
         this.activatePanel('wavePanel');
 
         this.loaded = true;
+        this.locale = locale;
     }
 });

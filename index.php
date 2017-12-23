@@ -30,6 +30,7 @@
         <?php include("footer.php") ?>
     </main>
 
+    <?php include("locale.php") ?>
     <?php include("scripts.php") ?>
 </body>
 </html>

@@ -33,7 +33,7 @@ var content = {
     wavePanel: {
         pt: {
             title: "Fonte Sonora",
-            subtitle: "Escolha um som para servir de base",
+            subtitle: "Escolha um som na Biblioteca para servir de base",
             loading: "Por Favor, aguarde. Carregando Som.",
             library: "Biblioteca",
             samplesList: "Lista de Sons",
@@ -41,7 +41,7 @@ var content = {
         },
         en: {
             title: "Choose Sample",
-            subtitle: "Choose a sound sample from the library or upload your own file!",
+            subtitle: "Choose a a base sound sample from the Library",
             loading: "Loading sound file. Please wait.",
             library: "Library",
             samplesList: "Samples List",
