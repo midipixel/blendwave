@@ -25,7 +25,7 @@ var bw = new Vue({
             name: ' ',
             path: 'samples/animals/pig03.mp4'
         },
-        locale: 'en',
+        locale: bwLocale,
         content: content.general,
         mainClass: '',
         loaded: false,
@@ -91,6 +91,5 @@ var bw = new Vue({
         this.activatePanel('wavePanel');
 
         this.loaded = true;
-        this.locale = locale;
     }
 });
