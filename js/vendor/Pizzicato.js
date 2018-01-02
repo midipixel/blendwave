@@ -62,6 +62,14 @@
 			return (audioNode && audioNode.toString() === "[object OscillatorNode]");
 		},
 	
+		isAudioBufferSourceNode: function(audioNode) {
+			return (audioNode && audioNode.toString() === "[object AudioBufferSourceNode]");
+		},
+
+		isSound: function(sound) {
+			return sound instanceof Pz.Sound;
+		},
+
 		isEffect: function(effect) {
 			for (var key in Pizzicato.Effects)
 				if (effect instanceof Pizzicato.Effects[key])
@@ -207,14 +215,17 @@
 			throw new Error('Error initializing Pizzicato Sound: ' + descriptionError);
 		}
 	
+		this.detached = hasOptions && description.options.detached;
 		this.masterVolume = Pizzicato.context.createGain();
 		this.fadeNode = Pizzicato.context.createGain();
+		this.fadeNode.gain.value = 0;
 	
-		if (!hasOptions || !description.options.detached)
+		if (!this.detached)
 			this.masterVolume.connect(Pizzicato.masterGainNode);
 	
 		this.lastTimePlayed = 0;
 		this.effects = [];
+		this.effectConnectors = [];
 		this.playing = this.paused = false;
 		this.loop = hasOptions && description.options.loop;
 		this.attack = hasOptions && util.isNumber(description.options.attack) ? description.options.attack : defaultAttack;
@@ -285,6 +296,8 @@
 				return node;
 			};
 			this.sourceNode = this.getRawSourceNode();
+			this.sourceNode.gainSuccessor = Pz.context.createGain();
+			this.sourceNode.connect(this.sourceNode.gainSuccessor);
 	
 			if (util.isFunction(callback))
 				callback();
@@ -342,21 +355,28 @@
 		function initializeWithInput(options, callback) {
 			navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 	
-			if (!navigator.getUserMedia) return;
+			if (!navigator.getUserMedia && !navigator.mediaDevices.getUserMedia) {
+				console.error('Your browser does not support getUserMedia');
+				return;
+			}
 	
-			navigator.getUserMedia({
-				audio: true
-			}, (function(stream) {
+			var handleStream = (function(stream) {
 				self.getRawSourceNode = function() {
 					return Pizzicato.context.createMediaStreamSource(stream);
 				};
 				if (util.isFunction(callback))
 					callback();
+			}).bind(self);
 	
-			}).bind(self), function(error) {
+			var handleError = function(error) {
 				if (util.isFunction(callback))
 					callback(error);
-			});
+			};
+
+			if (!!navigator.mediaDevices.getUserMedia)
+				navigator.mediaDevices.getUserMedia({ audio: true }).then(handleStream).catch(handleError);
+			else
+				navigator.getUserMedia({ audio: true }, handleStream, handleError);
 		}
 	
 	
@@ -491,34 +511,65 @@
 		onEnded: {
 			enumerable: true,
 	
-			value: function() {
-				if (this.playing)
-					this.stop();
-				if (!this.paused)
-					this.trigger('end');
+			value: function(node) {
+				return function() {
+					// This function may've been called from the release
+					// end. If in that time the Sound has been played again,
+					// no action should be taken.
+					if (!!this.sourceNode && this.sourceNode !== node)
+						return;
+
+					if (this.playing)
+						this.stop();
+					if (!this.paused)
+						this.trigger('end');
+				};
 			}
 		},
 	
-	
+		/**
+		 * Adding effects will create a graph in which there will be a
+		 * gain node (effectConnector) in between every effect added. For example:
+		 * [fadeNode]--->[effect 1]->[connector 1]--->[effect 2]->[connector 2]--->[masterGain]
+		 *
+		 * Connectors are used to know what nodes to disconnect and not disrupt the
+		 * connections of another Pz.Sound object using the same effect.
+		 */
 		addEffect: {
 			enumerable: true,
 	
 			value: function(effect) {
-				if (!effect || !Pz.Util.isEffect(effect)) {
-					console.warn('Invalid effect.');
-					return;
+				if (!Pz.Util.isEffect(effect)) {
+					console.error('The object provided is not a Pizzicato effect.');
+					return this;
 				}
 	
 				this.effects.push(effect);
-				this.connectEffects();
-				if (!!this.sourceNode) {
-					this.fadeNode.disconnect();
-					this.fadeNode.connect(this.getInputNode());
-				}
+
+				// Connects effect in the last position
+				var previousNode = this.effectConnectors.length > 0 ? this.effectConnectors[this.effectConnectors.length - 1] : this.fadeNode;
+				previousNode.disconnect();
+				previousNode.connect(effect);
+
+				// Creates connector for the newly added effect
+				var gain = Pz.context.createGain();
+				this.effectConnectors.push(gain);
+				effect.connect(gain);
+				gain.connect(this.masterVolume);
+
+				return this;
 			}
 		},
 	
-	
+		/**
+		 * When removing effects, the graph in which there will be a
+		 * gain node (effectConnector) in between every effect should be
+		 * conserved. For example:
+		 * [fadeNode]--->[effect 1]->[connector 1]--->[effect 2]->[connector 2]--->[masterGain]
+		 *
+		 * Connectors are used to know what nodes to disconnect and not disrupt the
+		 * connections of another Pz.Sound object using the same effect.
+		 */
 		removeEffect: {
 			enumerable: true,
 	
@@ -528,7 +579,7 @@
 	
 				if (index === -1) {
 					console.warn('Cannot remove effect that is not applied to this sound.');
-					return;
+					return this;
 				}
 	
 				var shouldResumePlaying = this.playing;
@@ -536,16 +587,30 @@
 				if (shouldResumePlaying)
 					this.pause();
 	
-				this.fadeNode.disconnect();
+				var previousNode = (index === 0) ? this.fadeNode : this.effectConnectors[index - 1];
+				previousNode.disconnect();
 	
-				for (var i = 0; i < this.effects.length; i++)
-					this.effects[i].outputNode.disconnect();
+				// Disconnect connector and effect
+				var effectConnector = this.effectConnectors[index];
+				effectConnector.disconnect();
+				effect.disconnect(effectConnector);
 	
+				// Remove connector and effect from our arrays
+				this.effectConnectors.splice(index, 1);
 				this.effects.splice(index, 1);
-				this.connectEffects();
+
+				var targetNode;
+				if (index > this.effects.length - 1 || this.effects.length === 0)
+					targetNode = this.masterVolume;
+				else
+					targetNode = this.effects[index];
+
+				previousNode.connect(targetNode);
 	
 				if (shouldResumePlaying)
 					this.play();
+
+				return this;
 			}
 		},
 	
@@ -555,6 +620,7 @@
 	
 			value: function(audioNode) {
 				this.masterVolume.connect(audioNode);
+				return this;
 			}
 		},
 	
@@ -564,6 +630,7 @@
 	
 			value: function(audioNode) {
 				this.masterVolume.disconnect(audioNode);
+				return this;
 			}
 		},
 	
@@ -572,12 +639,18 @@
 			enumerable: true,
 	
 			value: function() {
+
+				var connectors = [];
+
 				for (var i = 0; i < this.effects.length; i++) {
 	
 					var isLastEffect = i === this.effects.length - 1;
 					var destinationNode = isLastEffect ? this.masterVolume : this.effects[i + 1].inputNode;
 	
-					this.effects[i].outputNode.disconnect();
+					connectors[i] = Pz.context.createGain();
+
+					this.effects[i].outputNode.disconnect(this.effectConnectors[i]);
+
 					this.effects[i].outputNode.connect(destinationNode);
 				}
 			}
@@ -645,15 +718,34 @@
 			enumerable: true,
 	
 			value: function() {
-				if (!!this.sourceNode)
-					this.sourceNode.disconnect();
+				if (!!this.sourceNode) {
+
+					// Directly disconnecting the previous source node causes a
+					// 'click' noise, especially noticeable if the sound is played
+					// while the release is ongoing. To address this, we fadeout the
+					// old source node before disonnecting it.
+
+					var previousSourceNode = this.sourceNode;
+					previousSourceNode.gainSuccessor.gain.setValueAtTime(previousSourceNode.gainSuccessor.gain.value, Pz.context.currentTime);
+					previousSourceNode.gainSuccessor.gain.linearRampToValueAtTime(0.0001, Pz.context.currentTime + 0.2);
+					setTimeout(function() {
+						previousSourceNode.disconnect();
+						previousSourceNode.gainSuccessor.disconnect();
+					}, 200);
+				}
 	
 				var sourceNode = this.getRawSourceNode();
 	
-				sourceNode.connect(this.fadeNode);
-				sourceNode.onended = this.onEnded.bind(this);
+				// A gain node will be placed after the source node to avoid
+				// clicking noises (by fading out the sound)
+				sourceNode.gainSuccessor = Pz.context.createGain();
+				sourceNode.connect(sourceNode.gainSuccessor);
+				sourceNode.gainSuccessor.connect(this.fadeNode);
 				this.fadeNode.connect(this.getInputNode());
 	
+				if (Pz.Util.isAudioBufferSourceNode(sourceNode))
+					sourceNode.onended = this.onEnded(sourceNode).bind(this);
+
 				return sourceNode;
 			}
 		},
@@ -675,30 +767,6 @@
 		},
 	
 		/**
-	 	 * @deprecated - Use "connect"
-	 	 *
-		 * Returns an analyser node located right after the master volume.
-		 * This node is created lazily.
-		 */
-		getAnalyser: {
-			enumerable: true,
-	
-			value: function() {
-	
-				console.warn('This method is deprecated. You should manually create an AnalyserNode and use connect() on the Pizzicato Sound.');
-	
-				if (this.analyser)
-					return this.analyser;
-	
-				this.analyser = Pizzicato.context.createAnalyser();
-				this.masterVolume.disconnect();
-				this.masterVolume.connect(this.analyser);
-				this.analyser.connect(Pizzicato.masterGainNode);
-				return this.analyser;
-			}
-		},
-	
-		/**
 		 * Will take the current source node and work up the volume
 		 * gradually in as much time as specified in the attack property
 		 * of the sound.
@@ -707,11 +775,18 @@
 			enumerable: false,
 	
 			value: function() {
-				if (!this.attack)
+				var currentValue = this.fadeNode.gain.value;
+				this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
+				this.fadeNode.gain.setValueAtTime(currentValue, Pz.context.currentTime);
+
+				if (!this.attack) {
+					this.fadeNode.gain.setValueAtTime(1.0, Pizzicato.context.currentTime);
 					return;
+				}
 	
-				this.fadeNode.gain.setValueAtTime(0.00001, Pizzicato.context.currentTime);
-				this.fadeNode.gain.linearRampToValueAtTime(1, Pizzicato.context.currentTime + this.attack);
+				var remainingAttackTime = (1 - this.fadeNode.gain.value) * this.attack;
+				this.fadeNode.gain.setValueAtTime(this.fadeNode.gain.value, Pizzicato.context.currentTime);
+				this.fadeNode.gain.linearRampToValueAtTime(1, Pizzicato.context.currentTime + remainingAttackTime);
 			}
 		},
 	
@@ -730,16 +805,238 @@
 					return Pz.Util.isFunction(node.stop) ? node.stop(0) : node.disconnect();
 				};
 	
-				if (!this.release)
+				var currentValue = this.fadeNode.gain.value;
+				this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
+				this.fadeNode.gain.setValueAtTime(currentValue, Pz.context.currentTime);
+
+				if (!this.release) {
 					stopSound();
+					return;
+				}
 	
+				var remainingReleaseTime = this.fadeNode.gain.value * this.release;
 				this.fadeNode.gain.setValueAtTime(this.fadeNode.gain.value, Pizzicato.context.currentTime);
-				this.fadeNode.gain.linearRampToValueAtTime(0.00001, Pizzicato.context.currentTime + this.release);
+				this.fadeNode.gain.linearRampToValueAtTime(0.00001, Pizzicato.context.currentTime + remainingReleaseTime);
+
 				window.setTimeout(function() {
 					stopSound();
-				}, this.release * 1000);
+				}, remainingReleaseTime * 1000);
 			}
 		}
+	});
+
+	Pizzicato.Group = function(sounds) {
+
+		sounds = sounds || [];
+
+		this.mergeGainNode = Pz.context.createGain();
+		this.masterVolume = Pz.context.createGain();
+		this.sounds = [];
+		this.effects = [];
+		this.effectConnectors = [];
+
+		this.mergeGainNode.connect(this.masterVolume);
+		this.masterVolume.connect(Pz.masterGainNode);
+
+		for (var i = 0; i < sounds.length; i++)
+			this.addSound(sounds[i]);
+	};
+
+	Pizzicato.Group.prototype = Object.create(Pz.Events, {
+
+		connect: {
+			enumerable: true,
+
+			value: function(audioNode) {
+				this.masterVolume.connect(audioNode);
+				return this;
+			}
+		},
+
+
+		disconnect: {
+			enumerable: true,
+
+			value: function(audioNode) {
+				this.masterVolume.disconnect(audioNode);
+				return this;
+			}
+		},
+
+
+		addSound: {
+			enumerable: true,
+
+			value: function(sound) {
+				if (!Pz.Util.isSound(sound)) {
+					console.error('You can only add Pizzicato.Sound objects');
+					return;
+				}
+				if (this.sounds.indexOf(sound) > -1) {
+					console.warn('The Pizzicato.Sound object was already added to this group');
+					return;
+				}
+				if (sound.detached) {
+					console.warn('Groups do not support detached sounds. You can manually create an audio graph to group detached sounds together.');
+					return;
+				}
+
+				sound.disconnect(Pz.masterGainNode);
+				sound.connect(this.mergeGainNode);
+				this.sounds.push(sound);
+			}
+		},
+
+
+		removeSound: {
+			enumerable: true,
+
+			value: function(sound) {
+				var index = this.sounds.indexOf(sound);
+
+				if (index === -1) {
+					console.warn('Cannot remove a sound that is not part of this group.');
+					return;
+				}
+
+				sound.disconnect(this.mergeGainNode);
+				sound.connect(Pz.masterGainNode);
+				this.sounds.splice(index, 1);
+			}
+		},
+
+
+		volume: {
+			enumerable: true,
+
+			get: function() {
+				if (this.masterVolume)
+					return this.masterVolume.gain.value;
+			},
+
+			set: function(volume) {
+				if (Pz.Util.isInRange(volume, 0, 1))
+					this.masterVolume.gain.value = volume;
+			}
+		},
+
+
+		play: {
+			enumerable: true,
+
+			value: function() {
+				for (var i = 0; i < this.sounds.length; i++)
+					this.sounds[i].play();
+
+				this.trigger('play');
+			}
+
+		},
+
+
+		stop: {
+			enumerable: true,
+
+			value: function() {
+				for (var i = 0; i < this.sounds.length; i++)
+					this.sounds[i].stop();
+
+				this.trigger('stop');
+			}
+
+		},
+
+
+		pause: {
+			enumerable: true,
+
+			value: function() {
+				for (var i = 0; i < this.sounds.length; i++)
+					this.sounds[i].pause();
+
+				this.trigger('pause');
+			}
+
+		},
+
+		/**
+		 * Similarly to Sound objects, adding effects will create a graph in which there will be a
+		 * gain node (effectConnector) in between every effect added. For example:
+		 * [fadeNode]--->[effect 1]->[connector 1]--->[effect 2]->[connector 2]--->[masterGain]
+		 *
+		 * Connectors are used to know what nodes to disconnect and not disrupt the
+		 * connections of another Pz.Group object using the same effect.
+		 */
+		addEffect: {
+			enumerable: true,
+
+			value: function(effect) {
+				if (!Pz.Util.isEffect(effect)) {
+					console.error('The object provided is not a Pizzicato effect.');
+					return this;
+				}
+
+				this.effects.push(effect);
+
+				// Connects effect in the last position
+				var previousNode = this.effectConnectors.length > 0 ? this.effectConnectors[this.effectConnectors.length - 1] : this.mergeGainNode;
+				previousNode.disconnect();
+				previousNode.connect(effect);
+
+				// Creates connector for the newly added effect
+				var gain = Pz.context.createGain();
+				this.effectConnectors.push(gain);
+				effect.connect(gain);
+				gain.connect(this.masterVolume);
+
+				return this;
+			}
+		},
+
+		/**
+		 * When removing effects, the graph in which there will be a
+		 * gain node (effectConnector) in between every effect should be
+		 * conserved. For example:
+		 * [fadeNode]--->[effect 1]->[connector 1]--->[effect 2]->[connector 2]--->[masterGain]
+		 *
+		 * Connectors are used to know what nodes to disconnect and not disrupt the
+		 * connections of another Pz.Group object using the same effect.
+		 */
+		removeEffect: {
+			enumerable: true,
+
+			value: function(effect) {
+				var index = this.effects.indexOf(effect);
+
+				if (index === -1) {
+					console.warn('Cannot remove effect that is not applied to this group.');
+					return this;
+				}
+
+				var previousNode = (index === 0) ? this.mergeGainNode : this.effectConnectors(index - 1);
+				previousNode.disconnect();
+
+				// Disconnect connector and effect
+				var effectConnector = this.effectConnectors[index];
+				effectConnector.disconnect();
+				effect.disconnect(effectConnector);
+
+				// Remove connector and effect from our arrays
+				this.effectConnectors.splice(index, 1);
+				this.effects.splice(index, 1);
+
+				var targetNode;
+				if (index > this.effects.length - 1 || this.effects.length === 0)
+					targetNode = this.masterVolume;
+				else
+					targetNode = this.effects[index];
+
+				previousNode.connect(targetNode);
+
+				return this;
+			}
+		}
+
 	});
 	Pizzicato.Effects = {};
 	
@@ -750,6 +1047,7 @@
 	
 			value: function(audioNode) {
 				this.outputNode.connect(audioNode);
+				return this;
 			}
 		},
 	
@@ -758,6 +1056,7 @@
 	
 			value: function(audioNode) {
 				this.outputNode.disconnect(audioNode);
+				return this;
 			}
 		}
 	});
@@ -1293,8 +1592,18 @@
 			this.pannerNode = Pizzicato.context.createStereoPanner();
 			this.inputNode.connect(this.pannerNode);
 			this.pannerNode.connect(this.outputNode);
-		}
-		else {
+
+		} else if (Pizzicato.context.createPanner) {
+
+			console.warn('Your browser does not support the StereoPannerNode. Will use PannerNode instead.');
+
+			this.pannerNode = Pizzicato.context.createPanner();
+			this.pannerNode.type = 'equalpower';
+			this.inputNode.connect(this.pannerNode);
+			this.pannerNode.connect(this.outputNode);
+
+		} else {
+			console.warn('Your browser does not support the Panner effect.');
 			this.inputNode.connect(this.outputNode);
 		}
 	
@@ -1322,8 +1631,16 @@
 					return;
 	
 				this.options.pan = pan;
-				if (this.pannerNode) {
+
+				if (!this.pannerNode)
+					return;
+
+				var isStereoPannerNode = this.pannerNode.toString().indexOf('StereoPannerNode') > -1;
+
+				if (isStereoPannerNode) {
 					this.pannerNode.pan.value = pan;	
+				} else {
+					this.pannerNode.setPosition(pan, 0, 1 - Math.abs(pan));
 				}
 			}
 		}
@@ -2078,6 +2395,150 @@
 		}
 	
 	});
+	Pizzicato.Effects.Quadrafuzz = function(options) {
+
+		this.options = {};
+		options = options || this.options;
+
+		var defaults = {
+			lowGain: 0.6,
+			midLowGain: 0.8,
+			midHighGain: 0.5,
+			highGain: 0.6
+		};
+
+
+		this.inputNode = Pz.context.createGain();
+		this.outputNode = Pz.context.createGain();
+		this.dryGainNode = Pz.context.createGain();
+		this.wetGainNode = Pz.context.createGain();
+
+
+		this.lowpassLeft = Pz.context.createBiquadFilter();
+		this.lowpassLeft.type = 'lowpass';
+		this.lowpassLeft.frequency.value = 147;
+		this.lowpassLeft.Q.value = 0.7071;
+
+		this.bandpass1Left = Pz.context.createBiquadFilter();
+		this.bandpass1Left.type = 'bandpass';
+		this.bandpass1Left.frequency.value = 587;
+		this.bandpass1Left.Q.value = 0.7071;
+
+		this.bandpass2Left = Pz.context.createBiquadFilter();
+		this.bandpass2Left.type = 'bandpass';
+		this.bandpass2Left.frequency.value = 2490;
+		this.bandpass2Left.Q.value = 0.7071;
+
+		this.highpassLeft = Pz.context.createBiquadFilter();
+		this.highpassLeft.type = 'highpass';
+		this.highpassLeft.frequency.value = 4980;
+		this.highpassLeft.Q.value = 0.7071;
+
+
+		this.overdrives = [];
+		for (var i = 0; i < 4; i++) {
+			this.overdrives[i] = Pz.context.createWaveShaper();
+			this.overdrives[i].curve = getDistortionCurve();
+		}
+
+
+		this.inputNode.connect(this.wetGainNode);
+		this.inputNode.connect(this.dryGainNode);
+		this.dryGainNode.connect(this.outputNode);
+
+		var filters = [this.lowpassLeft, this.bandpass1Left, this.bandpass2Left, this.highpassLeft];
+		for (i = 0; i < filters.length; i++) {
+			this.wetGainNode.connect(filters[i]);
+			filters[i].connect(this.overdrives[i]);
+			this.overdrives[i].connect(this.outputNode);
+		}
+
+		for (var key in defaults) {
+			this[key] = options[key];
+			this[key] = (this[key] === undefined || this[key] === null) ? defaults[key] : this[key];
+		}
+	};
+
+	function getDistortionCurve(gain) {
+		var sampleRate = Pz.context.sampleRate;
+		var curve = new Float32Array(sampleRate);
+		var deg = Math.PI / 180;
+
+		for (var i = 0; i < sampleRate; i++) {
+			var x = i * 2 / sampleRate - 1;
+			curve[i] = (3 + gain) * x * 20 * deg / (Math.PI + gain * Math.abs(x));
+		}
+		return curve;
+	}
+
+	Pizzicato.Effects.Quadrafuzz.prototype = Object.create(baseEffect, {
+
+		lowGain: {
+			enumerable: true,
+
+			get: function() {
+				return this.options.lowGain;
+			},
+
+			set: function(lowGain) {
+				if (!Pz.Util.isInRange(lowGain, 0, 1))
+					return;
+
+				this.options.lowGain = lowGain;
+				this.overdrives[0].curve = getDistortionCurve(Pz.Util.normalize(this.lowGain, 0, 150));
+			}
+		},
+
+		midLowGain: {
+			enumerable: true,
+
+			get: function() {
+				return this.options.midLowGain;
+			},
+
+			set: function(midLowGain) {
+				if (!Pz.Util.isInRange(midLowGain, 0, 1))
+					return;
+
+				this.options.midLowGain = midLowGain;
+				this.overdrives[1].curve = getDistortionCurve(Pz.Util.normalize(this.midLowGain, 0, 150));
+			}
+		},
+
+		midHighGain: {
+			enumerable: true,
+
+			get: function() {
+				return this.options.midHighGain;
+			},
+
+			set: function(midHighGain) {
+				if (!Pz.Util.isInRange(midHighGain, 0, 1))
+					return;
+
+				this.options.midHighGain = midHighGain;
+				this.overdrives[2].curve = getDistortionCurve(Pz.Util.normalize(this.midHighGain, 0, 150));
+			}
+		},
+
+		highGain: {
+			enumerable: true,
+
+			get: function() {
+				return this.options.highGain;
+			},
+
+			set: function(highGain) {
+				if (!Pz.Util.isInRange(highGain, 0, 1))
+					return;
+
+				this.options.highGain = highGain;
+				this.overdrives[3].curve = getDistortionCurve(Pz.Util.normalize(this.highGain, 0, 150));
+			}
+		}
+	});
+
+
 	
 	return Pizzicato;
 })(typeof window !== "undefined" ? window : global);
