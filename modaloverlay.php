@@ -25,7 +25,7 @@
                                 </h6>
                                 <ul>
                                     <li v-for="item in modalcontent.samples.list">
-                                        <a :href="'http' + item.link" target="_blank">{{ item.name }}</a> -
+                                        <a :href="item.link" target="_blank">{{ item.name }}</a> -
                                         {{ item.description }}
                                     </li>
                                 </ul>
@@ -37,7 +37,7 @@
                                 </h6>
                                 <ul>
                                     <li v-for="item in modalcontent.tech.list">
-                                        <a :href="'http' + item.link" target="_blank">{{ item.name }}</a> -
+                                        <a :href="item.link" target="_blank">{{ item.name }}</a> -
                                         {{ item.description }}
                                     </li>
                                 </ul>

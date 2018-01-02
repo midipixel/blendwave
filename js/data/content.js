@@ -221,7 +221,7 @@ var content = {
                     },
                     {
                         name: "Kenney",
-                        link: "www.kenney.nl",
+                        link: "http://www.kenney.nl",
                         description: "Free Audio Assets"
                     },
                     {
@@ -231,7 +231,7 @@ var content = {
                     },
                     {
                         name: "Soundbible.com",
-                        link: "www.soundbible.com",
+                        link: "http://www.soundbible.com",
                         description: "Recordings by Daniel Simion"
                     },
                     {
@@ -295,7 +295,7 @@ var content = {
                 list: [
                     {
                         name: "Archive.org",
-                        link: "archive.org",
+                        link: "http://archive.org",
                         description: "Multiple CC0 samples"
                     },                    {
                         name: "Atom Splitter",
@@ -304,7 +304,7 @@ var content = {
                     },
                     {
                         name: "Kenney",
-                        link: "www.kenney.nl",
+                        link: "http://www.kenney.nl",
                         description: "Free Audio Assets"
                     },
                     {

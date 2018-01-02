@@ -189,6 +189,9 @@ Vue.component('exportpanel', {
                     //Download Button
                     hf.href = url;
                     hf.download = fileName;
+                    hf.setAttribute('ga-on', 'click');
+                    hf.setAttribute('ga-event-category', 'exportPanel');
+                    hf.setAttribute('ga-event-action', 'download file');
                     //hf.download = new Date().toISOString() + '.wav';
                     //hf.innerHTML = hf.download;
                     var text = bw.$refs.exportPanel.content[bw.locale].downloadText;
@@ -206,6 +209,9 @@ Vue.component('exportpanel', {
 
                     //Remove Button
                     mediaContainer.appendChild(remove);
+                    remove.setAttribute('ga-on', 'click');
+                    remove.setAttribute('ga-event-category', 'exportPanel');
+                    remove.setAttribute('ga-event-action', 'remove file');
                     remove.innerHTML = "Remove File";
                     $(remove).on('click', function(e){
                         self.removeFile(e);
