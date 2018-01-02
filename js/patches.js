@@ -14,12 +14,15 @@ var patch = {
         bw.$refs.exportPanel.prePlayUpdate();
     },
     play: function(){
-        this.updateData();
-        this.sound.stop();
-        this.sound.play(0, bw.$refs.wavePanel.offset);
-        //Methods that must be invoked right after playing, or the node won't exist
-        bw.$refs.envelopePanel.postPlayUpdate();
-        bw.$refs.filterPanel.postPlayUpdate();
+        self = this;
+        this.sound = new Pizzicato.Sound(bw.$root.file.path, function() {
+            self.updateData();
+            //this.sound.stop();
+            self.sound.play(0, bw.$refs.wavePanel.offset);
+            //Methods that must be invoked right after playing, or the node won't exist
+            bw.$refs.envelopePanel.postPlayUpdate();
+            bw.$refs.filterPanel.postPlayUpdate();
+        });
     },
     stop: function(){
         // If the amp envelope is disabled, there is no need to stop the playback
