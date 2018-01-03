@@ -88,7 +88,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('wavePanel');
+        this.activatePanel('envelopePanel');
 
         this.loaded = true;
     }
