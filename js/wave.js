@@ -14,13 +14,13 @@ Vue.component('wavepanel', {
     },
     methods: {
         changeFile: function(event){
-            this.$root.file.path = event.target.href;
+            this.$root.soundOptions.path = event.target.href;
 
             //Update filename
             var fileString = event.target.href.split('/');
             var pos = fileString.length - 1;
             var fileName = fileString[pos].split('.');
-            this.$root.file.name = fileName[0];
+            this.$root.file = fileName[0];
 
             this.loading = true;
 
@@ -32,21 +32,21 @@ Vue.component('wavepanel', {
             this.activeElement = event.target;
 
             //Reset Data
-            bw.resetData();
+            this.$root.resetData();
 
             //Load new sound
             patch.sound.stop();
 
             patch.sound = new Pizzicato.Sound({
                 source: 'file',
-                options: { path: this.$root.file.path }
+                options: this.$root.soundOptions
             }, function() {
                 bw.$refs.wavePanel.loading = false;
                 patch.play();
             });
 
             //load file into Wave Previewer
-            this.wavesurfer.load(this.$root.file.path);
+            this.wavesurfer.load(this.$root.soundOptions.path);
         },
         changeCategory: function(event){
             this.category = event.target.id;
@@ -74,8 +74,8 @@ Vue.component('wavepanel', {
 
         //Update VM Data with random file
         this.category = category;
-        this.$root.file.name = name;
-        this.$root.file.path = folder + '/' + category + '/' + file;
+        this.$root.file = name;
+        this.$root.soundOptions.path = folder + '/' + category + '/' + file;
 
         //Set UI active styles
         $('.sampleCategories ' + '#' + category).addClass('active');
@@ -99,7 +99,7 @@ Vue.component('wavepanel', {
             console.log(self.offset);
         });
 
-        this.wavesurfer.load(this.$root.file.path);
+        this.wavesurfer.load(this.$root.soundOptions.path);
     }
 });
 

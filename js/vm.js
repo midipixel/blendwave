@@ -21,9 +21,12 @@ var bw = new Vue({
                 active: false
             }
         },
-        file: {
-            name: ' ',
-            path: 'samples/animals/pig03.mp4'
+        file: '',
+        soundOptions: {
+            path: 'samples/animals/sheep3.mp4',
+            attack: 0.04,
+            volume: 1,
+            loop: false
         },
         locale: bwLocale,
         content: content.general,
@@ -54,12 +57,7 @@ var bw = new Vue({
             //Create Patch Object, which stores the pizzicato sound
             patch.sound = new Pizzicato.Sound({
                 source: 'file',
-                options: {
-                    path: this.file.path,
-                    attack: 0.04,
-                    volume: 1,
-                    loop: false
-                }
+                options: this.soundOptions
             }, function() {
                 patch.analyser.create();
                 //console.log(patch.sound);
@@ -88,7 +86,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('envelopePanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
     }

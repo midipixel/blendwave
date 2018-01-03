@@ -72,7 +72,7 @@ Vue.component('envelopepanel', {
                         default: 5,
                         value: 5,
                         min: 0,
-                        max: 20,
+                        max: 10,
                         step: 0.1
                     }
                 }

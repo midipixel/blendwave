@@ -16,7 +16,7 @@ Vue.component('fileheader', {
     },
     computed: {
         fileName: function(){
-            return this.$root.file.name;
+            return this.$root.file;
         }
     }
 });

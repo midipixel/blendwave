@@ -167,7 +167,7 @@ Vue.component('exportpanel', {
                     var url = URL.createObjectURL(blob);
 
                     var listItems = $('#recordingslist li');
-                    var fileName = bw.file.name + '_' + listItems.length + '.wav';
+                    var fileName = bw.file + '_' + listItems.length + '.wav';
 
                     //File List DOM Structure
                     var fileHeader = document.createElement('h5');
@@ -257,7 +257,7 @@ Vue.component('exportpanel', {
             }
         },
         prePlayUpdate: function(){
-            Pizzicato.volume = this.mixer.volume.value;
+            //Pizzicato.volume = this.mixer.volume.value;
         }
     },
     computed: {

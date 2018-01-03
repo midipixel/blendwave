@@ -34,7 +34,10 @@ var patch = {
     playWithAttack: function(){
         var self = this;
         //If attack is being used, a new Pizzicato Object must be created everytime the sound plays
-        this.sound = new Pizzicato.Sound(bw.$root.file.path, function() {
+        this.sound = new Pizzicato.Sound({
+            source: 'file',
+            options: bw.soundOptions
+        }, function() {
             self.prePlayUpdate();
             self.sound.play(0, bw.$refs.wavePanel.offset);
             self.postPlayUpdate();
@@ -45,7 +48,7 @@ var patch = {
         var releaseActive = bw.$refs.envelopePanel.amp_envelope.active;
 
         function stopWithAttack(){
-            this.sound.stop();
+            patch.sound.stop();
         }
 
         // Playback only really needs to stop if there is a release envelope
