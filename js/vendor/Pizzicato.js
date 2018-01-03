@@ -773,8 +773,22 @@
 		 */
 		applyAttack: {
 			enumerable: false,
-	
+
 			value: function() {
+                this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
+
+				if (!this.attack) {
+					this.fadeNode.gain.setValueAtTime(1.0, Pizzicato.context.currentTime);
+					return;
+				}
+
+                this.fadeNode.gain.setValueAtTime(0, Pz.context.currentTime);
+                this.fadeNode.gain.linearRampToValueAtTime(1.0, Pz.context.currentTime + this.attack);
+			}
+
+			/*
+                Original Implementation: Didn't Work for me
+                value: function() {
 				var currentValue = this.fadeNode.gain.value;
 				this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
 				this.fadeNode.gain.setValueAtTime(currentValue, Pz.context.currentTime);
@@ -787,7 +801,7 @@
 				var remainingAttackTime = (1 - this.fadeNode.gain.value) * this.attack;
 				this.fadeNode.gain.setValueAtTime(this.fadeNode.gain.value, Pizzicato.context.currentTime);
 				this.fadeNode.gain.linearRampToValueAtTime(1, Pizzicato.context.currentTime + remainingAttackTime);
-			}
+			}*/
 		},
 	
 		/**

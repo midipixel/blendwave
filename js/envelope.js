@@ -86,10 +86,6 @@ Vue.component('envelopepanel', {
                 patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value) + 0.04;
                 patch.sound.release = parseFloat(this.amp_envelope.params.release.value);
             }
-            else{
-                patch.sound.attack = 0.04;
-                patch.sound.loop = false;
-            }
             //Amp OSC
             this.amp_osc.pizEffect.speed = parseFloat(this.amp_osc.params.speed.value);
             this.amp_osc.pizEffect.depth = parseFloat(this.amp_osc.params.depth.value);
@@ -133,9 +129,6 @@ Vue.component('envelopepanel', {
             this.amp_osc.active = false;
             this.pitch.active = false;
             this.pitch_osc.active = false;
-        },
-        bla: function(){
-            console.log('bla');
         }
     },
     computed: {

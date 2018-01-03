@@ -19,29 +19,10 @@ var patch = {
         bw.$refs.filterPanel.postPlayUpdate();
     },
     play: function(){
-        var attackActive = bw.$refs.envelopePanel.amp_envelope.params.attack.value != bw.$refs.envelopePanel.amp_envelope.params.attack.default;
-
-        if(attackActive){
-            this.playWithAttack();
-        }
-        else{
-            this.sound.stop();
-            this.prePlayUpdate();
-            this.sound.play(0, bw.$refs.wavePanel.offset);
-            this.postPlayUpdate();
-        }
-    },
-    playWithAttack: function(){
-        var self = this;
-        //If attack is being used, a new Pizzicato Object must be created everytime the sound plays
-        this.sound = new Pizzicato.Sound({
-            source: 'file',
-            options: bw.soundOptions
-        }, function() {
-            self.prePlayUpdate();
-            self.sound.play(0, bw.$refs.wavePanel.offset);
-            self.postPlayUpdate();
-        });
+        this.sound.stop();
+        this.prePlayUpdate();
+        this.sound.play(0, bw.$refs.wavePanel.offset);
+        this.postPlayUpdate();
     },
     stop: function(){
         var attackActive = bw.$refs.envelopePanel.amp_envelope.params.attack.value != bw.$refs.envelopePanel.amp_envelope.params.attack.default;
