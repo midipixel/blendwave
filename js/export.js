@@ -21,9 +21,9 @@ Vue.component('exportpanel', {
                     snapshot: {}
                 },
                 volume: {
-                    value: 0.8,
+                    value: 1,
                     min: 0,
-                    max: 1,
+                    max: 2,
                     step: 0.01,
                 }
             }
@@ -257,12 +257,12 @@ Vue.component('exportpanel', {
             }
         },
         prePlayUpdate: function(){
-            //Pizzicato.volume = this.mixer.volume.value;
+            Pizzicato.masterGainNode.gain.value = this.mixer.volume.value;
         }
     },
     computed: {
         masterVolume: function(){
-            return parseInt(this.mixer.volume.value * 100);
+            return parseInt(this.mixer.volume.value * 50);
         },
         toggleButton: function(mixerStrip){
             return(mixerStrip);
