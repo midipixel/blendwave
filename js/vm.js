@@ -44,8 +44,9 @@ var bw = new Vue({
                     this.panels[p].active = false;
                 }
                 this.panels[panel].active = true;
+                window.location.hash = panel;
+                this.mainClass = panel;
             }
-            this.mainClass = panel;
         },
         resetData: function(){
             bw.$refs.wavePanel.resetDefaults();

@@ -6,37 +6,37 @@
 
         <ul class="col-md-10" style="display: none;" v-show="loaded" >
             <li class="wave">
-                <a href="#wavePanel" @click="activatePanel('wavePanel')">
+                <a href="#" @click.prevent="activatePanel('wavePanel')">
                     <?php echo file_get_contents("img/ic_wave.svg"); ?>
                     {{ content[locale].wavePanel }}
                 </a>
             </li>
             <li :class="{envelope: true, disabled: panels.envelopePanel.disabled}">
-                <a :href="panels.envelopePanel.disabled ? null : '#envelopePanel'"
+                <a href="#"
                    :title="panels.envelopePanel.disabled ? content[locale].disabledWarning : null"
-                   @click="activatePanel('envelopePanel')">
+                   @click.prevent="activatePanel('envelopePanel')">
                     <?php echo file_get_contents("img/ic_envelope.svg"); ?>
                     {{ content[locale].envelopePanel }}
                 </a>
             </li>
             <li :class="{filter: true, disabled: panels.filterPanel.disabled}">
-                <a :href="panels.filterPanel.disabled ? null : '#filterPanel'"
+                <a href="#"
                    :title="panels.filterPanel.disabled ? content[locale].disabledWarning : null"
-                   @click="activatePanel('filterPanel')">
+                   @click.prevent="activatePanel('filterPanel')">
                     <?php echo file_get_contents("img/ic_filter.svg"); ?>
                     {{ content[locale].filterPanel }}
                 </a>
             </li>
             <li :class="{fx: true, disabled: panels.fxPanel.disabled}">
-                <a :href="panels.fxPanel.disabled ? null : '#fxPanel'"
+                <a href="#"
                    :title="panels.fxPanel.disabled ? content[locale].disabledWarning : null"
-                   @click="activatePanel('fxPanel')">
+                   @click.prevent="activatePanel('fxPanel')">
                     <?php echo file_get_contents("img/ic_fx.svg"); ?>
                     {{ content[locale].fxPanel }}
                 </a>
             </li>
             <li class="export">
-                <a href="#exportPanel" @click="activatePanel('exportPanel')">
+                <a href="#" @click.prevent="activatePanel('exportPanel')">
                     <?php echo file_get_contents("img/ic_export.svg"); ?>
                     {{ content[locale].exportPanel }}</a>
             </li>
