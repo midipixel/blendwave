@@ -21,6 +21,7 @@
         echo('<script src="js/vendor/vue.min.js"></script>');
         echo('<script src="js/bw.min.js"></script>');
     }
+
     // Development-only scripts
     else if($_SERVER["REMOTE_ADDR"] == "127.0.0.1"){
 
