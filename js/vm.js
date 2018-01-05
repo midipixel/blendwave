@@ -73,7 +73,7 @@ var bw = new Vue({
         //Bind Keyboard Events
         $('body').on('keydown', function(e){
             //Play audio on 'P' press
-            if(e.keyCode == 80){
+            if(e.keyCode == 80 && !e.repeat){
                 patch.play();
             }
         });
