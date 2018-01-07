@@ -586,8 +586,15 @@ input[type=range]::-ms-track {
     margin: 0;
 }
 
-.creditsLists li a{
-    text-decoration: underline;
+.creditsLists li{
+    a{
+        text-decoration: underline;
+    }
+}
+
+.creditsLists li a:not([href]), .creditsLists li a:not([href]):hover{
+    color: @bwSecondary;
+    cursor: default;
 }
 
 

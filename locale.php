@@ -5,7 +5,7 @@
         }
         else{
             $locale = $_GET["locale"];
-            echo('var locale = "' . $locale . '"');
+            echo('var bwLocale = "' . $locale . '"');
         }
     echo('</script>');
 ?>

@@ -220,9 +220,19 @@ var content = {
                         description: "Games and 8 Bit Kit, Bird Calls"
                     },
                     {
+                        name: "Freesound",
+                        link: "https://freesound.org/",
+                        description: "Sons dos usuários: lolamadeus, klankbeeld, newagesoup, eflextheseounddesigner, eardeer, not-danny2462, railgun, toiletrolltube, cribbler, nwlandi, audionautics, slave2thelight, nebulousflynn, productionnow, richerlandtv, slanesh, cgeffex, lonemonk, ali-k, markedit, enric592, kiodo, madmini, toam, laribum, zaem, cliftonmcarlson, thiagoriedel, willybilly1984, inspectorj, dycmaster, euphrosyyn."
+                    },
+                    {
                         name: "Kenney",
                         link: "http://www.kenney.nl",
                         description: "Free Audio Assets"
+                    },
+                    {
+                        name: "Murilo Romera",
+                        link: "http://muriloromera.com/",
+                        description: "Donator of multiple sounds"
                     },
                     {
                         name: "Open Game Art",
@@ -303,9 +313,19 @@ var content = {
                         description: "Games and 8 Bit Kit, Bird Calls"
                     },
                     {
+                        name: "Freesound",
+                        link: "https://freesound.org/",
+                        description: "Sounds from users: lolamadeus, klankbeeld, newagesoup, eflextheseounddesigner, eardeer, not-danny2462, railgun, toiletrolltube, cribbler, nwlandi, audionautics, slave2thelight, nebulousflynn, productionnow, richerlandtv, slanesh, cgeffex, lonemonk, ali-k, markedit, enric592, kiodo, madmini, toam, laribum, zaem, cliftonmcarlson, thiagoriedel, willybilly1984, inspectorj, dycmaster, euphrosyyn."
+                    },
+                    {
                         name: "Kenney",
                         link: "http://www.kenney.nl",
                         description: "Free Audio Assets"
+                    },
+                    {
+                        name: "Murilo Romera",
+                        link: "http://muriloromera.com/",
+                        description: "Donator of multiple sounds"
                     },
                     {
                         name: "Open Game Art",
