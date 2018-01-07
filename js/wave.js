@@ -96,7 +96,6 @@ Vue.component('wavepanel', {
         this.wavesurfer.on('seek', function(){
             time = self.wavesurfer.getCurrentTime().toFixed(2);
             self.offset = parseFloat(time);
-            console.log(self.offset);
         });
 
         this.wavesurfer.load(this.$root.soundOptions.path);
