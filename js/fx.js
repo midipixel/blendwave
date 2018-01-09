@@ -1,10 +1,3 @@
-// Load effects data from JSON file
-/*var effects;
-
-$.getJSON( "js/data/fx_data.json", function(fxData) {  
-    effects = fxData;
-});*/
-
 Vue.component('fxpanel', {
     props: ['active'],
     template: '#fxPanel', 

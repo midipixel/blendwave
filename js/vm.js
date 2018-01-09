@@ -46,6 +46,8 @@ var bw = new Vue({
                 this.panels[panel].active = true;
                 window.location.hash = panel;
                 this.mainClass = panel;
+                //Analytics
+                this.gaSend('screenview', {screenName: panel});
             }
         },
         resetData: function(){
@@ -66,6 +68,17 @@ var bw = new Vue({
         },
         closeModal: function(modal){
             this.credits.visible = false;
+        },
+        gaSend: function(hitType, params){
+            if(window.ga){
+                if (hitType === 'screenview'){
+                    ga('send', hitType, params);
+                }
+                else if(hitType === 'event'){
+                    params.hitType = hitType;
+                    ga('send', params);
+                }
+            }
         }
     },
     mounted: function(){
@@ -75,6 +88,7 @@ var bw = new Vue({
         $('body').on('keydown', function(e){
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
+                ga('send', 'event', 'Keyboard', 'P', 'Preview Audio');
                 patch.play();
             }
         });
@@ -87,7 +101,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('wavePanel');
+        this.activatePanel('exportPanel');
 
         this.loaded = true;
     }

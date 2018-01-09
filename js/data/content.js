@@ -173,8 +173,8 @@ var content = {
             fxStrip: "Efeitos",
             volumeStrip: "Volume",
             exportStrip: "Exportar",
-            toggleOn: "Ligado",
-            toggleOff: "Desligado",
+            toggleOn: "On",
+            toggleOff: "Off",
             downloadText: "Baixar Arquivo",
             exportPlaceholder: "Nenhum arquivo foi exportado. Aperte em 'Exportar WAV' quando terminar de trabalhar em seu efeito sonoro!",
             modal: {

@@ -16,6 +16,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div :class="{audioParams:true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
+                        <!-- FX Toggle -->
                         <header>
                             <button
                                 class="switch"
@@ -29,6 +30,7 @@
                             <strong>Slot <?= $i ?></strong>
                         </header>
 
+                        <!-- FX Select -->
                         <fieldset class="main params" :disabled="!fxSlots['<?= $fxSlot ?>'].active">
                             <div class="fxControls">
                                 <div :class="{fxSelect: true, disabled: !fxSlots['<?= $fxSlot ?>'].active}">
@@ -37,7 +39,7 @@
                                         v-on:change="setFX('<?= $fxSlot ?>')"
                                         disabled="disabled"
 
-                                        ga-on="change"
+                                        ga-on="click"
                                         ga-event-category="<?= $fxSlot ?>"
                                         :ga-event-action="fxSlots['<?= $fxSlot ?>'].selected">
 
@@ -53,6 +55,7 @@
                                 </div>
                             </div>
 
+                            <!-- FX Image and Sliders -->
                             <template v-for="fx in fxSlots.<?= $fxSlot ?>.fxData">
                                 <div v-if="fxSlots.<?= $fxSlot ?>.selected === fx.key"
                                      :class="{disabled: !fxSlots['<?= $fxSlot ?>'].active}">
@@ -72,10 +75,7 @@
                                                             :max="param.max"
                                                             :step="param.step"
 
-                                                            ga-on="change"
-                                                            :ga-event-category="'fxSlots.<?= $fxSlot ?>.selected' + ' param'"
-                                                            :ga-event-action="param">
-
+                                                            @change="$root.gaSend('event', { eventCategory: '<?= $fxSlot ?>', eventAction: fxSlots.<?= $fxSlot ?>.selected, eventLabel: param.id })"/>
                                                     <output value="">
                                                         {{ param.value }}
                                                     </output>

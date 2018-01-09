@@ -19,7 +19,7 @@
                             @change="set"
                             @keydown="ignoreKeyboard"
 
-                            ga-on="change"
+                            ga-on="click"
                             ga-event-category="filterType"
                             ga-event-action="choose filter type">
 
@@ -43,9 +43,7 @@
                                 v-model.number="filter.lowpass.params.cutoff.value"
                                 :disabled="this.selected == 'none'"
 
-                                ga-on="change"
-                                ga-event-category="filterCutoff"
-                                ga-event-action="LP Cutoff">
+                                @change="$root.gaSend('event', { eventCategory: 'filterCutoff', eventAction: 'LP cutoff',})"/>
 
                                 <output for="filter_cutoff">{{ filter.lowpass.params.cutoff.value }}</output>
                         </div>
@@ -60,9 +58,7 @@
                                 v-model.number="filter.highpass.params.cutoff.value"
                                 :disabled="this.selected == 'none'"
 
-                                ga-on="change"
-                                ga-event-category="filterCutoff"
-                                ga-event-action="HP Cutoff">
+                                @change="$root.gaSend('event', { eventCategory: 'filterCutoff', eventAction: 'HP cutoff',})"/>
 
                                 <output for="filter_cutoff">{{ filter.highpass.params.cutoff.value }}</output>
                         </div>
@@ -83,13 +79,15 @@
 
         <div class="col-sm-6">
             <div id="filter_osc" :class="{audioParams:true, disabled: !osc.active}">
+                <!-- Filter OSC Toggle -->
                 <header>
                     <label class="switch">
                         <input
                             type="checkbox"
                             :checked=osc.active
                             @change='osc.active = !osc.active;'
-                            ga-on="change"
+
+                            ga-on="click"
                             ga-event-category="filterOSC"
                             ga-event-action="toggle filter oscillator"/>
                     </label>
@@ -97,9 +95,11 @@
                     <span class="description">{{ content[$root.locale].oscillateFilterDescription }}</span>
                 </header>
 
+                <!-- Filter OSC Sliders -->
                 <fieldset class="main params" :disabled="!osc.active">
                     <label for="filterOSC_speed">{{ content[$root.locale].speed }}</label>
 
+                    <!-- Speed -->
                     <div class="slider">
                         <input
                             type="range"
@@ -108,14 +108,13 @@
                             :step="osc.params.speed.step"
                             v-model.number="osc.params.speed.value"
 
-                            ga-on="change"
-                            ga-event-category="filterOSC"
-                            ga-event-action="speed">
+                            @change="$root.gaSend('event', { eventCategory: 'filterOSC', eventAction: 'speed',})"/>
                         <output for="filterOSC_speed">{{ osc.params.speed.value }}</output>
                     </div>
 
                     <label for="filterOSC_depth">{{ content[$root.locale].depth }}</label>
 
+                    <!-- Amount -->
                     <div class="slider">
                         <input
                             type="range"
@@ -124,9 +123,7 @@
                             :step="osc.params.amount.step"
                             v-model.number="osc.params.amount.value"
 
-                            ga-on="change"
-                            ga-event-category="filterOSC"
-                            ga-event-action="depth">
+                            @change="$root.gaSend('event', { eventCategory: 'filterOSC', eventAction: 'depth',})"/>
                         <output for="filterOSC_depth">{{ osc.params.amount.value }}</output>
                     </div>
                 </fieldset>

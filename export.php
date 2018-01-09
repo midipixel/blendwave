@@ -18,7 +18,7 @@
                                @change="togglePanel('envelopePanel')"
                                :checked="mixer.envelopePanel.active"
 
-                               ga-on="change"
+                               ga-on="click"
                                ga-event-category="exportPanel"
                                ga-event-action="toggle Envelope"
                         >
@@ -47,7 +47,7 @@
                                @change="togglePanel('filterPanel')"
                                :checked="mixer.filterPanel.active"
 
-                               ga-on="change"
+                               ga-on="click"
                                ga-event-category="exportPanel"
                                ga-event-action="toggle Filter"
                         >
@@ -76,7 +76,7 @@
                                @change="togglePanel('fxPanel')"
                                :checked="mixer.fxPanel.active"
 
-                               ga-on="change"
+                               ga-on="click"
                                ga-event-category="exportPanel"
                                ga-event-action="toggle Effects"
                         >
@@ -105,10 +105,7 @@
                                :max=mixer.volume.max
                                :step=mixer.volume.step
 
-                               ga-on="change"
-                               ga-event-category="exportPanel"
-                               ga-event-action="volume"
-                        >
+                               @change="$root.gaSend('event', { eventCategory: 'exportPanel', eventAction: 'volume',})"/>
                     </div>
 
                     <output for="mixervolume">{{ masterVolume }}%</output>
