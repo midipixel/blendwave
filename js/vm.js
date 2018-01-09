@@ -82,13 +82,14 @@ var bw = new Vue({
         }
     },
     mounted: function(){
+        self = this;
         this.initializePatch();
 
         //Bind Keyboard Events
         $('body').on('keydown', function(e){
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
-                ga('send', 'event', 'Keyboard', 'P', 'Preview Audio');
+                self.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
                 patch.play();
             }
         });
@@ -101,7 +102,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('exportPanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
     }

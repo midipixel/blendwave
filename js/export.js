@@ -100,11 +100,15 @@ Vue.component('exportpanel', {
             //Turns recorder on, plays the sound
             recorder.record();
             patch.play();
-            patch.stop();
 
             //Start listening for the sound's end
             if (bw.$refs.envelopePanel.amp_envelope.active){
-            // Envelope is active? Wait for the ondended callback, then detect silence
+                //Stop won't trigger release without a small timer
+                window.setTimeout(function(){
+                    patch.stop();
+                }, 20);
+
+                // Wait for the ondended callback, then detect silence
                 patch.sound.sourceNode.onended = function(){
                     exportWhenMute();
                 }
