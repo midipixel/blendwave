@@ -3,7 +3,7 @@
     echo('<script src="js/vendor/zepto.min.js"></script>');
     echo('<script src="js/vendor/anime.min.js"></script>');
     echo('<script src="js/vendor/recorder.min.js"></script>');
-    echo('<script src="js/vendor/Pizzicato.min.js"></script>');
+    echo('<script src="js/vendor/Pizzicato.js"></script>');
     echo('<script src="js/vendor/wavesurfer-1.4.0.min.js"></script>');
 
     //Vue Components
@@ -31,6 +31,7 @@
         //Application
         echo('<script src="js/data/content.js"></script>');
         echo('<script src="js/util.js"></script>');
+        echo('<script src="js/ampenvelope.js"></script>');
         echo('<script src="js/patches.js"></script>');
 
         //Components Scripts

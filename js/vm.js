@@ -23,7 +23,7 @@ var bw = new Vue({
         },
         file: '',
         soundOptions: {
-            path: 'samples/animals/sheep3.mp4',
+            path: '',
             attack: 0.04,
             volume: 1,
             loop: false
@@ -63,6 +63,7 @@ var bw = new Vue({
                 options: this.soundOptions
             }, function() {
                 patch.analyser.create();
+                ampEnvelope.create();
                 //console.log(patch.sound);
             });
         },

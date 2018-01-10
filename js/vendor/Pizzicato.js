@@ -813,28 +813,27 @@
 			enumerable: false,
 	
 			value: function(callback) {
-	
 				var node = this.sourceNode;
 				var stopSound = function() {
 					return Pz.Util.isFunction(node.stop) ? node.stop(0) : node.disconnect();
 				};
 	
-				var currentValue = this.fadeNode.gain.value;
-				this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
-				this.fadeNode.gain.setValueAtTime(currentValue, Pz.context.currentTime);
+				//var currentValue = this.fadeNode.gain.value;
+				//this.fadeNode.gain.cancelScheduledValues(Pz.context.currentTime);
+				//this.fadeNode.gain.setValueAtTime(currentValue, Pz.context.currentTime);
 
-				if (!this.release) {
+				//if (!this.release) {
 					stopSound();
 					return;
-				}
+				//}
 	
-				var remainingReleaseTime = this.fadeNode.gain.value * this.release;
-				this.fadeNode.gain.setValueAtTime(this.fadeNode.gain.value, Pizzicato.context.currentTime);
-				this.fadeNode.gain.linearRampToValueAtTime(0.00001, Pizzicato.context.currentTime + remainingReleaseTime);
+				//var remainingReleaseTime = this.fadeNode.gain.value * this.release;
+				//this.fadeNode.gain.setValueAtTime(this.fadeNode.gain.value, Pizzicato.context.currentTime);
+				//this.fadeNode.gain.linearRampToValueAtTime(0.00001, Pizzicato.context.currentTime + remainingReleaseTime);
 
-				window.setTimeout(function() {
-					stopSound();
-				}, remainingReleaseTime * 1000);
+				//window.setTimeout(function() {
+				//	stopSound();
+				//}, remainingReleaseTime * 1000);
 			}
 		}
 	});
