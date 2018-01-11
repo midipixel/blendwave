@@ -14,10 +14,11 @@ Vue.component('wavepanel', {
     },
     methods: {
         changeFile: function(event){
-            this.$root.soundOptions.path = event.target.href;
+            var filePath = $(event.target).data('path');
+            this.$root.soundOptions.path = filePath;
 
             //Update filename
-            var fileString = event.target.href.split('/');
+            var fileString = filePath.split('/');
             var pos = fileString.length - 1;
             var fileName = fileString[pos].split('.');
             this.$root.file = fileName[0];
@@ -67,7 +68,7 @@ Vue.component('wavepanel', {
         this.activeElement = rndElement;
 
         // Organize info from file path
-        var path = rndElement.href.split('/');
+        var path = $(rndElement).data('path').split('/');
         var folder = path[path.length - 3];
         var category = path[path.length - 2];
         var file = path[path.length - 1];

@@ -72,7 +72,11 @@
                                     $soundname = explode(".", $filename);
 
                                     echo('
-                                        <a href="samples/'. $category . "/" . $filename .'" @click.prevent=changeFile ga-on="click" ga-event-category="wavePanel" ga-event-action="Change File">' . $soundname[0] . '</a>
+                                        <a data-path="samples/'. $category . "/" . $filename .'"
+                                        @click.prevent=changeFile
+                                        ga-on="click"
+                                        ga-event-category="wavePanel"
+                                        ga-event-action="Change File">' . $soundname[0] . '</a>
                                     ');
 
                                     if($fileindex > 0 && ($fileindex + 1) % $files_per_col == 0){

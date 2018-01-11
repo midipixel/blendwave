@@ -137,7 +137,7 @@ nav .wave:hover{
     margin: 0 2%;
 }
 
-.fileList a{
+.fileList a[data-path]{
     display: block;
     padding: 0.55rem 0.5rem;
     color: #7184d3;
@@ -147,6 +147,7 @@ nav .wave:hover{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
 .fileList .active, .fileList a:hover{
