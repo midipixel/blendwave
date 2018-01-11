@@ -84,7 +84,7 @@ Vue.component('envelopepanel', {
             //Amp Envelope
             if (this.amp_envelope.active){
                 patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value) + 0.04;
-                patch.sound.release = parseFloat(this.amp_envelope.params.release.value);
+                ampEnvelope.release.value = parseFloat(this.amp_envelope.params.release.value);
             }
             //Amp OSC
             this.amp_osc.pizEffect.speed = parseFloat(this.amp_osc.params.speed.value);

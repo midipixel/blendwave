@@ -28,11 +28,39 @@ var ampEnvelope = {
             this.node.connect(patch.sound.masterVolume);
         },
         applyEnvelope: function(){
-            //Apply release envelope
-            var soundDuration = Pz.context.currentTime + patch.sound.sourceNode.buffer.duration;
-            var envStart = soundDuration - 1.2;
+            var sampleDuration = patch.sound.sourceNode.buffer.duration;
+            var soundDuration;
 
-            this.node.gain.setTargetAtTime(0, envStart, 0.5);
+            if(bw.$refs.envelopePanel.pitch.active){
+                //Calculate time multiplier based on the number of semitones
+                var pitchMultiplier = Math.pow(1.059, -bw.$refs.envelopePanel.pitch.params.amount.value);
+                var pitchedDuration = sampleDuration * pitchMultiplier;
+                console.log('pitched duration ' + pitchedDuration);
+                soundDuration = Pz.context.currentTime + pitchedDuration;
+            }
+            else{
+                soundDuration = Pz.context.currentTime + sampleDuration;
+            }
+
+            var envStart = soundDuration - this.value;
+            var timeConstant = parseFloat(this.value/3).toFixed(2);
+
+            console.log('envstart ' + envStart);
+            console.log('duration ' + soundDuration);
+            //console.log('timeconstant ' + timeConstant);
+
+            this.node.gain.setTargetAtTime(0, envStart, timeConstant);
+        },
+        bla: function(){
+            var sampleDuration = patch.sound.sourceNode.buffer.duration;
+            if(bw.$refs.envelopePanel.pitch.active){
+                //Calculate time multiplier based on the number of semitones
+                var pitchMultiplier = Math.pow(1.059, -bw.$refs.envelopePanel.pitch.params.amount.value);
+                var pitchedDuration = sampleDuration * pitchMultiplier;
+                console.log('pitch multiplier ' + pitchMultiplier);
+                console.log('sample duration ' + sampleDuration);
+                console.log('pitched duration ' + pitchedDuration);
+            }
         }
     },
     create: function(){

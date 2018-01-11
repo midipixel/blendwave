@@ -28,7 +28,7 @@
                         <div class="slider">
                             <input type="range"
                                    :min=param.min
-                                   v-model:value=param.value
+                                   v-model.number:value=param.value
                                    :max=param.max
                                    :step=param.step
                                    @change="$root.gaSend('event', { eventCategory: 'ampEnvelope', eventAction: param.name,})"/>
@@ -99,7 +99,7 @@
                         <div class="slider">
                             <input type="range"
                                    :min=param.min
-                                   v-model:value=param.value
+                                   v-model.number:value=param.value
                                    :max=param.max
                                    :step=param.step
 
