@@ -3,6 +3,7 @@ var patch = {
     prePlayUpdate: function(){
         //Envelope
         bw.$refs.envelopePanel.prePlayUpdate();
+        ampEnvelope.prePlayUpdate();
 
         //Filter
         bw.$refs.filterPanel.prePlayUpdate();
@@ -12,46 +13,25 @@ var patch = {
 
         //Mixer
         bw.$refs.exportPanel.prePlayUpdate();
-
-        //Release Node
-        ampEnvelope.release.prePlayUpdate();
-
     },
     postPlayUpdate: function(){
         //Methods that must be invoked right after playing, or the node won't exist
         bw.$refs.envelopePanel.postPlayUpdate();
         bw.$refs.filterPanel.postPlayUpdate();
-        ampEnvelope.release.postPlayUpdate();
+        //ampEnvelope.release.postPlayUpdate();
     },
     play: function(){
-        //this.logNodes();
         this.sound.stop();
         this.prePlayUpdate();
         this.sound.play(0, bw.$refs.wavePanel.offset);
         this.postPlayUpdate();
     },
     stop: function(){
-        var attackActive = bw.$refs.envelopePanel.amp_envelope.params.attack.value != bw.$refs.envelopePanel.amp_envelope.params.attack.default;
         var releaseActive = bw.$refs.envelopePanel.amp_envelope.active;
 
-        function stopWithAttack(){
-            patch.sound.stop();
-        }
-
-        // Playback only really needs to stop if there is a release envelope
+        // Apply release if active
         if (releaseActive){
-            if(attackActive){
-                var attack = bw.$refs.envelopePanel.amp_envelope.params.attack.value;
-                var stopTimeout = window.setTimeout(stopWithAttack, attack * 1000);
-            }
-            else{
-                //console.log(patch.sound.sourceNode.buffer.duration);
-                ampEnvelope.release.applyEnvelope();
-                //patch.sound.stop();
-            }
-        }
-        else{
-            return;
+            ampEnvelope.release.applyEnvelope();
         }
     },
     analyser: {
@@ -64,6 +44,7 @@ var patch = {
     },
     logNodes: function(){
         console.log('Fade: ' + patch.sound.fadeNode.__resource_id__);
+        console.log('Attack: ' + ampEnvelope.attack.node.__resource_id__);
         console.log('Release: ' + ampEnvelope.release.node.__resource_id__);
         console.log('Master Volume: ' + patch.sound.masterVolume.__resource_id__);
         for(node in nodeHistory){

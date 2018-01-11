@@ -83,7 +83,7 @@ Vue.component('envelopepanel', {
         prePlayUpdate: function(){
             //Amp Envelope
             if (this.amp_envelope.active){
-                patch.sound.attack = parseFloat(this.amp_envelope.params.attack.value) + 0.04;
+                ampEnvelope.attack.value = parseFloat(this.amp_envelope.params.attack.value) + 0.04;
                 ampEnvelope.release.value = parseFloat(this.amp_envelope.params.release.value);
             }
             //Amp OSC

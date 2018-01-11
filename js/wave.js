@@ -77,7 +77,7 @@ Vue.component('wavepanel', {
         this.category = category;
         this.$root.file = name;
         this.$root.soundOptions.path = folder + '/' + category + '/' + file;
-        this.$root.soundOptions.path = 'samples/synth/sine.mp4';
+        //this.$root.soundOptions.path = 'samples/synth/sine.mp4';
 
         //Set UI active styles
         $('.sampleCategories ' + '#' + category).addClass('active');

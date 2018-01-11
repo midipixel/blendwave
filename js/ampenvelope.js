@@ -1,31 +1,19 @@
 var ampEnvelope = {
     connected: false,
     attack: {
-        value: 0
+        value: 0,
+        applyEnvelope: function(){
+            this.node.gain.cancelScheduledValues(Pz.context.currentTime);
+            this.node.gain.setValueAtTime(0, Pz.context.currentTime);
+            this.node.gain.linearRampToValueAtTime(1.0, Pz.context.currentTime + this.value);
+        }
     },
     release: {
         value: 0,
-        create: function(){
-            this.node = Pizzicato.context.createGain();
-            this.node.gain.value = 1;
-        },
         prePlayUpdate: function(){
             //Reset envelope values
             this.node.gain.cancelScheduledValues(Pz.context.currentTime);
             this.node.gain.setValueAtTime(1, Pz.context.currentTime);
-
-            //Disconnect releaseNode from useless old nodes
-            ampEnvelope.disconnect();
-            /*if(nodeHistory.log > 0){
-                nodeHistory.oldFade.disconnect(this.node);
-                this.node.disconnect(nodeHistory.oldMasterVolume);
-            }*/
-        },
-        postPlayUpdate: function(){
-            //Insert releaseNode at the correct place in the graph
-            /*patch.sound.fadeNode.disconnect(patch.sound.masterVolume);
-            patch.sound.fadeNode.connect(this.node);
-            this.node.connect(patch.sound.masterVolume);*/
         },
         applyEnvelope: function(){
             var sampleDuration = patch.sound.sourceNode.buffer.duration - bw.$refs.wavePanel.offset;
@@ -52,26 +40,41 @@ var ampEnvelope = {
         }
     },
     create: function(){
+        this.attack.node = Pizzicato.context.createGain();
+        this.attack.node.gain.value = 1;
+
         this.release.node = Pizzicato.context.createGain();
         this.release.node.gain.value = 1;
     },
     connect: function(fromNode, toNode){
+        //Important: This method is called from the Pizzicato.js script!
+
         //Update node history
         nodeHistory.oldFade = patch.sound.fadeNode;
         nodeHistory.oldFirstGain = fromNode;
 
         //Patch custom node graph into the Pizzicato graph
         fromNode.disconnect(toNode);
-        fromNode.connect(this.release.node);
+        fromNode.connect(this.attack.node);
+        this.attack.node.connect(this.release.node);
         this.release.node.connect(toNode);
 
         ampEnvelope.connected = true;
     },
     disconnect: function(){
         if(this.connected){
-            nodeHistory.oldFirstGain.disconnect(this.release.node);
+            nodeHistory.oldFirstGain.disconnect(this.attack.node);
             this.release.node.disconnect(nodeHistory.oldFade);
         }
+    },
+    prePlayUpdate: function(){
+        if(bw.$refs.envelopePanel.amp_envelope.params.attack.value != bw.$refs.envelopePanel.amp_envelope.params.attack.default){
+            this.attack.applyEnvelope();
+        }
+        this.release.prePlayUpdate();
+
+        //Disconnect releaseNode from useless old nodes
+        ampEnvelope.disconnect();
     }
 }
 
