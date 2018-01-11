@@ -743,8 +743,12 @@
 				sourceNode.gainSuccessor.connect(this.fadeNode);
 				this.fadeNode.connect(this.getInputNode());
 	
-				if (Pz.Util.isAudioBufferSourceNode(sourceNode))
+				if (Pz.Util.isAudioBufferSourceNode(sourceNode)){
+                    //Insert the custom Blendwave amp envelope
+                    ampEnvelope.connect(sourceNode.gainSuccessor, this.fadeNode);
+
 					sourceNode.onended = this.onEnded(sourceNode).bind(this);
+                }
 
 				return sourceNode;
 			}

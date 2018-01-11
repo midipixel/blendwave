@@ -1,4 +1,8 @@
 var ampEnvelope = {
+    connected: false,
+    attack: {
+        value: 0
+    },
     release: {
         value: 0,
         create: function(){
@@ -11,66 +15,68 @@ var ampEnvelope = {
             this.node.gain.setValueAtTime(1, Pz.context.currentTime);
 
             //Disconnect releaseNode from useless old nodes
-            if(nodeHistory.log > 0){
+            ampEnvelope.disconnect();
+            /*if(nodeHistory.log > 0){
                 nodeHistory.oldFade.disconnect(this.node);
                 this.node.disconnect(nodeHistory.oldMasterVolume);
-            }
+            }*/
         },
         postPlayUpdate: function(){
-            //Update node history
-            nodeHistory.oldFade = patch.sound.fadeNode;
-            nodeHistory.oldMasterVolume = patch.sound.masterVolume;
-            nodeHistory.log++;
-
             //Insert releaseNode at the correct place in the graph
-            patch.sound.fadeNode.disconnect(patch.sound.masterVolume);
+            /*patch.sound.fadeNode.disconnect(patch.sound.masterVolume);
             patch.sound.fadeNode.connect(this.node);
-            this.node.connect(patch.sound.masterVolume);
+            this.node.connect(patch.sound.masterVolume);*/
         },
         applyEnvelope: function(){
-            var sampleDuration = patch.sound.sourceNode.buffer.duration;
+            var sampleDuration = patch.sound.sourceNode.buffer.duration - bw.$refs.wavePanel.offset;
             var soundDuration;
 
             if(bw.$refs.envelopePanel.pitch.active){
-                //Calculate time multiplier based on the number of semitones
+                //If the sound has been pitched, calculate duration based on the number of semitones
                 var pitchMultiplier = Math.pow(1.059, -bw.$refs.envelopePanel.pitch.params.amount.value);
                 var pitchedDuration = sampleDuration * pitchMultiplier;
-                console.log('pitched duration ' + pitchedDuration);
-                soundDuration = Pz.context.currentTime + pitchedDuration;
+                soundDuration = pitchedDuration;
             }
             else{
-                soundDuration = Pz.context.currentTime + sampleDuration;
+                soundDuration = sampleDuration;
             }
 
-            var envStart = soundDuration - this.value;
+            //The max release duration must be the sound duration
+            if(this.value > soundDuration){
+                this.value = soundDuration;
+            }
+
+            var envStart = Pz.context.currentTime + soundDuration - this.value + 0.04;
             var timeConstant = parseFloat(this.value/3).toFixed(2);
-
-            console.log('envstart ' + envStart);
-            console.log('duration ' + soundDuration);
-            //console.log('timeconstant ' + timeConstant);
-
             this.node.gain.setTargetAtTime(0, envStart, timeConstant);
-        },
-        bla: function(){
-            var sampleDuration = patch.sound.sourceNode.buffer.duration;
-            if(bw.$refs.envelopePanel.pitch.active){
-                //Calculate time multiplier based on the number of semitones
-                var pitchMultiplier = Math.pow(1.059, -bw.$refs.envelopePanel.pitch.params.amount.value);
-                var pitchedDuration = sampleDuration * pitchMultiplier;
-                console.log('pitch multiplier ' + pitchMultiplier);
-                console.log('sample duration ' + sampleDuration);
-                console.log('pitched duration ' + pitchedDuration);
-            }
         }
     },
     create: function(){
         this.release.node = Pizzicato.context.createGain();
         this.release.node.gain.value = 1;
+    },
+    connect: function(fromNode, toNode){
+        //Update node history
+        nodeHistory.oldFade = patch.sound.fadeNode;
+        nodeHistory.oldFirstGain = fromNode;
+
+        //Patch custom node graph into the Pizzicato graph
+        fromNode.disconnect(toNode);
+        fromNode.connect(this.release.node);
+        this.release.node.connect(toNode);
+
+        ampEnvelope.connected = true;
+    },
+    disconnect: function(){
+        if(this.connected){
+            nodeHistory.oldFirstGain.disconnect(this.release.node);
+            this.release.node.disconnect(nodeHistory.oldFade);
+        }
     }
 }
 
 var nodeHistory = {
-    log: 0,
     oldFade: null,
-    oldMasterVolume: null
+    oldMasterVolume: null,
+    oldFirstGain: null
 }

@@ -66,6 +66,10 @@ var patch = {
         console.log('Fade: ' + patch.sound.fadeNode.__resource_id__);
         console.log('Release: ' + ampEnvelope.release.node.__resource_id__);
         console.log('Master Volume: ' + patch.sound.masterVolume.__resource_id__);
+        for(node in nodeHistory){
+            if (node != 'log' && nodeHistory[node] != null)
+            console.log(node + ' ' + nodeHistory[node].__resource_id__);
+        }
     },
     ps: function(){
         this.sound.play();
