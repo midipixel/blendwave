@@ -103,7 +103,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('wavePanel');
+        this.activatePanel('fxPanel');
 
         this.loaded = true;
     }

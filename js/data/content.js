@@ -125,8 +125,8 @@ var content = {
             reverb: ["Reverb", "Simula a reverberação do som em ambientes fechados"],
             delay: ["Delay", "Toca o som original e com atraso, gerando um efeito de eco"],
             distortion: ["Distortion", "Distorce som de forma ruidosa, dando um caráter agressivo ao timbre"],
-            flanger: ["Flanger", "Filtra frequências ao longo do tempo, conferindo uma estética incomum ao som"],
-            ringmodulator: ["Ring Modulator", "Modula o som a partir de dois sinais, resultando em um timbre metálico e alienígena"],
+            flanger: ["Flanger", "Filtra/modula frequências ao longo do tempo, de forma alienígena."],
+            ringmodulator: ["Ring Modulator", "Modula o som a partir de dois sinais, com resultados bizarros!"],
             params: {
                 // Had to create the extra level because distortion doubles both as effect and param
                 time: "Tempo",
@@ -146,8 +146,8 @@ var content = {
             reverb: ["Reverb", "Simulates the reverberation of indoors locations."],
             delay: ["Delay", "The sample is replayed multiple times, creating an echo chamber."],
             distortion: ["Distortion", "The sample is harshly distorted, providing an agressive character."],
-            flanger: ["Flanger", "Frequencies are filtered and modulated over time, resulting in an unusual aesthetic."],
-            ringmodulator: ["Ring Modulator", "The sample is modulated by two signals, resulting in an alien and metalic timbre"],
+            flanger: ["Flanger", "Frequencies are filtered/modulated over time, in alien fashion."],
+            ringmodulator: ["Ring Modulator", "Sample is modulated by two signals, with crazy results!"],
             params: {
                 // Had to create the extra level because distortion is both an effect and param
                 time: "Time",
