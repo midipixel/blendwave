@@ -168,68 +168,45 @@ Vue.component('exportpanel', {
             //Download link creation
             function createDownloadLink() {
                 recorder && recorder.exportWAV(function(blob) {
-                    var url = URL.createObjectURL(blob);
-
-                    var listItems = $('#recordingslist li');
-                    var fileName = bw.file + '_' + listItems.length + '.wav';
-
-                    //File List DOM Structure
-                    var fileHeader = document.createElement('h5');
-                    var mediaContainer = document.createElement('div');
-                    mediaContainer.className = 'mediaContainer';
-                    var li = document.createElement('li');
-                    var player = document.createElement('div');
-                    player.className = 'player';
-                    var au = document.createElement('audio');
-                    var hf = document.createElement('a');
-                    hf.className = 'bwButton';
-                    var remove = document.createElement('button');
-                    remove.className = 'bwButton delButton';
-
-                    //Audio Element
-                    au.controls = true;
-                    au.src = url;
-
-                    //Download Button
-                    hf.href = url;
-                    hf.download = fileName;
-                    hf.setAttribute('ga-on', 'click');
-                    hf.setAttribute('ga-event-category', 'exportPanel');
-                    hf.setAttribute('ga-event-action', 'download file');
-                    //hf.download = new Date().toISOString() + '.wav';
-                    //hf.innerHTML = hf.download;
-                    var text = bw.$refs.exportPanel.content[bw.locale].downloadText;
-
-                    //File Header
-                    fileHeader.innerHTML = fileName;
-                    li.appendChild(fileHeader);
-
-                    //Media Container
-                    li.appendChild(mediaContainer);
-                        mediaContainer.appendChild(player);
-                            player.appendChild(au);
-                        mediaContainer.appendChild(hf);
-                        hf.innerHTML = text;
-
-                    //Remove Button
-                    mediaContainer.appendChild(remove);
-                    remove.setAttribute('ga-on', 'click');
-                    remove.setAttribute('ga-event-category', 'exportPanel');
-                    remove.setAttribute('ga-event-action', 'remove file');
-                    remove.innerHTML = "Remove File";
-                    $(remove).on('click', function(e){
-                        self.removeFile(e);
-                    });
-
-
-                    $('#recordingslist').prepend(li);
+                    self.addFile(blob);
                 });
-                //Stop must be called to account for the envelope off situation
-                patch.sound.stop();
-
-                //File list no longer empty
-                self.emptyList = false;
             }
+        },
+        addFile: function(blob){
+            self = this;
+
+            var linkId = 0;
+            var template = $('#dlTemplate');
+            var newLink = template.clone().attr('id', 'link' + linkId).prependTo('#recordingslist');
+            var listItems = $('#recordingslist li');
+            var fileName = bw.file + '_' + listItems.length + '.wav';
+            var url = URL.createObjectURL(blob);
+
+            //Audio Element
+            newLink.find('audio').attr('src', url);
+
+            //Download Button
+            dwButton = newLink.find('[data-id="dwButton"]')[0];
+            dwButton.href = url;
+            dwButton.download = fileName;
+
+            //File Header
+            newLink.find('h5').html(fileName);
+
+            //Remove Button
+            newLink.find('[data-id="delButton"]').on('click', function(e){
+                self.removeFile(e);
+            });
+
+            //Stop must be called to account for the envelope off situation
+            patch.sound.stop();
+
+            //File list no longer empty
+            this.emptyList = false;
+
+            //Wave Preview
+            //self.createPreview();
+            linkId++;
         },
         removeFile: function(e){
             var self = this;
@@ -262,6 +239,20 @@ Vue.component('exportpanel', {
         },
         prePlayUpdate: function(){
             Pizzicato.masterGainNode.gain.value = this.mixer.volume.value;
+        },
+        createPreview: function(){
+            console.log('obj');
+            /*//Initialize Wave Previewer
+            this.wavesurfer = WaveSurfer.create({
+                container: '#wavePreview',
+                waveColor: '#d0d4de',
+                progressColor: '#4b4f58',
+                cursorColor: '#fff',
+                cursorWidth: 3,
+                height: 80
+            });
+
+            this.wavesurfer.load(this.$root.soundOptions.path);*/
         }
     },
     computed: {
