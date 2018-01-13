@@ -7,6 +7,7 @@ Vue.component('exportpanel', {
             interval: null,
             exporting: false,
             emptyList: true,
+            fileCounter: 0,
             mixer: {
                 envelopePanel: {
                     active: true,
@@ -175,12 +176,32 @@ Vue.component('exportpanel', {
         addFile: function(blob){
             self = this;
 
-            var linkId = 0;
-            var template = $('#dlTemplate');
-            var newLink = template.clone().attr('id', 'link' + linkId).prependTo('#recordingslist');
             var listItems = $('#recordingslist li');
             var fileName = bw.file + '_' + listItems.length + '.wav';
             var url = URL.createObjectURL(blob);
+
+            //Wave Preview
+
+            var wavesurfer = WaveSurfer.create({
+                container: '#dlTemplate #fileWaveform',
+                waveColor: '#d0d4de',
+                progressColor: '#4b4f58',
+                cursorColor: '#fff',
+                cursorWidth: 0,
+                height: 40
+            });
+
+            wavesurfer.load(url);
+
+            //Replace cloned wavesurfer canvas with the original
+            var linkId = 'link' + this.fileCounter;
+            var template = $('#dlTemplate');
+            var newLink = template.clone().attr('id', linkId).prependTo('#recordingslist');
+
+            //Remove rendered wavesurfer from original target and insert into cloned node
+            wsDestination = newLink.find('#fileWaveform');
+            wsDestination.children().remove();
+            $('#dlTemplate #fileWaveform').children().prependTo(wsDestination);
 
             //Audio Element
             newLink.find('audio').attr('src', url);
@@ -204,9 +225,10 @@ Vue.component('exportpanel', {
             //File list no longer empty
             this.emptyList = false;
 
-            //Wave Preview
-            //self.createPreview();
-            linkId++;
+            this.fileCounter++;
+        },
+        createPreview: function(){
+
         },
         removeFile: function(e){
             var self = this;
@@ -239,20 +261,6 @@ Vue.component('exportpanel', {
         },
         prePlayUpdate: function(){
             Pizzicato.masterGainNode.gain.value = this.mixer.volume.value;
-        },
-        createPreview: function(){
-            console.log('obj');
-            /*//Initialize Wave Previewer
-            this.wavesurfer = WaveSurfer.create({
-                container: '#wavePreview',
-                waveColor: '#d0d4de',
-                progressColor: '#4b4f58',
-                cursorColor: '#fff',
-                cursorWidth: 3,
-                height: 80
-            });
-
-            this.wavesurfer.load(this.$root.soundOptions.path);*/
         }
     },
     computed: {

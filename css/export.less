@@ -253,20 +253,29 @@ nav .export:hover{
 .exportedFiles li {
     padding-bottom: 1.5em;
     overflow: hidden;
+    border-bottom: 1px solid @bwBrighter;
+    margin-bottom: 1rem;
 }
 
 .exportedFiles .mediaContainer{
     display: flex;
     align-items: center;
+    margin-bottom: 0.6rem;
 }
 
 .exportedFiles .mediaContainer .player{
-    margin-right: 3%;
+    height: 40px;
+    margin-right: 0.5rem;
     background: #8192c7;
 }
 
-.exportedFiles .mediaContainer .bwButton{
-    margin-right: 2%;
+.exportedFiles .fileWaveform{
+    background: #262930;
+    flex-grow: 1;
+}
+
+.exportedFiles .fileButtons .bwButton{
+    margin-right: 1%;
 }
 
 .exportedFiles h5{
@@ -278,7 +287,12 @@ nav .export:hover{
 }
 
 #dlTemplate{
-    display: none;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border: none;
 }
 
 

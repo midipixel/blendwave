@@ -149,11 +149,15 @@
             <ul id="recordingslist"  class="exportedFiles">
                 <li id="dlTemplate">
                     <h5></h5>
+
                     <div class="mediaContainer">
                         <div class="player">
                             <audio controls="true" src=""></audio>
                         </div>
+                        <div class="fileWaveform" id="fileWaveform"></div>
+                    </div>
 
+                    <div class="fileButtons">
                         <a
                            class="bwButton"
                            href="#"

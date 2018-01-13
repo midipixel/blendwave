@@ -70,6 +70,10 @@ var bw = new Vue({
         closeModal: function(modal){
             this.credits.visible = false;
         },
+        hidePreloader: function(){
+            pl = document.getElementById('preLoader');
+            pl.style.display = "none";
+        },
         gaSend: function(hitType, params){
             if(window.ga){
                 if (hitType === 'screenview'){
@@ -103,8 +107,9 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('exportPanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
+        this.hidePreloader();
     }
 });

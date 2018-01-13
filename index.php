@@ -10,12 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="img/favicon.png" />
 
+    <link rel="stylesheet" type="text/css" href="css/preloader.css">
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-reboot.min.css">
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-grid.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
+    <?php include("preloader.php") ?>
+
     <main id="blendwave" :class="mainClass">
         <?php include("header.php") ?>
 
