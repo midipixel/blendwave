@@ -98,6 +98,7 @@ var content = {
             cutoff: 'Frequência de Corte',
             oscillateFilter: "Oscilar Filtro",
             oscillateFilterDescription: "Sacuda seu filtro!",
+            disabledWarning: "Por favor, escolha um tipo de filtro antes.",
             speed: "Velocidade",
             depth: "Força"
         },
@@ -112,6 +113,7 @@ var content = {
             cutoff: 'Cutoff Frequency',
             oscillateFilter: "Filter Shake",
             oscillateFilterDescription: "Shake that filter!",
+            disabledWarning: "Please select a filter type first.",
             speed: "Speed",
             depth: "Depth"
         }

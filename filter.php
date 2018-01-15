@@ -81,11 +81,12 @@
             <div id="filter_osc" :class="{audioParams:true, disabled: !osc.active}">
                 <!-- Filter OSC Toggle -->
                 <header>
-                    <label class="switch">
+                    <label class="switch" :class="{disabled: this.selected === 'none'}" :title="disabledWarning">
                         <input
                             type="checkbox"
-                            :checked=osc.active
-                            @change='osc.active = !osc.active;'
+                            :checked="osc.active"
+                            @change="osc.active = !osc.active;"
+                            :disabled="this.selected === 'none'"
 
                             ga-on="click"
                             ga-event-category="filterOSC"

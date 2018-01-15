@@ -442,11 +442,16 @@ a:hover{
     transition: all 0.2s ease-in;
 }
 
-/* Switch: Button - Disabled */
-
+/* Switch: Button - Off State */
 body .disabled .switch::before, .audioParams .disabledSwitch::before{
     left: 0.2rem;
     background: #cdcdcd;
+}
+
+/* Switch: Button - Disabled */
+.switch.disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .switch:focus{

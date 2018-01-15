@@ -131,6 +131,11 @@ Vue.component('filterpanel', {
                 applied: this.applied,
                 osc: this.osc.active
             }
+        },
+        disabledWarning: function(){
+            if(this.selected === 'none'){
+                return this.content[this.$root.locale].disabledWarning;
+            }
         }
     },
     mounted: function() {

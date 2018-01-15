@@ -111,7 +111,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('wavePanel');
+        this.activatePanel('filterPanel');
 
         this.loaded = true;
         this.hidePreloader();
