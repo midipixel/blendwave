@@ -47,7 +47,7 @@ var bw = new Vue({
                 this.mainClass = panel;
 
                 //Clear URL bar and add page param for analytics
-                var url="?p=" + panel;
+                var url="index.php#" + panel;
                 history.pushState({panel: panel}, 'Blendwave', url);
 
                 //Analytics

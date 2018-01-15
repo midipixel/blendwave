@@ -2,7 +2,7 @@
     <img src="img/bw_logo.svg" alt="Blendwave">
     <p>
         <?php
-            if(empty($_GET)){
+            if(!isset($_GET["locale"]) || $_GET["locale"] === 'en' ){
                 echo('Loading. Please wait!');
             }
             else{
