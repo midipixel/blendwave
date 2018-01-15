@@ -44,7 +44,8 @@ Vue.component('wavepanel', {
                 options: this.$root.soundOptions
             }, function() {
                 bw.$refs.wavePanel.loading = false;
-                patch.play();
+                bw.$refs.fileHeader.play();
+                bw.$refs.fileHeader.stop();
             });
 
             //load file into Wave Previewer

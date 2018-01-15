@@ -44,4 +44,4 @@
     </nav>
 </header>
 
-<fileheader></fileheader>
+<fileheader ref="fileHeader"></fileheader>

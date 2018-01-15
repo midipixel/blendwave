@@ -1,5 +1,6 @@
 <?= '<script type="text/x-template" id="fileHeader">' ?>
     <header class="container fileHeader"
+            :class="{fileHeader_active: this.active}"
             @mousedown="play()"
             @mouseup="stop()"
             

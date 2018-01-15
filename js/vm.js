@@ -98,15 +98,15 @@ var bw = new Vue({
         $('body').on('keydown', function(e){
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
+                bw.$refs.fileHeader.play();
                 self.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
-                patch.play();
             }
         });
 
         $('body').on('keyup', function(e){
             //Stop audio on 'P' release
             if(e.keyCode == 80){
-                patch.stop();
+                bw.$refs.fileHeader.stop();
             }
         });
 
