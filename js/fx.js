@@ -8,34 +8,30 @@ Vue.component('fxpanel', {
                 fxSlot1: {
                     active: false,
                     selected: 'none',
-                    fxButtonText: 'off',
                     pizEffect: {},
                     fxData: {}
                 },
                 fxSlot2: {
                     active: false,
                     selected: 'none',
-                    fxButtonText: 'off',
                     pizEffect: {},
                     fxData: {}
                 }
-            }   
+            }
         }
     },
     methods: {
         toggleFX: function(slot){
             var fxSlot = this.fxSlots[slot];
-            
-            // Toggle Active State and Button Text
+
+            // Toggle Active State
             fxSlot.active = !fxSlot.active;
 
             // Change UI according to the effect being active or not
             if(fxSlot.active) {
-                fxSlot.fxButtonText = 'on'
                 document.querySelector('#' + slot + ' .fxControls select').removeAttribute('disabled');
             }
             else {
-                fxSlot.fxButtonText = 'off';
                 document.querySelector('#' + slot + ' .fxControls select').setAttribute('disabled', 'disabled');
             }
         },
@@ -56,7 +52,7 @@ Vue.component('fxpanel', {
             var effect = this.fxSlots[slot].selected;
 
             //If there is a Pizzicato effect applied
-            if(fxSlot.pizEffect.outputNode){ 
+            if(fxSlot.pizEffect.outputNode){
                 //Remove it from the patch and clear its reference from the vue instance
                 patch.sound.removeEffect(fxSlot.pizEffect);
                 fxSlot.pizEffect = {};
@@ -85,9 +81,12 @@ Vue.component('fxpanel', {
                     }
 
                     // Reset UI and states
-                    this.toggleFX(slot);
                     this.fxSlots[slot].selected = 'none';
                     this.fxSlots[slot].pizEffect = {};
+                }
+
+                if(this.fxSlots[slot].active){
+                    this.toggleFX(slot);
                 }
             }
         },

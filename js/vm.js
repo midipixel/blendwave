@@ -110,7 +110,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('filterPanel');
+        this.activatePanel('fxPanel');
 
         this.loaded = true;
         this.hidePreloader();
