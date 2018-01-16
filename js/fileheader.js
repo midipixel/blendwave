@@ -14,11 +14,11 @@ Vue.component('fileheader', {
         },
         stop: function(){
             self = this;
-
             var fh = this.$el;
-            fh.ontransitionend = function(){
+
+            fh.addEventListener("transitionend", function(event) {
                 self.active = false;
-            };
+            }, false);
 
             patch.stop();
         }

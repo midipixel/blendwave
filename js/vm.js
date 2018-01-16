@@ -47,7 +47,7 @@ var bw = new Vue({
                 this.mainClass = panel;
 
                 //Clear URL bar and add page param for analytics
-                var url="index.php#" + panel;
+                var url="?p=" + panel;
                 history.pushState({panel: panel}, 'Blendwave', url);
 
                 //Analytics
@@ -91,7 +91,6 @@ var bw = new Vue({
         }
     },
     mounted: function(){
-        self = this;
         this.initializePatch();
 
         //Bind Keyboard Events
@@ -99,7 +98,7 @@ var bw = new Vue({
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
                 bw.$refs.fileHeader.play();
-                self.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
+                bw.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
             }
         });
 
@@ -111,7 +110,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('filterPanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
         this.hidePreloader();

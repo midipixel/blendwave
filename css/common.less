@@ -148,24 +148,25 @@ a:hover{
     background: @bwBase;
     padding: 0.8rem 15px;
     border-bottom: 1px solid #5d616f;
+    transition: background 0.2s ease-out;
 }
 
 .fhBody{
     font-size: 0.85em;
     cursor: pointer;
     background: @bwDarker url(../img/bt_play.png) 1rem center no-repeat;
+    border: 1px solid @bwDarker;
     padding: 0.5rem 1rem 0.5rem 3rem;
     transition: background 0.2s ease-out;
     .userSelect_off;
 }
 
 .fhBody:hover{
-    background-color: @bwDarker;
+    border-color: @bwBright;
 }
 
-.fileHeader_active .fhBody{
-    background-color: @bwBrighter;
-    color: #fff;
+.fileHeader_active{
+    background-color: @bwBright;
 }
 
 .fileHeader strong{
