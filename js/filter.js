@@ -136,6 +136,11 @@ Vue.component('filterpanel', {
             if(this.selected === 'none'){
                 return this.content[this.$root.locale].disabledWarning;
             }
+        },
+        filterImg: function(){
+            //var img = 'img/filter_'+ this.selected +'.png';
+            var img = 'background-image: url(img/filter_' + this.selected + '.png)';
+            return img;
         }
     },
     mounted: function() {

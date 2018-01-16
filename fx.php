@@ -56,7 +56,6 @@
 
                                 <div class="fxSetup">
                                     <figure :style="'background-image: url(' + fx.img + ')'">
-                                        <!--img :src="fx.img" :alt="content[$root.locale][fx.key][0]"-->
                                     </figure>
 
                                     <div id="fxParams">

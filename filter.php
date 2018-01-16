@@ -69,8 +69,7 @@
                             <output>{{ filter.highpass.params.cutoff.value }}</output>
                         </div>
 
-                        <figure>
-                            <img v-if="this.selected != 'none'" :src="'img/filter_'+ this.selected +'.png'" :alt="this.selected.name">
+                        <figure v-show="this.selected != 'none'" :style="filterImg">
                         </figure>
                     </fieldset>
                 </div>
