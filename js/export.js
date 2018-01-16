@@ -99,6 +99,7 @@ Vue.component('exportpanel', {
             var recorder = new Recorder(patch.sound.masterVolume);
 
             //Turns recorder on, plays the sound
+            patch.sound.stop();
             recorder.record();
             patch.play();
 

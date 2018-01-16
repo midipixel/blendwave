@@ -22,16 +22,16 @@ var bw = new Vue({
             }
         },
         file: '',
+        locale: bwLocale,
+        content: content.general,
+        mainClass: '',
+        loaded: false,
         soundOptions: {
             path: '',
             attack: 0.04,
             volume: 1,
             loop: false
         },
-        locale: bwLocale,
-        content: content.general,
-        mainClass: '',
-        loaded: false,
         credits: {
             visible: false,
             content: content.credits
@@ -88,6 +88,10 @@ var bw = new Vue({
                     ga('send', params);
                 }
             }
+        },
+        feedbackWidgetClosed: function(){
+            state = $('#_hj_feedback_container > div').attr('data-state');
+            return state === 'minimized';
         }
     },
     mounted: function(){
@@ -95,10 +99,19 @@ var bw = new Vue({
 
         //Bind Keyboard Events
         $('body').on('keydown', function(e){
+
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
-                bw.$refs.fileHeader.play();
-                bw.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
+                if(analytics){
+                    if(bw.feedbackWidgetClosed()){
+                        // Do not play sounds if the Hotjar feedback widget is open
+                        bw.$refs.fileHeader.play();
+                    }
+                    bw.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
+                }
+                else{
+                    bw.$refs.fileHeader.play();
+                }
             }
         });
 
@@ -110,7 +123,7 @@ var bw = new Vue({
         });
 
         //Activate Default Panel
-        this.activatePanel('fxPanel');
+        this.activatePanel('wavePanel');
 
         this.loaded = true;
         this.hidePreloader();

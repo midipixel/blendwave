@@ -15,6 +15,9 @@
     include("fx.php");
     include("export.php");
 
+    //Analytics
+    echo('<script>var analytics = false;</script>');
+
     // Production-only scripts
     if($_SERVER["REMOTE_ADDR"] != "127.0.0.1"){
         include_once("analytics.php");
@@ -24,7 +27,6 @@
 
     // Development-only scripts
     else if($_SERVER["REMOTE_ADDR"] == "127.0.0.1"){
-
         //Vue JS Dev
         echo('<script src="js/vendor/vue.js"></script>');
 

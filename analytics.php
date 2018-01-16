@@ -1,4 +1,8 @@
 <script>
+    analytics = true;
+</script>
+
+<script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-106202679-1', 'auto');
 ga('set', 'appName', 'Blendwave');
@@ -24,5 +28,3 @@ ga('require', 'pageVisibilityTracker', {
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
-
-
