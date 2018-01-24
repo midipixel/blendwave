@@ -12,14 +12,8 @@ Vue.component('fileheader', {
             this.active = true;
             patch.play();
         },
-        stop: function(){
-            self = this;
-            var fh = this.$el;
-
-            fh.addEventListener("transitionend", function(event) {
-                self.active = false;
-            }, false);
-
+        stop: function(){ 
+            this.active = false;
             patch.stop();
         }
     },

@@ -45,7 +45,10 @@ Vue.component('wavepanel', {
             }, function() {
                 bw.$refs.wavePanel.loading = false;
                 bw.$refs.fileHeader.play();
-                bw.$refs.fileHeader.stop();
+
+                patch.sound.sourceNode.onended = function(){
+                    bw.$refs.fileHeader.stop();
+                }
             });
 
             //load file into Wave Previewer
