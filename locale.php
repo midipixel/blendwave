@@ -1,4 +1,6 @@
 <?php
+    $locale = null;
+
     echo('<script>');
         if(!isset($_GET["locale"]) || $_GET["locale"] === 'en' ){
             echo('var bwLocale = "en"');

@@ -25,7 +25,12 @@
                         // Print folder names
                         foreach ($library as $index => $category){
                             echo("<li @click='changeCategory' id='" . $category . "'>");
-                                echo($category);
+                                if($locale == 'pt'){
+                                    echo("{{content." . $locale . ".categories." . $category . "}}");
+                                }
+                                else{
+                                    echo($category);
+                                }
                             echo('</li>');
                         }
                     ?>

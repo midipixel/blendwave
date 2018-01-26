@@ -37,7 +37,23 @@ var content = {
             loading: "Por Favor, aguarde. Carregando Som.",
             library: "Biblioteca",
             samplesList: "Lista de Sons",
-            offsetTip: "Clique na onda sonora para escolher um ponto inicial de playback"
+            offsetTip: "Clique na onda sonora para escolher um ponto inicial de playback",
+            categories: {
+                animals: "animais",
+                cartoon: "cartoon",
+                explosions: "explosões",
+                foley: "foley",
+                household: "caseiros",
+                impacts: "impactos",
+                machinery: "maquinário",
+                mayhem: "destruição",
+                nature: "natureza",
+                organic: "orgânicos",
+                people: "pessoas",
+                retro: "retrô",
+                synth: "synth",
+                vehicles: "veículos"
+            }
         },
         en: {
             title: "Choose Sample",
@@ -45,7 +61,23 @@ var content = {
             loading: "Loading sound file. Please wait.",
             library: "Library",
             samplesList: "Samples List",
-            offsetTip: "Click on the waveform to choose a playback starting point"
+            offsetTip: "Click on the waveform to choose a playback starting point",
+            categories: {
+                animals: "animals",
+                cartoon: "cartoon",
+                explosions: "explosions",
+                foley: "foley",
+                household: "household",
+                impacts: "impacts",
+                machinery: "machinery",
+                mayhem: "mayhem",
+                nature: "nature",
+                organic: "organic",
+                people: "people",
+                retro: "retro",
+                synth: "synth",
+                vehicles: "vehicles"
+            }
         }
     },
 
@@ -169,6 +201,7 @@ var content = {
             title: "Saída",
             subtitle: "Ajuste seus parâmetros, exporte o resultado final em formato WAV, e faça o download",
             exportButton: "Exportar WAV",
+            removeButton: "Remover Arquivo",
             filesTitle: "Arquivos Exportados",
             envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filtro",
@@ -188,6 +221,7 @@ var content = {
             title: "Output",
             subtitle: "Adjust your settings, export the final result to a WAV file, and download",
             exportButton: "Export WAV",
+            removeButton: "Remove File",
             filesTitle: "Exported Files",
             envelopeStrip: "Amplitude & Pitch",
             filterStrip: "Filter",

@@ -174,7 +174,7 @@
 
                            ga-on="click"
                            ga-event-category="exportPanel"
-                           ga-event-action="downloadFile">Remove File</a>
+                           ga-event-action="downloadFile">{{ content[$root.locale].removeButton }}</a>
                     </div>
                 </li>
             </ul>
