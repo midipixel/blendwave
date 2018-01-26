@@ -35,6 +35,36 @@ body{
     color: @bwText;
 }
 
+.mobileWarning{
+    background: @bwBase;
+    color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    display: none;
+}
+
+.mobileWarning img{
+    max-width: 30%;
+    display: block;
+    margin: 1rem auto 2rem auto;
+}
+
+.mobileWarning em{
+    color: @bwBrighter;
+}
+
+@media (max-width: 768px) {
+    #blendwave{
+        display: none;
+    }
+
+    .mobileWarning{
+        display: block;
+    }
+}
+
 html.modalOn{
     overflow: hidden;
 }

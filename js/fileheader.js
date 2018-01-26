@@ -10,9 +10,11 @@ Vue.component('fileheader', {
     methods: {
         play: function(){
             this.active = true;
-            patch.play();
+            if(!bw.$refs.wavePanel.loading){
+                patch.play();
+            }
         },
-        stop: function(){ 
+        stop: function(){
             this.active = false;
             patch.stop();
         }

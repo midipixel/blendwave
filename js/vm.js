@@ -103,14 +103,15 @@ var bw = new Vue({
             //Play audio on 'P' press
             if(e.keyCode == 80 && !e.repeat){
                 if(analytics){
-                    if(!bw.$refs.wavePanel.loading){
+                    if(bw.feedbackWidgetClosed()){
+                        // Do not play sounds if the Hotjar feedback widget is open
                         bw.$refs.fileHeader.play();
+                        bw.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
                     }
-                    bw.gaSend('event', { eventCategory: 'Keyboard', eventAction: 'Preview Audio',});
                 }
                 else{
                     if(!bw.$refs.wavePanel.loading){
-                        bw.$refs.fileHeader.play();
+                        bw.$refs.fileHeader.play(); 
                     }
                 }
             }
