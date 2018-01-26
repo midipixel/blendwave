@@ -19,13 +19,6 @@
 <body>
     <?php include("preloader.php") ?>
 
-        <div class="mobileWarning">
-            <img src="img/bw_logo.svg" alt="blendwave">
-            <p>Hey there! I promise Blendwave will be responsive soon. But for now, please use a modern desktop browser that <a href="https://caniuse.com/#feat=audio-api" target="_parent">supports the Web Audio API</a> <em>(*ahem* Chrome, Opera or Firefox *ahem*)</em></p>
-            <p>Also, if you're seeing this because your desktop browser window is too narrow, just zoom out. ;)</p>
-            <p>Cheers!</p>
-        </div>
-
     <main id="blendwave" :class="mainClass">
         <?php include("header.php") ?>
 
@@ -39,6 +32,13 @@
 
         <?php include("footer.php") ?>
     </main>
+
+    <div class="mobileWarning">
+        <img src="img/bw_logo.svg" alt="blendwave">
+        <p>Hey there! I promise Blendwave will be responsive soon. But for now, please use a modern desktop browser that <a href="https://caniuse.com/#feat=audio-api" target="_parent">supports the Web Audio API</a> <em>(*ahem* Chrome, Opera or Firefox *ahem*)</em></p>
+        <p>Also, if you're seeing this because your desktop browser window is too narrow, just zoom out. ;)</p>
+        <p>Cheers!</p>
+    </div>    
 
     <?php include("locale.php") ?>
     <?php include("scripts.php") ?>
