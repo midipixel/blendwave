@@ -6,8 +6,7 @@
 
 <head>
     <title>Blendwave</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php include("meta.php") ?>
     <link rel="icon" type="image/png" href="img/favicon.png" />
 
     <link rel="stylesheet" type="text/css" href="css/preloader.css">
@@ -38,7 +37,7 @@
         <p>Hey there! I promise Blendwave will be responsive soon. But for now, please use a modern desktop browser that <a href="https://caniuse.com/#feat=audio-api" target="_parent">supports the Web Audio API</a> <em>(*ahem* Chrome, Opera or Firefox *ahem*)</em></p>
         <p>Also, if you're seeing this because your desktop browser window is too narrow, just zoom out. ;)</p>
         <p>Cheers!</p>
-    </div>    
+    </div>
 
     <?php include("locale.php") ?>
     <?php include("scripts.php") ?>
