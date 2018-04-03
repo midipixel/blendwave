@@ -17,6 +17,8 @@ ga('require', 'pageVisibilityTracker', {
 <script async src="https://www.google-analytics.com/analytics.js"></script>
 <script async src="js/vendor/autotrack.js"></script>
 
+<?php
+/*
 <!-- Hotjar Tracking Code for http://beta.blendwave.net -->
 <script>
     (function(h,o,t,j,a,r){
@@ -28,3 +30,5 @@ ga('require', 'pageVisibilityTracker', {
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
+*/
+?>
