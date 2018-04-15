@@ -96,7 +96,7 @@ Vue.component('exportpanel', {
             self.exporting = true;
 
             //Create Recorder object, connected to the sound's output node
-            var recorder = new Recorder(patch.sound.masterVolume);
+            var recorder = new Recorder(Pizzicato.masterGainNode);
 
             //Turns recorder on, plays the sound
             patch.sound.stop();
