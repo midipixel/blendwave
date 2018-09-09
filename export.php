@@ -154,7 +154,9 @@
                         <div class="player">
                             <audio controls="true" src=""></audio>
                         </div>
-                        <div class="fileWaveform" id="fileWaveform"></div>
+                        <div class="waveForm">
+                            <div id="fileWaveform"></div>
+                        </div>
                     </div>
 
                     <div class="fileButtons">

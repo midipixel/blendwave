@@ -258,17 +258,19 @@ nav .export:hover{
 
 .exportedFiles .mediaContainer{
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items: stretch;
     margin-bottom: 0.6rem;
 }
 
-.exportedFiles .mediaContainer .player{
-    height: 40px;
+.exportedFiles .player{
     margin-right: 0.5rem;
-    background: #8192c7;
+    background: @bwDark;
+    display: flex;
+    align-items: center;
 }
 
-.exportedFiles .fileWaveform{
+.exportedFiles .waveForm{
     background: #262930;
     flex-grow: 1;
 }

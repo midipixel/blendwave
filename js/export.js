@@ -189,7 +189,7 @@ Vue.component('exportpanel', {
                 progressColor: '#4b4f58',
                 cursorColor: '#fff',
                 cursorWidth: 0,
-                height: 40
+                height: 56
             });
 
             wavesurfer.load(url);
