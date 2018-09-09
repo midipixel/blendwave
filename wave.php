@@ -63,8 +63,9 @@
             <div class="samplesBody">
                 <?php
                     foreach ($library as $index => $category){
-                        $catDir = scandir('samples/' . $category);
-                        $catDir = array_slice($catDir, 2);
+                        //Scan each category folder and filter the array by audio file types
+                        $catDir = 'samples/' . $category;
+                        $catDir = preg_grep('~\.(mp4|wav|mp3|ogg)$~', scandir($catDir));
 
                         echo("<div class='fileList' v-show=\"category === '" . $category . "'\" id='list_" . $category . "'>");
                             // Establish max files per col, determine number of cols
