@@ -1,6 +1,6 @@
 Vue.component('fxpanel', {
     props: ['active'],
-    template: '#fxPanel', 
+    template: '#fxPanel',
     data: function(){
         return {
             content: content.fxPanel,
@@ -46,7 +46,7 @@ Vue.component('fxpanel', {
 
             //console.log(fxParams);
             return fxParams;
-        },        
+        },
         setFX: function(slot){
             var fxSlot = this.fxSlots[slot];
             var effect = this.fxSlots[slot].selected;
@@ -60,11 +60,11 @@ Vue.component('fxpanel', {
 
             if (effect != 'none'){
                 var fxParams = this.getParams(fxSlot, effect);
-                
+
                 //Create a new pizzicato effect from user selection, passing the params object
                 var pizString = effect === 'ringmodulator' ? 'RingModulator' : util.capitalize(effect);
                 fxSlot.pizEffect = new Pizzicato.Effects[pizString](fxParams);
-                
+
                 //Apply effect to sound
                 patch.sound.addEffect(fxSlot.pizEffect);
             }
@@ -108,14 +108,14 @@ Vue.component('fxpanel', {
                     }
                 }
                 // If the slot is inactive, mute the effect
-                else{    
+                else{
                     if(this.fxSlots[slot].selected != 'Distortion'){
-                        this.fxSlots[slot].pizEffect.mix = 0;                    
+                        this.fxSlots[slot].pizEffect.mix = 0;
                     }
                     else{
                         // Distortion can't really be muted, and setting the gain to 0 lowers the audio, so I'm hacking it
-                        this.fxSlots[slot].pizEffect.gain = 0.1;                    
-                    }                
+                        this.fxSlots[slot].pizEffect.gain = 0.1;
+                    }
                 }
             }
         }

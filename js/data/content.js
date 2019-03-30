@@ -52,7 +52,9 @@ var content = {
                 people: "pessoas",
                 retro: "retrô",
                 synth: "synth",
-                vehicles: "veículos"
+                vehicles: "veículos",
+                supermario: "super mario",
+                turma: "turma"
             }
         },
         en: {
