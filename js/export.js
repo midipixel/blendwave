@@ -125,6 +125,7 @@ Vue.component('exportpanel', {
                 var verifyCounter = 0;
                 var verifications = 1;
                 var bufferLength = 4;
+                var verifyTimeout = false;
                 var dataArray = new Uint8Array(bufferLength);
 
                 // If delays are applied, increment the verifyCounter to account for the longest
@@ -146,25 +147,40 @@ Vue.component('exportpanel', {
                     }
                 }
 
+                // Terminates interval and creates the file
+                function createFile(){
+                    clearInterval(this.interval);
+                    createDownloadLink();
+                    self.exporting = false;
+                }
+
                 function verifyMute(){
+                    patch.analyser.node.minDecibels = -70;
                     patch.analyser.node.getByteFrequencyData(dataArray);
-                    //console.log(dataArray);
+                    console.log(dataArray);
 
                     if (dataArray[0] < 1){
                         if (verifyCounter > verifications){
                             // When output is verified mute after some checks,
                             //clears the interval and creates download link
-                            clearInterval(this.interval);
-                            createDownloadLink();
-                            self.exporting = false;
+                            createFile();
                         }
                         else {
                             verifyCounter++;
                         }
                     }
                 }
+
+
                 //Start verification
                 this.interval = setInterval(verifyMute,30);
+
+                //Set hard timeout in case verifications fail for an unknown reason
+                var timeout = window.setTimeout(function(){
+                    if(self.exporting){
+                        createFile();
+                    }
+                }, 18000)
             };
 
             //Download link creation
