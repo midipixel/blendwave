@@ -12,7 +12,7 @@
                         <input type="checkbox"
                                id="amp_envelope_toggle"
                                :checked=amp_envelope.active
-                               @change="amp_envelope.active = !amp_envelope.active"
+                               @change="setAmpEnvelope"
                                ga-on="click"
                                ga-event-category="ampEnvelope"
                                ga-event-action="toggle envelope"/>

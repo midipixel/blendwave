@@ -34,7 +34,8 @@ var ampEnvelope = {
                 this.value = soundDuration;
             }
 
-            var envStart = Pz.context.currentTime + soundDuration - this.value + 0.04;
+            var envStart = Pz.context.currentTime;
+            //var envStart = Pz.context.currentTime + soundDuration - this.value + 0.04;
             var timeConstant = parseFloat(this.value/3).toFixed(2);
             this.node.gain.setTargetAtTime(0, envStart, timeConstant);
         }

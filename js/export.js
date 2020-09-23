@@ -125,7 +125,7 @@ Vue.component('exportpanel', {
                 var verifyCounter = 0;
                 var verifications = 1;
                 var bufferLength = 4;
-                var verifyTimeout = false;
+                var timeoutCounter = 0;
                 var dataArray = new Uint8Array(bufferLength);
 
                 // If delays are applied, increment the verifyCounter to account for the longest
@@ -157,7 +157,7 @@ Vue.component('exportpanel', {
                 function verifyMute(){
                     patch.analyser.node.minDecibels = -80;
                     patch.analyser.node.getByteFrequencyData(dataArray);
-                    console.log(dataArray);
+                    //console.log(dataArray);
 
                     if (dataArray[1] < 1){
                         if (verifyCounter > verifications){
@@ -169,8 +169,18 @@ Vue.component('exportpanel', {
                             verifyCounter++;
                         }
                     }
-                }
 
+                    /* Some sounds get stuck above zero at the analyser even if silent.
+                    This is a safeguard to deal with this buggy behaviour. If the second position
+                    gets stuck in a value below 50, wait for 6 seconds (200 * 30) and export anyway */
+
+                    else if (dataArray[2] < 1 && dataArray[1] < 50) {
+                        if (timeoutCounter > 200){
+                            createFile();
+                        }
+                    }
+                    timeoutCounter++;
+                }
 
                 //Start verification
                 this.interval = setInterval(verifyMute,30);
@@ -206,7 +216,7 @@ Vue.component('exportpanel', {
             //Replace cloned wavesurfer canvas with the original
             var linkId = 'link' + this.fileCounter;
             var template = $('#dlTemplate');
-            var newLink = template.clone().attr('id', linkId).prependTo('#recordingslist');
+            var newLink = template.clone().attr('id', linkId).appendTo('#recordingslist');
 
             //Remove rendered wavesurfer from original target and insert into cloned node
             wsDestination = newLink.find('#fileWaveform');

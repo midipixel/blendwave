@@ -19,10 +19,10 @@ Vue.component('envelopepanel', {
                     release: {
                         name: 'release',
                         default: 1,
-                        value: 1,
-                        min: 0.3,
-                        max: 5,
-                        step: 0.1
+                        value: 0.5,
+                        min: 0.1,
+                        max: 8,
+                        step: 0.01
                     }
                 }
             },
@@ -97,6 +97,13 @@ Vue.component('envelopepanel', {
                 //Multiply pitch value by 100 because values are shown in semitones in the UI
                 patch.sound.sourceNode.detune.value = this.pitch.params.amount.value * 100;
             }
+        },
+        setAmpEnvelope: function(){
+            this.amp_envelope.active = !this.amp_envelope.active;
+
+
+            var sourceNode = patch.sound.getRawSourceNode();
+            this.amp_envelope.params.release.max = sourceNode.buffer.duration * 3;
         },
         setAmpOSC: function(){
             this.amp_osc.active = !this.amp_osc.active;
