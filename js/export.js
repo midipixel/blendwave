@@ -123,7 +123,7 @@ Vue.component('exportpanel', {
             // Analyses frequencies at a set interval. When no frequency is present, create the download link
             function exportWhenMute(){
                 var verifyCounter = 0;
-                var verifications = 1;
+                var verifications = 4;
                 var bufferLength = 4;
                 var timeoutCounter = 0;
                 var dataArray = new Uint8Array(bufferLength);
